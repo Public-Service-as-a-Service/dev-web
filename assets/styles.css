@@ -69,6 +69,13 @@ h1, h2, h3 {
   font-size: 1.15rem;
 }
 
+.brand-name {
+  color: var(--color-ink);
+  text-decoration: none;
+}
+
+.brand-name:hover { color: var(--color-primary); }
+
 .brand-mark {
   color: var(--color-primary);
   font-size: 1.35rem;
@@ -130,6 +137,47 @@ h1, h2, h3 {
   display: flex;
   gap: 0.9rem;
   flex-wrap: wrap;
+}
+
+/* Sub-page hero */
+
+.page-hero {
+  background:
+    linear-gradient(160deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  color: #ffffff;
+  padding: 2.75rem 0 3rem;
+}
+
+.page-hero h1 {
+  color: #ffffff;
+  font-size: clamp(1.6rem, 3.5vw, 2.3rem);
+  margin: 0.9rem 0 0.9rem;
+  max-width: 30ch;
+}
+
+.page-hero .hero-lead { margin-bottom: 0; }
+
+.breadcrumb {
+  font-size: 0.9rem;
+  margin-bottom: 1.4rem;
+  color: #b8d2d8;
+}
+
+.breadcrumb a {
+  color: #d6e6ea;
+  text-decoration: none;
+}
+
+.breadcrumb a:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+.breadcrumb span[aria-hidden] { margin: 0 0.35rem; }
+
+.app-tag-light {
+  background: rgba(255, 255, 255, 0.16);
+  color: #ffd76e;
 }
 
 /* Buttons */
@@ -221,28 +269,122 @@ h1, h2, h3 {
   font-size: 0.97rem;
 }
 
-/* App card */
+.fact-box-link {
+  margin: 0.9rem 0 0;
+  font-size: 0.97rem;
+  font-weight: 600;
+}
 
-.app-card {
+/* Teaser cards on start page */
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 1.75rem;
+}
+
+.teaser-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
   background: var(--color-card);
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
-  padding: 2rem 2.25rem;
+  padding: 1.6rem 1.6rem 1.4rem;
+  text-decoration: none;
+  color: var(--color-ink);
+  transition: border-color 120ms ease, transform 120ms ease;
 }
 
-.app-card-header {
-  display: flex;
-  align-items: center;
-  gap: 0.9rem;
-  flex-wrap: wrap;
-  margin-bottom: 0.5rem;
+.teaser-card:hover {
+  border-color: var(--color-primary);
+  transform: translateY(-2px);
+  color: var(--color-ink);
 }
 
-.app-card-header h3 {
+.teaser-card .app-tag { align-self: flex-start; }
+
+.teaser-card h3 {
   margin: 0;
-  font-size: 1.45rem;
+  font-size: 1.2rem;
 }
+
+.teaser-card p {
+  margin: 0;
+  color: var(--color-ink-soft);
+  font-size: 0.98rem;
+  flex-grow: 1;
+}
+
+.teaser-more {
+  color: var(--color-primary);
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.teaser-card:hover .teaser-more { text-decoration: underline; }
+
+/* Tech documentation */
+
+.section h3 {
+  font-size: 1.2rem;
+  margin: 2rem 0 0.6rem;
+}
+
+.table-wrap {
+  overflow-x: auto;
+  margin: 1rem 0 1.5rem;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  font-size: 0.97rem;
+}
+
+th, td {
+  text-align: left;
+  padding: 0.6rem 0.9rem;
+  border-bottom: 1px solid var(--color-border);
+  vertical-align: top;
+}
+
+thead th {
+  background: var(--color-primary-tint);
+  color: var(--color-primary-dark);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+tbody tr:last-child td { border-bottom: none; }
+
+code {
+  background: var(--color-primary-tint);
+  color: var(--color-primary-dark);
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* App tag and module lists */
 
 .app-tag {
   background: var(--color-primary-tint);
@@ -255,34 +397,12 @@ h1, h2, h3 {
   border-radius: 999px;
 }
 
-.app-summary {
-  font-size: 1.12rem;
-  color: var(--color-ink);
-  font-weight: 500;
-  margin: 0 0 1rem;
-}
-
-.app-body p { color: var(--color-ink-soft); }
-
 .app-modules {
   padding-left: 1.2rem;
   color: var(--color-ink-soft);
 }
 
 .app-modules li { margin-bottom: 0.5rem; }
-
-.app-card-footer {
-  margin-top: 1.5rem;
-}
-
-.app-card-footer .button-primary {
-  background: var(--color-primary);
-  color: #ffffff;
-}
-
-.app-card-footer .button-primary:hover {
-  background: var(--color-primary-dark);
-}
 
 /* Coming soon note */
 
@@ -339,7 +459,7 @@ h1, h2, h3 {
     grid-template-columns: 1fr;
   }
 
-  .app-card { padding: 1.5rem 1.25rem; }
+  .teaser-card { padding: 1.3rem 1.2rem 1.2rem; }
 
   .hero { padding: 3rem 0 2.75rem; }
 }

@@ -14,11 +14,11 @@
   <div class="container header-inner">
     <div class="brand">
       <span class="brand-mark" aria-hidden="true">▦</span>
-      <span class="brand-name">Webbkatalogen</span>
+      <a class="brand-name" href="index.html">Webbkatalogen</a>
     </div>
     <nav class="site-nav" aria-label="Huvudmeny">
       <a href="#om-katalogen">Om katalogen</a>
-      <a href="#exempel">Applikationer</a>
+      <a href="#tjanster">Webbapplikationer</a>
       <a href="https://github.com/Sundsvallskommun" rel="external">GitHub</a>
     </nav>
   </div>
@@ -36,7 +36,7 @@
         webbapplikationer som kommunen publicerar som öppen källkod.
       </p>
       <div class="hero-actions">
-        <a class="button button-primary" href="#exempel">Utforska applikationerna</a>
+        <a class="button button-primary" href="#tjanster">Utforska applikationerna</a>
         <a class="button button-secondary" href="https://github.com/Sundsvallskommun" rel="external">Besök Sundsvalls kommun på GitHub</a>
       </div>
     </div>
@@ -53,15 +53,13 @@
             granskas och vidareutvecklas av andra kommuner, organisationer och intresserade.
           </p>
           <p>
-            Den här katalogen beskriver applikationerna på ett lättillgängligt sätt:
-            vad varje tjänst gör, vem den är till för och vilken nytta den skapar.
-            Katalogen vänder sig till dig som vill förstå kommunens digitala utbud –
-            oavsett om du arbetar i en annan kommun, i offentlig sektor i övrigt,
-            eller helt enkelt är nyfiken på hur en kommun kan dela sina digitala tjänster öppet.
+            Varje webbapplikation presenteras på en egen sida med två delar: en
+            verksamhetsnära beskrivning av vad tjänsten gör och vem den är till för,
+            samt en teknisk dokumentation för dig som vill förstå hur applikationen
+            är byggd eller vill återanvända den i din egen organisation.
           </p>
           <p>
-            Katalogen byggs ut successivt. Varje applikation presenteras med en kort
-            beskrivning och en länk till källkoden för den som vill veta mer.
+            Katalogen byggs ut successivt med fler applikationer ur kommunens utbud.
           </p>
         </div>
         <aside class="fact-box" aria-label="Snabbfakta">
@@ -77,49 +75,50 @@
     </div>
   </section>
 
-  <section id="exempel" class="section section-alt">
+  <section id="tjanster" class="section section-alt">
     <div class="container">
-      <h2>Applikationer i katalogen</h2>
+      <h2>Webbapplikationer i katalogen</h2>
       <p class="section-intro">
-        Katalogen börjar med ett första exempel ur kommunens utbud. Fler applikationer
-        läggs till efter hand.
+        Applikationerna nedan bygger på en gemensam öppen kodbas för ärendehantering,
+        men utgör var sin webbapplikation med eget syfte och egen målgrupp.
+        Välj en applikation för att läsa mer.
       </p>
 
-      <article class="app-card">
-        <div class="app-card-header">
-          <h3>Draken</h3>
+      <div class="card-grid">
+
+        <a class="teaser-card" href="tjanster/generisk-arendehantering.html">
           <span class="app-tag">Ärendehantering</span>
-        </div>
-        <p class="app-summary">
-          Draken är Sundsvalls kommuns gemensamma plattform för ärendehantering – ett
-          verktyg som hjälper kommunens handläggare att ta emot, följa och avsluta
-          ärenden på ett enhetligt och effektivt sätt.
-        </p>
-        <div class="app-body">
+          <h3>Generisk ärendehantering</h3>
           <p>
-            I stället för att varje verksamhet har sitt eget system samlar Draken flera
-            av kommunens verksamhetsområden i en och samma plattform. Varje område har
-            sin egen anpassade del av systemet, bland annat:
+            En konfigurerbar tjänst för att ta emot, handlägga och avsluta ärenden och
+            förfrågningar. Används av ett flertal verksamheter – från kontaktcenter
+            till löne- och rekryteringsfunktioner.
           </p>
-          <ul class="app-modules">
-            <li><strong>Kontakt Sundsvall</strong> – hanterar frågor och ärenden från invånare som kontaktar kommunen.</li>
-            <li><strong>Mark och exploatering</strong> – stödjer arbetet med kommunens mark, arrenden och markförsäljning.</li>
-            <li><strong>Parkeringstillstånd</strong> – handlägger ansökningar om parkeringstillstånd för rörelsehindrade.</li>
-            <li><strong>Lön och pension</strong> – hanterar ärenden som rör medarbetarnas lön och pension.</li>
-            <li><strong>Rekrytering och bemanning</strong> – stödjer processer kring rekrytering och bemanning.</li>
-          </ul>
+          <span class="teaser-more">Läs mer →</span>
+        </a>
+
+        <a class="teaser-card" href="tjanster/myndighetsutovning-mark-och-exploatering.html">
+          <span class="app-tag">Myndighetsutövning</span>
+          <h3>Myndighetsutövning – mark och exploatering</h3>
           <p>
-            Genom att samla ärendehanteringen i en gemensam lösning får invånare och
-            medarbetare snabbare och mer enhetlig service, samtidigt som kommunen kan
-            återanvända samma grund för nya verksamhetsområden. Draken utvecklas aktivt
-            och delas som öppen källkod, vilket gör att andra kommuner kan dra nytta av
-            samma lösning.
+            Stöd för handläggning av mark- och exploateringsärenden: arrenden,
+            markförsäljning, avtal och fakturering – med koppling till
+            fastighetsinformation.
           </p>
-        </div>
-        <div class="app-card-footer">
-          <a class="button button-primary" href="https://github.com/Sundsvallskommun/web-app-draken-public" rel="external">Se Draken på GitHub</a>
-        </div>
-      </article>
+          <span class="teaser-more">Läs mer →</span>
+        </a>
+
+        <a class="teaser-card" href="tjanster/myndighetsutovning-parkeringstillstand.html">
+          <span class="app-tag">Myndighetsutövning</span>
+          <h3>Myndighetsutövning – parkeringstillstånd</h3>
+          <p>
+            Digital handläggning av parkeringstillstånd för rörelsehindrade –
+            från ansökan och utredning till beslut och utfärdat tillstånd.
+          </p>
+          <span class="teaser-more">Läs mer →</span>
+        </a>
+
+      </div>
 
       <div class="coming-soon" role="note">
         <p>Fler applikationsbeskrivningar är på väg – bland annat tjänster för felanmälan, företagsärenden och utbildning.</p>

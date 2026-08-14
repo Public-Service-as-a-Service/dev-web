@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Myndighetsutövning – parkeringstillstånd – Webbkatalogen</title>
+  <meta name="description" content="Webbapplikation för digital handläggning av parkeringstillstånd för rörelsehindrade – öppen källkod från Sundsvalls kommun.">
+  <link rel="stylesheet" href="../assets/styles.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%93%98%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">▦</span>
+      <a class="brand-name" href="../index.html">Webbkatalogen</a>
+    </div>
+    <nav class="site-nav" aria-label="Huvudmeny">
+      <a href="../index.html#om-katalogen">Om katalogen</a>
+      <a href="../index.html#tjanster">Webbapplikationer</a>
+      <a href="https://github.com/Sundsvallskommun" rel="external">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="page-hero">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Brödsmulor">
+        <a href="../index.html">Start</a> <span aria-hidden="true">/</span>
+        <a href="../index.html#tjanster">Webbapplikationer</a> <span aria-hidden="true">/</span>
+        <span aria-current="page">Myndighetsutövning – parkeringstillstånd</span>
+      </nav>
+      <span class="app-tag app-tag-light">Myndighetsutövning</span>
+      <h1>Myndighetsutövning – parkeringstillstånd</h1>
+      <p class="hero-lead">
+        En webbapplikation för digital handläggning av parkeringstillstånd för
+        rörelsehindrade – från ansökan och utredning till beslut och utfärdat tillstånd.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>Om applikationen</h2>
+      <div class="columns">
+        <div class="column-text">
+          <p>
+            Kommunen prövar ansökningar om parkeringstillstånd för rörelsehindrade –
+            ett beslut som är myndighetsutövning och som har stor betydelse i vardagen
+            för den som ansöker. Handläggningen ska vara rättssäker, enhetlig och gå
+            att följa i efterhand.
+          </p>
+          <p>
+            Applikationen ger handläggarna ett digitalt stöd genom hela processen.
+            Ansökningar registreras som ärenden och följer en standardiserad
+            handläggningsgång: utredning, eventuell komplettering, beslut och – vid
+            bifall – utfärdande av själva tillståndet. Handläggaren har tillgång till
+            uppgifter om den sökande, kan kommunicera direkt från ärendet och använder
+            gemensamma mallar för brev och beslut.
+          </p>
+          <p>
+            Utfärdade tillstånd registreras digitalt, vilket gör det enkelt att se
+            vilka tillstånd en person har, när de går ut och när det är dags för
+            förnyelse. Strukturerade ansökningsuppgifter kontrolleras automatiskt mot
+            fastställda regler, vilket minskar risken för fel och frigör tid för själva
+            bedömningen.
+          </p>
+
+          <h3>Det här stödjer applikationen</h3>
+          <ul class="app-modules">
+            <li><strong>Ärendehantering</strong> – registrering, utredning, beslut och avslut enligt en enhetlig process.</li>
+            <li><strong>Tillståndsregister</strong> – utfärdade parkeringstillstånd registreras och följs digitalt.</li>
+            <li><strong>Kommunikation</strong> – meddelanden till sökande direkt från ärendet.</li>
+            <li><strong>Validering</strong> – strukturerade ansökningsuppgifter kontrolleras mot fastställda regler.</li>
+            <li><strong>Beslutsdokument</strong> – brev och beslut skapas utifrån gemensamma mallar.</li>
+          </ul>
+        </div>
+        <aside class="fact-box" aria-label="Snabbfakta">
+          <h3>Snabbfakta</h3>
+          <ul>
+            <li>Målgrupp: <strong>handläggare</strong> av parkeringstillstånd</li>
+            <li>Typ: <strong>myndighetsutövning</strong></li>
+            <li>Digitalt <strong>tillståndsregister</strong></li>
+            <li>Delas som <strong>öppen källkod</strong></li>
+          </ul>
+          <p class="fact-box-link">
+            <a href="https://github.com/Sundsvallskommun/web-app-draken-public" rel="external">Källkod på GitHub</a>
+          </p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="teknisk-dokumentation">
+    <div class="container">
+      <h2>Teknisk dokumentation</h2>
+      <p class="section-intro">
+        Nedan beskrivs hur applikationen är uppbyggd, vilka API:er den använder och vad
+        som krävs för att driftsätta den. Informationen är hämtad från källkodens
+        dokumentation på GitHub.
+      </p>
+
+      <h3>Arkitektur</h3>
+      <p>
+        Applikationen består av en webbaserad frontend och en tillhörande backend som
+        utvecklas i samma kodbas (monorepo). Backend förmedlar alla anrop till
+        verksamhetssystemen via kommunens gemensamma API-plattform (WSO2) – frontend
+        pratar aldrig direkt med underliggande system. Inloggning sker med
+        organisationens identitetslösning via SAML (single sign-on).
+      </p>
+      <p>
+        Applikationen delar kodbas med kommunens övriga ärendehanteringsapplikationer.
+        Parkeringstillståndsinstansen byggs och konfigureras separat, med de
+        API-kopplingar och funktioner som verksamheten behöver.
+      </p>
+
+      <h3>Teknikstack</h3>
+      <ul>
+        <li><strong>Körmiljö:</strong> Node.js 20 LTS eller senare</li>
+        <li><strong>Frontend:</strong> React-baserad webbapplikation</li>
+        <li><strong>Pakethantering:</strong> Yarn</li>
+        <li><strong>Test:</strong> Vitest (backend, med kodtäckning), Cypress och Playwright (end-to-end)</li>
+      </ul>
+
+      <h3>API-beroenden</h3>
+      <p>
+        Applikationen konsumerar följande API:er via kommunens API-plattform.
+        Versionerna anger vilka API-versioner applikationen är byggd mot.
+      </p>
+      <div class="table-wrap">
+        <table>
+          <caption class="sr-only">API-beroenden för myndighetsutövning parkeringstillstånd</caption>
+          <thead>
+            <tr><th scope="col">API</th><th scope="col">Version</th><th scope="col">Användning</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>CaseData</td><td>12.10</td><td>Kärnan i ärendehanteringen – ärenden, utredning, beslut och status</td></tr>
+            <tr><td>PartyAssets</td><td>3.2</td><td>Register över utfärdade tillstånd kopplade till person</td></tr>
+            <tr><td>JsonSchema</td><td>1.0</td><td>Validering av strukturerade ansökningsuppgifter</td></tr>
+            <tr><td>Messaging</td><td>7.10</td><td>Meddelanden till sökande</td></tr>
+            <tr><td>Contract</td><td>7.0</td><td>Avtalshantering</td></tr>
+            <tr><td>Relations</td><td>1.1</td><td>Relationer mellan ärenden</td></tr>
+            <tr><td>CaseStatus</td><td>4.1</td><td>Ärendestatus, bland annat för uppföljning</td></tr>
+            <tr><td>ActiveDirectory</td><td>2.0</td><td>Uppslag av användare och behörigheter</td></tr>
+            <tr><td>Citizen</td><td>3.0</td><td>Uppgifter om invånare</td></tr>
+            <tr><td>Employee</td><td>2.0</td><td>Uppgifter om medarbetare</td></tr>
+            <tr><td>LegalEntity</td><td>2.0</td><td>Uppgifter om organisationer och företag</td></tr>
+            <tr><td>Templating</td><td>2.1</td><td>Mallar för brev, beslut och andra dokument</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Konfiguration och driftsättning</h3>
+      <ul>
+        <li>Instansen konfigureras med egna miljövariabelfiler för frontend respektive backend.</li>
+        <li>Åtkomst till API-plattformen kräver klientnyckel och klienthemlighet (<code>CLIENT_KEY</code>/<code>CLIENT_SECRET</code>) som utfärdas i WSO2.</li>
+        <li>Inloggning kräver SAML-konfiguration: ingångspunkt till identitetsleverantören samt certifikat och nyckelpar (<code>SAML_ENTRY_SSO</code>, <code>SAML_IDP_PUBLIC_CERT</code>, <code>SAML_PRIVATE_KEY</code>, <code>SAML_PUBLIC_KEY</code>).</li>
+        <li>Funktioner kan slås av och på via funktionsflaggor i frontend-konfigurationen.</li>
+        <li>Applikationen kan köras i utvecklings- och produktionsläge, med produktionsbyggen per verksamhetsinstans.</li>
+      </ul>
+
+      <h3>Källkod</h3>
+      <p>
+        Källkoden är öppen och utvecklas aktivt hos
+        <a href="https://github.com/Sundsvallskommun/web-app-draken-public" rel="external">Sundsvalls kommun på GitHub</a>.
+        I källkodsförrådet finns även instruktioner för att klona, konfigurera och starta applikationen
+        i egen miljö.
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div>
+      <p class="footer-title">Webbkatalogen</p>
+      <p>En översikt över de webbapplikationer som Sundsvalls kommun delar som öppen källkod.</p>
+    </div>
+    <div>
+      <p class="footer-title">Länkar</p>
+      <ul class="footer-links">
+        <li><a href="https://github.com/Sundsvallskommun" rel="external">Sundsvalls kommun på GitHub</a></li>
+        <li><a href="https://sundsvall.se" rel="external">sundsvall.se</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
