@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Proxytjänst för AI-assistenter – Webbkatalogen</title>
+  <meta name="description" content="Gemensam bakomliggande tjänst som förmedlar kommunens applikationers anrop till AI-plattformen Eneo samt vissa Azure-funktioner som tal och översättning.">
+  <link rel="stylesheet" href="../assets/styles.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%93%98%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">▦</span>
+      <a class="brand-name" href="../index.html">Webbkatalogen</a>
+    </div>
+    <nav class="site-nav" aria-label="Huvudmeny">
+      <a href="../index.html#om-katalogen">Om katalogen</a>
+      <a href="../index.html#tjanster">Webbapplikationer</a>
+      <a href="https://github.com/Sundsvallskommun" rel="external">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="page-hero">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Brödsmulor">
+        <a href="../index.html">Start</a> <span aria-hidden="true">/</span>
+        <a href="../index.html#tjanster">Webbapplikationer</a> <span aria-hidden="true">/</span>
+        <span aria-current="page">Proxytjänst för AI-assistenter</span>
+      </nav>
+      <span class="app-tag app-tag-light">AI-tjänster</span>
+      <h1>Proxytjänst för AI-assistenter</h1>
+      <p class="hero-lead">
+        Gemensam bakomliggande tjänst som förmedlar kommunens applikationers anrop till AI-plattformen Eneo samt vissa Azure-funktioner som tal och översättning.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>Om applikationen</h2>
+      <div class="columns">
+        <div class="column-text">
+          <p>
+            Tjänsten fungerar som en mellanhand mellan kommunens applikationer och AI-plattformen Eneo, som nås via kommunens API-gateway. Applikationer kan genom tjänsten arbeta med AI-assistenter, konversationer, kunskapsutrymmen, filer och frågor utan att själva hantera direktåtkomst till AI-plattformen.
+          </p>
+          <p>
+            Utöver AI-plattformen erbjuder tjänsten även vissa Azure-funktioner, bland annat utfärdande av taltjänst-token (tal-till-text) och maskinöversättning av text.
+          </p>
+          <p>
+            Anslutande applikationer identifierar sig med API-nycklar som lagras hashade, och det finns ett separat administrationsgränssnitt där behöriga administratörer loggar in med kommunens gemensamma inloggning för att hantera assistenter och åtkomst.
+          </p>
+
+          <h3>Det här stödjer applikationen</h3>
+          <ul class="app-modules">
+            <li><strong>Förmedling till AI-plattform</strong> – Vidarebefordrar anrop om assistenter, konversationer, utrymmen, filer och frågor till Eneo via API-gatewayn.</li>
+            <li><strong>API-nyckelhantering</strong> – Anslutande applikationer autentiseras med API-nycklar som lagras säkert i hashad form.</li>
+            <li><strong>Tal-till-text-stöd</strong> – Utfärdar token för Azures taltjänster så att applikationer kan använda taligenkänning.</li>
+            <li><strong>Maskinöversättning</strong> – Översätter texter via Azures översättningstjänst.</li>
+            <li><strong>Administrationsgränssnitt</strong> – Webbgränssnitt där administratörer hanterar assistenter, värdar och inställningar.</li>
+          </ul>
+        </div>
+        <aside class="fact-box" aria-label="Snabbfakta">
+          <h3>Snabbfakta</h3>
+          <ul>
+            <li>Målgrupp: <strong>Utvecklare och interna applikationer som behöver AI-funktioner</strong></li>
+            <li>Kategori: <strong>AI-tjänster</strong></li>
+            <li>Status: <strong>Aktiv</strong></li>
+            <li>Inloggning: <strong>API-nycklar (hashade) för anslutande applikationer; SAML (SSO) för administrationsgränssnittet</strong></li>
+          </ul>
+          <p class="fact-box-link">
+            <a href="https://github.com/Sundsvallskommun/web-app-ai-backend" rel="external">Källkod på GitHub</a>
+          </p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="teknisk-dokumentation">
+    <div class="container">
+      <h2>Teknisk dokumentation</h2>
+      <p class="section-intro">
+        Nedan beskrivs hur applikationen är uppbyggd, vilka API:er den använder och vad
+        som krävs för att driftsätta den. Informationen är härledd ur källkoden och
+        dess konfiguration på GitHub.
+      </p>
+
+      <h3>Arkitektur</h3>
+      <figure class="diagram">
+        <div class="diagram-wrap">
+          <img src="../assets/diagrams/proxytjanst-for-ai-assistenter.svg" alt="Arkitekturskiss för Proxytjänst för AI-assistenter: webbappens delar och dess integrationer.">
+        </div>
+        <figcaption>Lösningsarkitektur, härledd ur källkodens konfiguration.</figcaption>
+      </figure>
+      <p>
+        Applikationen består av en webbaserad frontend (Next.js 15, React 19, sk-web-gui (administrationsgränssnitt)) och en backend (Node.js, Express, routing-controllers, TypeScript, Prisma (databas)) som utvecklas i samma kodbas. Verksamhetsanrop går via kommunens gemensamma API-plattform (WSO2) – frontend pratar aldrig direkt med underliggande system. Inloggning: API-nycklar (hashade) för anslutande applikationer; SAML (SSO) för administrationsgränssnittet. Övriga integrationer som förekommer i koden: Eneo, Azure Cognitive Services (tal-till-text), Azure Translator, SAML IdP, WSO2 API-gateway.
+      </p>
+
+      <h3>Teknikstack</h3>
+      <ul>
+        <li><strong>Frontend:</strong> Next.js 15, React 19, sk-web-gui (administrationsgränssnitt)</li>
+        <li><strong>Backend:</strong> Node.js, Express, routing-controllers, TypeScript, Prisma (databas)</li>
+        <li><strong>Test:</strong> Jest (backend), Cypress (admin)</li>
+      </ul>
+
+      <h3>API-beroenden</h3>
+      <p>
+        Applikationen konsumerar följande API:er via kommunens API-plattform.
+        Versionerna är hämtade ur källkodens API-konfiguration.
+      </p>
+      <div class="table-wrap">
+        <table>
+          <caption class="sr-only">API-beroenden för Proxytjänst för AI-assistenter</caption>
+          <thead>
+            <tr><th scope="col">API</th><th scope="col">Version</th><th scope="col">Användning</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Eneo-Sundsvall</td><td>1.1</td><td>AI-plattformens API för assistenter, konversationer, utrymmen och filer (basväg/version konfigurerbar via miljövariabler).</td></tr>
+            <tr><td>SimulatorServer</td><td>2.0</td><td>Simulerings- och teststöd under utveckling.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Konfiguration och driftsättning</h3>
+      <ul>
+        <li>Backend: .env.example.local med CLIENT_KEY/CLIENT_SECRET för WSO2</li>
+        <li>ENEO_BASEPATH, ENEO_VERSION och ENEO_SALT för AI-plattformens anslutning och nyckelhashning</li>
+        <li>AZURE_REGION, AZURE_SUBSCRIPTION_KEY och AZURE_TRANSLATOR_KEY för Azure-funktioner</li>
+        <li>SAML-inställningar med certifikat och nycklar för administratörsinloggning</li>
+        <li>Databas via Prisma med migreringar (bl.a. användarinställningar, assistenter, värdar)</li>
+      </ul>
+      <h3>Noterbart ur källkoden</h3>
+      <ul>
+        <li>README anger Eneo-Sundsvall version 1.0 medan koden (api-config.ts) anger 1.1 och miljöexemplet 1.2 – versionen styrs i drift av miljövariabler.</li>
+        <li>Repot innehåller endast backend och admin, inget slutanvändargränssnitt.</li>
+        <li>Eneo är kommunens instans av AI-plattformen (Intric-baserad).</li>
+      </ul>
+
+      <h3>Källkod</h3>
+      <p>
+        Källkoden är öppen och finns hos
+        <a href="https://github.com/Sundsvallskommun/web-app-ai-backend" rel="external">Sundsvalls kommun på GitHub</a>.
+        I källkodsförrådet finns även instruktioner för att klona, konfigurera och
+        starta applikationen i egen miljö.
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div>
+      <p class="footer-title">Webbkatalogen</p>
+      <p>En översikt över de webbapplikationer som Sundsvalls kommun delar som öppen källkod.</p>
+    </div>
+    <div>
+      <p class="footer-title">Länkar</p>
+      <ul class="footer-links">
+        <li><a href="https://github.com/Sundsvallskommun" rel="external">Sundsvalls kommun på GitHub</a></li>
+        <li><a href="https://sundsvall.se" rel="external">sundsvall.se</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

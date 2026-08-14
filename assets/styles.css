@@ -277,6 +277,17 @@ h1, h2, h3 {
 
 /* Teaser cards on start page */
 
+.card-group-title {
+  font-size: 1.25rem;
+  margin: 2.25rem 0 1rem;
+  color: var(--color-primary-dark);
+}
+
+.app-tag-status {
+  background: #efe6d2;
+  color: #7a5b12;
+}
+
 .card-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));

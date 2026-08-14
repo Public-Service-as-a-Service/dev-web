@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Proxytjänst för AI-assistenter – Webbkatalogen</title>
+  <meta name="description" content="Gemensam serversidestjänst som förmedlar säker trafik mellan kommunens AI-chattar och AI-plattformen, inklusive tal- och översättningstjänster.">
+  <link rel="stylesheet" href="../assets/styles.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%93%98%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">▦</span>
+      <a class="brand-name" href="../index.html">Webbkatalogen</a>
+    </div>
+    <nav class="site-nav" aria-label="Huvudmeny">
+      <a href="../index.html#om-katalogen">Om katalogen</a>
+      <a href="../index.html#tjanster">Webbapplikationer</a>
+      <a href="https://github.com/Sundsvallskommun" rel="external">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="page-hero">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Brödsmulor">
+        <a href="../index.html">Start</a> <span aria-hidden="true">/</span>
+        <a href="../index.html#tjanster">Webbapplikationer</a> <span aria-hidden="true">/</span>
+        <span aria-current="page">Proxytjänst för AI-assistenter</span>
+      </nav>
+      <span class="app-tag app-tag-light">AI-tjänster</span>
+      <h1>Proxytjänst för AI-assistenter</h1>
+      <p class="hero-lead">
+        Gemensam serversidestjänst som förmedlar säker trafik mellan kommunens AI-chattar och AI-plattformen, inklusive tal- och översättningstjänster.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>Om applikationen</h2>
+      <div class="columns">
+        <div class="column-text">
+          <p>
+            Tjänsten är den gemensamma bakomliggande motorn för kommunens AI-assistenter. Den tar emot frågor från chattwidgets och appar (till exempel serviceassistenter och Pratomaten) och vidarebefordrar dem till AI-plattformen Intric/Eneo, utan att API-nycklarna exponeras i webbläsaren. Varje assistent har en egen API-nyckel som hanteras centralt här.
+          </p>
+          <p>
+            Utöver själva chattflödet (assistenter, sessioner, konversationer, filuppladdning, kunskapsgrupper och utrymmen) tillhandahåller tjänsten tillgång till Azures taltjänster och maskinöversättning, så att chattar kan erbjuda tal-till-text och översatta svar.
+          </p>
+          <p>
+            Tjänsten kan köras i internt eller externt läge. Anrop från inbäddade chattar verifieras med en beräknad hash, och det finns stöd för SAML-inloggning samt begränsning av anropstakt för att skydda mot överbelastning.
+          </p>
+
+          <h3>Det här stödjer applikationen</h3>
+          <ul class="app-modules">
+            <li><strong>Förmedling till AI-plattform</strong> – Vidarebefordrar frågor och svar mellan chattklienter och AI-plattformen Intric/Eneo.</li>
+            <li><strong>Central nyckelhantering</strong> – API-nycklar för respektive assistent (bl.a. vuxenutbildning, Servanet och flera Pratomat-instanser) hålls på servern.</li>
+            <li><strong>Tal och översättning</strong> – Utfärdar åtkomst till Azure Speech för tal-till-text och förmedlar översättningar via Azure Translator.</li>
+            <li><strong>Sessions- och filhantering</strong> – Hanterar konversationer, sessioner, filuppladdningar, kunskapsgrupper och utrymmen i AI-plattformen.</li>
+            <li><strong>Skydd och åtkomstkontroll</strong> – Hashverifiering av inbäddade klienter, SAML-stöd samt begränsning av anropstakt.</li>
+          </ul>
+        </div>
+        <aside class="fact-box" aria-label="Snabbfakta">
+          <h3>Snabbfakta</h3>
+          <ul>
+            <li>Målgrupp: <strong>Kommunens AI-chattjänster (systemintegration); indirekt invånare och medarbetare som använder chattarna</strong></li>
+            <li>Kategori: <strong>AI-tjänster</strong></li>
+            <li>Status: <strong>Aktiv</strong></li>
+            <li>Inloggning: <strong>Hashverifiering för inbäddade chattklienter; SAML (SSO) konfigurerbart för internt läge</strong></li>
+          </ul>
+          <p class="fact-box-link">
+            <a href="https://github.com/Sundsvallskommun/web-app-intric-backend" rel="external">Källkod på GitHub</a>
+          </p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="teknisk-dokumentation">
+    <div class="container">
+      <h2>Teknisk dokumentation</h2>
+      <p class="section-intro">
+        Nedan beskrivs hur applikationen är uppbyggd, vilka API:er den använder och vad
+        som krävs för att driftsätta den. Informationen är härledd ur källkoden och
+        dess konfiguration på GitHub.
+      </p>
+
+      <h3>Arkitektur</h3>
+      <figure class="diagram">
+        <div class="diagram-wrap">
+          <img src="../assets/diagrams/intric-backend.svg" alt="Arkitekturskiss för Proxytjänst för AI-assistenter: webbappens delar och dess integrationer.">
+        </div>
+        <figcaption>Lösningsarkitektur, härledd ur källkodens konfiguration.</figcaption>
+      </figure>
+      <p>
+        Applikationen består av en webbaserad frontend (Minimal Next.js-frontend (från mall)) och en backend (Node.js med Express och routing-controllers samt Prisma) som utvecklas i samma kodbas. Verksamhetsanrop går via kommunens gemensamma API-plattform (WSO2) – frontend pratar aldrig direkt med underliggande system. Inloggning: Hashverifiering för inbäddade chattklienter; SAML (SSO) konfigurerbart för internt läge. Övriga integrationer som förekommer i koden: AI-plattformen Intric/Eneo, Azure Speech (taltjänster), Azure Translator (maskinöversättning), SAML IdP, WSO2 API-gateway.
+      </p>
+
+      <h3>Teknikstack</h3>
+      <ul>
+        <li><strong>Frontend:</strong> Minimal Next.js-frontend (från mall)</li>
+        <li><strong>Backend:</strong> Node.js med Express och routing-controllers samt Prisma</li>
+        <li><strong>Test:</strong> Jest</li>
+      </ul>
+
+      <h3>API-beroenden</h3>
+      <p>
+        Applikationen konsumerar följande API:er via kommunens API-plattform.
+        Versionerna är hämtade ur källkodens API-konfiguration.
+      </p>
+      <div class="table-wrap">
+        <table>
+          <caption class="sr-only">API-beroenden för Proxytjänst för AI-assistenter</caption>
+          <thead>
+            <tr><th scope="col">API</th><th scope="col">Version</th><th scope="col">Användning</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>SimulatorServer</td><td>2.0</td><td>Hälsokontroll av API-anslutningen (enligt api-config).</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Konfiguration och driftsättning</h3>
+      <ul>
+        <li>Miljöfil .env.example.local med INTRIC_API_BASE_URL, användaruppgifter och salt för hashverifiering</li>
+        <li>En API-nyckel per ansluten assistent (INTRIC_APIKEY_*)</li>
+        <li>Azure-nycklar för tal och översättning (AZURE_REGION, AZURE_SUBSCRIPTION_KEY, AZURE_TRANSLATOR_KEY)</li>
+        <li>SAML-certifikat och nycklar för inloggning</li>
+        <li>Läge INTERNAL/EXTERNAL samt inställningar för anropsbegränsning (rate/spike limit)</li>
+      </ul>
+      <h3>Noterbart ur källkoden</h3>
+      <ul>
+        <li>Konfigurationen listar nycklar för bl.a. vuxenutbildningens assistent, Servanet och nio Pratomat-instanser.</li>
+        <li>Senare ändringar refererar till Eneo, det nya namnet på Intric-plattformen.</li>
+        <li>Tjänsten är i första hand ett API (proxy) – frontenddelen i repot är en mallrest.</li>
+      </ul>
+
+      <h3>Källkod</h3>
+      <p>
+        Källkoden är öppen och finns hos
+        <a href="https://github.com/Sundsvallskommun/web-app-intric-backend" rel="external">Sundsvalls kommun på GitHub</a>.
+        I källkodsförrådet finns även instruktioner för att klona, konfigurera och
+        starta applikationen i egen miljö.
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div>
+      <p class="footer-title">Webbkatalogen</p>
+      <p>En översikt över de webbapplikationer som Sundsvalls kommun delar som öppen källkod.</p>
+    </div>
+    <div>
+      <p class="footer-title">Länkar</p>
+      <ul class="footer-links">
+        <li><a href="https://github.com/Sundsvallskommun" rel="external">Sundsvalls kommun på GitHub</a></li>
+        <li><a href="https://sundsvall.se" rel="external">sundsvall.se</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

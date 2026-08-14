@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI-läxhjälp för språk – Webbkatalogen</title>
+  <meta name="description" content="Testapp där elever kan öva glosor och fraser inför prov med hjälp av en AI-assistent, kallad Plugghjälpen.">
+  <link rel="stylesheet" href="../assets/styles.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%93%98%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">▦</span>
+      <a class="brand-name" href="../index.html">Webbkatalogen</a>
+    </div>
+    <nav class="site-nav" aria-label="Huvudmeny">
+      <a href="../index.html#om-katalogen">Om katalogen</a>
+      <a href="../index.html#tjanster">Webbapplikationer</a>
+      <a href="https://github.com/Sundsvallskommun" rel="external">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="page-hero">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Brödsmulor">
+        <a href="../index.html">Start</a> <span aria-hidden="true">/</span>
+        <a href="../index.html#tjanster">Webbapplikationer</a> <span aria-hidden="true">/</span>
+        <span aria-current="page">AI-läxhjälp för språk</span>
+      </nav>
+      <span class="app-tag app-tag-light">AI-tjänster</span> <span class="app-tag app-tag-light app-tag-status">Prototyp</span>
+      <h1>AI-läxhjälp för språk</h1>
+      <p class="hero-lead">
+        Testapp där elever kan öva glosor och fraser inför prov med hjälp av en AI-assistent, kallad Plugghjälpen.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>Om applikationen</h2>
+      <div class="columns">
+        <div class="column-text">
+          <p>
+            En prototyp som prövar konceptet med en AI-assistent som läxhjälp i språk. Eleven väljer språk (engelska, tyska, spanska eller franska), delar sin läxa med assistenten och kan sedan chatta för att bli förhörd på glosor och fraser eller få förslag på fraser.
+          </p>
+          <p>
+            Läxan kan skickas in på flera sätt: genom att fotografera den med kameran, ladda upp en fil eller skriva in texten direkt. Assistenten anpassar sedan övningen efter innehållet.
+          </p>
+          <p>
+            Appen är uttryckligen en proof-of-concept och bygger på kommunens AI-plattform Intric via en egen AI-proxy.
+          </p>
+
+          <h3>Det här stödjer applikationen</h3>
+          <ul class="app-modules">
+            <li><strong>Språkval</strong> – Eleven väljer mellan engelska, tyska, spanska och franska; en egen assistent per språk.</li>
+            <li><strong>Dela läxan</strong> – Fota läxan med kameran, ladda upp filer eller skriv in glosorna som text.</li>
+            <li><strong>Glosförhör i chatt</strong> – AI-assistenten förhör på glosor och fraser och ger förslag på fraser utifrån läxan.</li>
+            <li><strong>Färdiga frågeexempel</strong> – Vanliga frågor som 'Förhör mig på glosor' finns som snabbval.</li>
+            <li><strong>Starta om</strong> – Möjlighet att börja om från början med en ny session.</li>
+          </ul>
+        </div>
+        <aside class="fact-box" aria-label="Snabbfakta">
+          <h3>Snabbfakta</h3>
+          <ul>
+            <li>Målgrupp: <strong>elever</strong></li>
+            <li>Kategori: <strong>AI-tjänster</strong></li>
+            <li>Status: <strong>Prototyp</strong></li>
+            <li>Inloggning: <strong>Ingen inloggning (assistentåtkomst via förkonfigurerade nycklar i miljövariabler)</strong></li>
+          </ul>
+          <p class="fact-box-link">
+            <a href="https://github.com/Sundsvallskommun/web-app-ai-study-buddy-poc" rel="external">Källkod på GitHub</a>
+          </p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="teknisk-dokumentation">
+    <div class="container">
+      <h2>Teknisk dokumentation</h2>
+      <p class="section-intro">
+        Nedan beskrivs hur applikationen är uppbyggd, vilka API:er den använder och vad
+        som krävs för att driftsätta den. Informationen är härledd ur källkoden och
+        dess konfiguration på GitHub.
+      </p>
+
+      <h3>Arkitektur</h3>
+      <figure class="diagram">
+        <div class="diagram-wrap">
+          <img src="../assets/diagrams/ai-laxhjalp-for-sprak.svg" alt="Arkitekturskiss för AI-läxhjälp för språk: webbappens delar och dess integrationer.">
+        </div>
+        <figcaption>Lösningsarkitektur, härledd ur källkodens konfiguration.</figcaption>
+      </figure>
+      <p>
+        Applikationen är en webbaserad frontend (React, TypeScript, Vite, sk-web-gui (inkl. AI-komponenter), Tailwind CSS, i18next, PWA (vite-plugin-pwa), react-webcam). Övriga integrationer som förekommer i koden: Intric (via kommunens AI-proxy, web-app-intric-backend).
+      </p>
+
+      <h3>Teknikstack</h3>
+      <ul>
+        <li><strong>Frontend:</strong> React, TypeScript, Vite, sk-web-gui (inkl. AI-komponenter), Tailwind CSS, i18next, PWA (vite-plugin-pwa), react-webcam</li>
+      </ul>
+
+      <h3>API-beroenden</h3>
+      <p>
+        Inga prenumerationer på kommunens API-plattform hittades i källkodens
+        konfiguration.
+      </p>
+
+      <h3>Konfiguration och driftsättning</h3>
+      <ul>
+        <li>.env med assistent-ID, hash och applikations-ID per språk (VITE_ASSISTANT_*, VITE_HASH_*, VITE_APPLICATION_*)</li>
+        <li>VITE_INTRIC_API_BASE_URL som pekar på kommunens AI-proxy</li>
+      </ul>
+      <h3>Noterbart ur källkoden</h3>
+      <ul>
+        <li>Renodlad frontendapp utan egen backend; all AI-trafik går via kommunens AI-proxy mot Intric.</li>
+        <li>Byggd som PWA och kan installeras på mobil.</li>
+        <li>Assistenten presenteras i gränssnittet som 'Studiekompisen' i appen 'Plugghjälpen - Språk'.</li>
+      </ul>
+
+      <h3>Källkod</h3>
+      <p>
+        Källkoden är öppen och finns hos
+        <a href="https://github.com/Sundsvallskommun/web-app-ai-study-buddy-poc" rel="external">Sundsvalls kommun på GitHub</a>.
+        I källkodsförrådet finns även instruktioner för att klona, konfigurera och
+        starta applikationen i egen miljö.
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div>
+      <p class="footer-title">Webbkatalogen</p>
+      <p>En översikt över de webbapplikationer som Sundsvalls kommun delar som öppen källkod.</p>
+    </div>
+    <div>
+      <p class="footer-title">Länkar</p>
+      <ul class="footer-links">
+        <li><a href="https://github.com/Sundsvallskommun" rel="external">Sundsvalls kommun på GitHub</a></li>
+        <li><a href="https://sundsvall.se" rel="external">sundsvall.se</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

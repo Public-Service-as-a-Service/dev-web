@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI-assistent för vård och omsorg – Webbkatalogen</title>
+  <meta name="description" content="En AI-assistent där medarbetare inom vård och omsorg kan ställa frågor om rutiner och regler och få svar med källhänvisningar.">
+  <link rel="stylesheet" href="../assets/styles.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%93%98%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">▦</span>
+      <a class="brand-name" href="../index.html">Webbkatalogen</a>
+    </div>
+    <nav class="site-nav" aria-label="Huvudmeny">
+      <a href="../index.html#om-katalogen">Om katalogen</a>
+      <a href="../index.html#tjanster">Webbapplikationer</a>
+      <a href="https://github.com/Sundsvallskommun" rel="external">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="page-hero">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Brödsmulor">
+        <a href="../index.html">Start</a> <span aria-hidden="true">/</span>
+        <a href="../index.html#tjanster">Webbapplikationer</a> <span aria-hidden="true">/</span>
+        <span aria-current="page">AI-assistent för vård och omsorg</span>
+      </nav>
+      <span class="app-tag app-tag-light">AI-tjänster</span> <span class="app-tag app-tag-light app-tag-status">Prototyp</span>
+      <h1>AI-assistent för vård och omsorg</h1>
+      <p class="hero-lead">
+        En AI-assistent där medarbetare inom vård och omsorg kan ställa frågor om rutiner och regler och få svar med källhänvisningar.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>Om applikationen</h2>
+      <div class="columns">
+        <div class="column-text">
+          <p>
+            Tjänsten är en chattbaserad AI-assistent (i gränssnittet kallad AI-Cura) som svarar på frågor om rutiner och regler inom vård, omsorg, hälsa och sjukvård. Medarbetaren ställer sin fråga i ett sökfält och får ett svar genererat av en AI-assistent, ofta med hänvisningar till de dokument som svaret bygger på.
+          </p>
+          <p>
+            Assistenten drivs av kommunens AI-plattform Intric, där kunskapsunderlag i form av dokument samlas i grupper som assistenten söker i. På så vis kan personalen snabbt hitta rätt i styrdokument och rutinbeskrivningar utan att leta manuellt.
+          </p>
+          <p>
+            Repot består av en enda inledande incheckning från 2024 och användaridentiteten sätts via miljövariabler, vilket tyder på att det rör sig om en pilot/proof of concept snarare än en färdig tjänst.
+          </p>
+
+          <h3>Det här stödjer applikationen</h3>
+          <ul class="app-modules">
+            <li><strong>Fråga i naturligt språk</strong> – Medarbetaren skriver sin fråga om rutiner eller regler och får ett formulerat svar direkt.</li>
+            <li><strong>Källhänvisningar</strong> – Svaren kan visa vilka dokument informationen kommer ifrån.</li>
+            <li><strong>Kunskapsbas via Intric</strong> – Assistenten söker i uppladdade dokument som förvaltas i AI-plattformen Intric.</li>
+            <li><strong>Chatthistorik i sessionen</strong> – Frågor och svar visas i en konversationsvy som kan rensas.</li>
+          </ul>
+        </div>
+        <aside class="fact-box" aria-label="Snabbfakta">
+          <h3>Snabbfakta</h3>
+          <ul>
+            <li>Målgrupp: <strong>medarbetare inom vård och omsorg</strong></li>
+            <li>Kategori: <strong>AI-tjänster</strong></li>
+            <li>Status: <strong>Prototyp</strong></li>
+            <li>Inloggning: <strong>Hash-baserad identifiering av användare; SAML SSO finns förberett i grundplattformen</strong></li>
+          </ul>
+          <p class="fact-box-link">
+            <a href="https://github.com/Sundsvallskommun/web-app-ai-curapp" rel="external">Källkod på GitHub</a>
+          </p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="teknisk-dokumentation">
+    <div class="container">
+      <h2>Teknisk dokumentation</h2>
+      <p class="section-intro">
+        Nedan beskrivs hur applikationen är uppbyggd, vilka API:er den använder och vad
+        som krävs för att driftsätta den. Informationen är härledd ur källkoden och
+        dess konfiguration på GitHub.
+      </p>
+
+      <h3>Arkitektur</h3>
+      <figure class="diagram">
+        <div class="diagram-wrap">
+          <img src="../assets/diagrams/ai-assistent-for-vard-och-omsorg.svg" alt="Arkitekturskiss för AI-assistent för vård och omsorg: webbappens delar och dess integrationer.">
+        </div>
+        <figcaption>Lösningsarkitektur, härledd ur källkodens konfiguration.</figcaption>
+      </figure>
+      <p>
+        Applikationen består av en webbaserad frontend (Next.js, React, TypeScript, Tailwind CSS, sk-web-gui) och en backend (Node.js, Express (routing-controllers), Prisma, Passport SAML) som utvecklas i samma kodbas. Inloggning: Hash-baserad identifiering av användare; SAML SSO finns förberett i grundplattformen. Övriga integrationer som förekommer i koden: Intric.
+      </p>
+
+      <h3>Teknikstack</h3>
+      <ul>
+        <li><strong>Frontend:</strong> Next.js, React, TypeScript, Tailwind CSS, sk-web-gui</li>
+        <li><strong>Backend:</strong> Node.js, Express (routing-controllers), Prisma, Passport SAML</li>
+      </ul>
+
+      <h3>API-beroenden</h3>
+      <p>
+        Inga prenumerationer på kommunens API-plattform hittades i källkodens
+        konfiguration.
+      </p>
+
+      <h3>Konfiguration och driftsättning</h3>
+      <ul>
+        <li>Miljöfiler för frontend (.env) och backend (.env.development.local m.fl.)</li>
+        <li>Intric-uppgifter: INTRIC_API_BASE_URL, API-nyckel och assistent-id samt salt för hashning</li>
+        <li>SAML-inställningar med certifikat och nycklar (från grundmallen)</li>
+        <li>CLIENT_KEY/CLIENT_SECRET för WSO2 finns i mallen men inga kommun-API:er anropas i koden</li>
+      </ul>
+      <h3>Noterbart ur källkoden</h3>
+      <ul>
+        <li>README:s API-tabell (SimulatorServer 2.0) är en kvarleva från startmallen; koden anropar enbart Intric.</li>
+        <li>Backend fungerar som proxy mot Intric med egna endpoints för assistenter, grupper, info-blobbar och frågor.</li>
+        <li>Endast en incheckning (maj 2024) – tydlig POC-karaktär.</li>
+      </ul>
+
+      <h3>Källkod</h3>
+      <p>
+        Källkoden är öppen och finns hos
+        <a href="https://github.com/Sundsvallskommun/web-app-ai-curapp" rel="external">Sundsvalls kommun på GitHub</a>.
+        I källkodsförrådet finns även instruktioner för att klona, konfigurera och
+        starta applikationen i egen miljö.
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div>
+      <p class="footer-title">Webbkatalogen</p>
+      <p>En översikt över de webbapplikationer som Sundsvalls kommun delar som öppen källkod.</p>
+    </div>
+    <div>
+      <p class="footer-title">Länkar</p>
+      <ul class="footer-links">
+        <li><a href="https://github.com/Sundsvallskommun" rel="external">Sundsvalls kommun på GitHub</a></li>
+        <li><a href="https://sundsvall.se" rel="external">sundsvall.se</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

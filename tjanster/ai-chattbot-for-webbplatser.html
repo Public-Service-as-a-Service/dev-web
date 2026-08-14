@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI-chattbot för webbplatser – Webbkatalogen</title>
+  <meta name="description" content="En inbäddningsbar AI-chattbot som lägger sig i webbsidans nedre högra hörn och svarar på besökarnas frågor, med färdiga varianter för bland annat vuxenutbildningen och ServaNet.">
+  <link rel="stylesheet" href="../assets/styles.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%93%98%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">▦</span>
+      <a class="brand-name" href="../index.html">Webbkatalogen</a>
+    </div>
+    <nav class="site-nav" aria-label="Huvudmeny">
+      <a href="../index.html#om-katalogen">Om katalogen</a>
+      <a href="../index.html#tjanster">Webbapplikationer</a>
+      <a href="https://github.com/Sundsvallskommun" rel="external">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="page-hero">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Brödsmulor">
+        <a href="../index.html">Start</a> <span aria-hidden="true">/</span>
+        <a href="../index.html#tjanster">Webbapplikationer</a> <span aria-hidden="true">/</span>
+        <span aria-current="page">AI-chattbot för webbplatser</span>
+      </nav>
+      <span class="app-tag app-tag-light">AI-tjänster</span>
+      <h1>AI-chattbot för webbplatser</h1>
+      <p class="hero-lead">
+        En inbäddningsbar AI-chattbot som lägger sig i webbsidans nedre högra hörn och svarar på besökarnas frågor, med färdiga varianter för bland annat vuxenutbildningen och ServaNet.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>Om applikationen</h2>
+      <div class="columns">
+        <div class="column-text">
+          <p>
+            Detta är en chattbot-klient som kan bäddas in på valfri webbplats och placerar sig i nedre högra hörnet på klassiskt chattbotmanér. Besökaren kan ställa frågor i fritext och få svar från en AI-assistent, med förslag på vanliga frågor som ingång.
+          </p>
+          <p>
+            Applikationen byggs i olika lägen för olika verksamheter. I koden finns färdiga varianter för vuxenutbildningen (frågor om ansökan, studievägledning och SFI) och för stadsnätsbolaget ServaNet (felsökning av bredbandsuppkoppling), med anpassad grafisk profil för respektive avsändare.
+          </p>
+          <p>
+            Chattboten körs som webbkomponent i shadow DOM så att den inte krockar med den omgivande webbplatsens utseende, och kommunicerar med en central assistent-backend som i sin tur bygger på kommunens AI-plattform.
+          </p>
+
+          <h3>Det här stödjer applikationen</h3>
+          <ul class="app-modules">
+            <li><strong>Chatt med AI-assistent</strong> – Besökaren ställer frågor i fritext och får svar direkt i chattfönstret.</li>
+            <li><strong>Föreslagna frågor</strong> – Vanliga frågor visas som klickbara förslag, t.ex. hur man ansöker till en kurs eller felsöker sitt internet.</li>
+            <li><strong>Verksamhetsanpassade profiler</strong> – Färg, logotyp och texter anpassas per verksamhet (vuxenutbildningen, ServaNet med flera).</li>
+            <li><strong>Enkel inbäddning</strong> – Läggs in på en webbsida med några rader kod och körs isolerat som webbkomponent.</li>
+            <li><strong>Återkoppling på svar</strong> – Besökaren kan lämna feedback på assistentens svar i en session.</li>
+          </ul>
+        </div>
+        <aside class="fact-box" aria-label="Snabbfakta">
+          <h3>Snabbfakta</h3>
+          <ul>
+            <li>Målgrupp: <strong>invånare och kunder som besöker kommunens och bolagens webbplatser</strong></li>
+            <li>Kategori: <strong>AI-tjänster</strong></li>
+            <li>Status: <strong>Aktiv</strong></li>
+            <li>Inloggning: <strong>Ingen inloggning; anropen verifieras med signerad hash (användare, assistent-id, appnamn och salt)</strong></li>
+          </ul>
+          <p class="fact-box-link">
+            <a href="https://github.com/Sundsvallskommun/web-app-qwerty-assistant" rel="external">Källkod på GitHub</a>
+          </p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="teknisk-dokumentation">
+    <div class="container">
+      <h2>Teknisk dokumentation</h2>
+      <p class="section-intro">
+        Nedan beskrivs hur applikationen är uppbyggd, vilka API:er den använder och vad
+        som krävs för att driftsätta den. Informationen är härledd ur källkoden och
+        dess konfiguration på GitHub.
+      </p>
+
+      <h3>Arkitektur</h3>
+      <figure class="diagram">
+        <div class="diagram-wrap">
+          <img src="../assets/diagrams/ai-chattbot-for-webbplatser.svg" alt="Arkitekturskiss för AI-chattbot för webbplatser: webbappens delar och dess integrationer.">
+        </div>
+        <figcaption>Lösningsarkitektur, härledd ur källkodens konfiguration.</figcaption>
+      </figure>
+      <p>
+        Applikationen är en webbaserad frontend (React 18, Vite, TypeScript, Tailwind CSS, sk-web-gui). Övriga integrationer som förekommer i koden: Assistent-backend (Intric-baserad AI-plattform), ServaNet, Vuxenutbildningen.
+      </p>
+
+      <h3>Teknikstack</h3>
+      <ul>
+        <li><strong>Frontend:</strong> React 18, Vite, TypeScript, Tailwind CSS, sk-web-gui</li>
+      </ul>
+
+      <h3>API-beroenden</h3>
+      <p>
+        Inga prenumerationer på kommunens API-plattform hittades i källkodens
+        konfiguration.
+      </p>
+
+      <h3>Konfiguration och driftsättning</h3>
+      <ul>
+        <li>Miljöfil per verksamhet (.env.&lt;NAMN&gt;.local) med VITE_API_BASE_URL, assistent-id, namn och texter</li>
+        <li>index.html skapas från mall med data-user, data-hash och data-assistant</li>
+        <li>Byggs per läge med yarn build --mode=&lt;NAMN&gt;</li>
+      </ul>
+      <h3>Noterbart ur källkoden</h3>
+      <ul>
+        <li>Backend ingår inte i repot – klienten anropar en assistent-tjänst med endpoints /assistants och /assistants/{id}/sessions.</li>
+        <li>Anpassade headers (_skuser, _skhash, _skassistant, _skapp) skickas med varje anrop och verifieras av backend.</li>
+        <li>Senaste ändring augusti 2024, bl.a. release-anpassningar för ServaNet.</li>
+      </ul>
+
+      <h3>Källkod</h3>
+      <p>
+        Källkoden är öppen och finns hos
+        <a href="https://github.com/Sundsvallskommun/web-app-qwerty-assistant" rel="external">Sundsvalls kommun på GitHub</a>.
+        I källkodsförrådet finns även instruktioner för att klona, konfigurera och
+        starta applikationen i egen miljö.
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div>
+      <p class="footer-title">Webbkatalogen</p>
+      <p>En översikt över de webbapplikationer som Sundsvalls kommun delar som öppen källkod.</p>
+    </div>
+    <div>
+      <p class="footer-title">Länkar</p>
+      <ul class="footer-links">
+        <li><a href="https://github.com/Sundsvallskommun" rel="external">Sundsvalls kommun på GitHub</a></li>
+        <li><a href="https://sundsvall.se" rel="external">sundsvall.se</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

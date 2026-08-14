@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Registrering av färdtjänstärenden – Webbkatalogen</title>
+  <meta name="description" content="Internt verktyg där kommunens medarbetare registrerar anmälningar och ansökningar om färdtjänst direkt i kommunens ärendehanteringssystem.">
+  <link rel="stylesheet" href="../assets/styles.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%93%98%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">▦</span>
+      <a class="brand-name" href="../index.html">Webbkatalogen</a>
+    </div>
+    <nav class="site-nav" aria-label="Huvudmeny">
+      <a href="../index.html#om-katalogen">Om katalogen</a>
+      <a href="../index.html#tjanster">Webbapplikationer</a>
+      <a href="https://github.com/Sundsvallskommun" rel="external">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="page-hero">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Brödsmulor">
+        <a href="../index.html">Start</a> <span aria-hidden="true">/</span>
+        <a href="../index.html#tjanster">Webbapplikationer</a> <span aria-hidden="true">/</span>
+        <span aria-current="page">Registrering av färdtjänstärenden</span>
+      </nav>
+      <span class="app-tag app-tag-light">Myndighetsutövning</span>
+      <h1>Registrering av färdtjänstärenden</h1>
+      <p class="hero-lead">
+        Internt verktyg där kommunens medarbetare registrerar anmälningar och ansökningar om färdtjänst direkt i kommunens ärendehanteringssystem.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>Om applikationen</h2>
+      <div class="columns">
+        <div class="column-text">
+          <p>
+            Tjänsten används av kommunens personal för att registrera färdtjänstärenden, till exempel nya anmälningar, förnyelser, ändringar, omprövningar, busskort och riksfärdtjänst. Uppgifter om den sökande hämtas automatiskt via personnummer och ärendet skapas direkt i kommunens gemensamma ärendehanteringssystem.
+          </p>
+          <p>
+            Registreraren kan bifoga relevanta bilagor till ansökan och får en översikt över registrerade ärenden med uppgift om när de skapades. Formulärens innehåll styrs av centrala formulärdefinitioner.
+          </p>
+          <p>
+            Inloggning sker med kommunens gemensamma inloggning och behörigheten styrs via AD-roller.
+          </p>
+
+          <h3>Det här stödjer applikationen</h3>
+          <ul class="app-modules">
+            <li><strong>Registrera färdtjänstärenden</strong> – Stöd för flera ärendetyper: ny anmälan, förnyelse, ändring, omprövning, busskort, riksfärdtjänst med flera.</li>
+            <li><strong>Automatiska personuppslag</strong> – Den sökandes uppgifter hämtas via personnummer ur befolkningsdata.</li>
+            <li><strong>Bilagor</strong> – Relevanta handlingar kan laddas upp och kopplas till ansökan.</li>
+            <li><strong>Ärendeöversikt</strong> – Lista över registrerade ärenden med registreringsdatum och status.</li>
+            <li><strong>Formulär från mallar</strong> – Formulären styrs av centrala formulärdefinitioner som kan uppdateras utan omprogrammering.</li>
+          </ul>
+        </div>
+        <aside class="fact-box" aria-label="Snabbfakta">
+          <h3>Snabbfakta</h3>
+          <ul>
+            <li>Målgrupp: <strong>handläggare och registrerande medarbetare inom färdtjänst</strong></li>
+            <li>Kategori: <strong>Myndighetsutövning</strong></li>
+            <li>Status: <strong>Aktiv</strong></li>
+            <li>Inloggning: <strong>SAML (SSO) med behörighetsstyrning via AD-roller</strong></li>
+          </ul>
+          <p class="fact-box-link">
+            <a href="https://github.com/Sundsvallskommun/web-app-katla" rel="external">Källkod på GitHub</a>
+          </p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="teknisk-dokumentation">
+    <div class="container">
+      <h2>Teknisk dokumentation</h2>
+      <p class="section-intro">
+        Nedan beskrivs hur applikationen är uppbyggd, vilka API:er den använder och vad
+        som krävs för att driftsätta den. Informationen är härledd ur källkoden och
+        dess konfiguration på GitHub.
+      </p>
+
+      <h3>Arkitektur</h3>
+      <figure class="diagram">
+        <div class="diagram-wrap">
+          <img src="../assets/diagrams/registrering-av-fardtjanstarenden.svg" alt="Arkitekturskiss för Registrering av färdtjänstärenden: webbappens delar och dess integrationer.">
+        </div>
+        <figcaption>Lösningsarkitektur, härledd ur källkodens konfiguration.</figcaption>
+      </figure>
+      <p>
+        Applikationen består av en webbaserad frontend (Next.js 15, React 19, i18next) och en backend (Node.js, Express 4, TypeScript) som utvecklas i samma kodbas. Verksamhetsanrop går via kommunens gemensamma API-plattform (WSO2) – frontend pratar aldrig direkt med underliggande system. Inloggning: SAML (SSO) med behörighetsstyrning via AD-roller. Övriga integrationer som förekommer i koden: SAML IdP, Active Directory (rollstyrning).
+      </p>
+
+      <h3>Teknikstack</h3>
+      <ul>
+        <li><strong>Frontend:</strong> Next.js 15, React 19, i18next</li>
+        <li><strong>Backend:</strong> Node.js, Express 4, TypeScript</li>
+        <li><strong>Test:</strong> Jest</li>
+      </ul>
+
+      <h3>API-beroenden</h3>
+      <p>
+        Applikationen konsumerar följande API:er via kommunens API-plattform.
+        Versionerna är hämtade ur källkodens API-konfiguration.
+      </p>
+      <div class="table-wrap">
+        <table>
+          <caption class="sr-only">API-beroenden för Registrering av färdtjänstärenden</caption>
+          <thead>
+            <tr><th scope="col">API</th><th scope="col">Version</th><th scope="col">Användning</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>CaseData</td><td>13.0</td><td>Skapande och hantering av färdtjänstärenden.</td></tr>
+            <tr><td>Messaging</td><td>7.11</td><td>Meddelanden kopplade till ärenden.</td></tr>
+            <tr><td>PartyAssets</td><td>6.5</td><td>Innehav kopplade till en part, t.ex. tillstånd och kort.</td></tr>
+            <tr><td>JsonSchema</td><td>1.0</td><td>Formulärdefinitioner som styr registreringsformulären.</td></tr>
+            <tr><td>SimulatorServer</td><td>2.0</td><td>Simulerings-API för test och utveckling.</td></tr>
+            <tr><td>Citizen</td><td>3.0</td><td>Uppslag av den sökandes personuppgifter via personnummer.</td></tr>
+            <tr><td>Employee</td><td>2.0</td><td>Uppgifter om den registrerande medarbetaren.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Konfiguration och driftsättning</h3>
+      <ul>
+        <li>Miljöfiler: frontend/.env-example (appnamn 'Färdtjänstregistrering') och backend/.env.example.local</li>
+        <li>CLIENT_KEY och CLIENT_SECRET mot kommunens API-plattform (WSO2)</li>
+        <li>SAML-inställningar med IdP-adress och certifikat</li>
+      </ul>
+      <h3>Noterbart ur källkoden</h3>
+      <ul>
+        <li>Appnamnet i konfigurationen är 'Färdtjänstregistrering'; koden hanterar ärendetyper med prefixet PARATRANSIT_NOTIFICATION (bl.a. busskort, ändring, riksfärdtjänst, omprövning och förnyelse).</li>
+        <li>Ärendena skapas i kommunens gemensamma ärendehanteringssystem (CaseData).</li>
+        <li>Repots interna kodnamn förekommer inte i användargränssnittet.</li>
+      </ul>
+
+      <h3>Källkod</h3>
+      <p>
+        Källkoden är öppen och finns hos
+        <a href="https://github.com/Sundsvallskommun/web-app-katla" rel="external">Sundsvalls kommun på GitHub</a>.
+        I källkodsförrådet finns även instruktioner för att klona, konfigurera och
+        starta applikationen i egen miljö.
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div>
+      <p class="footer-title">Webbkatalogen</p>
+      <p>En översikt över de webbapplikationer som Sundsvalls kommun delar som öppen källkod.</p>
+    </div>
+    <div>
+      <p class="footer-title">Länkar</p>
+      <ul class="footer-links">
+        <li><a href="https://github.com/Sundsvallskommun" rel="external">Sundsvalls kommun på GitHub</a></li>
+        <li><a href="https://sundsvall.se" rel="external">sundsvall.se</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

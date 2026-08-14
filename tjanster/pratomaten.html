@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pratomaten – Webbkatalogen</title>
+  <meta name="description" content="Röststyrd AI-assistent som samlar in förslag, önskemål och synpunkter från allmänheten, till exempel vid evenemang.">
+  <link rel="stylesheet" href="../assets/styles.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%93%98%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">▦</span>
+      <a class="brand-name" href="../index.html">Webbkatalogen</a>
+    </div>
+    <nav class="site-nav" aria-label="Huvudmeny">
+      <a href="../index.html#om-katalogen">Om katalogen</a>
+      <a href="../index.html#tjanster">Webbapplikationer</a>
+      <a href="https://github.com/Sundsvallskommun" rel="external">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="page-hero">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Brödsmulor">
+        <a href="../index.html">Start</a> <span aria-hidden="true">/</span>
+        <a href="../index.html#tjanster">Webbapplikationer</a> <span aria-hidden="true">/</span>
+        <span aria-current="page">Pratomaten</span>
+      </nav>
+      <span class="app-tag app-tag-light">AI-tjänster</span>
+      <h1>Pratomaten</h1>
+      <p class="hero-lead">
+        Röststyrd AI-assistent som samlar in förslag, önskemål och synpunkter från allmänheten, till exempel vid evenemang.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>Om applikationen</h2>
+      <div class="columns">
+        <div class="column-text">
+          <p>
+            Pratomaten är en dialogtjänst där besökare, exempelvis vid evenemang eller i det offentliga rummet, kan svara på en öppen fråga som "Hur skulle du vilja utveckla Sundsvalls stadskärna?". Besökaren kan prata med assistenten via mikrofon eller skriva, och en AI-assistent följer upp svaren i en chattkonversation.
+          </p>
+          <p>
+            Svaren sammanställs och sparas som slutfrågor och svar i en databas, så att verksamheten kan ta del av vad deltagarna tyckt. Flera Pratomater kan köras samtidigt med olika frågor, texter och färgteman.
+          </p>
+          <p>
+            Till tjänsten hör ett administrationsgränssnitt där medarbetare skapar och hanterar Pratomater, kopplar dem till en AI-assistent och väljer om de ska publiceras. AI-funktionerna körs via kommunens proxytjänst mot AI-plattformen Intric/Eneo.
+          </p>
+
+          <h3>Det här stödjer applikationen</h3>
+          <ul class="app-modules">
+            <li><strong>Röst- och textdialog</strong> – Besökare kan tala in sina svar via tal-till-text eller skriva i chatten.</li>
+            <li><strong>AI-uppföljning</strong> – En AI-assistent ställer följdfrågor och för dialogen vidare utifrån besökarens svar.</li>
+            <li><strong>Insamling av svar</strong> – Slutfrågor och svar sparas i databas för senare analys av verksamheten.</li>
+            <li><strong>Flera Pratomater</strong> – Varje Pratomat har egen fråga, texter, färgtema och publiceringsstatus.</li>
+            <li><strong>Administration</strong> – Medarbetare skapar och hanterar Pratomater i ett separat admingränssnitt.</li>
+          </ul>
+        </div>
+        <aside class="fact-box" aria-label="Snabbfakta">
+          <h3>Snabbfakta</h3>
+          <ul>
+            <li>Målgrupp: <strong>Allmänhet och evenemangsbesökare; kommunikatörer/medarbetare som administrerar frågorna</strong></li>
+            <li>Kategori: <strong>AI-tjänster</strong></li>
+            <li>Status: <strong>Aktiv</strong></li>
+            <li>Inloggning: <strong>Ingen inloggning för besökare; SAML (SSO) för administrationsgränssnittet</strong></li>
+          </ul>
+          <p class="fact-box-link">
+            <a href="https://github.com/Sundsvallskommun/web-app-pratomat" rel="external">Källkod på GitHub</a>
+          </p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="teknisk-dokumentation">
+    <div class="container">
+      <h2>Teknisk dokumentation</h2>
+      <p class="section-intro">
+        Nedan beskrivs hur applikationen är uppbyggd, vilka API:er den använder och vad
+        som krävs för att driftsätta den. Informationen är härledd ur källkoden och
+        dess konfiguration på GitHub.
+      </p>
+
+      <h3>Arkitektur</h3>
+      <figure class="diagram">
+        <div class="diagram-wrap">
+          <img src="../assets/diagrams/pratomaten.svg" alt="Arkitekturskiss för Pratomaten: webbappens delar och dess integrationer.">
+        </div>
+        <figcaption>Lösningsarkitektur, härledd ur källkodens konfiguration.</figcaption>
+      </figure>
+      <p>
+        Applikationen består av en webbaserad frontend (React med Vite och kommunens designsystem (@sk-web-gui/ai); admin i Next.js/React) och en backend (Node.js med Express och Prisma (databas för Pratomater och svar)) som utvecklas i samma kodbas. Verksamhetsanrop går via kommunens gemensamma API-plattform (WSO2) – frontend pratar aldrig direkt med underliggande system. Övriga integrationer som förekommer i koden: AI-plattformen Intric/Eneo (via kommunens proxytjänst), Azure Speech (tal-till-text via proxytjänsten), SAML IdP (admin).
+      </p>
+
+      <h3>Teknikstack</h3>
+      <ul>
+        <li><strong>Frontend:</strong> React med Vite och kommunens designsystem (@sk-web-gui/ai); admin i Next.js/React</li>
+        <li><strong>Backend:</strong> Node.js med Express och Prisma (databas för Pratomater och svar)</li>
+        <li><strong>Test:</strong> Jest (backend) och Cypress (admin)</li>
+      </ul>
+
+      <h3>API-beroenden</h3>
+      <p>
+        Applikationen konsumerar följande API:er via kommunens API-plattform.
+        Versionerna är hämtade ur källkodens API-konfiguration.
+      </p>
+      <div class="table-wrap">
+        <table>
+          <caption class="sr-only">API-beroenden för Pratomaten</caption>
+          <thead>
+            <tr><th scope="col">API</th><th scope="col">Version</th><th scope="col">Användning</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>SimulatorServer</td><td>2.0</td><td>Hälsokontroll av API-anslutningen (enligt api-config).</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Konfiguration och driftsättning</h3>
+      <ul>
+        <li>Miljöfiler för frontend, backend och admin</li>
+        <li>INTRIC_SALT för hashverifiering mot proxytjänsten</li>
+        <li>SAML-certifikat och nycklar för admininloggning</li>
+        <li>Frontend pekas mot både egen backend och AI-proxytjänsten (VITE_INTRIC_API_BASE_URL)</li>
+      </ul>
+      <h3>Noterbart ur källkoden</h3>
+      <ul>
+        <li>Standardfrågan i databasen är "Hur skulle du vilja utveckla Sundsvalls stadskärna?", vilket visar användningsområdet medborgardialog.</li>
+        <li>AI-trafiken går inte direkt mot AI-plattformen utan via kommunens gemensamma proxytjänst, där flera Pratomat-instanser har egna API-nycklar.</li>
+        <li>Senaste utveckling refererar till Eneo, nya namnet på Intric-plattformen.</li>
+      </ul>
+
+      <h3>Källkod</h3>
+      <p>
+        Källkoden är öppen och finns hos
+        <a href="https://github.com/Sundsvallskommun/web-app-pratomat" rel="external">Sundsvalls kommun på GitHub</a>.
+        I källkodsförrådet finns även instruktioner för att klona, konfigurera och
+        starta applikationen i egen miljö.
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div>
+      <p class="footer-title">Webbkatalogen</p>
+      <p>En översikt över de webbapplikationer som Sundsvalls kommun delar som öppen källkod.</p>
+    </div>
+    <div>
+      <p class="footer-title">Länkar</p>
+      <ul class="footer-links">
+        <li><a href="https://github.com/Sundsvallskommun" rel="external">Sundsvalls kommun på GitHub</a></li>
+        <li><a href="https://sundsvall.se" rel="external">sundsvall.se</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

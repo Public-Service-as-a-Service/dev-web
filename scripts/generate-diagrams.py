@@ -71,58 +71,80 @@ def rows_layout(items, x0, x1, y, bw, bh, gap_y=16, min_gap=14):
         i += per_row
     return pos, y - gap_y + 0
 
-def diagram(filename, title, core, domain_apis, master_apis, notes):
-    """core: (name, sub); domain_apis/master_apis: list of (name, version, sub)."""
+def diagram(filename, title, core, domain_apis, master_apis, notes,
+            client_sub="frontend (React/Next.js) + backend (Node.js) — web-app-draken-public",
+            auth_label="SAML IdP", auth_sub="inloggning med SSO", externals=None):
+    """core: (name, sub) or None; domain_apis/master_apis: list of (name, version, sub)."""
     parts = []
     y = 16
     parts.append(f'<text x="{W/2}" y="{y+18}" text-anchor="middle" font-size="22" font-weight="bold" fill="{PRIMARY_DARK}">Lösningsarkitektur — {esc(title)}</text>')
     y += 44
-    parts.append(f'<text x="{W/2}" y="{y}" text-anchor="middle" font-size="13" fill="{INK_SOFT}">Pilar visar anrop. Alla verksamhetsanrop går från webbappens backend via kommunens API-plattform (WSO2).</text>')
+    has_apis = bool(core or domain_apis or master_apis)
+    subtitle = ("Pilar visar anrop. Alla verksamhetsanrop går från webbappens backend via kommunens API-plattform (WSO2)."
+                if has_apis else "Pilar visar anrop och integrationer, härledda ur källkodens konfiguration.")
+    parts.append(f'<text x="{W/2}" y="{y}" text-anchor="middle" font-size="13" fill="{INK_SOFT}">{subtitle}</text>')
     y += 24
 
-    # Client box + SAML IdP
+    # Client box + auth box
     cw, ch = 420, 74
     cx = (W - cw) / 2
-    parts.append(box(cx, y, cw, ch, "Webb-app", "frontend (React/Next.js) + backend (Node.js) — web-app-draken-public", BLUE_FILL, BLUE_EDGE, title_size=17))
-    idp_w, idp_h = 240, 60
-    idp_x = W - idp_w - 30
-    parts.append(box(idp_x, y + 7, idp_w, idp_h, "SAML IdP", "inloggning med SSO", GREY_FILL, GREY_EDGE, dashed=True))
-    parts.append(arrow(cx + cw, y + ch / 2, idp_x, y + 7 + idp_h / 2, dashed=True, curve=False))
-    parts.append(f'<text x="{(cx+cw+idp_x)/2}" y="{y + ch/2 - 10}" text-anchor="middle" font-size="11" fill="{GREY_EDGE}">autentisering</text>')
+    parts.append(box(cx, y, cw, ch, "Webb-app", client_sub, BLUE_FILL, BLUE_EDGE, title_size=17))
+    if auth_label:
+        idp_w, idp_h = 240, 60
+        idp_x = W - idp_w - 30
+        parts.append(box(idp_x, y + 7, idp_w, idp_h, auth_label, auth_sub, GREY_FILL, GREY_EDGE, dashed=True))
+        parts.append(arrow(cx + cw, y + ch / 2, idp_x, y + 7 + idp_h / 2, dashed=True, curve=False))
+        parts.append(f'<text x="{(cx+cw+idp_x)/2}" y="{y + ch/2 - 10}" text-anchor="middle" font-size="11" fill="{GREY_EDGE}">autentisering</text>')
     client_bottom = (cx + cw / 2, y + ch)
     y += ch + 52
 
-    # Gateway bar
-    gw, gh = 640, 58
-    gx = (W - gw) / 2
-    parts.append(arrow(client_bottom[0], client_bottom[1], W / 2, y, color=BLUE_EDGE, curve=False))
-    parts.append(f'<text x="{W/2 + 12}" y="{client_bottom[1] + 30}" font-size="11" fill="{INK_SOFT}">OAuth2 (CLIENT_KEY/CLIENT_SECRET)</text>')
-    parts.append(box(gx, y, gw, gh, "API-plattform (WSO2)", "api.sundsvall.se — gemensam ingång till alla verksamhets-API:er", GREY_FILL, PRIMARY, title_size=16))
-    gate_bottom = (W / 2, y + gh)
-    y += gh + 56
-
-    # Domain APIs group (core first, highlighted)
     bw, bh = 205, 64
     margin = 40
     inner_pad = 20
-    apis = [core] + domain_apis
-    pos, rows_bottom = rows_layout(apis, margin + inner_pad, W - margin - inner_pad, y + 40, bw, bh)
-    parts.append(group_rect(margin, y, W - 2 * margin, rows_bottom - y + inner_pad, "VERKSAMHETS-API:ER — anropas av webb-appen via API-plattformen", "#f4faf6", GREEN_EDGE))
-    for (name, ver, sub), (bx, by) in zip(apis, pos):
-        is_core = (name == core[0] and ver == core[1])
-        fill = GREEN_CORE_FILL if is_core else GREEN_FILL
-        label = f"{name} {ver}".strip()
-        parts.append(box(bx, by, bw, bh, label, sub, fill, GREEN_EDGE, title_size=14))
-        parts.append(arrow(gate_bottom[0], gate_bottom[1], bx + bw / 2, by))
-    y = rows_bottom + inner_pad + 34
+    fan_source = client_bottom
+
+    if has_apis:
+        # Gateway bar
+        gw, gh = 640, 58
+        gx = (W - gw) / 2
+        parts.append(arrow(client_bottom[0], client_bottom[1], W / 2, y, color=BLUE_EDGE, curve=False))
+        parts.append(f'<text x="{W/2 + 12}" y="{client_bottom[1] + 30}" font-size="11" fill="{INK_SOFT}">OAuth2 (CLIENT_KEY/CLIENT_SECRET)</text>')
+        parts.append(box(gx, y, gw, gh, "API-plattform (WSO2)", "api.sundsvall.se — gemensam ingång till alla verksamhets-API:er", GREY_FILL, PRIMARY, title_size=16))
+        gate_bottom = (W / 2, y + gh)
+        fan_source = gate_bottom
+        y += gh + 56
+
+    # Domain APIs group (core first, highlighted)
+    apis = ([core] if core else []) + domain_apis
+    if apis:
+        pos, rows_bottom = rows_layout(apis, margin + inner_pad, W - margin - inner_pad, y + 40, bw, bh)
+        parts.append(group_rect(margin, y, W - 2 * margin, rows_bottom - y + inner_pad, "VERKSAMHETS-API:ER — anropas av webb-appen via API-plattformen", "#f4faf6", GREEN_EDGE))
+        for (name, ver, sub), (bx, by) in zip(apis, pos):
+            is_core = core is not None and name == core[0] and ver == core[1]
+            fill = GREEN_CORE_FILL if is_core else GREEN_FILL
+            label = f"{name} {ver}".strip()
+            parts.append(box(bx, by, bw, bh, label, sub, fill, GREEN_EDGE, title_size=14))
+            parts.append(arrow(fan_source[0], fan_source[1], bx + bw / 2, by))
+        y = rows_bottom + inner_pad + 34
 
     # Master data group
-    pos, rows_bottom = rows_layout(master_apis, margin + inner_pad, W - margin - inner_pad, y + 40, bw, bh)
-    parts.append(group_rect(margin, y, W - 2 * margin, rows_bottom - y + inner_pad, "MASTER-DATA-API:ER — uppslag av personer, medarbetare och organisationer", "#fdf9ef", YELLOW_EDGE))
-    for (name, ver, sub), (bx, by) in zip(master_apis, pos):
-        parts.append(box(bx, by, bw, bh, f"{name} {ver}", sub, YELLOW_FILL, YELLOW_EDGE, title_size=14))
-        parts.append(arrow(gate_bottom[0], gate_bottom[1], bx + bw / 2, by))
-    y = rows_bottom + inner_pad + 28
+    if master_apis:
+        pos, rows_bottom = rows_layout(master_apis, margin + inner_pad, W - margin - inner_pad, y + 40, bw, bh)
+        parts.append(group_rect(margin, y, W - 2 * margin, rows_bottom - y + inner_pad, "MASTER-DATA-API:ER — uppslag av personer, medarbetare och organisationer", "#fdf9ef", YELLOW_EDGE))
+        for (name, ver, sub), (bx, by) in zip(master_apis, pos):
+            parts.append(box(bx, by, bw, bh, f"{name} {ver}", sub, YELLOW_FILL, YELLOW_EDGE, title_size=14))
+            parts.append(arrow(fan_source[0], fan_source[1], bx + bw / 2, by))
+        y = rows_bottom + inner_pad + 28
+
+    # External systems / integrations group
+    if externals:
+        ext = [(name, "", sub) for name, sub in externals]
+        pos, rows_bottom = rows_layout(ext, margin + inner_pad, W - margin - inner_pad, y + 40, bw, bh)
+        parts.append(group_rect(margin, y, W - 2 * margin, rows_bottom - y + inner_pad, "EXTERNA SYSTEM OCH INTEGRATIONER", "#f4f5f7", GREY_EDGE))
+        for (name, _ver, sub), (bx, by) in zip(ext, pos):
+            parts.append(box(bx, by, bw, bh, name, sub, GREY_FILL, GREY_EDGE, dashed=True, title_size=14))
+            parts.append(arrow(client_bottom[0], client_bottom[1], bx + bw / 2, by, dashed=True))
+        y = rows_bottom + inner_pad + 28
 
     # Notes + legend
     for note in notes:
@@ -225,3 +247,58 @@ diagram(
         "Utfärdade tillstånd registreras i PartyAssets och kopplas till person via Party-API:et.",
     ],
 )
+
+# --- Data-driven diagrams for all other applications (scripts/apps-data.json) ---
+
+MASTER_NAMES = {"citizen", "employee", "legalentity", "party", "activedirectory"}
+
+
+def clip(s, n):
+    """Trim text so it fits inside a diagram box."""
+    s = (s or "").strip()
+    return s if len(s) <= n else s[: n - 1].rstrip() + "…"
+
+_data_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "apps-data.json")
+if os.path.exists(_data_path):
+    import json
+
+    with open(_data_path, encoding="utf-8") as f:
+        _apps = json.load(f)
+    for _app in _apps:
+        _apis = _app.get("apis") or []
+        _domain = [(clip(a["name"], 22), a.get("version") or "", clip(a.get("usage"), 33)) for a in _apis
+                   if a["name"].lower().replace("-", "") not in MASTER_NAMES]
+        _master = [(clip(a["name"], 22), a.get("version") or "", clip(a.get("usage"), 33)) for a in _apis
+                   if a["name"].lower().replace("-", "") in MASTER_NAMES]
+        _core = _domain[0] if _domain else None
+        _rest = _domain[1:] if _domain else []
+        _auth = _app.get("auth") or ""
+        if "saml" in _auth.lower():
+            _auth_label, _auth_sub = "SAML IdP", "inloggning med SSO"
+        elif _auth and "ingen" not in _auth.lower():
+            _auth_label, _auth_sub = "Inloggning", _auth
+        else:
+            _auth_label, _auth_sub = None, None
+        _integ = _app.get("integrationer") or []
+        _has_apis = bool(_domain or _master)
+        _externals = [(clip(name, 24), "integration") for name in _integ
+                      if "saml" not in name.lower()
+                      and not (_has_apis and ("wso2" in name.lower() or "api-gateway" in name.lower()
+                                              or "api.sundsvall" in name.lower()))][:10]
+        _teknik = _app.get("teknik") or {}
+        _parts = [p for p in [_teknik.get("frontend"), _teknik.get("backend")] if p]
+        _client_sub = (" + ".join(_parts) + " — " + _app["repo"]) if _parts else _app["repo"]
+        if len(_client_sub) > 95:
+            _client_sub = _app["repo"]
+        diagram(
+            f"{_app['slug']}.svg",
+            _app["namn"],
+            _core,
+            _rest,
+            _master,
+            (_app.get("anteckningar") or [])[:3],
+            client_sub=_client_sub,
+            auth_label=_auth_label,
+            auth_sub=_auth_sub,
+            externals=_externals or None,
+        )

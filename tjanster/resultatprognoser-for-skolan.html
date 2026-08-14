@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Resultatprognoser för skolan – Webbkatalogen</title>
+  <meta name="description" content="Verktyg där lärare, mentorer och rektorer registrerar och följer prognoser över elevers möjlighet att nå målen i sina ämnen.">
+  <link rel="stylesheet" href="../assets/styles.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%93%98%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">▦</span>
+      <a class="brand-name" href="../index.html">Webbkatalogen</a>
+    </div>
+    <nav class="site-nav" aria-label="Huvudmeny">
+      <a href="../index.html#om-katalogen">Om katalogen</a>
+      <a href="../index.html#tjanster">Webbapplikationer</a>
+      <a href="https://github.com/Sundsvallskommun" rel="external">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="page-hero">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Brödsmulor">
+        <a href="../index.html">Start</a> <span aria-hidden="true">/</span>
+        <a href="../index.html#tjanster">Webbapplikationer</a> <span aria-hidden="true">/</span>
+        <span aria-current="page">Resultatprognoser för skolan</span>
+      </nav>
+      <span class="app-tag app-tag-light">Utbildning</span>
+      <h1>Resultatprognoser för skolan</h1>
+      <p class="hero-lead">
+        Verktyg där lärare, mentorer och rektorer registrerar och följer prognoser över elevers möjlighet att nå målen i sina ämnen.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>Om applikationen</h2>
+      <div class="columns">
+        <div class="column-text">
+          <p>
+            Tjänsten, i gränssnittet kallad Resultatprognoser, låter lärare fylla i prognoser per elev och ämnesgrupp för aktuell period – till exempel om eleven väntas nå målen eller riskerar att inte göra det (varning). Prognoserna sparas centralt och kan följas över tid, med jämförelse mot tidigare perioder.
+          </p>
+          <p>
+            Olika roller ser olika delar: lärare fyller i och ser sina egna ämnen och grupper, mentorer följer sin mentorsklass, och rektorer ser samtliga klasser, ämnesgrupper och elever på skolan. Tjänsten omfattar både grundskola och gymnasium (inklusive anpassad skola).
+          </p>
+          <p>
+            Rollerna hämtas automatiskt utifrån användarens anställning och koppling till skolenheter, så att behörigheten följer den faktiska organisationen.
+          </p>
+
+          <h3>Det här stödjer applikationen</h3>
+          <ul class="app-modules">
+            <li><strong>Prognos per elev och ämne</strong> – Lärare registrerar prognoser för elever i sina ämnesgrupper för aktuell period.</li>
+            <li><strong>Rollstyrda vyer</strong> – Lärare ser sina ämnen och grupper, mentorer sin mentorsklass och rektorer hela skolan.</li>
+            <li><strong>Uppföljning över tid</strong> – Prognoser kan jämföras med tidigare perioder och sammanställas per klass och elev.</li>
+            <li><strong>Signalering</strong> – Elever markeras utifrån prognos, till exempel godkänd, varning eller ej godkänd.</li>
+            <li><strong>Sökning</strong> – Sök bland elever, klasser och ämnesgrupper.</li>
+          </ul>
+        </div>
+        <aside class="fact-box" aria-label="Snabbfakta">
+          <h3>Snabbfakta</h3>
+          <ul>
+            <li>Målgrupp: <strong>lärare, mentorer och rektorer</strong></li>
+            <li>Kategori: <strong>Utbildning</strong></li>
+            <li>Status: <strong>Aktiv</strong></li>
+            <li>Inloggning: <strong>SAML (SSO) med rollstyrning (ForecastUser/rektor, GradeAuthor/lärare, Mentor)</strong></li>
+          </ul>
+          <p class="fact-box-link">
+            <a href="https://github.com/Sundsvallskommun/web-app-education-forecast" rel="external">Källkod på GitHub</a>
+          </p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="teknisk-dokumentation">
+    <div class="container">
+      <h2>Teknisk dokumentation</h2>
+      <p class="section-intro">
+        Nedan beskrivs hur applikationen är uppbyggd, vilka API:er den använder och vad
+        som krävs för att driftsätta den. Informationen är härledd ur källkoden och
+        dess konfiguration på GitHub.
+      </p>
+
+      <h3>Arkitektur</h3>
+      <figure class="diagram">
+        <div class="diagram-wrap">
+          <img src="../assets/diagrams/resultatprognoser-for-skolan.svg" alt="Arkitekturskiss för Resultatprognoser för skolan: webbappens delar och dess integrationer.">
+        </div>
+        <figcaption>Lösningsarkitektur, härledd ur källkodens konfiguration.</figcaption>
+      </figure>
+      <p>
+        Applikationen består av en webbaserad frontend (Next.js (pages router), React, TypeScript, sk-web-gui, Tailwind CSS, Zustand, react-hook-form) och en backend (Node.js, Express, routing-controllers, Passport SAML) som utvecklas i samma kodbas. Verksamhetsanrop går via kommunens gemensamma API-plattform (WSO2) – frontend pratar aldrig direkt med underliggande system. Inloggning: SAML (SSO) med rollstyrning (ForecastUser/rektor, GradeAuthor/lärare, Mentor). Övriga integrationer som förekommer i koden: SAML IdP, WSO2 API-gateway.
+      </p>
+
+      <h3>Teknikstack</h3>
+      <ul>
+        <li><strong>Frontend:</strong> Next.js (pages router), React, TypeScript, sk-web-gui, Tailwind CSS, Zustand, react-hook-form</li>
+        <li><strong>Backend:</strong> Node.js, Express, routing-controllers, Passport SAML</li>
+        <li><strong>Test:</strong> Jest och Cypress (frontend), Jest och Supertest (backend)</li>
+      </ul>
+
+      <h3>API-beroenden</h3>
+      <p>
+        Applikationen konsumerar följande API:er via kommunens API-plattform.
+        Versionerna är hämtade ur källkodens API-konfiguration.
+      </p>
+      <div class="table-wrap">
+        <table>
+          <caption class="sr-only">API-beroenden för Resultatprognoser för skolan</caption>
+          <thead>
+            <tr><th scope="col">API</th><th scope="col">Version</th><th scope="col">Användning</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>SimulatorServer</td><td>2.0</td><td>Simulerade svar vid test och utveckling</td></tr>
+            <tr><td>Education</td><td>2.0</td><td>Skolenheter, klasser, ämnesgrupper och elever</td></tr>
+            <tr><td>PupilForecast</td><td>1.0</td><td>Lagring och hämtning av elevprognoser</td></tr>
+            <tr><td>Employee</td><td>2.0</td><td>Medarbetaruppgifter för roll- och behörighetsstyrning</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Konfiguration och driftsättning</h3>
+      <ul>
+        <li>.env-filer för frontend och backend utifrån .env-exempel</li>
+        <li>CLIENT_KEY/CLIENT_SECRET mot kommunens API-gateway</li>
+        <li>SAML-certifikat, nycklar och callback-URL:er</li>
+      </ul>
+      <h3>Noterbart ur källkoden</h3>
+      <ul>
+        <li>Roller i koden: ForecastUser (rektor), GradeAuthor (lärare) och Mentor, med skoltyperna GR/GRS och GY/GYS.</li>
+        <li>Appnamnet i konfigurationen är 'Resultatprognoser'.</li>
+      </ul>
+
+      <h3>Källkod</h3>
+      <p>
+        Källkoden är öppen och finns hos
+        <a href="https://github.com/Sundsvallskommun/web-app-education-forecast" rel="external">Sundsvalls kommun på GitHub</a>.
+        I källkodsförrådet finns även instruktioner för att klona, konfigurera och
+        starta applikationen i egen miljö.
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div>
+      <p class="footer-title">Webbkatalogen</p>
+      <p>En översikt över de webbapplikationer som Sundsvalls kommun delar som öppen källkod.</p>
+    </div>
+    <div>
+      <p class="footer-title">Länkar</p>
+      <ul class="footer-links">
+        <li><a href="https://github.com/Sundsvallskommun" rel="external">Sundsvalls kommun på GitHub</a></li>
+        <li><a href="https://sundsvall.se" rel="external">sundsvall.se</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Krisinformation till medarbetare – Webbkatalogen</title>
+  <meta name="description" content="Verktyg för att snabbt skicka krisinformation till kommunens chefer och medarbetare via SMS och Microsoft Teams.">
+  <link rel="stylesheet" href="../assets/styles.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%93%98%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">▦</span>
+      <a class="brand-name" href="../index.html">Webbkatalogen</a>
+    </div>
+    <nav class="site-nav" aria-label="Huvudmeny">
+      <a href="../index.html#om-katalogen">Om katalogen</a>
+      <a href="../index.html#tjanster">Webbapplikationer</a>
+      <a href="https://github.com/Sundsvallskommun" rel="external">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="page-hero">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Brödsmulor">
+        <a href="../index.html">Start</a> <span aria-hidden="true">/</span>
+        <a href="../index.html#tjanster">Webbapplikationer</a> <span aria-hidden="true">/</span>
+        <span aria-current="page">Krisinformation till medarbetare</span>
+      </nav>
+      <span class="app-tag app-tag-light">Medarbetartjänster</span> <span class="app-tag app-tag-light app-tag-status">Prototyp</span>
+      <h1>Krisinformation till medarbetare</h1>
+      <p class="hero-lead">
+        Verktyg för att snabbt skicka krisinformation till kommunens chefer och medarbetare via SMS och Microsoft Teams.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>Om applikationen</h2>
+      <div class="columns">
+        <div class="column-text">
+          <p>
+            Tjänsten låter behöriga användare skapa och skicka utskick med krisinformation till utvalda mottagare inom kommunens organisation. Mottagare kan väljas via ett organisationsträd, fördefinierade grupper (till exempel alla chefer eller alla medarbetare) eller egna sparade grupper.
+          </p>
+          <p>
+            Meddelanden kan skickas via SMS, Microsoft Teams eller båda kanalerna, och avsändaren kan i efterhand följa upp sina utskick och se mottagarlistor med leveransstatus. En adminpanel finns för att hantera vilka användare som får logga in och göra utskick.
+          </p>
+          <p>
+            Applikationen bedöms vara under uppbyggnad: den använder en egen lokal användardatabas med e-post och lösenord för inloggning och pekar mot lokala mikrotjänster i utvecklingsmiljö.
+          </p>
+
+          <h3>Det här stödjer applikationen</h3>
+          <ul class="app-modules">
+            <li><strong>Utskick i flera kanaler</strong> – Skicka meddelanden via SMS och/eller Microsoft Teams till valda mottagare.</li>
+            <li><strong>Mottagarval via organisationsträd</strong> – Välj mottagare från kommunens organisationsstruktur eller fördefinierade grupper som alla chefer och alla medarbetare.</li>
+            <li><strong>Egna mottagargrupper</strong> – Skapa, spara och hantera egna grupper av mottagare för återkommande utskick.</li>
+            <li><strong>Uppföljning av utskick</strong> – Se historik över gjorda utskick med mottagare och leveransstatus.</li>
+            <li><strong>Adminpanel</strong> – Administrera användarkonton och behörigheter för dem som får göra utskick.</li>
+          </ul>
+        </div>
+        <aside class="fact-box" aria-label="Snabbfakta">
+          <h3>Snabbfakta</h3>
+          <ul>
+            <li>Målgrupp: <strong>Krisledning och kommunikationsansvariga; mottagare är chefer och medarbetare</strong></li>
+            <li>Kategori: <strong>Medarbetartjänster</strong></li>
+            <li>Status: <strong>Prototyp</strong></li>
+            <li>Inloggning: <strong>E-post och lösenord mot egen användardatabas (JWT), samt separat Microsoft-inloggning för Teams-utskick</strong></li>
+          </ul>
+          <p class="fact-box-link">
+            <a href="https://github.com/Sundsvallskommun/web-app-nidhogg" rel="external">Källkod på GitHub</a>
+          </p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="teknisk-dokumentation">
+    <div class="container">
+      <h2>Teknisk dokumentation</h2>
+      <p class="section-intro">
+        Nedan beskrivs hur applikationen är uppbyggd, vilka API:er den använder och vad
+        som krävs för att driftsätta den. Informationen är härledd ur källkoden och
+        dess konfiguration på GitHub.
+      </p>
+
+      <h3>Arkitektur</h3>
+      <figure class="diagram">
+        <div class="diagram-wrap">
+          <img src="../assets/diagrams/krisinformation-till-medarbetare.svg" alt="Arkitekturskiss för Krisinformation till medarbetare: webbappens delar och dess integrationer.">
+        </div>
+        <figcaption>Lösningsarkitektur, härledd ur källkodens konfiguration.</figcaption>
+      </figure>
+      <p>
+        Applikationen består av en webbaserad frontend (Next.js 15 (App Router), React 19, sk-web-gui, next-intl, Tailwind CSS) och en backend (Next.js API-routes med Prisma mot MySQL, proxy till interna mikrotjänster (notifier, users, teamssender)) som utvecklas i samma kodbas. Inloggning: E-post och lösenord mot egen användardatabas (JWT), samt separat Microsoft-inloggning för Teams-utskick. Övriga integrationer som förekommer i koden: Microsoft Teams (utskick via egen teamssender-tjänst med Microsoft-inloggning), SMS-utskick via intern notifier-tjänst, Intern användartjänst (users).
+      </p>
+
+      <h3>Teknikstack</h3>
+      <ul>
+        <li><strong>Frontend:</strong> Next.js 15 (App Router), React 19, sk-web-gui, next-intl, Tailwind CSS</li>
+        <li><strong>Backend:</strong> Next.js API-routes med Prisma mot MySQL, proxy till interna mikrotjänster (notifier, users, teamssender)</li>
+        <li><strong>Test:</strong> Cypress</li>
+      </ul>
+
+      <h3>API-beroenden</h3>
+      <p>
+        Inga prenumerationer på kommunens API-plattform hittades i källkodens
+        konfiguration.
+      </p>
+
+      <h3>Konfiguration och driftsättning</h3>
+      <ul>
+        <li>.env med DATABASE_URL (MySQL via Docker Compose)</li>
+        <li>Proxy-adresser till mikrotjänster: API_PROXY_TARGET_NOTIFIER, API_PROXY_TARGET_USERS, API_PROXY_TARGET_TEAMSSENDER</li>
+        <li>NEXT_PUBLIC_TREE_ROOT_ORG_ID för organisationsträdets rot</li>
+      </ul>
+      <h3>Noterbart ur källkoden</h3>
+      <ul>
+        <li>UI-texterna anger namnet Krisinformation med undertiteln Sundsvalls Kommun.</li>
+        <li>Ingen koppling till kommunens API-gateway (api.sundsvall.se) hittades i koden; alla anrop går till lokala/interna tjänster.</li>
+        <li>Rollstyrning finns med rollen ADMIN i JWT som ger åtkomst till adminpanelen.</li>
+        <li>Databasen seedas via Prisma och innehåller användare, medarbetare, grupper och meddelanden.</li>
+      </ul>
+
+      <h3>Källkod</h3>
+      <p>
+        Källkoden är öppen och finns hos
+        <a href="https://github.com/Sundsvallskommun/web-app-nidhogg" rel="external">Sundsvalls kommun på GitHub</a>.
+        I källkodsförrådet finns även instruktioner för att klona, konfigurera och
+        starta applikationen i egen miljö.
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div>
+      <p class="footer-title">Webbkatalogen</p>
+      <p>En översikt över de webbapplikationer som Sundsvalls kommun delar som öppen källkod.</p>
+    </div>
+    <div>
+      <p class="footer-title">Länkar</p>
+      <ul class="footer-links">
+        <li><a href="https://github.com/Sundsvallskommun" rel="external">Sundsvalls kommun på GitHub</a></li>
+        <li><a href="https://sundsvall.se" rel="external">sundsvall.se</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

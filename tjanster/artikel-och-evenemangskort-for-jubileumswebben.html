@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Artikel- och evenemangskort för jubileumswebben – Webbkatalogen</title>
+  <meta name="description" content="En Sitevision-modul som visar nyheter och evenemang som kortflöden på webbplatsen för Sundsvalls 400-årsjubileum.">
+  <link rel="stylesheet" href="../assets/styles.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%93%98%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">▦</span>
+      <a class="brand-name" href="../index.html">Webbkatalogen</a>
+    </div>
+    <nav class="site-nav" aria-label="Huvudmeny">
+      <a href="../index.html#om-katalogen">Om katalogen</a>
+      <a href="../index.html#tjanster">Webbapplikationer</a>
+      <a href="https://github.com/Sundsvallskommun" rel="external">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="page-hero">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Brödsmulor">
+        <a href="../index.html">Start</a> <span aria-hidden="true">/</span>
+        <a href="../index.html#tjanster">Webbapplikationer</a> <span aria-hidden="true">/</span>
+        <span aria-current="page">Artikel- och evenemangskort för jubileumswebben</span>
+      </nav>
+      <span class="app-tag app-tag-light">Invånartjänster</span> <span class="app-tag app-tag-light app-tag-status">Avvecklad</span>
+      <h1>Artikel- och evenemangskort för jubileumswebben</h1>
+      <p class="hero-lead">
+        En Sitevision-modul som visar nyheter och evenemang som kortflöden på webbplatsen för Sundsvalls 400-årsjubileum.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>Om applikationen</h2>
+      <div class="columns">
+        <div class="column-text">
+          <p>
+            Detta är en tilläggsmodul (WebApp) till publiceringsverktyget Sitevision som togs fram för Sundsvalls 400-årsjubileum. Modulen hämtar artiklar ur ett valt arkiv på webbplatsen och visar dem som ett flöde av kort – antingen som en lista eller som ett bildspel.
+          </p>
+          <p>
+            Redaktören väljer i modulens inställningar vilket arkiv som ska visas, hur många artiklar som ska ingå och vilken korttyp som ska användas (evenemangskort, avlånga eller kvadratiska kort). För evenemang visas datum, tid och plats, och passerade evenemang filtreras bort automatiskt.
+          </p>
+          <p>
+            Eftersom modulen är knuten till en tidsbegränsad jubileumskampanj bedöms den inte längre vara i aktiv utveckling; senaste ändringen gjordes hösten 2024.
+          </p>
+
+          <h3>Det här stödjer applikationen</h3>
+          <ul class="app-modules">
+            <li><strong>Kortflöde av artiklar</strong> – Visar nyhets- och evenemangsartiklar från ett Sitevision-arkiv som kortbaserat flöde.</li>
+            <li><strong>Flera korttyper</strong> – Redaktören kan välja mellan evenemangskort, avlånga och kvadratiska kort.</li>
+            <li><strong>Lista eller bildspel</strong> – Flödet kan visas som löpande lista med oändlig skroll eller som bildspel med begränsat antal artiklar.</li>
+            <li><strong>Automatisk evenemangsfiltrering</strong> – Kommande evenemang sorteras på startdatum och passerade datum visas inte.</li>
+          </ul>
+        </div>
+        <aside class="fact-box" aria-label="Snabbfakta">
+          <h3>Snabbfakta</h3>
+          <ul>
+            <li>Målgrupp: <strong>invånare och besökare (via jubileumswebbplatsen); redaktörer konfigurerar modulen</strong></li>
+            <li>Kategori: <strong>Invånartjänster</strong></li>
+            <li>Status: <strong>Avvecklad</strong></li>
+            <li>Inloggning: <strong>Ingen inloggning (visas publikt på webbplatsen)</strong></li>
+          </ul>
+          <p class="fact-box-link">
+            <a href="https://github.com/Sundsvallskommun/web-app-sundsvall400" rel="external">Källkod på GitHub</a>
+          </p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="teknisk-dokumentation">
+    <div class="container">
+      <h2>Teknisk dokumentation</h2>
+      <p class="section-intro">
+        Nedan beskrivs hur applikationen är uppbyggd, vilka API:er den använder och vad
+        som krävs för att driftsätta den. Informationen är härledd ur källkoden och
+        dess konfiguration på GitHub.
+      </p>
+
+      <h3>Arkitektur</h3>
+      <figure class="diagram">
+        <div class="diagram-wrap">
+          <img src="../assets/diagrams/artikel-och-evenemangskort-for-jubileumswebben.svg" alt="Arkitekturskiss för Artikel- och evenemangskort för jubileumswebben: webbappens delar och dess integrationer.">
+        </div>
+        <figcaption>Lösningsarkitektur, härledd ur källkodens konfiguration.</figcaption>
+      </figure>
+      <p>
+        Applikationen består av en webbaserad frontend (React 17, Sitevision WebApp (sitevision-scripts), Sass) och en backend (Serverskript i Sitevision (server-side rendering)) som utvecklas i samma kodbas. Övriga integrationer som förekommer i koden: Sitevision (REST-API och sökindex).
+      </p>
+
+      <h3>Teknikstack</h3>
+      <ul>
+        <li><strong>Frontend:</strong> React 17, Sitevision WebApp (sitevision-scripts), Sass</li>
+        <li><strong>Backend:</strong> Serverskript i Sitevision (server-side rendering)</li>
+      </ul>
+
+      <h3>API-beroenden</h3>
+      <p>
+        Inga prenumerationer på kommunens API-plattform hittades i källkodens
+        konfiguration.
+      </p>
+
+      <h3>Konfiguration och driftsättning</h3>
+      <ul>
+        <li>Modulinställningar i Sitevision: val av arkiv, korttyp, listtyp, max antal artiklar och taggtext</li>
+        <li>Byggs och signeras med Sitevisions utvecklarverktyg (create-addon, sign, deploy-prod)</li>
+      </ul>
+      <h3>Noterbart ur källkoden</h3>
+      <ul>
+        <li>Repot innehåller endast mappen campincardListing med modulen Campaign card listing (kampanjkortlistning).</li>
+        <li>Färdigbyggda och signerade zip-paket ligger incheckade i dist-mappen.</li>
+        <li>Kopplingen till 400-årsjubileet framgår av reponamnet; statusbedömningen avvecklad bygger på att kampanjen är tidsbegränsad.</li>
+      </ul>
+
+      <h3>Källkod</h3>
+      <p>
+        Källkoden är öppen och finns hos
+        <a href="https://github.com/Sundsvallskommun/web-app-sundsvall400" rel="external">Sundsvalls kommun på GitHub</a>.
+        I källkodsförrådet finns även instruktioner för att klona, konfigurera och
+        starta applikationen i egen miljö.
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div>
+      <p class="footer-title">Webbkatalogen</p>
+      <p>En översikt över de webbapplikationer som Sundsvalls kommun delar som öppen källkod.</p>
+    </div>
+    <div>
+      <p class="footer-title">Länkar</p>
+      <ul class="footer-links">
+        <li><a href="https://github.com/Sundsvallskommun" rel="external">Sundsvalls kommun på GitHub</a></li>
+        <li><a href="https://sundsvall.se" rel="external">sundsvall.se</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

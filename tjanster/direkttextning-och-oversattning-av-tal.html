@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Direkttextning och översättning av tal – Webbkatalogen</title>
+  <meta name="description" content="Webbapp som i realtid transkriberar det som sägs och visar det som text, med möjlighet att samtidigt översätta till ett annat språk.">
+  <link rel="stylesheet" href="../assets/styles.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%93%98%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">▦</span>
+      <a class="brand-name" href="../index.html">Webbkatalogen</a>
+    </div>
+    <nav class="site-nav" aria-label="Huvudmeny">
+      <a href="../index.html#om-katalogen">Om katalogen</a>
+      <a href="../index.html#tjanster">Webbapplikationer</a>
+      <a href="https://github.com/Sundsvallskommun" rel="external">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="page-hero">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Brödsmulor">
+        <a href="../index.html">Start</a> <span aria-hidden="true">/</span>
+        <a href="../index.html#tjanster">Webbapplikationer</a> <span aria-hidden="true">/</span>
+        <span aria-current="page">Direkttextning och översättning av tal</span>
+      </nav>
+      <span class="app-tag app-tag-light">AI-tjänster</span>
+      <h1>Direkttextning och översättning av tal</h1>
+      <p class="hero-lead">
+        Webbapp som i realtid transkriberar det som sägs och visar det som text, med möjlighet att samtidigt översätta till ett annat språk.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>Om applikationen</h2>
+      <div class="columns">
+        <div class="column-text">
+          <p>
+            Appen, i gränssnittet kallad Undertextaren, lyssnar på tal via mikrofonen och visar det som text på skärmen i realtid. Användaren väljer talat språk och textat språk – är de olika översätts texten löpande, vilket gör appen användbar vid möten, informationsträffar och andra sammanhang där deltagare behöver textstöd eller ett annat språk.
+          </p>
+          <p>
+            Textningen kan pausas, återupptas, startas om och skrivas ut, och gränssnittet har ljust och mörkt läge. Appen är byggd som en progressiv webbapp (PWA) och kan därmed installeras på enheten.
+          </p>
+          <p>
+            Tal- och översättningsfunktionerna bygger på Azures tjänster för taligenkänning och översättning, via kommunens gemensamma AI-proxy.
+          </p>
+
+          <h3>Det här stödjer applikationen</h3>
+          <ul class="app-modules">
+            <li><strong>Transkribering i realtid</strong> – Tal omvandlas löpande till text på skärmen.</li>
+            <li><strong>Samtidig översättning</strong> – Välj talat och textat språk ur en bred språklista – texten översätts direkt.</li>
+            <li><strong>Paus och omstart</strong> – Textningen kan pausas, fortsättas och startas om under pågående session.</li>
+            <li><strong>Utskrift</strong> – Den textade sessionen kan skrivas ut.</li>
+            <li><strong>Installerbar app</strong> – Byggd som PWA och kan installeras på datorer och mobila enheter.</li>
+          </ul>
+        </div>
+        <aside class="fact-box" aria-label="Snabbfakta">
+          <h3>Snabbfakta</h3>
+          <ul>
+            <li>Målgrupp: <strong>Medarbetare och mötesdeltagare med behov av direkttextning eller översättning</strong></li>
+            <li>Kategori: <strong>AI-tjänster</strong></li>
+            <li>Status: <strong>Aktiv</strong></li>
+            <li>Inloggning: <strong>Ingen inloggning i appen</strong></li>
+          </ul>
+          <p class="fact-box-link">
+            <a href="https://github.com/Sundsvallskommun/web-app-live-transcriptions" rel="external">Källkod på GitHub</a>
+          </p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="teknisk-dokumentation">
+    <div class="container">
+      <h2>Teknisk dokumentation</h2>
+      <p class="section-intro">
+        Nedan beskrivs hur applikationen är uppbyggd, vilka API:er den använder och vad
+        som krävs för att driftsätta den. Informationen är härledd ur källkoden och
+        dess konfiguration på GitHub.
+      </p>
+
+      <h3>Arkitektur</h3>
+      <figure class="diagram">
+        <div class="diagram-wrap">
+          <img src="../assets/diagrams/direkttextning-och-oversattning-av-tal.svg" alt="Arkitekturskiss för Direkttextning och översättning av tal: webbappens delar och dess integrationer.">
+        </div>
+        <figcaption>Lösningsarkitektur, härledd ur källkodens konfiguration.</figcaption>
+      </figure>
+      <p>
+        Applikationen är en webbaserad frontend (React med Vite, sk-web-gui/ai, i18next och PWA-stöd). Övriga integrationer som förekommer i koden: Azure Speech (tal till text och översättning), Kommunens AI-proxy (web-app-intric-backend), Intric.
+      </p>
+
+      <h3>Teknikstack</h3>
+      <ul>
+        <li><strong>Frontend:</strong> React med Vite, sk-web-gui/ai, i18next och PWA-stöd</li>
+      </ul>
+
+      <h3>API-beroenden</h3>
+      <p>
+        Inga prenumerationer på kommunens API-plattform hittades i källkodens
+        konfiguration.
+      </p>
+
+      <h3>Konfiguration och driftsättning</h3>
+      <ul>
+        <li>.env utifrån .env.example</li>
+        <li>VITE_API_BASE_URL pekar på instansen av kommunens AI-proxy</li>
+        <li>Bas-sökväg, port och tillåtna värdar (VITE_HOSTS)</li>
+      </ul>
+      <h3>Noterbart ur källkoden</h3>
+      <ul>
+        <li>Ren frontendapp – all tal- och översättningslogik går via den separata AI-proxyn.</li>
+        <li>Inga automatiska tester finns i repot.</li>
+      </ul>
+
+      <h3>Källkod</h3>
+      <p>
+        Källkoden är öppen och finns hos
+        <a href="https://github.com/Sundsvallskommun/web-app-live-transcriptions" rel="external">Sundsvalls kommun på GitHub</a>.
+        I källkodsförrådet finns även instruktioner för att klona, konfigurera och
+        starta applikationen i egen miljö.
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div>
+      <p class="footer-title">Webbkatalogen</p>
+      <p>En översikt över de webbapplikationer som Sundsvalls kommun delar som öppen källkod.</p>
+    </div>
+    <div>
+      <p class="footer-title">Länkar</p>
+      <ul class="footer-links">
+        <li><a href="https://github.com/Sundsvallskommun" rel="external">Sundsvalls kommun på GitHub</a></li>
+        <li><a href="https://sundsvall.se" rel="external">sundsvall.se</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

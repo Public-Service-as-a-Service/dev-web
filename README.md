@@ -14,12 +14,13 @@ beskrivning följt av teknisk dokumentation (härledd från GitHub) på samma si
 ## Innehåll
 
 - `index.html` – förstasidan med information om katalogen och en översikt över
-  applikationerna.
-- `tjanster/*.html` – en sida per webbapplikation, med beskrivning och teknisk
-  dokumentation:
-  - `generisk-arendehantering.html`
-  - `myndighetsutovning-mark-och-exploatering.html`
-  - `myndighetsutovning-parkeringstillstand.html`
+  applikationerna, grupperad per kategori.
+- `tjanster/*.html` – en sida per webbapplikation (ett 50-tal), med
+  beskrivning och teknisk dokumentation. Tre sidor är handskrivna
+  (`generisk-arendehantering`, `myndighetsutovning-*`); övriga genereras från
+  `scripts/apps-data.json` med `scripts/generate-pages.py`.
+- `scripts/apps-data.json` – fakta om varje applikation, härledd ur respektive
+  källkodsrepo.
 - `assets/styles.css` – webbplatsens utseende.
 - `assets/diagrams/*.svg` – arkitekturritningar, genererade med
   `scripts/generate-diagrams.py`.

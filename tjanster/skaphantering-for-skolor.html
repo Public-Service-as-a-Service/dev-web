@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Skåphantering för skolor – Webbkatalogen</title>
+  <meta name="description" content="Webbtjänst där skolpersonal administrerar elevskåp, kodlås och skåptilldelning på kommunens skolenheter.">
+  <link rel="stylesheet" href="../assets/styles.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%93%98%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">▦</span>
+      <a class="brand-name" href="../index.html">Webbkatalogen</a>
+    </div>
+    <nav class="site-nav" aria-label="Huvudmeny">
+      <a href="../index.html#om-katalogen">Om katalogen</a>
+      <a href="../index.html#tjanster">Webbapplikationer</a>
+      <a href="https://github.com/Sundsvallskommun" rel="external">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="page-hero">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Brödsmulor">
+        <a href="../index.html">Start</a> <span aria-hidden="true">/</span>
+        <a href="../index.html#tjanster">Webbapplikationer</a> <span aria-hidden="true">/</span>
+        <span aria-current="page">Skåphantering för skolor</span>
+      </nav>
+      <span class="app-tag app-tag-light">Utbildning</span>
+      <h1>Skåphantering för skolor</h1>
+      <p class="hero-lead">
+        Webbtjänst där skolpersonal administrerar elevskåp, kodlås och skåptilldelning på kommunens skolenheter.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>Om applikationen</h2>
+      <div class="columns">
+        <div class="column-text">
+          <p>
+            Skåphantering är ett verktyg för skolpersonal, med Sundsvalls gymnasium som utpekad verksamhet i gränssnittet. I tjänsten hanteras skolans elevskåp per skolenhet: personalen ser vilka skåp som finns, vilken status de har och vilken elev som disponerar respektive skåp.
+          </p>
+          <p>
+            Tjänsten hanterar även kodlås och koder kopplade till skåpen samt elevlistor med klasstillhörighet, så att skåp kan tilldelas, sägas upp och underhållas löpande under läsåret. Via kommunens meddelandetjänst kan information skickas ut, exempelvis i samband med skåptilldelning.
+          </p>
+          <p>
+            Inloggning sker med kommunens gemensamma inloggning (SAML) och åtkomst kan begränsas till särskilda AD-grupper.
+          </p>
+
+          <h3>Det här stödjer applikationen</h3>
+          <ul class="app-modules">
+            <li><strong>Skåpsöversikt per skolenhet</strong> – Lista, sök och filtrera skolans elevskåp med status och inställningar.</li>
+            <li><strong>Tilldelning av skåp till elever</strong> – Koppla skåp till elever och se vilka elever som saknar skåp.</li>
+            <li><strong>Hantering av kodlås</strong> – Administrera kodlås och koder kopplade till skåpen.</li>
+            <li><strong>Elevregister</strong> – Elever hämtas med klasstillhörighet från kommunens utbildnings- och folkbokföringsdata.</li>
+            <li><strong>Meddelandeutskick</strong> – Skicka meddelanden via kommunens meddelandetjänst, med avsändar- och svarsadresser i konfigurationen.</li>
+          </ul>
+        </div>
+        <aside class="fact-box" aria-label="Snabbfakta">
+          <h3>Snabbfakta</h3>
+          <ul>
+            <li>Målgrupp: <strong>Skolpersonal och skoladministratörer, i första hand på gymnasiet</strong></li>
+            <li>Kategori: <strong>Utbildning</strong></li>
+            <li>Status: <strong>Aktiv</strong></li>
+            <li>Inloggning: <strong>SAML (SSO), med möjlighet att kräva särskilda AD-grupper</strong></li>
+          </ul>
+          <p class="fact-box-link">
+            <a href="https://github.com/Sundsvallskommun/web-app-edu-locker-management" rel="external">Källkod på GitHub</a>
+          </p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="teknisk-dokumentation">
+    <div class="container">
+      <h2>Teknisk dokumentation</h2>
+      <p class="section-intro">
+        Nedan beskrivs hur applikationen är uppbyggd, vilka API:er den använder och vad
+        som krävs för att driftsätta den. Informationen är härledd ur källkoden och
+        dess konfiguration på GitHub.
+      </p>
+
+      <h3>Arkitektur</h3>
+      <figure class="diagram">
+        <div class="diagram-wrap">
+          <img src="../assets/diagrams/skaphantering-for-skolor.svg" alt="Arkitekturskiss för Skåphantering för skolor: webbappens delar och dess integrationer.">
+        </div>
+        <figcaption>Lösningsarkitektur, härledd ur källkodens konfiguration.</figcaption>
+      </figure>
+      <p>
+        Applikationen består av en webbaserad frontend (Next.js/React med sk-web-gui, i18next och Zustand) och en backend (Node.js/Express med routing-controllers, Prisma och Passport-SAML) som utvecklas i samma kodbas. Verksamhetsanrop går via kommunens gemensamma API-plattform (WSO2) – frontend pratar aldrig direkt med underliggande system. Inloggning: SAML (SSO), med möjlighet att kräva särskilda AD-grupper. Övriga integrationer som förekommer i koden: SAML IdP, WSO2 API-gateway.
+      </p>
+
+      <h3>Teknikstack</h3>
+      <ul>
+        <li><strong>Frontend:</strong> Next.js/React med sk-web-gui, i18next och Zustand</li>
+        <li><strong>Backend:</strong> Node.js/Express med routing-controllers, Prisma och Passport-SAML</li>
+        <li><strong>Test:</strong> Jest, Testing Library och Cypress</li>
+      </ul>
+
+      <h3>API-beroenden</h3>
+      <p>
+        Applikationen konsumerar följande API:er via kommunens API-plattform.
+        Versionerna är hämtade ur källkodens API-konfiguration.
+      </p>
+      <div class="table-wrap">
+        <table>
+          <caption class="sr-only">API-beroenden för Skåphantering för skolor</caption>
+          <thead>
+            <tr><th scope="col">API</th><th scope="col">Version</th><th scope="col">Användning</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>SimulatorServer</td><td>2.0</td><td>Simulering av API-svar i test och utveckling.</td></tr>
+            <tr><td>Education</td><td>2.0</td><td>Uppgifter om skolenheter, klasser och elever.</td></tr>
+            <tr><td>PupilLocker</td><td>1.0</td><td>Lagring och hantering av elevskåp och tilldelningar.</td></tr>
+            <tr><td>Messaging</td><td>7.3</td><td>Utskick av meddelanden till elever och vårdnadshavare.</td></tr>
+            <tr><td>Citizen</td><td>3.0</td><td>Person- och folkbokföringsuppgifter för elever.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Konfiguration och driftsättning</h3>
+      <ul>
+        <li>.env-filer för frontend och backend utifrån .env-exempel</li>
+        <li>CLIENT_KEY/CLIENT_SECRET mot kommunens API-gateway (api-test.sundsvall.se)</li>
+        <li>SAML-certifikat, nycklar och callback-adresser</li>
+        <li>MUNICIPALITY_ID (2281), AD_GROUP för behörighetsstyrning</li>
+        <li>Avsändaruppgifter för meddelandeutskick (SENDER_EMAIL, REPLY_EMAIL m.fl.)</li>
+      </ul>
+      <h3>Noterbart ur källkoden</h3>
+      <ul>
+        <li>README anger att både version 1 och 2 av Education-API:et behövs eftersom vissa endpoints ännu saknas i v2.</li>
+        <li>Gränssnittet är översatt till svenska med undertiteln 'Sundsvalls gymnasium'.</li>
+      </ul>
+
+      <h3>Källkod</h3>
+      <p>
+        Källkoden är öppen och finns hos
+        <a href="https://github.com/Sundsvallskommun/web-app-edu-locker-management" rel="external">Sundsvalls kommun på GitHub</a>.
+        I källkodsförrådet finns även instruktioner för att klona, konfigurera och
+        starta applikationen i egen miljö.
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div>
+      <p class="footer-title">Webbkatalogen</p>
+      <p>En översikt över de webbapplikationer som Sundsvalls kommun delar som öppen källkod.</p>
+    </div>
+    <div>
+      <p class="footer-title">Länkar</p>
+      <ul class="footer-links">
+        <li><a href="https://github.com/Sundsvallskommun" rel="external">Sundsvalls kommun på GitHub</a></li>
+        <li><a href="https://sundsvall.se" rel="external">sundsvall.se</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

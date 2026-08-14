@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Luftkvalitet i Sundsvall – Webbkatalogen</title>
+  <meta name="description" content="Publik webbsida som visar uppmätt luftkvalitet från kommunens mätstationer i diagram och tabeller.">
+  <link rel="stylesheet" href="../assets/styles.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%93%98%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">▦</span>
+      <a class="brand-name" href="../index.html">Webbkatalogen</a>
+    </div>
+    <nav class="site-nav" aria-label="Huvudmeny">
+      <a href="../index.html#om-katalogen">Om katalogen</a>
+      <a href="../index.html#tjanster">Webbapplikationer</a>
+      <a href="https://github.com/Sundsvallskommun" rel="external">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="page-hero">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Brödsmulor">
+        <a href="../index.html">Start</a> <span aria-hidden="true">/</span>
+        <a href="../index.html#tjanster">Webbapplikationer</a> <span aria-hidden="true">/</span>
+        <span aria-current="page">Luftkvalitet i Sundsvall</span>
+      </nav>
+      <span class="app-tag app-tag-light">Invånartjänster</span>
+      <h1>Luftkvalitet i Sundsvall</h1>
+      <p class="hero-lead">
+        Publik webbsida som visar uppmätt luftkvalitet från kommunens mätstationer i diagram och tabeller.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>Om applikationen</h2>
+      <div class="columns">
+        <div class="column-text">
+          <p>
+            Tjänsten visar luftkvalitetsdata för Sundsvall från mätstationerna vid Köpmangatan och Bergsgatan. Besökare kan se halter av partiklar (PM2,5 och PM10) och kvävedioxid (NO2) för olika tidsperioder – från senaste dygnet upp till ett år.
+          </p>
+          <p>
+            Data hämtas från kommunens öppna data och presenteras som grafer och tabeller, med stöd för flera språk. Tjänsten är helt öppen och kräver ingen inloggning.
+          </p>
+          <p>
+            Repot är byggt på kommunens webbappsmall och delar av mallens texter och konfiguration finns kvar, vilket tyder på att tjänsten är förhållandevis ny.
+          </p>
+
+          <h3>Det här stödjer applikationen</h3>
+          <ul class="app-modules">
+            <li><strong>Luftkvalitet per mätstation</strong> – Visar uppmätta halter från stationerna Köpmangatan (PM10, PM2,5, NO2) och Bergsgatan (PM10, PM2,5).</li>
+            <li><strong>Valbara tidsperioder</strong> – Data kan visas för dygn, fyra dygn, vecka, månad eller år.</li>
+            <li><strong>Diagram och tabeller</strong> – Mätvärden presenteras som grafer och i tabellform.</li>
+            <li><strong>Flerspråksstöd</strong> – Gränssnittet är översättningsbart via språkfiler.</li>
+          </ul>
+        </div>
+        <aside class="fact-box" aria-label="Snabbfakta">
+          <h3>Snabbfakta</h3>
+          <ul>
+            <li>Målgrupp: <strong>Invånare och allmänhet</strong></li>
+            <li>Kategori: <strong>Invånartjänster</strong></li>
+            <li>Status: <strong>Aktiv</strong></li>
+            <li>Inloggning: <strong>Ingen inloggning</strong></li>
+          </ul>
+          <p class="fact-box-link">
+            <a href="https://github.com/Sundsvallskommun/web-app-air" rel="external">Källkod på GitHub</a>
+          </p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="teknisk-dokumentation">
+    <div class="container">
+      <h2>Teknisk dokumentation</h2>
+      <p class="section-intro">
+        Nedan beskrivs hur applikationen är uppbyggd, vilka API:er den använder och vad
+        som krävs för att driftsätta den. Informationen är härledd ur källkoden och
+        dess konfiguration på GitHub.
+      </p>
+
+      <h3>Arkitektur</h3>
+      <figure class="diagram">
+        <div class="diagram-wrap">
+          <img src="../assets/diagrams/luftkvalitet-i-sundsvall.svg" alt="Arkitekturskiss för Luftkvalitet i Sundsvall: webbappens delar och dess integrationer.">
+        </div>
+        <figcaption>Lösningsarkitektur, härledd ur källkodens konfiguration.</figcaption>
+      </figure>
+      <p>
+        Applikationen består av en webbaserad frontend (Next.js/React (App Router) med react-i18next och Recharts) och en backend (Node.js med Express och routing-controllers) som utvecklas i samma kodbas. Verksamhetsanrop går via kommunens gemensamma API-plattform (WSO2) – frontend pratar aldrig direkt med underliggande system. Övriga integrationer som förekommer i koden: WSO2 API-gateway (api.sundsvall.se), Sensordata i NGSI-LD-format (AirQualityObserved).
+      </p>
+
+      <h3>Teknikstack</h3>
+      <ul>
+        <li><strong>Frontend:</strong> Next.js/React (App Router) med react-i18next och Recharts</li>
+        <li><strong>Backend:</strong> Node.js med Express och routing-controllers</li>
+      </ul>
+
+      <h3>API-beroenden</h3>
+      <p>
+        Applikationen konsumerar följande API:er via kommunens API-plattform.
+        Versionerna är hämtade ur källkodens API-konfiguration.
+      </p>
+      <div class="table-wrap">
+        <table>
+          <caption class="sr-only">API-beroenden för Luftkvalitet i Sundsvall</caption>
+          <thead>
+            <tr><th scope="col">API</th><th scope="col">Version</th><th scope="col">Användning</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>OpenData</td><td>1.0</td><td>Hämtar luftkvalitetsobservationer (airqualities) per mätstation, kodverifierat anrop.</td></tr>
+            <tr><td>SimulatorServer</td><td>2.0</td><td>Hälsokontroll av API-anslutningen (enligt api-config).</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Konfiguration och driftsättning</h3>
+      <ul>
+        <li>Miljöfiler för frontend (.env-example) och backend (.env.example.local)</li>
+        <li>CLIENT_KEY/CLIENT_SECRET för API-gatewayn</li>
+        <li>API_BASE_URL mot api-test.sundsvall.se i exempel</li>
+      </ul>
+      <h3>Noterbart ur källkoden</h3>
+      <ul>
+        <li>Mätstationerna är hårdkodade i backend: Köpmangatan (888100) och Bergsgatan (1098100).</li>
+        <li>I utvecklingsläge används genererad mockdata i stället för riktiga mätvärden.</li>
+        <li>SAML-inloggning finns i mallen men är bortkommenterad – tjänsten är helt publik.</li>
+        <li>README och delar av konfigurationen är kvar från webbappsmallen (web-app-starter).</li>
+      </ul>
+
+      <h3>Källkod</h3>
+      <p>
+        Källkoden är öppen och finns hos
+        <a href="https://github.com/Sundsvallskommun/web-app-air" rel="external">Sundsvalls kommun på GitHub</a>.
+        I källkodsförrådet finns även instruktioner för att klona, konfigurera och
+        starta applikationen i egen miljö.
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div>
+      <p class="footer-title">Webbkatalogen</p>
+      <p>En översikt över de webbapplikationer som Sundsvalls kommun delar som öppen källkod.</p>
+    </div>
+    <div>
+      <p class="footer-title">Länkar</p>
+      <ul class="footer-links">
+        <li><a href="https://github.com/Sundsvallskommun" rel="external">Sundsvalls kommun på GitHub</a></li>
+        <li><a href="https://sundsvall.se" rel="external">sundsvall.se</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Yrkesutbildning Mitt – Webbkatalogen</title>
+  <meta name="description" content="Publik webbplats där invånare kan söka, jämföra och intresseanmäla sig till yrkesutbildningar i regionen.">
+  <link rel="stylesheet" href="../assets/styles.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%93%98%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">▦</span>
+      <a class="brand-name" href="../index.html">Webbkatalogen</a>
+    </div>
+    <nav class="site-nav" aria-label="Huvudmeny">
+      <a href="../index.html#om-katalogen">Om katalogen</a>
+      <a href="../index.html#tjanster">Webbapplikationer</a>
+      <a href="https://github.com/Sundsvallskommun" rel="external">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="page-hero">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Brödsmulor">
+        <a href="../index.html">Start</a> <span aria-hidden="true">/</span>
+        <a href="../index.html#tjanster">Webbapplikationer</a> <span aria-hidden="true">/</span>
+        <span aria-current="page">Yrkesutbildning Mitt</span>
+      </nav>
+      <span class="app-tag app-tag-light">Utbildning</span>
+      <h1>Yrkesutbildning Mitt</h1>
+      <p class="hero-lead">
+        Publik webbplats där invånare kan söka, jämföra och intresseanmäla sig till yrkesutbildningar i regionen.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>Om applikationen</h2>
+      <div class="columns">
+        <div class="column-text">
+          <p>
+            Yrkesutbildning Mitt är en öppen webbplats som samlar yrkesutbildningar och kurser i Sundsvallsregionen. Besökare kan söka bland utbildningar, filtrera på bland annat utbildningsform och studieort, jämföra utbildningar med varandra och läsa detaljerad information om varje utbildning.
+          </p>
+          <p>
+            Webbplatsen hämtar utbildningsutbudet från kommunens utbildningsdatabas och visar även statistik. Besökare kan kontakta verksamheten och lämna intresseanmälningar, där meddelanden skickas vidare via kommunens meddelandetjänst. Inloggade användare kan spara sökningar och intresseområden.
+          </p>
+          <p>
+            Till tjänsten hör ett administrationsgränssnitt där redaktörer och administratörer hanterar sidinnehåll och användarkonton med olika behörighetsroller.
+          </p>
+
+          <h3>Det här stödjer applikationen</h3>
+          <ul class="app-modules">
+            <li><strong>Sök utbildningar</strong> – Fritextsökning och filtrering av yrkesutbildningar på bland annat utbildningsform och ort.</li>
+            <li><strong>Jämför utbildningar</strong> – Besökare kan lägga utbildningar i en jämförelsevy och se dem sida vid sida.</li>
+            <li><strong>Kontakt och intresseanmälan</strong> – Formulär för att kontakta verksamheten, med utskick via kommunens meddelandetjänst.</li>
+            <li><strong>Sparade sökningar och intressen</strong> – Inloggade användare kan spara sökningar och bevaka intresseområden.</li>
+            <li><strong>Administrationsgränssnitt</strong> – Redaktörer hanterar innehåll och konton med rollstyrd behörighet (administratör/redaktör).</li>
+          </ul>
+        </div>
+        <aside class="fact-box" aria-label="Snabbfakta">
+          <h3>Snabbfakta</h3>
+          <ul>
+            <li>Målgrupp: <strong>Invånare och studieintresserade; redaktörer och administratörer för innehållshantering</strong></li>
+            <li>Kategori: <strong>Utbildning</strong></li>
+            <li>Status: <strong>Aktiv</strong></li>
+            <li>Inloggning: <strong>Publik webbplats utan inloggning; lokala användarkonton med roller (ADMIN/EDITOR) och sessionsinloggning för admin</strong></li>
+          </ul>
+          <p class="fact-box-link">
+            <a href="https://github.com/Sundsvallskommun/web-app-vocational-education" rel="external">Källkod på GitHub</a>
+          </p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="teknisk-dokumentation">
+    <div class="container">
+      <h2>Teknisk dokumentation</h2>
+      <p class="section-intro">
+        Nedan beskrivs hur applikationen är uppbyggd, vilka API:er den använder och vad
+        som krävs för att driftsätta den. Informationen är härledd ur källkoden och
+        dess konfiguration på GitHub.
+      </p>
+
+      <h3>Arkitektur</h3>
+      <figure class="diagram">
+        <div class="diagram-wrap">
+          <img src="../assets/diagrams/yrkesutbildning-mitt.svg" alt="Arkitekturskiss för Yrkesutbildning Mitt: webbappens delar och dess integrationer.">
+        </div>
+        <figcaption>Lösningsarkitektur, härledd ur källkodens konfiguration.</figcaption>
+      </figure>
+      <p>
+        Applikationen består av en webbaserad frontend (Next.js/React (publik webbplats) samt React med react-admin (administration)) och en backend (Node.js med Express och routing-controllers, Prisma mot MySQL) som utvecklas i samma kodbas. Verksamhetsanrop går via kommunens gemensamma API-plattform (WSO2) – frontend pratar aldrig direkt med underliggande system. Inloggning: Publik webbplats utan inloggning; lokala användarkonton med roller (ADMIN/EDITOR) och sessionsinloggning för admin. Övriga integrationer som förekommer i koden: WSO2 API-gateway (api.sundsvall.se), MySQL-databas.
+      </p>
+
+      <h3>Teknikstack</h3>
+      <ul>
+        <li><strong>Frontend:</strong> Next.js/React (publik webbplats) samt React med react-admin (administration)</li>
+        <li><strong>Backend:</strong> Node.js med Express och routing-controllers, Prisma mot MySQL</li>
+        <li><strong>Test:</strong> Jest och Cypress</li>
+      </ul>
+
+      <h3>API-beroenden</h3>
+      <p>
+        Applikationen konsumerar följande API:er via kommunens API-plattform.
+        Versionerna är hämtade ur källkodens API-konfiguration.
+      </p>
+      <div class="table-wrap">
+        <table>
+          <caption class="sr-only">API-beroenden för Yrkesutbildning Mitt</caption>
+          <thead>
+            <tr><th scope="col">API</th><th scope="col">Version</th><th scope="col">Användning</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>EducationFinder</td><td>3.0</td><td>Hämtar utbildningar, kurser, filtervärden och statistik.</td></tr>
+            <tr><td>Messaging</td><td>7.10</td><td>Skickar e-post vid kontakt, intresseanmälan och kontohantering.</td></tr>
+            <tr><td>SimulatorServer</td><td>2.0</td><td>Hälsokontroll av API-anslutningen.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Konfiguration och driftsättning</h3>
+      <ul>
+        <li>Miljöfiler för frontend, admin och backend (.env-example respektive .env.example.local)</li>
+        <li>CLIENT_KEY/CLIENT_SECRET för API-gatewayn (WSO2)</li>
+        <li>Databasanslutningar (DATABASE_URL och skuggdatabas för migrationer)</li>
+        <li>Initialt administratörskonto anges via INIT_ADMIN_USER</li>
+      </ul>
+      <h3>Noterbart ur källkoden</h3>
+      <ul>
+        <li>Appnamnet i konfigurationen är YrkesutbildningMitt.</li>
+        <li>API-anropen är kodverifierade: education-finder/3.0, messaging/7.10 och simulatorserver/2.0.</li>
+        <li>Ingen SAML-inloggning – administrationen använder egna konton lagrade i databasen.</li>
+      </ul>
+
+      <h3>Källkod</h3>
+      <p>
+        Källkoden är öppen och finns hos
+        <a href="https://github.com/Sundsvallskommun/web-app-vocational-education" rel="external">Sundsvalls kommun på GitHub</a>.
+        I källkodsförrådet finns även instruktioner för att klona, konfigurera och
+        starta applikationen i egen miljö.
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div>
+      <p class="footer-title">Webbkatalogen</p>
+      <p>En översikt över de webbapplikationer som Sundsvalls kommun delar som öppen källkod.</p>
+    </div>
+    <div>
+      <p class="footer-title">Länkar</p>
+      <ul class="footer-links">
+        <li><a href="https://github.com/Sundsvallskommun" rel="external">Sundsvalls kommun på GitHub</a></li>
+        <li><a href="https://sundsvall.se" rel="external">sundsvall.se</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

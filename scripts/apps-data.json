@@ -1,0 +1,3397 @@
+[
+  {
+    "repo": "web-app-ai-curapp",
+    "namn": "AI-assistent för vård och omsorg",
+    "kategori": "AI-tjänster",
+    "status": "poc",
+    "ingress": "En AI-assistent där medarbetare inom vård och omsorg kan ställa frågor om rutiner och regler och få svar med källhänvisningar.",
+    "beskrivning": [
+      "Tjänsten är en chattbaserad AI-assistent (i gränssnittet kallad AI-Cura) som svarar på frågor om rutiner och regler inom vård, omsorg, hälsa och sjukvård. Medarbetaren ställer sin fråga i ett sökfält och får ett svar genererat av en AI-assistent, ofta med hänvisningar till de dokument som svaret bygger på.",
+      "Assistenten drivs av kommunens AI-plattform Intric, där kunskapsunderlag i form av dokument samlas i grupper som assistenten söker i. På så vis kan personalen snabbt hitta rätt i styrdokument och rutinbeskrivningar utan att leta manuellt.",
+      "Repot består av en enda inledande incheckning från 2024 och användaridentiteten sätts via miljövariabler, vilket tyder på att det rör sig om en pilot/proof of concept snarare än en färdig tjänst."
+    ],
+    "malgrupp": "medarbetare inom vård och omsorg",
+    "funktioner": [
+      {
+        "titel": "Fråga i naturligt språk",
+        "text": "Medarbetaren skriver sin fråga om rutiner eller regler och får ett formulerat svar direkt."
+      },
+      {
+        "titel": "Källhänvisningar",
+        "text": "Svaren kan visa vilka dokument informationen kommer ifrån."
+      },
+      {
+        "titel": "Kunskapsbas via Intric",
+        "text": "Assistenten söker i uppladdade dokument som förvaltas i AI-plattformen Intric."
+      },
+      {
+        "titel": "Chatthistorik i sessionen",
+        "text": "Frågor och svar visas i en konversationsvy som kan rensas."
+      }
+    ],
+    "apis": [],
+    "integrationer": [
+      "Intric"
+    ],
+    "auth": "Hash-baserad identifiering av användare; SAML SSO finns förberett i grundplattformen",
+    "teknik": {
+      "frontend": "Next.js, React, TypeScript, Tailwind CSS, sk-web-gui",
+      "backend": "Node.js, Express (routing-controllers), Prisma, Passport SAML",
+      "tester": null
+    },
+    "konfiguration": [
+      "Miljöfiler för frontend (.env) och backend (.env.development.local m.fl.)",
+      "Intric-uppgifter: INTRIC_API_BASE_URL, API-nyckel och assistent-id samt salt för hashning",
+      "SAML-inställningar med certifikat och nycklar (från grundmallen)",
+      "CLIENT_KEY/CLIENT_SECRET för WSO2 finns i mallen men inga kommun-API:er anropas i koden"
+    ],
+    "anteckningar": [
+      "README:s API-tabell (SimulatorServer 2.0) är en kvarleva från startmallen; koden anropar enbart Intric.",
+      "Backend fungerar som proxy mot Intric med egna endpoints för assistenter, grupper, info-blobbar och frågor.",
+      "Endast en incheckning (maj 2024) – tydlig POC-karaktär."
+    ],
+    "slug": "ai-assistent-for-vard-och-omsorg"
+  },
+  {
+    "repo": "web-app-qwerty-4",
+    "namn": "AI-assistentportal för medarbetare",
+    "kategori": "AI-tjänster",
+    "status": "poc",
+    "ingress": "Progressiv webbapp (PWA) som samlar organisationens AI-assistenter i Eneo och gör dem lättillgängliga för medarbetare på dator och mobil.",
+    "beskrivning": [
+      "Tjänsten är ett koncept för att nå ut med organisationens AI-assistenter i AI-plattformen Eneo till de anställda. Medarbetaren kan chatta med olika assistenter, delta i gruppchattar, arbeta i olika arbetsytor (spaces) och fästa sina mest använda assistenter för snabb åtkomst.",
+      "Appen är byggd som en progressiv webbapp som kan installeras på både dator och mobil, med stöd för filuppladdning i konversationer, notiser när svar blir klara i bakgrunden och uppläsning via Azures taltjänster.",
+      "Inloggning sker med kommunens centrala inloggning och assistentutbudet styrs av organisationens uppsättning i Eneo."
+    ],
+    "malgrupp": "Kommunens medarbetare",
+    "funktioner": [
+      {
+        "titel": "Chatt med AI-assistenter",
+        "text": "Samtala med organisationens assistenter i Eneo, med möjlighet att nämna assistenter i konversationer."
+      },
+      {
+        "titel": "Arbetsytor och gruppchatt",
+        "text": "Organisera assistenter i arbetsytor och delta i gruppchattar."
+      },
+      {
+        "titel": "Fästa favoritassistenter",
+        "text": "Fäst de assistenter som används mest för snabb åtkomst."
+      },
+      {
+        "titel": "Filuppladdning",
+        "text": "Ladda upp filer som underlag i konversationer med assistenterna."
+      },
+      {
+        "titel": "PWA med notiser och tal",
+        "text": "Installeras som app på dator och mobil, med bakgrundsnotiser om svar och uppläsning via talsyntes."
+      }
+    ],
+    "apis": [
+      {
+        "name": "simulatorserver",
+        "version": "2.0",
+        "usage": "Simulering/test av API-anrop under utveckling."
+      },
+      {
+        "name": "eneo-sundsvall",
+        "version": "2.0",
+        "usage": "AI-plattformen Eneo med organisationens assistenter, konversationer och arbetsytor."
+      },
+      {
+        "name": "employee",
+        "version": "2.0",
+        "usage": "Uppgifter om medarbetare/användare."
+      },
+      {
+        "name": "configuration",
+        "version": "1.0",
+        "usage": "Central konfiguration för applikationen."
+      }
+    ],
+    "integrationer": [
+      "Eneo (AI-plattform)",
+      "Azure Speech (taltjänster)",
+      "WSO2 API-gateway",
+      "SAML IdP"
+    ],
+    "auth": "SAML (SSO)",
+    "teknik": {
+      "frontend": "Next.js 15, React 19, sk-web-gui, PWA med webbmanifest",
+      "backend": "Node.js med Express och routing-controllers (TypeScript, BFF)",
+      "tester": "Jest och Cypress med sammanslagen kodtäckning"
+    },
+    "konfiguration": [
+      ".env-filer för frontend och backend enligt exempel",
+      "CLIENT_KEY och CLIENT_SECRET från WSO2-portalen",
+      "ENEO_API_KEY och ENEO_TENANT_ID för AI-plattformen",
+      "AZURE_REGION och AZURE_SUBSCRIPTION_KEY för taltjänster",
+      "SAML-certifikat och nycklar"
+    ],
+    "anteckningar": [
+      "README beskriver repot som ett koncept, vilket tyder på utforskande stadium; det är samtidigt fjärde generationen av samma koncept.",
+      "Applikationens visningsnamn styrs av miljövariabeln NEXT_PUBLIC_APP_NAME."
+    ],
+    "slug": "ai-assistentportal-for-medarbetare"
+  },
+  {
+    "repo": "web-app-ai-scenario-poc",
+    "namn": "AI-baserad scenarioövning för ungdomar",
+    "kategori": "AI-tjänster",
+    "status": "poc",
+    "ingress": "Testapp där en AI-spelledare driver interaktiva scenarioövningar som låter ungdomar uppleva svåra valsituationer, till exempel kopplade till gängkriminalitet och droger.",
+    "beskrivning": [
+      "Appen är en proof of concept som prövar konceptet AI-assistent som spelledare. I gränssnittet kallas övningen 'Med livet som insats' med scenariot 'Bara en liten tjänst': deltagaren möter en berättelse som simulerar verkliga situationer och får göra val vars konsekvenser AI:n spelar upp.",
+      "Syftet är förebyggande – att ge ungdomar en trygg miljö att reflektera över svåra val kring exempelvis gängkriminalitet och droger. Övningen inleds med en introduktion som förklarar att innehållet kan upplevas obehagligt, och deltagaren kan när som helst pausa, fortsätta eller avsluta och få en summering.",
+      "AI-funktionerna drivs av kommunens AI-plattform Intric via den gemensamma AI-proxyn. Som POC saknar appen inloggning och konfigureras med assistent-id och nyckel."
+    ],
+    "malgrupp": "Ungdomar, exempelvis i skola eller förebyggande verksamhet",
+    "funktioner": [
+      {
+        "titel": "AI-driven berättelse",
+        "text": "En AI-spelledare driver scenariot framåt utifrån deltagarens val och fria svar."
+      },
+      {
+        "titel": "Introduktion och samtycke",
+        "text": "Tydlig introduktion om innehållets karaktär innan övningen startar."
+      },
+      {
+        "titel": "Paus och avslut",
+        "text": "Deltagaren kan pausa, fortsätta eller avsluta med en avslutande summering."
+      },
+      {
+        "titel": "Installerbar app",
+        "text": "Kan installeras som app (PWA) för bästa upplevelse."
+      }
+    ],
+    "apis": [],
+    "integrationer": [
+      "Intric",
+      "Kommunens AI-proxy (web-app-intric-backend)",
+      "Azure (typdefinitioner för taltjänster finns i koden)"
+    ],
+    "auth": "Ingen användarinloggning – appen autentiseras mot AI-proxyn med API-nyckel eller applikationsnamn och hash",
+    "teknik": {
+      "frontend": "React med Vite, sk-web-gui/ai, i18next och react-webcam",
+      "backend": null,
+      "tester": null
+    },
+    "konfiguration": [
+      ".env utifrån .env.example.env",
+      "VITE_INTRIC_API_BASE_URL till AI-proxyn samt VITE_ASSISTANT (assistent-id)",
+      "VITE_INTRIC_API_KEY eller VITE_APPLICATION + VITE_HASH",
+      "Valfri bakgrundsbild och tillåtna värdar"
+    ],
+    "anteckningar": [
+      "Uttryckligen en POC enligt README ('En testapp för att prova på konceptet med AI-assistent').",
+      "Paketnamnet i package.json skiljer sig från reponamnet, vilket tyder på att koden delar ursprung med en annan samtalsapp."
+    ],
+    "slug": "ai-baserad-scenarioovning-for-ungdomar"
+  },
+  {
+    "repo": "web-app-qwerty-assistant",
+    "namn": "AI-chattbot för webbplatser",
+    "kategori": "AI-tjänster",
+    "status": "aktiv",
+    "ingress": "En inbäddningsbar AI-chattbot som lägger sig i webbsidans nedre högra hörn och svarar på besökarnas frågor, med färdiga varianter för bland annat vuxenutbildningen och ServaNet.",
+    "beskrivning": [
+      "Detta är en chattbot-klient som kan bäddas in på valfri webbplats och placerar sig i nedre högra hörnet på klassiskt chattbotmanér. Besökaren kan ställa frågor i fritext och få svar från en AI-assistent, med förslag på vanliga frågor som ingång.",
+      "Applikationen byggs i olika lägen för olika verksamheter. I koden finns färdiga varianter för vuxenutbildningen (frågor om ansökan, studievägledning och SFI) och för stadsnätsbolaget ServaNet (felsökning av bredbandsuppkoppling), med anpassad grafisk profil för respektive avsändare.",
+      "Chattboten körs som webbkomponent i shadow DOM så att den inte krockar med den omgivande webbplatsens utseende, och kommunicerar med en central assistent-backend som i sin tur bygger på kommunens AI-plattform."
+    ],
+    "malgrupp": "invånare och kunder som besöker kommunens och bolagens webbplatser",
+    "funktioner": [
+      {
+        "titel": "Chatt med AI-assistent",
+        "text": "Besökaren ställer frågor i fritext och får svar direkt i chattfönstret."
+      },
+      {
+        "titel": "Föreslagna frågor",
+        "text": "Vanliga frågor visas som klickbara förslag, t.ex. hur man ansöker till en kurs eller felsöker sitt internet."
+      },
+      {
+        "titel": "Verksamhetsanpassade profiler",
+        "text": "Färg, logotyp och texter anpassas per verksamhet (vuxenutbildningen, ServaNet med flera)."
+      },
+      {
+        "titel": "Enkel inbäddning",
+        "text": "Läggs in på en webbsida med några rader kod och körs isolerat som webbkomponent."
+      },
+      {
+        "titel": "Återkoppling på svar",
+        "text": "Besökaren kan lämna feedback på assistentens svar i en session."
+      }
+    ],
+    "apis": [],
+    "integrationer": [
+      "Assistent-backend (Intric-baserad AI-plattform)",
+      "ServaNet",
+      "Vuxenutbildningen"
+    ],
+    "auth": "Ingen inloggning; anropen verifieras med signerad hash (användare, assistent-id, appnamn och salt)",
+    "teknik": {
+      "frontend": "React 18, Vite, TypeScript, Tailwind CSS, sk-web-gui",
+      "backend": null,
+      "tester": null
+    },
+    "konfiguration": [
+      "Miljöfil per verksamhet (.env.<NAMN>.local) med VITE_API_BASE_URL, assistent-id, namn och texter",
+      "index.html skapas från mall med data-user, data-hash och data-assistant",
+      "Byggs per läge med yarn build --mode=<NAMN>"
+    ],
+    "anteckningar": [
+      "Backend ingår inte i repot – klienten anropar en assistent-tjänst med endpoints /assistants och /assistants/{id}/sessions.",
+      "Anpassade headers (_skuser, _skhash, _skassistant, _skapp) skickas med varje anrop och verifieras av backend.",
+      "Senaste ändring augusti 2024, bl.a. release-anpassningar för ServaNet."
+    ],
+    "slug": "ai-chattbot-for-webbplatser"
+  },
+  {
+    "repo": "web-app-ai-study-buddy-poc",
+    "namn": "AI-läxhjälp för språk",
+    "kategori": "AI-tjänster",
+    "status": "poc",
+    "ingress": "Testapp där elever kan öva glosor och fraser inför prov med hjälp av en AI-assistent, kallad Plugghjälpen.",
+    "beskrivning": [
+      "En prototyp som prövar konceptet med en AI-assistent som läxhjälp i språk. Eleven väljer språk (engelska, tyska, spanska eller franska), delar sin läxa med assistenten och kan sedan chatta för att bli förhörd på glosor och fraser eller få förslag på fraser.",
+      "Läxan kan skickas in på flera sätt: genom att fotografera den med kameran, ladda upp en fil eller skriva in texten direkt. Assistenten anpassar sedan övningen efter innehållet.",
+      "Appen är uttryckligen en proof-of-concept och bygger på kommunens AI-plattform Intric via en egen AI-proxy."
+    ],
+    "malgrupp": "elever",
+    "funktioner": [
+      {
+        "titel": "Språkval",
+        "text": "Eleven väljer mellan engelska, tyska, spanska och franska; en egen assistent per språk."
+      },
+      {
+        "titel": "Dela läxan",
+        "text": "Fota läxan med kameran, ladda upp filer eller skriv in glosorna som text."
+      },
+      {
+        "titel": "Glosförhör i chatt",
+        "text": "AI-assistenten förhör på glosor och fraser och ger förslag på fraser utifrån läxan."
+      },
+      {
+        "titel": "Färdiga frågeexempel",
+        "text": "Vanliga frågor som 'Förhör mig på glosor' finns som snabbval."
+      },
+      {
+        "titel": "Starta om",
+        "text": "Möjlighet att börja om från början med en ny session."
+      }
+    ],
+    "apis": [],
+    "integrationer": [
+      "Intric (via kommunens AI-proxy, web-app-intric-backend)"
+    ],
+    "auth": "Ingen inloggning (assistentåtkomst via förkonfigurerade nycklar i miljövariabler)",
+    "teknik": {
+      "frontend": "React, TypeScript, Vite, sk-web-gui (inkl. AI-komponenter), Tailwind CSS, i18next, PWA (vite-plugin-pwa), react-webcam",
+      "backend": null,
+      "tester": null
+    },
+    "konfiguration": [
+      ".env med assistent-ID, hash och applikations-ID per språk (VITE_ASSISTANT_*, VITE_HASH_*, VITE_APPLICATION_*)",
+      "VITE_INTRIC_API_BASE_URL som pekar på kommunens AI-proxy"
+    ],
+    "anteckningar": [
+      "Renodlad frontendapp utan egen backend; all AI-trafik går via kommunens AI-proxy mot Intric.",
+      "Byggd som PWA och kan installeras på mobil.",
+      "Assistenten presenteras i gränssnittet som 'Studiekompisen' i appen 'Plugghjälpen - Språk'."
+    ],
+    "slug": "ai-laxhjalp-for-sprak"
+  },
+  {
+    "repo": "web-app-sammanstallningar",
+    "namn": "AI-sammanställningar av dokument",
+    "kategori": "AI-tjänster",
+    "status": "aktiv",
+    "ingress": "Stegvis verktyg där medarbetare med AI-stöd sammanställer underlag till färdiga dokument som granskas och laddas ner som Word-filer.",
+    "beskrivning": [
+      "Tjänsten hjälper medarbetare att ta fram sammanställda dokument, till exempel skrivelser, med hjälp av AI. Användaren väljer först vilken typ av dokument som ska sammanställas, fyller i uppgifter i ett formulär och låter sedan tjänsten generera dokumentets delar steg för steg.",
+      "Varje genererad del kan granskas och genereras om med en kort instruktion, till exempel att förkorta, förlänga eller lägga till innehåll. Om tidigare steg ändras flaggar tjänsten vilka delar som kan behöva uppdateras.",
+      "Innan dokumentet laddas ner som Word-fil måste användaren intyga att innehållet granskas och godkänns manuellt, eftersom stora delar är automatiskt sammanställda med AI. Inloggning sker med kommunens gemensamma inloggning."
+    ],
+    "malgrupp": "Medarbetare och handläggare som tar fram skrivelser och sammanställda dokument",
+    "funktioner": [
+      {
+        "titel": "Val av dokumenttyp",
+        "text": "Användaren väljer vilken typ av dokument som ska sammanställas utifrån fördefinierade flöden."
+      },
+      {
+        "titel": "Uppgiftsinsamling",
+        "text": "Formulär där användaren lägger till de uppgifter som behövs för sammanställningen."
+      },
+      {
+        "titel": "AI-generering steg för steg",
+        "text": "Dokumentets delar genereras med AI och kan genereras om med korta instruktioner."
+      },
+      {
+        "titel": "Ändringsspårning mellan steg",
+        "text": "Delar som kan påverkas av ändringar i tidigare steg markeras som att de behöver uppdateras."
+      },
+      {
+        "titel": "Nedladdning med granskningsintyg",
+        "text": "Färdigt dokument laddas ner som Word-fil efter att användaren intygat manuell granskning."
+      }
+    ],
+    "apis": [
+      {
+        "name": "AiFlow",
+        "version": "2.0",
+        "usage": "Kör AI-flöden som genererar och sammanställer dokumentets delar."
+      },
+      {
+        "name": "SimulatorServer",
+        "version": "2.0",
+        "usage": "Simulerings- och teststöd under utveckling."
+      }
+    ],
+    "integrationer": [
+      "SAML IdP",
+      "WSO2 API-gateway"
+    ],
+    "auth": "SAML (SSO)",
+    "teknik": {
+      "frontend": "Next.js 16 (App Router), React 19, sk-web-gui, Tailwind CSS, i18next",
+      "backend": "Node.js, Express 5, routing-controllers, TypeScript",
+      "tester": "Jest (frontend och backend), Cypress"
+    },
+    "konfiguration": [
+      "Backend: .env.example.local kopieras till .env.development.local/.env.test.local",
+      "CLIENT_KEY och CLIENT_SECRET för WSO2-applikation som prenumererar på API:erna",
+      "SAML-inställningar: SAML_ENTRY_SSO, SAML_IDP_PUBLIC_CERT samt privata/publika nycklar",
+      "API_BASE_URL mot api-test.sundsvall.se och MUNICIPALITY_ID (2281)",
+      "Frontend: .env-example kopieras till .env"
+    ],
+    "anteckningar": [
+      "README beskriver ett administrationsgränssnitt (admin) men admin-katalogen finns inte i repot.",
+      "Datamodeller genereras från API:ernas Swagger-specifikationer (yarn generate:contracts).",
+      "Språkstöd via i18next med svenska som standardspråk."
+    ],
+    "slug": "ai-sammanstallningar-av-dokument"
+  },
+  {
+    "repo": "web-app-interpreter",
+    "namn": "Digital tolk",
+    "kategori": "AI-tjänster",
+    "status": "poc",
+    "ingress": "En digital tolktjänst som låter två personer samtala på olika språk med automatisk taligenkänning, översättning och uppläsning.",
+    "beskrivning": [
+      "Digital tolk är en webbapplikation som gör det möjligt för två personer som talar olika språk att föra ett samtal utan mänsklig tolk. Varje deltagare väljer sitt språk, spelar in det den vill säga, och appen skriver ut och översätter yttrandet till motpartens språk. Översättningen kan även läsas upp med talsyntes.",
+      "Tjänsten är tänkt för situationer där kommunens medarbetare möter personer som inte talar svenska, till exempel i servicemöten. Innan samtalet startar visas en varning om att inte nämna personliga uppgifter, vilket visar att tjänsten är avsedd för enklare samtal och inte ersätter auktoriserad tolk.",
+      "Applikationen pekar mot en testmiljö och bedöms vara ett pilotprojekt snarare än en etablerad tjänst i drift."
+    ],
+    "malgrupp": "medarbetare i möten med personer som talar andra språk",
+    "funktioner": [
+      {
+        "titel": "Tvåspråkigt samtal",
+        "text": "Två deltagare väljer varsitt språk och turas om att tala; appen håller ordning på vems tur det är."
+      },
+      {
+        "titel": "Tal till text",
+        "text": "Det som sägs spelas in och omvandlas automatiskt till text på talarens språk."
+      },
+      {
+        "titel": "Automatisk översättning",
+        "text": "Texten översätts direkt till motpartens språk via Azure-översättning."
+      },
+      {
+        "titel": "Uppläsning",
+        "text": "Översatta meddelanden kan läsas upp med talsyntes så att motparten kan lyssna i stället för att läsa."
+      },
+      {
+        "titel": "Integritetsvarning",
+        "text": "Användarna uppmanas att inte nämna personuppgifter under samtalet."
+      }
+    ],
+    "apis": [],
+    "integrationer": [
+      "Intric (backend för AI-tjänster)",
+      "Azure AI Translator",
+      "Azure tal-till-text/talsyntes"
+    ],
+    "auth": "Ingen inloggning",
+    "teknik": {
+      "frontend": "React 18, Vite, TypeScript, Tailwind CSS, sk-web-gui (inkl. AI-komponenter), i18next",
+      "backend": null,
+      "tester": null
+    },
+    "konfiguration": [
+      "Miljöfil .env med VITE_API_BASE_URL (adress till backend), VITE_BASE_PATH och VITE_PORT",
+      "Incheckad .env pekar mot backend-intric-test.sundsvall.se"
+    ],
+    "anteckningar": [
+      "Endast frontend i repot – all AI-funktionalitet går via en delad Intric-backend med bl.a. anropet /azure/translate.",
+      "Gränssnittstexter finns på svenska och engelska och kan maskinöversättas till fler språk i realtid.",
+      "Paketnamnet i package.json är web-app-pratomat, README kallar appen Digital Tolk.",
+      "Senaste ändring november 2024; versionsnummer 0.0.0 tyder på pilotstadium."
+    ],
+    "slug": "digital-tolk"
+  },
+  {
+    "repo": "web-app-live-transcriptions",
+    "namn": "Direkttextning och översättning av tal",
+    "kategori": "AI-tjänster",
+    "status": "aktiv",
+    "ingress": "Webbapp som i realtid transkriberar det som sägs och visar det som text, med möjlighet att samtidigt översätta till ett annat språk.",
+    "beskrivning": [
+      "Appen, i gränssnittet kallad Undertextaren, lyssnar på tal via mikrofonen och visar det som text på skärmen i realtid. Användaren väljer talat språk och textat språk – är de olika översätts texten löpande, vilket gör appen användbar vid möten, informationsträffar och andra sammanhang där deltagare behöver textstöd eller ett annat språk.",
+      "Textningen kan pausas, återupptas, startas om och skrivas ut, och gränssnittet har ljust och mörkt läge. Appen är byggd som en progressiv webbapp (PWA) och kan därmed installeras på enheten.",
+      "Tal- och översättningsfunktionerna bygger på Azures tjänster för taligenkänning och översättning, via kommunens gemensamma AI-proxy."
+    ],
+    "malgrupp": "Medarbetare och mötesdeltagare med behov av direkttextning eller översättning",
+    "funktioner": [
+      {
+        "titel": "Transkribering i realtid",
+        "text": "Tal omvandlas löpande till text på skärmen."
+      },
+      {
+        "titel": "Samtidig översättning",
+        "text": "Välj talat och textat språk ur en bred språklista – texten översätts direkt."
+      },
+      {
+        "titel": "Paus och omstart",
+        "text": "Textningen kan pausas, fortsättas och startas om under pågående session."
+      },
+      {
+        "titel": "Utskrift",
+        "text": "Den textade sessionen kan skrivas ut."
+      },
+      {
+        "titel": "Installerbar app",
+        "text": "Byggd som PWA och kan installeras på datorer och mobila enheter."
+      }
+    ],
+    "apis": [],
+    "integrationer": [
+      "Azure Speech (tal till text och översättning)",
+      "Kommunens AI-proxy (web-app-intric-backend)",
+      "Intric"
+    ],
+    "auth": "Ingen inloggning i appen",
+    "teknik": {
+      "frontend": "React med Vite, sk-web-gui/ai, i18next och PWA-stöd",
+      "backend": null,
+      "tester": null
+    },
+    "konfiguration": [
+      ".env utifrån .env.example",
+      "VITE_API_BASE_URL pekar på instansen av kommunens AI-proxy",
+      "Bas-sökväg, port och tillåtna värdar (VITE_HOSTS)"
+    ],
+    "anteckningar": [
+      "Ren frontendapp – all tal- och översättningslogik går via den separata AI-proxyn.",
+      "Inga automatiska tester finns i repot."
+    ],
+    "slug": "direkttextning-och-oversattning-av-tal"
+  },
+  {
+    "repo": "web-app-qwerty3-poc",
+    "namn": "Inbäddningsbar AI-assistent",
+    "kategori": "AI-tjänster",
+    "status": "poc",
+    "ingress": "Proof of concept för en AI-assistent som kan bäddas in på valfri webbplats eller köras fristående, där användaren kan chatta med och själv skapa assistenter.",
+    "beskrivning": [
+      "Appen prövar ett koncept där en AI-assistent placeras där den behövs – fristående eller inbäddad på en befintlig webbplats via ett enkelt HTML-element. Bygget är förberett för publicering som webbapp i Sitevision, kommunens webbplattform.",
+      "Användaren kan chatta med assistenter i ett sökfälts- eller popup-gränssnitt, växla mellan favoritassistenter och se tidigare sessioner. Det går även att skapa egna assistenter med profil, instruktioner och kunskapskällor, inklusive uppladdade filer, direkt i gränssnittet.",
+      "Assistenterna drivs av kommunens AI-plattform Intric, och användaren identifierar sig med en personlig Intric-nyckel. Som POC är detta ett koncepttest snarare än en färdig tjänst."
+    ],
+    "malgrupp": "Medarbetare; koncepttest för webbredaktörer och AI-intresserade verksamheter",
+    "funktioner": [
+      {
+        "titel": "Inbäddning på webbplats",
+        "text": "Assistenten läggs in på en sida med ett enkelt HTML-element, med stöd för shadow DOM."
+      },
+      {
+        "titel": "Chatt med AI-assistenter",
+        "text": "Ställ frågor och få strömmande svar, med historik över tidigare sessioner."
+      },
+      {
+        "titel": "Egna assistenter",
+        "text": "Skapa och redigera assistenter med profil, instruktioner och kunskapskällor."
+      },
+      {
+        "titel": "Filuppladdning",
+        "text": "Ladda upp filer som underlag i konversationen eller som datakälla."
+      },
+      {
+        "titel": "Assistentväljare",
+        "text": "Växla mellan rekommenderade assistenter, favoriter och egna assistenter."
+      }
+    ],
+    "apis": [],
+    "integrationer": [
+      "Intric",
+      "Kommunens AI-proxy (web-app-intric-backend)",
+      "Sitevision"
+    ],
+    "auth": "Personlig Intric API-nyckel som anges av användaren",
+    "teknik": {
+      "frontend": "React med Vite, sk-web-gui/ai och Zustand",
+      "backend": null,
+      "tester": null
+    },
+    "konfiguration": [
+      ".env utifrån .env.example (VITE_API_BASE_URL till AI-proxyn)",
+      "index.html skapas från index.html.example",
+      "Produktionsbygget kopieras till Sitevision-webbappens källkatalog"
+    ],
+    "anteckningar": [
+      "Uttryckligen en POC enligt README.",
+      "Omfattande typkontrakt mot Intrics API (assistenter, sessioner, webbplatscrawling m.m.) finns genererade i koden."
+    ],
+    "slug": "inbaddningsbar-ai-assistent"
+  },
+  {
+    "repo": "web-app-ai-service-module",
+    "namn": "Inbäddningsbar AI-assistentmodul",
+    "kategori": "AI-tjänster",
+    "status": "aktiv",
+    "ingress": "En AI-assistentklient som bäddas in direkt i innehållet på en webbsida, som en sökruta där besökaren kan ställa frågor till en AI-assistent.",
+    "beskrivning": [
+      "Detta är en React-baserad klient för AI-assistenter som integreras direkt i befintliga webbsidor, placerad där det inbäddande elementet ligger i stället för som en flytande chattbubbla. Besökaren ställer sin fråga i modulen och får ett strömmat svar från assistenten.",
+      "Precis som systermodulen med chattbubbla byggs applikationen i olika lägen för olika verksamheter; i koden finns varianter för vuxenutbildningen och ServaNet med egna texter, logotyper och grafiska profiler. Modulen körs i shadow DOM som webbkomponent för att inte påverka den omgivande sidans utseende.",
+      "Kommunikationen sker mot en central assistent-backend där varje anrop verifieras med en signerad hash, vilket gör att modulen kan användas både publikt och på inloggade sidor som intranätet."
+    ],
+    "malgrupp": "invånare och kunder på kommunens och bolagens webbplatser",
+    "funktioner": [
+      {
+        "titel": "AI-assistent i sidan",
+        "text": "Modulen bäddas in mitt i innehållet och fungerar som en fråga-svar-ruta med AI."
+      },
+      {
+        "titel": "Strömmande svar",
+        "text": "Svaren visas löpande medan de genereras (Server-Sent Events)."
+      },
+      {
+        "titel": "Verksamhetsanpassning",
+        "text": "Texter, logotyper och färger byts per verksamhet, t.ex. vuxenutbildningen och ServaNet."
+      },
+      {
+        "titel": "Säker anropsverifiering",
+        "text": "Varje anrop signeras med hash av användare, assistent-id, appnamn och salt; fel hash ger avslag."
+      },
+      {
+        "titel": "Flexibel inbäddning",
+        "text": "Kan köras som isolerad webbkomponent i shadow DOM eller inkluderas direkt på sidan."
+      }
+    ],
+    "apis": [],
+    "integrationer": [
+      "Assistent-backend (Intric-baserad AI-plattform)",
+      "ServaNet",
+      "Vuxenutbildningen"
+    ],
+    "auth": "Ingen inloggning; anropen verifieras med signerad hash (SHA-256 av användare, assistent-id, appnamn och salt)",
+    "teknik": {
+      "frontend": "React 18, Vite, TypeScript, Tailwind CSS, sk-web-gui",
+      "backend": null,
+      "tester": null
+    },
+    "konfiguration": [
+      "Miljöfil per verksamhet (.env.<namn>.local) med VITE_API_BASE_URL, assistent-id, namn, texter och funktionsflaggor",
+      "index.html skapas från mall med data-user, data-hash och data-assistant",
+      "Byggs per läge med yarn build --mode=<namn>"
+    ],
+    "anteckningar": [
+      "Väl dokumenterad svensk README som beskriver inbäddning, hashgenerering och backendkommunikation.",
+      "Anropen skickar headers _skuser, _skhash, _skassistant och _skapp som backend verifierar (HTTP 401 vid fel).",
+      "Nära besläktad med web-app-qwerty-assistant – samma kodbas i grunden men denna variant bäddas in i sidinnehållet.",
+      "Senaste ändring juni 2024 med release-anpassningar för ServaNet."
+    ],
+    "slug": "inbaddningsbar-ai-assistentmodul"
+  },
+  {
+    "repo": "web-app-ai-service-module-2",
+    "namn": "Inbäddningsbar AI-serviceassistent",
+    "kategori": "AI-tjänster",
+    "status": "aktiv",
+    "ingress": "Inbäddningsbar AI-chattassistent som kan placeras fristående eller bäddas in på valfri webbplats för att svara på besökarnas frågor.",
+    "beskrivning": [
+      "Detta är en chattkomponent med AI-assistent som kan bäddas in på kommunens webbplatser, till exempel sidor byggda i Sitevision, eller köras som fristående sida. Besökaren ställer frågor i ett chattfönster och får svar från en AI-assistent som strömmar sina svar.",
+      "Assistenten är kraftigt konfigurerbar utan kodändringar: rubriker, förslagsfrågor, färger, avatar, logotyp och läs-mer-länkar styrs via miljövariabler eller attribut i inbäddningskoden. Det finns även stöd för gruppchatt med flera assistenter.",
+      "Vilken AI-assistent som svarar bestäms av ett assistent-id och en säkerhetshash, och trafiken går via kommunens proxytjänst för AI-assistenter."
+    ],
+    "malgrupp": "Webbplatsbesökare och invånare; webbredaktörer som bäddar in assistenten",
+    "funktioner": [
+      {
+        "titel": "Inbäddning på webbplats",
+        "text": "Placeras i en div på valfri sida, med stöd för shadow DOM, eller körs fristående i helskärm."
+      },
+      {
+        "titel": "Konfigurerbart utseende och innehåll",
+        "text": "Rubrik, förslagsfrågor, färgtema, avatar och läs-mer-länkar styrs via miljövariabler."
+      },
+      {
+        "titel": "Strömmande AI-svar",
+        "text": "Svar från assistenten strömmas till användaren i realtid."
+      },
+      {
+        "titel": "Gruppchatt",
+        "text": "Stöd för samtal där flera assistenter kan delta."
+      },
+      {
+        "titel": "Extra kontext",
+        "text": "Sidinnehåll kan skickas med i inbäddningen som extra information till assistenten."
+      }
+    ],
+    "apis": [],
+    "integrationer": [
+      "AI-plattformen Intric/Eneo (via kommunens proxytjänst)",
+      "Sitevision (inbäddning)"
+    ],
+    "auth": "Ingen inloggning för användaren; assistenten identifieras med assistent-id och hash",
+    "teknik": {
+      "frontend": "React med Vite och kommunens designsystem (@sk-web-gui inkl. AI-komponenter)",
+      "backend": null,
+      "tester": null
+    },
+    "konfiguration": [
+      "Miljöfil per assistent (.env.<NAMN>.local utifrån .env.example)",
+      "Assistent-id, hash och användare anges i miljöfil eller i inbäddningens data-attribut",
+      "Bygget kopieras till Sitevision-webbappens källkatalog vid driftsättning"
+    ],
+    "anteckningar": [
+      "Repot saknar egen backend – all AI-trafik går mot en separat proxytjänst (VITE_API_BASE_URL).",
+      "Standardavataren i exempel-konfigurationen refererar till en intern assistent, men namn och utseende är helt konfigurerbart."
+    ],
+    "slug": "inbaddningsbar-ai-serviceassistent"
+  },
+  {
+    "repo": "web-app-pratomat",
+    "namn": "Pratomaten",
+    "kategori": "AI-tjänster",
+    "status": "aktiv",
+    "ingress": "Röststyrd AI-assistent som samlar in förslag, önskemål och synpunkter från allmänheten, till exempel vid evenemang.",
+    "beskrivning": [
+      "Pratomaten är en dialogtjänst där besökare, exempelvis vid evenemang eller i det offentliga rummet, kan svara på en öppen fråga som \"Hur skulle du vilja utveckla Sundsvalls stadskärna?\". Besökaren kan prata med assistenten via mikrofon eller skriva, och en AI-assistent följer upp svaren i en chattkonversation.",
+      "Svaren sammanställs och sparas som slutfrågor och svar i en databas, så att verksamheten kan ta del av vad deltagarna tyckt. Flera Pratomater kan köras samtidigt med olika frågor, texter och färgteman.",
+      "Till tjänsten hör ett administrationsgränssnitt där medarbetare skapar och hanterar Pratomater, kopplar dem till en AI-assistent och väljer om de ska publiceras. AI-funktionerna körs via kommunens proxytjänst mot AI-plattformen Intric/Eneo."
+    ],
+    "malgrupp": "Allmänhet och evenemangsbesökare; kommunikatörer/medarbetare som administrerar frågorna",
+    "funktioner": [
+      {
+        "titel": "Röst- och textdialog",
+        "text": "Besökare kan tala in sina svar via tal-till-text eller skriva i chatten."
+      },
+      {
+        "titel": "AI-uppföljning",
+        "text": "En AI-assistent ställer följdfrågor och för dialogen vidare utifrån besökarens svar."
+      },
+      {
+        "titel": "Insamling av svar",
+        "text": "Slutfrågor och svar sparas i databas för senare analys av verksamheten."
+      },
+      {
+        "titel": "Flera Pratomater",
+        "text": "Varje Pratomat har egen fråga, texter, färgtema och publiceringsstatus."
+      },
+      {
+        "titel": "Administration",
+        "text": "Medarbetare skapar och hanterar Pratomater i ett separat admingränssnitt."
+      }
+    ],
+    "apis": [
+      {
+        "name": "SimulatorServer",
+        "version": "2.0",
+        "usage": "Hälsokontroll av API-anslutningen (enligt api-config)."
+      }
+    ],
+    "integrationer": [
+      "AI-plattformen Intric/Eneo (via kommunens proxytjänst)",
+      "Azure Speech (tal-till-text via proxytjänsten)",
+      "SAML IdP (admin)"
+    ],
+    "auth": "Ingen inloggning för besökare; SAML (SSO) för administrationsgränssnittet",
+    "teknik": {
+      "frontend": "React med Vite och kommunens designsystem (@sk-web-gui/ai); admin i Next.js/React",
+      "backend": "Node.js med Express och Prisma (databas för Pratomater och svar)",
+      "tester": "Jest (backend) och Cypress (admin)"
+    },
+    "konfiguration": [
+      "Miljöfiler för frontend, backend och admin",
+      "INTRIC_SALT för hashverifiering mot proxytjänsten",
+      "SAML-certifikat och nycklar för admininloggning",
+      "Frontend pekas mot både egen backend och AI-proxytjänsten (VITE_INTRIC_API_BASE_URL)"
+    ],
+    "anteckningar": [
+      "Standardfrågan i databasen är \"Hur skulle du vilja utveckla Sundsvalls stadskärna?\", vilket visar användningsområdet medborgardialog.",
+      "AI-trafiken går inte direkt mot AI-plattformen utan via kommunens gemensamma proxytjänst, där flera Pratomat-instanser har egna API-nycklar.",
+      "Senaste utveckling refererar till Eneo, nya namnet på Intric-plattformen."
+    ],
+    "slug": "pratomaten"
+  },
+  {
+    "repo": "web-app-ai-backend",
+    "namn": "Proxytjänst för AI-assistenter",
+    "kategori": "AI-tjänster",
+    "status": "aktiv",
+    "ingress": "Gemensam bakomliggande tjänst som förmedlar kommunens applikationers anrop till AI-plattformen Eneo samt vissa Azure-funktioner som tal och översättning.",
+    "beskrivning": [
+      "Tjänsten fungerar som en mellanhand mellan kommunens applikationer och AI-plattformen Eneo, som nås via kommunens API-gateway. Applikationer kan genom tjänsten arbeta med AI-assistenter, konversationer, kunskapsutrymmen, filer och frågor utan att själva hantera direktåtkomst till AI-plattformen.",
+      "Utöver AI-plattformen erbjuder tjänsten även vissa Azure-funktioner, bland annat utfärdande av taltjänst-token (tal-till-text) och maskinöversättning av text.",
+      "Anslutande applikationer identifierar sig med API-nycklar som lagras hashade, och det finns ett separat administrationsgränssnitt där behöriga administratörer loggar in med kommunens gemensamma inloggning för att hantera assistenter och åtkomst."
+    ],
+    "malgrupp": "Utvecklare och interna applikationer som behöver AI-funktioner",
+    "funktioner": [
+      {
+        "titel": "Förmedling till AI-plattform",
+        "text": "Vidarebefordrar anrop om assistenter, konversationer, utrymmen, filer och frågor till Eneo via API-gatewayn."
+      },
+      {
+        "titel": "API-nyckelhantering",
+        "text": "Anslutande applikationer autentiseras med API-nycklar som lagras säkert i hashad form."
+      },
+      {
+        "titel": "Tal-till-text-stöd",
+        "text": "Utfärdar token för Azures taltjänster så att applikationer kan använda taligenkänning."
+      },
+      {
+        "titel": "Maskinöversättning",
+        "text": "Översätter texter via Azures översättningstjänst."
+      },
+      {
+        "titel": "Administrationsgränssnitt",
+        "text": "Webbgränssnitt där administratörer hanterar assistenter, värdar och inställningar."
+      }
+    ],
+    "apis": [
+      {
+        "name": "Eneo-Sundsvall",
+        "version": "1.1",
+        "usage": "AI-plattformens API för assistenter, konversationer, utrymmen och filer (basväg/version konfigurerbar via miljövariabler)."
+      },
+      {
+        "name": "SimulatorServer",
+        "version": "2.0",
+        "usage": "Simulerings- och teststöd under utveckling."
+      }
+    ],
+    "integrationer": [
+      "Eneo",
+      "Azure Cognitive Services (tal-till-text)",
+      "Azure Translator",
+      "SAML IdP",
+      "WSO2 API-gateway"
+    ],
+    "auth": "API-nycklar (hashade) för anslutande applikationer; SAML (SSO) för administrationsgränssnittet",
+    "teknik": {
+      "frontend": "Next.js 15, React 19, sk-web-gui (administrationsgränssnitt)",
+      "backend": "Node.js, Express, routing-controllers, TypeScript, Prisma (databas)",
+      "tester": "Jest (backend), Cypress (admin)"
+    },
+    "konfiguration": [
+      "Backend: .env.example.local med CLIENT_KEY/CLIENT_SECRET för WSO2",
+      "ENEO_BASEPATH, ENEO_VERSION och ENEO_SALT för AI-plattformens anslutning och nyckelhashning",
+      "AZURE_REGION, AZURE_SUBSCRIPTION_KEY och AZURE_TRANSLATOR_KEY för Azure-funktioner",
+      "SAML-inställningar med certifikat och nycklar för administratörsinloggning",
+      "Databas via Prisma med migreringar (bl.a. användarinställningar, assistenter, värdar)"
+    ],
+    "anteckningar": [
+      "README anger Eneo-Sundsvall version 1.0 medan koden (api-config.ts) anger 1.1 och miljöexemplet 1.2 – versionen styrs i drift av miljövariabler.",
+      "Repot innehåller endast backend och admin, inget slutanvändargränssnitt.",
+      "Eneo är kommunens instans av AI-plattformen (Intric-baserad)."
+    ],
+    "slug": "proxytjanst-for-ai-assistenter"
+  },
+  {
+    "repo": "web-app-intric-backend",
+    "namn": "Proxytjänst för AI-assistenter",
+    "kategori": "AI-tjänster",
+    "status": "aktiv",
+    "ingress": "Gemensam serversidestjänst som förmedlar säker trafik mellan kommunens AI-chattar och AI-plattformen, inklusive tal- och översättningstjänster.",
+    "beskrivning": [
+      "Tjänsten är den gemensamma bakomliggande motorn för kommunens AI-assistenter. Den tar emot frågor från chattwidgets och appar (till exempel serviceassistenter och Pratomaten) och vidarebefordrar dem till AI-plattformen Intric/Eneo, utan att API-nycklarna exponeras i webbläsaren. Varje assistent har en egen API-nyckel som hanteras centralt här.",
+      "Utöver själva chattflödet (assistenter, sessioner, konversationer, filuppladdning, kunskapsgrupper och utrymmen) tillhandahåller tjänsten tillgång till Azures taltjänster och maskinöversättning, så att chattar kan erbjuda tal-till-text och översatta svar.",
+      "Tjänsten kan köras i internt eller externt läge. Anrop från inbäddade chattar verifieras med en beräknad hash, och det finns stöd för SAML-inloggning samt begränsning av anropstakt för att skydda mot överbelastning."
+    ],
+    "malgrupp": "Kommunens AI-chattjänster (systemintegration); indirekt invånare och medarbetare som använder chattarna",
+    "funktioner": [
+      {
+        "titel": "Förmedling till AI-plattform",
+        "text": "Vidarebefordrar frågor och svar mellan chattklienter och AI-plattformen Intric/Eneo."
+      },
+      {
+        "titel": "Central nyckelhantering",
+        "text": "API-nycklar för respektive assistent (bl.a. vuxenutbildning, Servanet och flera Pratomat-instanser) hålls på servern."
+      },
+      {
+        "titel": "Tal och översättning",
+        "text": "Utfärdar åtkomst till Azure Speech för tal-till-text och förmedlar översättningar via Azure Translator."
+      },
+      {
+        "titel": "Sessions- och filhantering",
+        "text": "Hanterar konversationer, sessioner, filuppladdningar, kunskapsgrupper och utrymmen i AI-plattformen."
+      },
+      {
+        "titel": "Skydd och åtkomstkontroll",
+        "text": "Hashverifiering av inbäddade klienter, SAML-stöd samt begränsning av anropstakt."
+      }
+    ],
+    "apis": [
+      {
+        "name": "SimulatorServer",
+        "version": "2.0",
+        "usage": "Hälsokontroll av API-anslutningen (enligt api-config)."
+      }
+    ],
+    "integrationer": [
+      "AI-plattformen Intric/Eneo",
+      "Azure Speech (taltjänster)",
+      "Azure Translator (maskinöversättning)",
+      "SAML IdP",
+      "WSO2 API-gateway"
+    ],
+    "auth": "Hashverifiering för inbäddade chattklienter; SAML (SSO) konfigurerbart för internt läge",
+    "teknik": {
+      "frontend": "Minimal Next.js-frontend (från mall)",
+      "backend": "Node.js med Express och routing-controllers samt Prisma",
+      "tester": "Jest"
+    },
+    "konfiguration": [
+      "Miljöfil .env.example.local med INTRIC_API_BASE_URL, användaruppgifter och salt för hashverifiering",
+      "En API-nyckel per ansluten assistent (INTRIC_APIKEY_*)",
+      "Azure-nycklar för tal och översättning (AZURE_REGION, AZURE_SUBSCRIPTION_KEY, AZURE_TRANSLATOR_KEY)",
+      "SAML-certifikat och nycklar för inloggning",
+      "Läge INTERNAL/EXTERNAL samt inställningar för anropsbegränsning (rate/spike limit)"
+    ],
+    "anteckningar": [
+      "Konfigurationen listar nycklar för bl.a. vuxenutbildningens assistent, Servanet och nio Pratomat-instanser.",
+      "Senare ändringar refererar till Eneo, det nya namnet på Intric-plattformen.",
+      "Tjänsten är i första hand ett API (proxy) – frontenddelen i repot är en mallrest."
+    ],
+    "slug": "intric-backend"
+  },
+  {
+    "repo": "web-app-support-management-admin",
+    "namn": "Administration av ärendemetadata",
+    "kategori": "Administration",
+    "status": "aktiv",
+    "ingress": "Administrationsgränssnitt där metadata för kommunens ärendehanteringsplattform – kategorier, etiketter, roller, statusar och kontaktorsaker – hanteras per kommun och domän.",
+    "beskrivning": [
+      "Tjänsten är ett internt administrationsverktyg för den plattform som används för ärende- och supporthantering i kommunen. Administratören väljer först kommun och domän (namnrymd) och kan därefter hantera de metadata som styr hur ärenden kategoriseras och flödar i verksamhetens ärendesystem.",
+      "I gränssnittet hanteras kategorier med ärendetyper, etiketter, kontaktorsaker, roller och ärendestatusar, samt konfiguration för e-post. Nya domäner kan skapas och befintliga underhållas, vilket gör att verksamheterna kan anpassa ärendehanteringen utan utvecklingsinsatser.",
+      "Verktyget riktar sig till systemförvaltare och administratörer och nås via kommunens gemensamma inloggning."
+    ],
+    "malgrupp": "Systemförvaltare och administratörer av kommunens ärendehantering",
+    "funktioner": [
+      {
+        "titel": "Val av kommun och domän",
+        "text": "Metadata hanteras separat per kommun och per domän i ärendeplattformen."
+      },
+      {
+        "titel": "Kategorier och ärendetyper",
+        "text": "Skapa och underhålla de kategorier som ärenden klassificeras med."
+      },
+      {
+        "titel": "Etiketter och kontaktorsaker",
+        "text": "Hantera etiketter och kontaktorsaker som används i handläggningen."
+      },
+      {
+        "titel": "Roller och ärendestatusar",
+        "text": "Definiera roller och de statusar ett ärende kan ha."
+      },
+      {
+        "titel": "E-postkonfiguration",
+        "text": "Administrera inställningar för e-post kopplad till domänen."
+      }
+    ],
+    "apis": [
+      {
+        "name": "SimulatorServer",
+        "version": "2.0",
+        "usage": "Simulering av API-svar i test och utveckling."
+      },
+      {
+        "name": "SupportManagement",
+        "version": "12.0",
+        "usage": "Läser och uppdaterar metadata (kategorier, etiketter, roller, statusar, kontaktorsaker) i ärendeplattformen."
+      },
+      {
+        "name": "ActiveDirectory",
+        "version": "1.0",
+        "usage": "Uppslag av användare och grupper i katalogtjänsten."
+      }
+    ],
+    "integrationer": [
+      "SAML IdP",
+      "WSO2 API-gateway"
+    ],
+    "auth": "SAML (SSO) med grupp- och behörighetskontroll",
+    "teknik": {
+      "frontend": "Next.js/React med sk-web-gui, i18next och Zustand",
+      "backend": "Node.js/Express med routing-controllers, Prisma och Passport-SAML",
+      "tester": "Jest och Cypress"
+    },
+    "konfiguration": [
+      ".env-filer för frontend och backend utifrån .env-exempel",
+      "CLIENT_KEY/CLIENT_SECRET mot kommunens API-gateway",
+      "SAML-certifikat och callback-adresser",
+      "SECRET_KEY för sessionskryptering, CORS-origin"
+    ],
+    "anteckningar": [
+      "Koden prenumererar på SupportManagement v12.0 medan README anger v10.2 – koden är sanningskällan.",
+      "Gränssnittet finns på både svenska och engelska."
+    ],
+    "slug": "administration-av-arendemetadata"
+  },
+  {
+    "repo": "web-app-draken-admin",
+    "namn": "Administrationspanel för ärendehantering",
+    "kategori": "Administration",
+    "status": "aktiv",
+    "ingress": "Ett administrationsgränssnitt där behöriga administratörer konfigurerar kommunens ärendehanteringssystem med kategorier, statusar, roller, mallar och regler.",
+    "beskrivning": [
+      "Tjänsten är en administrationspanel för kommunens ärendehanteringssystem. Här hanterar administratörer den metadata som styr hur ärenden registreras och handläggs: kategorier, statusar, etiketter, kontaktorsaker, roller och namnrymder per verksamhetsområde.",
+      "En central del är mallhanteringen, där dokumentmallar för exempelvis beslut kan sökas, förhandsgranskas, testas och godkännas för produktion. Panelen kan även jämföra mallar mellan test- och produktionsmiljö och visa var de skiljer sig, saknas eller är synkade, vilket ger trygg kvalitetssäkring före driftsättning.",
+      "Dessutom finns stöd för att administrera JSON-scheman för formulär, funktionsflaggor, användare och e-postintegration. Åtkomsten begränsas till en särskild administratörsgrupp."
+    ],
+    "malgrupp": "Systemadministratörer och förvaltare av ärendehanteringssystemet",
+    "funktioner": [
+      {
+        "titel": "Ärendemetadata",
+        "text": "Hantera kategorier, statusar, etiketter, kontaktorsaker och roller som styr ärendeflödet."
+      },
+      {
+        "titel": "Mallhantering",
+        "text": "Sök, förhandsgranska, testa och godkänn dokumentmallar, t.ex. beslutsmallar, för produktion."
+      },
+      {
+        "titel": "Miljöjämförelse",
+        "text": "Jämför mallar mellan test- och produktionsmiljö och se vad som skiljer eller saknas."
+      },
+      {
+        "titel": "Formulärscheman",
+        "text": "Administrera JSON-scheman som styr formulär i ärendehanteringen."
+      },
+      {
+        "titel": "Funktionsflaggor och användare",
+        "text": "Slå på och av funktioner samt hantera användare och e-postintegration."
+      }
+    ],
+    "apis": [
+      {
+        "name": "SupportManagement",
+        "version": "14.7",
+        "usage": "Metadata för ärendehantering: kategorier, statusar, etiketter, roller och namnrymder."
+      },
+      {
+        "name": "Templating",
+        "version": "2.1",
+        "usage": "Hantering och rendering av dokumentmallar."
+      },
+      {
+        "name": "JsonSchema",
+        "version": "1.0",
+        "usage": "Hantering av JSON-scheman för formulär."
+      },
+      {
+        "name": "SimulatorServer",
+        "version": "2.0",
+        "usage": "Hälsokontroll och simulering i utvecklingsmiljö."
+      }
+    ],
+    "integrationer": [
+      "WSO2 API-gateway (api.sundsvall.se)",
+      "SAML IdP"
+    ],
+    "auth": "SAML (SSO) med krav på särskild administratörsgrupp (ADMIN_PANEL_GROUP)",
+    "teknik": {
+      "frontend": "Next.js 15, React 18, sk-web-gui, next-i18next",
+      "backend": "Node.js/Express med TypeScript (routing-controllers)",
+      "tester": "Jest, Cypress"
+    },
+    "konfiguration": [
+      "Miljöfiler: admin/.env, backend/.env.development.local och .env.test.local",
+      "CLIENT_KEY/CLIENT_SECRET för WSO2-prenumerationer krävs",
+      "SAML-certifikat och nycklar (SAML_ENTRY_SSO, SAML_IDP_PUBLIC_CERT, SAML_PRIVATE_KEY m.fl.)",
+      "API_BASE_URL mot kommunens API-gateway (test: api-test.sundsvall.se)"
+    ],
+    "anteckningar": [
+      "README anger äldre API-versioner (SupportManagement 12.4, Templating 2.0) än koden i api-config.ts (14.7 respektive 2.1) – koden är sanningskällan.",
+      "Gränssnittet är resursdrivet: nya administrationsresurser definieras i en central konfigurationsfil.",
+      "Svenska språkfiler finns för samtliga resurser (mallar, roller, statusar, funktionsflaggor m.m.)."
+    ],
+    "slug": "administrationspanel-for-arendehantering"
+  },
+  {
+    "repo": "web-app-lifecare",
+    "namn": "Kontohantering för LOV-utförare",
+    "kategori": "Administration",
+    "status": "aktiv",
+    "ingress": "Internt verktyg där handläggare hanterar konton för privata LOV-utförares personal i verksamhetssystemet Lifecare.",
+    "beskrivning": [
+      "Tjänsten (Kontohantering.sundsvall.se) används för att skapa, ändra och avsluta användarkonton för personal hos privata utförare inom valfrihetssystemet LOV, så att de kan arbeta i vård- och omsorgssystemet Lifecare.",
+      "Handläggaren slår upp personen via personnummer, kopplar kontot till rätt utförarorganisation och anger giltighetstid och kontaktuppgifter. Kontona är tidsbegränsade och kan förlängas eller tas bort. Det går även att återställa en utförares lösenord, varvid ett nytt skickas ut via SMS.",
+      "Inloggning sker med kommunens centrala inloggning och tjänsten kontrollerar att handläggaren har rätt behörighet innan konton kan hanteras."
+    ],
+    "malgrupp": "Handläggare/administratörer inom vård och omsorg",
+    "funktioner": [
+      {
+        "titel": "Skapa utförarkonton",
+        "text": "Registrera nya konton för LOV-utförares personal med koppling till rätt organisation."
+      },
+      {
+        "titel": "Personuppslag",
+        "text": "Hämta personuppgifter via personnummer för säker identifiering."
+      },
+      {
+        "titel": "Tidsbegränsade konton",
+        "text": "Sätt och förläng giltighetstid för konton samt avsluta konton som inte längre behövs."
+      },
+      {
+        "titel": "Lösenordsåterställning via SMS",
+        "text": "Återställ en utförares lösenord och skicka det nya via SMS."
+      }
+    ],
+    "apis": [
+      {
+        "name": "metaadmin",
+        "version": "1.0",
+        "usage": "Kontoadministration i Lifecare, inklusive lösenordsåterställning med SMS-utskick."
+      },
+      {
+        "name": "employee",
+        "version": "2.0",
+        "usage": "Uppgifter om kommunens medarbetare och behörighetskontroll."
+      },
+      {
+        "name": "citizen",
+        "version": "3.0",
+        "usage": "Uppslag av personuppgifter utifrån personnummer."
+      },
+      {
+        "name": "simulatorserver",
+        "version": "2.0",
+        "usage": "Simulering/test av API-anrop under utveckling."
+      }
+    ],
+    "integrationer": [
+      "Lifecare (verksamhetssystem för vård och omsorg)",
+      "WSO2 API-gateway",
+      "SAML IdP"
+    ],
+    "auth": "SAML (SSO)",
+    "teknik": {
+      "frontend": "Next.js 14, React 18, sk-web-gui, Tailwind CSS",
+      "backend": "Node.js med Express och routing-controllers (TypeScript)",
+      "tester": "Jest och Cypress"
+    },
+    "konfiguration": [
+      ".env-filer för frontend och backend enligt exempel (.env-example, .env.example.local)",
+      "CLIENT_KEY och CLIENT_SECRET från WSO2-portalen för API-åtkomst",
+      "SAML-konfiguration med certifikat och nycklar (SAML_ENTRY_SSO, SAML_IDP_PUBLIC_CERT m.fl.)"
+    ],
+    "anteckningar": [
+      "Sidtitlarna anger tjänstens namn som Kontohantering.sundsvall.se med beskrivningen Hantering av LOV-användare till Lifecare.",
+      "Byggd på kommunens web-app-starter-mall med separat backend (BFF) och frontend."
+    ],
+    "slug": "kontohantering-for-lov-utforare"
+  },
+  {
+    "repo": "web-app-new-meta-catalogue",
+    "namn": "Nya metakatalogen",
+    "kategori": "Administration",
+    "status": "aktiv",
+    "ingress": "Internt verktyg för att hantera kommunens organisationsstruktur, organisationsförändringar och ansvar.",
+    "beskrivning": [
+      "Nya metakatalogen är ett internt administrativt verktyg där behöriga medarbetare hanterar kommunens organisationsträd. Användare kan skapa organisationsförändringar som utkast, se vilka delar av organisationen som berörs, söka och filtrera bland förändringar samt exportera förlagor av organisationer.",
+      "Verktyget visar organisations- och persondata från kommunens gemensamma register och har en särskild vy för ansvar. Ändringar byggs upp i en hanteringsyta innan de verkställs, och meddelanden kan skickas via kommunens meddelandetjänst.",
+      "Inloggning sker med kommunens gemensamma inloggning (SAML) och behörigheter styrs via roller kopplade till AD-grupper."
+    ],
+    "malgrupp": "Interna administratörer och HR-/organisationsansvariga",
+    "funktioner": [
+      {
+        "titel": "Hantera organisation",
+        "text": "Skapa och redigera organisationsförändringar som utkast innan de verkställs."
+      },
+      {
+        "titel": "Ansvarsvy",
+        "text": "Översikt över ansvar kopplade till organisationen."
+      },
+      {
+        "titel": "Sök och filtrera",
+        "text": "Sökning och filtrering bland organisationsförändringar."
+      },
+      {
+        "titel": "Export",
+        "text": "Export av förlagor av organisationer."
+      },
+      {
+        "titel": "Persondata",
+        "text": "Visar medarbetaruppgifter från kommunens personregister."
+      }
+    ],
+    "apis": [
+      {
+        "name": "MDBuilder",
+        "version": "1.0",
+        "usage": "Bygger och hanterar förändringar i metakatalogens organisationsstruktur."
+      },
+      {
+        "name": "MDViewer",
+        "version": "1.0",
+        "usage": "Läser organisations- och katalogdata för visning."
+      },
+      {
+        "name": "Employee",
+        "version": "1.0",
+        "usage": "Hämtar medarbetar- och portalpersondata."
+      },
+      {
+        "name": "Messaging",
+        "version": "5.0",
+        "usage": "Skickar meddelanden/notifieringar."
+      }
+    ],
+    "integrationer": [
+      "SAML IdP",
+      "Active Directory (rollmappning)",
+      "WSO2 API-gateway"
+    ],
+    "auth": "SAML (SSO) med behörighetsroller mappade mot AD-grupper",
+    "teknik": {
+      "frontend": "Next.js/React med kommunens designsystem",
+      "backend": "Node.js med Express och routing-controllers",
+      "tester": "Jest och Cypress"
+    },
+    "konfiguration": [
+      "Miljöfiler för frontend (.env-example) och backend (.env.example.local)",
+      "CLIENT_KEY/CLIENT_SECRET för API-gatewayn",
+      "SAML-inställningar med IdP-adress och certifikat"
+    ],
+    "anteckningar": [
+      "API-användningen är kodverifierad: mdbuilder/1.0, mdviewer/1.0, employee/1.0 (bl.a. portalpersondata) och messaging/5.0.",
+      "Interna roller mappas mot AD-roller i backendens behörighetstjänst."
+    ],
+    "slug": "nya-metakatalogen"
+  },
+  {
+    "repo": "web-app-systemregister",
+    "namn": "Systemregistret",
+    "kategori": "Administration",
+    "status": "aktiv",
+    "ingress": "Ett samlat register över kommunens IT-system med informationssäkerhetsklassning, GDPR-behandlingar, leverantörer och riskuppföljning.",
+    "beskrivning": [
+      "Systemregistret ger kommunen en samlad bild av alla IT-system som används i verksamheten. För varje system dokumenteras informationssäkerhetsklassning enligt K/R/T (konfidentialitet, riktighet, tillgänglighet), ansvariga, leverantörer och avtal samt systemets status, från utveckling till avveckling.",
+      "Tjänsten stödjer också det systematiska informationssäkerhetsarbetet: GDPR-behandlingar med rättslig grund och krav på konsekvensbedömning (DPIA), riskregister med uppföljning, kontinuitetsplanering och en särskild vy för AI-tillämpningar. En instrumentpanel och rapporter ger överblick, och notiser uppmärksammar exempelvis avtal som löper ut eller backuper som inte verifierats.",
+      "Behörigheten styrs i tre nivåer, där administratörer har full tillgång, redaktörer kan redigera system, leverantörer och klassningar, och övriga har läsbehörighet. Tjänsten är under aktiv utveckling och vissa delar bygger ännu på exempeldata."
+    ],
+    "malgrupp": "Informationssäkerhetssamordnare, systemförvaltare och IT-ansvariga",
+    "funktioner": [
+      {
+        "titel": "Systemförteckning",
+        "text": "Registrera och följ upp kommunens IT-system med leverantörer, avtal och livscykelstatus."
+      },
+      {
+        "titel": "Informationsklassning",
+        "text": "Klassa system enligt K/R/T och dokumentera bedömningar och genomförda analyser."
+      },
+      {
+        "titel": "GDPR-behandlingar",
+        "text": "Förteckning över personuppgiftsbehandlingar med rättslig grund och DPIA-krav."
+      },
+      {
+        "titel": "Risker och kontinuitet",
+        "text": "Dokumentera och följ upp risker samt kontinuitetsplanering kopplad till systemen."
+      },
+      {
+        "titel": "AI-tillämpningar och rapporter",
+        "text": "Särskild översikt över AI-tillämpningar samt instrumentpanel, rapporter och notiser."
+      }
+    ],
+    "apis": [],
+    "integrationer": [
+      "api-service-systemregister (eget dedikerat API i separat repo, Java/Spring Boot + MariaDB)",
+      "SAML IdP (kommunens IdP i drift, test-IdP lokalt)"
+    ],
+    "auth": "SAML (SSO) med behörighetsstyrning via AD-grupper (admin/redaktör/läsare)",
+    "teknik": {
+      "frontend": "Next.js 16, React 19, sk-web-gui",
+      "backend": "Node.js/Express (BFF) med TypeScript",
+      "tester": "Jest (backend), Cypress (frontend)"
+    },
+    "konfiguration": [
+      "Miljöfiler: .env (Docker/api-service), backend/.env.development.local, frontend/.env.local",
+      "API_BASE_URL pekar mot det dedikerade api-service-systemregister",
+      "SAML-nycklar och certifikat (SAML_ENTRY_SSO, SAML_IDP_PUBLIC_CERT m.fl.)",
+      "AD-grupper per behörighetsnivå (ADMIN_GROUP, EDITOR_GROUP, VIEWER_GROUP)",
+      "Miljövalidering via envalid i backend (validateEnv)"
+    ],
+    "anteckningar": [
+      "Använder inte kommunens centrala API-gateway; all data hämtas via ett eget dedikerat API (api-service-systemregister) som körs i Docker med MariaDB.",
+      "Delar av gränssnittet (notiser och riskdata) innehåller ännu hårdkodad exempeldata, vilket tyder på pågående utveckling.",
+      "Senaste ändring augusti 2026 (SSO-inloggning via test-IdP)."
+    ],
+    "slug": "systemregistret"
+  },
+  {
+    "repo": "web-app-business-center",
+    "namn": "Mina sidor för företag hos kommunen",
+    "kategori": "Företagstjänster",
+    "status": "aktiv",
+    "ingress": "Mina sidor där företag och företrädare ser och följer sina ärenden hos Sundsvalls kommun samt tar del av beslut, dokument och fakturor.",
+    "beskrivning": [
+      "Tjänsten ger företag en samlad bild av sina kontakter med kommunen. Efter inloggning väljer användaren vilken organisation den företräder och får sedan en översikt över pågående och avslutade ärenden, nyheter samt genvägar till självservice.",
+      "Under respektive flik kan användaren se ärendestatus, ta del av beslut och tillhörande dokument, se fakturor från kommunen och hantera sina profiluppgifter och kontaktvägar. Fullmaktshantering gör att ombud kan agera för organisationens räkning.",
+      "Gränssnittet är byggt för både privatpersoner och företag ('Mina Sidor Privat/Företag') med ett läge per målgrupp, och beskrivs som en tjänst som utökas löpande med ny funktionalitet."
+    ],
+    "malgrupp": "företag, företagsföreträdare och ombud i Sundsvall",
+    "funktioner": [
+      {
+        "titel": "Ärendeöversikt",
+        "text": "Pågående och avslutade ärenden hos kommunen med aktuell status."
+      },
+      {
+        "titel": "Beslut och dokument",
+        "text": "Tillgång till beslut och handlingar kopplade till organisationens ärenden."
+      },
+      {
+        "titel": "Fakturor",
+        "text": "Samlad vy över organisationens fakturor från kommunen."
+      },
+      {
+        "titel": "Val av organisation",
+        "text": "Företrädare med fullmakt väljer vilken organisation de agerar för."
+      },
+      {
+        "titel": "Profil och kontaktvägar",
+        "text": "Hantering av kontaktuppgifter och aviseringsinställningar."
+      }
+    ],
+    "apis": [
+      {
+        "name": "LegalEntity",
+        "version": "2.0",
+        "usage": "Uppgifter om organisationer och juridiska personer."
+      },
+      {
+        "name": "CaseData",
+        "version": "12.5",
+        "usage": "Ärendedata för myndighetsärenden."
+      },
+      {
+        "name": "SupportManagement",
+        "version": "14.8",
+        "usage": "Supportärenden och förfrågningar."
+      },
+      {
+        "name": "WebMessageCollector",
+        "version": "5.1",
+        "usage": "Insamling av webbmeddelanden kopplade till ärenden."
+      },
+      {
+        "name": "CaseStatus",
+        "version": "4.3",
+        "usage": "Samlad ärendestatus från olika verksamhetssystem."
+      },
+      {
+        "name": "PartyAssets",
+        "version": "6.4",
+        "usage": "Tillgångar och innehav kopplade till en part."
+      },
+      {
+        "name": "JsonSchema",
+        "version": "1.0",
+        "usage": "Formulär- och datadefinitioner."
+      },
+      {
+        "name": "ContactSettings",
+        "version": "2.0",
+        "usage": "Kontakt- och aviseringsinställningar."
+      },
+      {
+        "name": "Citizen",
+        "version": "3.0",
+        "usage": "Personuppgifter för inloggade användare."
+      },
+      {
+        "name": "Messaging",
+        "version": "7.3",
+        "usage": "Meddelanden och kommunikation i ärenden."
+      },
+      {
+        "name": "Invoices",
+        "version": "8.0",
+        "usage": "Fakturor från kommunen."
+      },
+      {
+        "name": "Employee",
+        "version": "2.0",
+        "usage": "Uppslag av kommunens medarbetare."
+      },
+      {
+        "name": "MyRepresentatives",
+        "version": "4.4",
+        "usage": "Fullmakter och ombudskap."
+      },
+      {
+        "name": "SimulatorServer",
+        "version": "2.0",
+        "usage": "Simulerings-API för test och utveckling."
+      }
+    ],
+    "integrationer": [
+      "SAML IdP"
+    ],
+    "auth": "SAML (SSO); inloggningsflödet är anpassat för BankID-baserad identifiering",
+    "teknik": {
+      "frontend": "Next.js 16, React 19, i18next",
+      "backend": "Node.js, Express 4, TypeScript",
+      "tester": "Jest och Cypress (frontend), Vitest (backend)"
+    },
+    "konfiguration": [
+      "Miljöfiler: frontend/.env-example och backend/.env.example.local",
+      "CLIENT_KEY och CLIENT_SECRET mot kommunens API-plattform (WSO2)",
+      "SAML-inställningar med IdP-adress och certifikat",
+      "API-listan i backend/src/config/api-config.ts är enda sanningskälla för API-prenumerationer"
+    ],
+    "anteckningar": [
+      "Välkomsttexten beskriver tjänsten som 'nya Mina sidor' som lanserar mer funktionalitet löpande.",
+      "Gränssnittet har ett läge för privatpersoner och ett för företag (rubriken 'Mina Sidor Privat/Företag').",
+      "Ärendestatus hämtas samlat från flera verksamhetssystem via kommunens gemensamma ärende-API:er."
+    ],
+    "slug": "mina-sidor-for-foretag-hos-kommunen"
+  },
+  {
+    "repo": "web-app-mina-sidor-bolag",
+    "namn": "Mina sidor för företagskunder hos kommunala bolag",
+    "kategori": "Företagstjänster",
+    "status": "aktiv",
+    "ingress": "Självserviceportal där företag som är kunder hos de kommunala bolagen ser sina avtal, fakturor, förbrukning och driftinformation samt sköter fullmakter och medgivanden.",
+    "beskrivning": [
+      "Tjänsten är en samlad ingång för företagskunder hos Sundsvalls kommunala bolag. Efter inloggning väljer användaren vilken organisation den vill företräda och får sedan en översikt över aktuell energiförbrukning och produktion, avtal, fakturor, driftstörningar och händelser kopplade till kundförhållandet.",
+      "Företrädare kan hantera medgivanden och fullmakter, se statistik över förbrukning samt använda självservicefunktioner. Vissa åtgärder bekräftas med BankID-signering. En inbyggd AI-assistent kan svara på frågor om avtal, fakturor och statistik.",
+      "Portalen har även ett administrationsläge där behörig personal kan agera i en kunds ställe för att ge support."
+    ],
+    "malgrupp": "företagskunder och ombud hos kommunala bolag, samt kundtjänstpersonal",
+    "funktioner": [
+      {
+        "titel": "Översikt och förbrukning",
+        "text": "Aktuell energiförbrukning och produktion per månad med jämförelser bakåt i tiden."
+      },
+      {
+        "titel": "Avtal och fakturor",
+        "text": "Samlad vy över organisationens avtal och fakturor hos de kommunala bolagen."
+      },
+      {
+        "titel": "Driftinformation",
+        "text": "Information om pågående driftstörningar som berör kundens anläggningar."
+      },
+      {
+        "titel": "Fullmakter och medgivanden",
+        "text": "Hantering av vem som får företräda organisationen, med BankID-signering."
+      },
+      {
+        "titel": "AI-assistent",
+        "text": "Inbyggd assistent som svarar på frågor om avtal, fakturor och statistik."
+      }
+    ],
+    "apis": [
+      {
+        "name": "LegalEntity",
+        "version": "2.0",
+        "usage": "Uppgifter om juridiska personer och organisationer."
+      },
+      {
+        "name": "ContactSettings",
+        "version": "2.0",
+        "usage": "Kontaktinställningar och aviseringsval."
+      },
+      {
+        "name": "Citizen",
+        "version": "3.0",
+        "usage": "Personuppgifter för inloggade företrädare."
+      },
+      {
+        "name": "Disturbances",
+        "version": "5.0",
+        "usage": "Driftstörningsinformation."
+      },
+      {
+        "name": "Invoices",
+        "version": "9.5",
+        "usage": "Fakturor för organisationen."
+      },
+      {
+        "name": "Customer",
+        "version": "4.0",
+        "usage": "Kunduppgifter hos bolagen."
+      },
+      {
+        "name": "Installedbase",
+        "version": "3.2",
+        "usage": "Kundens anläggningar och installationer."
+      },
+      {
+        "name": "Agreement",
+        "version": "4.1",
+        "usage": "Kundens avtal."
+      },
+      {
+        "name": "MeasurementData",
+        "version": "3.3",
+        "usage": "Mätvärden för förbrukning och produktion."
+      },
+      {
+        "name": "MyRepresentatives",
+        "version": "4.4",
+        "usage": "Fullmakter och ombudskap."
+      },
+      {
+        "name": "Eventlog",
+        "version": "2.3",
+        "usage": "Händelselogg kopplad till kundförhållandet."
+      },
+      {
+        "name": "BFUS",
+        "version": "1.0.0",
+        "usage": "Bolagsspecifik funktionalitet (bolagens försystem)."
+      },
+      {
+        "name": "SelfServiceAI",
+        "version": "2.0",
+        "usage": "AI-assistentens frågetjänst."
+      },
+      {
+        "name": "Eneo-Sundsvall",
+        "version": "2.0",
+        "usage": "Kommunens AI-plattform som driver assistenten."
+      },
+      {
+        "name": "ActiveDirectory",
+        "version": "2.0",
+        "usage": "Behörighetskontroll för administrationsläget."
+      },
+      {
+        "name": "Employee",
+        "version": "2.0",
+        "usage": "Uppslag av intern personal i administrationsläget."
+      },
+      {
+        "name": "SimulatorServer",
+        "version": "2.0",
+        "usage": "Simulerings-API för test och utveckling."
+      }
+    ],
+    "integrationer": [
+      "CGI GRP (BankID-signering via Funktionstjänster)",
+      "Eneo (AI-plattform)",
+      "SAML IdP"
+    ],
+    "auth": "SAML (SSO) för inloggning, BankID-signering via CGI GRP för underskrifter; separat admin-inloggning",
+    "teknik": {
+      "frontend": "Next.js 16, React 19, i18next",
+      "backend": "Node.js, Express 5, TypeScript",
+      "tester": "Jest (enhetstester), Cypress (e2e)"
+    },
+    "konfiguration": [
+      "Miljöfiler: frontend/.env-example och backend/.env.example.local",
+      "CLIENT_KEY och CLIENT_SECRET mot kommunens API-plattform (WSO2)",
+      "SAML-inställningar med IdP-adress och certifikat",
+      "GRP-inställningar (adress, tjänste-ID och åtkomstnyckel) för BankID-signering",
+      "Kommun-ID (MUNICIPALITY_ID=2281)"
+    ],
+    "anteckningar": [
+      "Administrationsläget låter behörig personal växla till en kunds vy (impersonation) för supportändamål.",
+      "BankID-signering sker via CGI:s GRP-tjänst med QR-kodsstöd.",
+      "AI-assistenten är kopplad till kommunens Eneo-plattform via SelfServiceAI-API:t."
+    ],
+    "slug": "mina-sidor-for-foretagskunder-hos-kommunala-bolag"
+  },
+  {
+    "repo": "web-app-sundsvall400",
+    "namn": "Artikel- och evenemangskort för jubileumswebben",
+    "kategori": "Invånartjänster",
+    "status": "avvecklad",
+    "ingress": "En Sitevision-modul som visar nyheter och evenemang som kortflöden på webbplatsen för Sundsvalls 400-årsjubileum.",
+    "beskrivning": [
+      "Detta är en tilläggsmodul (WebApp) till publiceringsverktyget Sitevision som togs fram för Sundsvalls 400-årsjubileum. Modulen hämtar artiklar ur ett valt arkiv på webbplatsen och visar dem som ett flöde av kort – antingen som en lista eller som ett bildspel.",
+      "Redaktören väljer i modulens inställningar vilket arkiv som ska visas, hur många artiklar som ska ingå och vilken korttyp som ska användas (evenemangskort, avlånga eller kvadratiska kort). För evenemang visas datum, tid och plats, och passerade evenemang filtreras bort automatiskt.",
+      "Eftersom modulen är knuten till en tidsbegränsad jubileumskampanj bedöms den inte längre vara i aktiv utveckling; senaste ändringen gjordes hösten 2024."
+    ],
+    "malgrupp": "invånare och besökare (via jubileumswebbplatsen); redaktörer konfigurerar modulen",
+    "funktioner": [
+      {
+        "titel": "Kortflöde av artiklar",
+        "text": "Visar nyhets- och evenemangsartiklar från ett Sitevision-arkiv som kortbaserat flöde."
+      },
+      {
+        "titel": "Flera korttyper",
+        "text": "Redaktören kan välja mellan evenemangskort, avlånga och kvadratiska kort."
+      },
+      {
+        "titel": "Lista eller bildspel",
+        "text": "Flödet kan visas som löpande lista med oändlig skroll eller som bildspel med begränsat antal artiklar."
+      },
+      {
+        "titel": "Automatisk evenemangsfiltrering",
+        "text": "Kommande evenemang sorteras på startdatum och passerade datum visas inte."
+      }
+    ],
+    "apis": [],
+    "integrationer": [
+      "Sitevision (REST-API och sökindex)"
+    ],
+    "auth": "Ingen inloggning (visas publikt på webbplatsen)",
+    "teknik": {
+      "frontend": "React 17, Sitevision WebApp (sitevision-scripts), Sass",
+      "backend": "Serverskript i Sitevision (server-side rendering)",
+      "tester": null
+    },
+    "konfiguration": [
+      "Modulinställningar i Sitevision: val av arkiv, korttyp, listtyp, max antal artiklar och taggtext",
+      "Byggs och signeras med Sitevisions utvecklarverktyg (create-addon, sign, deploy-prod)"
+    ],
+    "anteckningar": [
+      "Repot innehåller endast mappen campincardListing med modulen Campaign card listing (kampanjkortlistning).",
+      "Färdigbyggda och signerade zip-paket ligger incheckade i dist-mappen.",
+      "Kopplingen till 400-årsjubileet framgår av reponamnet; statusbedömningen avvecklad bygger på att kampanjen är tidsbegränsad."
+    ],
+    "slug": "artikel-och-evenemangskort-for-jubileumswebben"
+  },
+  {
+    "repo": "web-app-raddningstjansten",
+    "namn": "E-tjänst för egensotning",
+    "kategori": "Invånartjänster",
+    "status": "poc",
+    "ingress": "Prototyp av e-tjänst för Räddningstjänsten Medelpad där invånare ansöker om att få sota sin egen fastighet och handläggare hanterar ansökningarna.",
+    "beskrivning": [
+      "Tjänsten är en uttalad proof-of-concept för Räddningstjänsten Medelpad med fokus på flödet för egensotning, det vill säga tillstånd att själv sota sin fastighet. Invånaren loggar in med BankID, ser sina fastigheter och skorstensobjekt, bifogar underlag som kursintyg och skickar in sin ansökan.",
+      "Handläggare arbetar i en separat adminvy där de granskar ansökningar, fattar beslut om bifall eller avslag, ser besluts giltighetstid och kan återkalla beviljade tillstånd med motivering. Det finns även ärendestatistik och en områdeskontroll som säkerställer att fastigheten ligger inom kommunerna som omfattas.",
+      "Personnummer maskeras alltid i mellanlagret innan de når webbläsaren, och invånaren ser aldrig handläggarens identitet. Lösningen har tre driftlägen som gör att samma system kan köras som fristående demo med testdata, mot kommunens interna miljö eller i produktion med riktig BankID-inloggning."
+    ],
+    "malgrupp": "Invånare i Räddningstjänsten Medelpads område samt räddningstjänstens handläggare",
+    "funktioner": [
+      {
+        "titel": "Ansökan om egensotning",
+        "text": "Invånaren ansöker digitalt om tillstånd att sota sin egen fastighet och bifogar underlag som kursintyg."
+      },
+      {
+        "titel": "BankID-inloggning",
+        "text": "Invånare identifierar sig med BankID (via OneGate i produktion, mock i demo)."
+      },
+      {
+        "titel": "Handläggarvy med beslut",
+        "text": "Handläggare granskar ansökningar, fattar beslut och kan återkalla tillstånd med motivering."
+      },
+      {
+        "titel": "Giltighetstid för tillstånd",
+        "text": "Beviljade tillstånd har en giltighetsperiod som visas för både invånare och handläggare."
+      },
+      {
+        "titel": "Ärendestatistik",
+        "text": "Översikt och statistik över inkomna och avgjorda ärenden för handläggare."
+      }
+    ],
+    "apis": [
+      {
+        "name": "citizen",
+        "version": "3.0",
+        "usage": "Personuppgifter för inloggade invånare."
+      },
+      {
+        "name": "employee",
+        "version": "2.0",
+        "usage": "Uppgifter om handläggare vid inloggning i adminvyn."
+      },
+      {
+        "name": "legalentity",
+        "version": "2.0",
+        "usage": "Uppslag av juridiska personer/organisationer."
+      },
+      {
+        "name": "templating",
+        "version": "2.1",
+        "usage": "Mallbaserad generering av dokument, till exempel beslut."
+      }
+    ],
+    "integrationer": [
+      "OneGate (BankID-federation för invånarinloggning)",
+      "WSO2 API-gateway",
+      "SAML IdP (handläggarinloggning)",
+      "Fristående mocktjänster för Citizen/Employee i demoläge"
+    ],
+    "auth": "BankID via OneGate (SAML) för invånare och SAML (SSO) för handläggare; mockinloggningar i demo- och utvecklingsläge",
+    "teknik": {
+      "frontend": "React 18 med Vite (inte Next.js)",
+      "backend": "Node.js med Express 5 (BFF, TypeScript)",
+      "tester": null
+    },
+    "konfiguration": [
+      "APP_MODE styr driftläge (demo, ad, prod) och sätter standardvärden för hela stacken",
+      "CLIENT_KEY och CLIENT_SECRET från WSO2 (används i ad- och prod-läge)",
+      "Separata SAML-konfigurationer för invånare (OneGate) och handläggare",
+      "CITIZEN_MOCK_BASE_URL och EMPLOYEE_MOCK_BASE_URL för fristående mocktjänster",
+      "EMPLOYEE_LOGIN_PASSWORD för test-SSO med tre fördefinierade handläggarroller (admin/redaktör/läsare)"
+    ],
+    "anteckningar": [
+      "Uttalad proof-of-concept enligt README, byggd för att kunna demonstreras helt utan VPN med testdata.",
+      "Personnummer maskeras alltid i mellanlagret innan de når frontend.",
+      "Test-SSO med delat lösenord är hårt avstängt i produktionsläge.",
+      "Repot innehåller testfixturer med exempeldokument (kursintyg och besiktningsprotokoll)."
+    ],
+    "slug": "e-tjanst-for-egensotning"
+  },
+  {
+    "repo": "web-app-felanmalan",
+    "namn": "Felanmälan",
+    "kategori": "Invånartjänster",
+    "status": "aktiv",
+    "ingress": "Öppen e-tjänst där invånare enkelt rapporterar fel och brister i den offentliga miljön med bild, kartposition och beskrivning.",
+    "beskrivning": [
+      "Felanmälan låter invånare rapportera fel och brister i Sundsvalls offentliga miljö, till exempel skador på vägar, trasig belysning, klotter, nedskräpning eller problem med lekplatser. Anmälan görs i en enkel guide där man tar eller laddar upp bilder, markerar platsen på kommunens karta och beskriver felet.",
+      "När anmälan skickas in klassificeras den automatiskt med AI utifrån bild och beskrivning, så att den hamnar i rätt kategori – exempelvis vägskada, belysning, snö och is eller park och grönytor – och skapas som ett ärende i kommunens ärendehanteringssystem.",
+      "Tjänsten kräver ingen inloggning. Kontaktuppgifter är frivilliga och anges bara om man vill ha återkoppling."
+    ],
+    "malgrupp": "Invånare",
+    "funktioner": [
+      {
+        "titel": "Guidad felanmälan",
+        "text": "Stegvis guide där invånaren beskriver felet, laddar upp bilder och granskar sin anmälan innan den skickas."
+      },
+      {
+        "titel": "Kartmarkering",
+        "text": "Platsen markeras på kommunens karta (Origo/karta.sundsvall.se)."
+      },
+      {
+        "titel": "Automatisk AI-klassificering",
+        "text": "Bild och beskrivning analyseras av en AI-assistent som föreslår rätt felkategori, med reservkategori om AI inte är konfigurerad."
+      },
+      {
+        "titel": "Ärende skapas automatiskt",
+        "text": "Anmälan blir ett ärende i kommunens ärendehanteringssystem med bilderna som bilagor."
+      },
+      {
+        "titel": "Frivillig återkoppling",
+        "text": "E-post eller telefonnummer kan lämnas om invånaren vill bli kontaktad."
+      }
+    ],
+    "apis": [
+      {
+        "name": "SupportManagement",
+        "version": "12.6",
+        "usage": "Skapar felanmälningsärenden med bilagor i kommunens ärendehantering."
+      },
+      {
+        "name": "Eneo-Sundsvall",
+        "version": "1.1",
+        "usage": "AI-assistent som klassificerar anmälans kategori utifrån bild och beskrivning."
+      }
+    ],
+    "integrationer": [
+      "Eneo",
+      "Origo-karta (karta.sundsvall.se, GeoServer WMS/WFS)",
+      "WSO2 API-gateway"
+    ],
+    "auth": "Ingen inloggning",
+    "teknik": {
+      "frontend": "Next.js 15 (App Router), React 19, i18next, Origo-kartklient",
+      "backend": "Node.js, Express 4, TypeScript, bildbehandling med sharp",
+      "tester": null
+    },
+    "konfiguration": [
+      "Backend: .env.example med API_BASE_URL, CLIENT_KEY/CLIENT_SECRET mot WSO2",
+      "ENEO_ASSISTANT_ID och ENEO_API_KEY för AI-klassificeringen (tjänsten fungerar utan, då används standardkategori)",
+      "MUNICIPALITY_ID och NAMESPACE styr vilket ärendeutrymme anmälningarna hamnar i",
+      "Frontend: .env.example kopieras till .env"
+    ],
+    "anteckningar": [
+      "Bilder skalas ner till max 1080 pixlar innan AI-klassificering för snabbhet, medan originalbilden bifogas ärendet i full upplösning.",
+      "Elva fördefinierade felkategorier finns i koden, bl.a. vägskada, belysning, vatten/avlopp, klotter, snö/is och lekplatsutrustning.",
+      "Inga automatiska tester finns i repot."
+    ],
+    "slug": "felanmalan"
+  },
+  {
+    "repo": "web-app-air",
+    "namn": "Luftkvalitet i Sundsvall",
+    "kategori": "Invånartjänster",
+    "status": "aktiv",
+    "ingress": "Publik webbsida som visar uppmätt luftkvalitet från kommunens mätstationer i diagram och tabeller.",
+    "beskrivning": [
+      "Tjänsten visar luftkvalitetsdata för Sundsvall från mätstationerna vid Köpmangatan och Bergsgatan. Besökare kan se halter av partiklar (PM2,5 och PM10) och kvävedioxid (NO2) för olika tidsperioder – från senaste dygnet upp till ett år.",
+      "Data hämtas från kommunens öppna data och presenteras som grafer och tabeller, med stöd för flera språk. Tjänsten är helt öppen och kräver ingen inloggning.",
+      "Repot är byggt på kommunens webbappsmall och delar av mallens texter och konfiguration finns kvar, vilket tyder på att tjänsten är förhållandevis ny."
+    ],
+    "malgrupp": "Invånare och allmänhet",
+    "funktioner": [
+      {
+        "titel": "Luftkvalitet per mätstation",
+        "text": "Visar uppmätta halter från stationerna Köpmangatan (PM10, PM2,5, NO2) och Bergsgatan (PM10, PM2,5)."
+      },
+      {
+        "titel": "Valbara tidsperioder",
+        "text": "Data kan visas för dygn, fyra dygn, vecka, månad eller år."
+      },
+      {
+        "titel": "Diagram och tabeller",
+        "text": "Mätvärden presenteras som grafer och i tabellform."
+      },
+      {
+        "titel": "Flerspråksstöd",
+        "text": "Gränssnittet är översättningsbart via språkfiler."
+      }
+    ],
+    "apis": [
+      {
+        "name": "OpenData",
+        "version": "1.0",
+        "usage": "Hämtar luftkvalitetsobservationer (airqualities) per mätstation, kodverifierat anrop."
+      },
+      {
+        "name": "SimulatorServer",
+        "version": "2.0",
+        "usage": "Hälsokontroll av API-anslutningen (enligt api-config)."
+      }
+    ],
+    "integrationer": [
+      "WSO2 API-gateway (api.sundsvall.se)",
+      "Sensordata i NGSI-LD-format (AirQualityObserved)"
+    ],
+    "auth": "Ingen inloggning",
+    "teknik": {
+      "frontend": "Next.js/React (App Router) med react-i18next och Recharts",
+      "backend": "Node.js med Express och routing-controllers",
+      "tester": null
+    },
+    "konfiguration": [
+      "Miljöfiler för frontend (.env-example) och backend (.env.example.local)",
+      "CLIENT_KEY/CLIENT_SECRET för API-gatewayn",
+      "API_BASE_URL mot api-test.sundsvall.se i exempel"
+    ],
+    "anteckningar": [
+      "Mätstationerna är hårdkodade i backend: Köpmangatan (888100) och Bergsgatan (1098100).",
+      "I utvecklingsläge används genererad mockdata i stället för riktiga mätvärden.",
+      "SAML-inloggning finns i mallen men är bortkommenterad – tjänsten är helt publik.",
+      "README och delar av konfigurationen är kvar från webbappsmallen (web-app-starter)."
+    ],
+    "slug": "luftkvalitet-i-sundsvall"
+  },
+  {
+    "repo": "web-app-memories",
+    "namn": "Sundsvallsminnen – digitalt kulturarvsarkiv",
+    "kategori": "Invånartjänster",
+    "status": "aktiv",
+    "ingress": "Öppet webbgränssnitt för att söka i Sundsvalls minnesarkiv med filmer, fotografier, publikationer, föremål, ljud och texter.",
+    "beskrivning": [
+      "Sundsvallsminnen är en publik webbplats där invånare och andra intresserade kan söka i kommunens digitala minnesarkiv. Arkivet rymmer olika typer av material – filmer, fotografier, publikationer, föremål, ljudupptagningar och texter – som speglar Sundsvalls historia.",
+      "Besökaren kan söka fritt i arkivet, bläddra i träfflistor med förhandsvisningar och öppna enskilda objekt för att se detaljerad information, förhandsgranska materialet och hitta relaterade objekt.",
+      "Tjänsten är öppen för alla och kräver ingen inloggning."
+    ],
+    "malgrupp": "Invånare, forskare och historieintresserade",
+    "funktioner": [
+      {
+        "titel": "Fritextsökning i arkivet",
+        "text": "Sök bland filmer, foton, publikationer, föremål, ljud och texter."
+      },
+      {
+        "titel": "Galleri med förhandsvisning",
+        "text": "Träffar visas i ett galleri med möjlighet att förhandsgranska materialet."
+      },
+      {
+        "titel": "Detaljerad objektinformation",
+        "text": "Varje dokument har en egen sida med metadata som datum, plats och kommentarer."
+      },
+      {
+        "titel": "Relaterat material",
+        "text": "Förslag på relaterade objekt visas i anslutning till det öppnade dokumentet."
+      }
+    ],
+    "apis": [
+      {
+        "name": "Memories",
+        "version": "3.4",
+        "usage": "Hämtar och söker i minnesarkivets dokument och media."
+      }
+    ],
+    "integrationer": [
+      "WSO2 API-gateway"
+    ],
+    "auth": "Ingen inloggning",
+    "teknik": {
+      "frontend": "Next.js 15 (App Router), React, sk-web-gui, Tailwind CSS, i18next",
+      "backend": "Node.js, Express, TypeScript (proxy mot Memories-API:t)",
+      "tester": "Jest och Cypress med sammanslagen kodtäckning"
+    },
+    "konfiguration": [
+      "Backend: .env.example med API_BASE_URL, CLIENT_KEY och CLIENT_SECRET mot WSO2",
+      "Frontend: .env-example samt generering av middleware-miljövariabler vid bygge",
+      "db-init: SQL-skript (MariaDB/MySQL) som skapar och fyller lokal arkivdatabas för utveckling"
+    ],
+    "anteckningar": [
+      "Inga SAML- eller inloggningsvariabler finns – tjänsten är helt publik.",
+      "Repot innehåller SQL-skript för en lokal kopia av arkivdatabasen (tabeller för bl.a. film) till utvecklingsmiljön.",
+      "Frontendpaketet heter web-app-sundsvallsminnen vilket bekräftar tjänstens namn."
+    ],
+    "slug": "sundsvallsminnen-digitalt-kulturarvsarkiv"
+  },
+  {
+    "repo": "web-app-boarding",
+    "namn": "Digital checklista för introduktion av medarbetare",
+    "kategori": "Medarbetartjänster",
+    "status": "aktiv",
+    "ingress": "Digitalt stöd som ger chefer och nya medarbetare gemensamma checklistor att följa under introduktionen på arbetsplatsen.",
+    "beskrivning": [
+      "Tjänsten Digital checklista ger struktur åt introduktionen av nyanställda. Chefer ser sina pågående introduktioner och kan följa hur långt varje ny medarbetare kommit, medan medarbetaren själv kan bocka av sina aktiviteter i checklistan.",
+      "Ansvaret för delar av introduktionen kan delegeras till andra personer, och en mentor kan läggas till som stöd för den nya medarbetaren. Checklistorna bygger på mallar som administreras per organisation i ett särskilt administrationsgränssnitt.",
+      "Inloggning sker med kommunens gemensamma inloggning, och uppgifter om anställda och organisationer hämtas automatiskt från kommunens personalsystem via interna API:er. Enligt texter i tjänsten är detta ett pågående utvecklingsarbete för digitala introduktioner."
+    ],
+    "malgrupp": "Chefer, nya medarbetare, mentorer och HR-administratörer",
+    "funktioner": [
+      {
+        "titel": "Pågående introduktioner",
+        "text": "Chefer får överblick över sina pågående introduktioner och medarbetarnas framsteg."
+      },
+      {
+        "titel": "Avbockningsbara checklistor",
+        "text": "Aktiviteter i introduktionen bockas av av chef respektive ny medarbetare."
+      },
+      {
+        "titel": "Delegering",
+        "text": "Ansvar för delar av introduktionen kan tilldelas andra personer."
+      },
+      {
+        "titel": "Mentorskap",
+        "text": "En mentor kan läggas till som stöd och få tillgång till introduktionen."
+      },
+      {
+        "titel": "Malladministration",
+        "text": "Checklistmallar hanteras per organisation i ett administrationsgränssnitt."
+      }
+    ],
+    "apis": [
+      {
+        "name": "Checklist",
+        "version": "1.3",
+        "usage": "Hanterar checklistor, mallar och avbockning av aktiviteter."
+      },
+      {
+        "name": "Employee",
+        "version": "2.0",
+        "usage": "Hämtar uppgifter om anställda och nyanställningar."
+      },
+      {
+        "name": "Company",
+        "version": "1.0",
+        "usage": "Hämtar organisations- och bolagsuppgifter."
+      },
+      {
+        "name": "SimulatorServer",
+        "version": "2.0",
+        "usage": "Simulerings- och teststöd under utveckling."
+      }
+    ],
+    "integrationer": [
+      "SAML IdP",
+      "WSO2 API-gateway"
+    ],
+    "auth": "SAML (SSO)",
+    "teknik": {
+      "frontend": "Next.js 15 (Pages Router), React 19, sk-web-gui, Tailwind CSS, next-i18next",
+      "backend": "Node.js, Express, routing-controllers, TypeScript",
+      "tester": "Jest, Cypress med kodtäckning"
+    },
+    "konfiguration": [
+      "Backend: .env.example.local med CLIENT_KEY/CLIENT_SECRET för WSO2",
+      "SAML-inställningar med IdP-certifikat och nyckelpar",
+      "Frontend: .env-example kopieras till .env",
+      "Datakontrakt genereras från API:ernas specifikationer"
+    ],
+    "anteckningar": [
+      "Gränssnittstext anger att tjänsten är ett pågående utvecklingsarbete för digitala introduktioner.",
+      "Separata vyer finns för chef, medarbetare och administration (mallhantering).",
+      "Frontendpaketet använder fortfarande starter-mallens namn (@sk-web-gui/web-app-starter)."
+    ],
+    "slug": "digital-checklista-for-introduktion-av-medarbetare"
+  },
+  {
+    "repo": "web-app-digital-checklist",
+    "namn": "Digital checklista för introduktion av nyanställda",
+    "kategori": "Medarbetartjänster",
+    "status": "aktiv",
+    "ingress": "Digital checklista som guidar chefer och nyanställda genom introduktionsprocessen, med översikt över hur långt varje introduktion kommit.",
+    "beskrivning": [
+      "Tjänsten digitaliserar kommunens introduktion av nyanställda. Både chefen och den nyanställda får varsin checklista med aktiviteter att bocka av under introduktionen, och uppgifter kan även delegeras till en annan ansvarig person.",
+      "Chefer får en samlad översikt över nyanställda i den egna organisationen med hur långt både chefens och medarbetarens delar av introduktionen har kommit. Uppgifter kan läggas till och uppdateras löpande, och tjänsten innehåller även en e-postmall för utskick kopplade till introduktionen.",
+      "Medarbetare loggar in med kommunens gemensamma inloggning, och medarbetaruppgifter som namn och foto hämtas från kommunens personalsystem via interna API:er."
+    ],
+    "malgrupp": "Chefer och nyanställda medarbetare i kommunen",
+    "funktioner": [
+      {
+        "titel": "Checklista för nyanställd",
+        "text": "Den nyanställda ser och bockar av sina introduktionsaktiviteter."
+      },
+      {
+        "titel": "Checklista för chef",
+        "text": "Chefen har en egen lista med aktiviteter inför och under introduktionen."
+      },
+      {
+        "titel": "Delegering",
+        "text": "Ansvar för en checklista kan delegeras till annan medarbetare."
+      },
+      {
+        "titel": "Chefsöversikt",
+        "text": "Samlad vy över alla nyanställda i organisationen med progress för chef respektive anställd."
+      },
+      {
+        "titel": "Uppgiftshantering",
+        "text": "Uppgifter kan skapas, uppdateras och massuppdateras i checklistorna."
+      }
+    ],
+    "apis": [
+      {
+        "name": "Employee",
+        "version": "1.0",
+        "usage": "Hämtar medarbetaruppgifter, bland annat personbild."
+      },
+      {
+        "name": "Onboarding",
+        "version": "1.4",
+        "usage": "Checklistor och uppgifter för introduktionen – hämtning, skapande och uppdatering."
+      }
+    ],
+    "integrationer": [
+      "SAML IdP",
+      "WSO2 API-gateway"
+    ],
+    "auth": "SAML (SSO)",
+    "teknik": {
+      "frontend": "Next.js/React med sk-web-gui",
+      "backend": "Node.js/Express med routing-controllers och Passport-SAML",
+      "tester": "Jest (backend); Cypress i frontend"
+    },
+    "konfiguration": [
+      ".env-filer för frontend och backend utifrån .env-exempel",
+      "CLIENT_KEY/CLIENT_SECRET mot kommunens API-gateway (api-i-test.sundsvall.se i exempel)",
+      "SAML-certifikat och callback-/redirect-adresser",
+      "SECRET_KEY för sessionskryptering, CORS-origin"
+    ],
+    "anteckningar": [
+      "Byggd utifrån kommunens web-app-starter; README är delvis kvar från mallen.",
+      "Sidor för egen checklista, delegerad checklista, chefsöversikt och e-postmall är verifierade i koden."
+    ],
+    "slug": "digital-checklista-for-introduktion-av-nyanstallda"
+  },
+  {
+    "repo": "web-app-personal-files-deprecated",
+    "namn": "Digital personakt för timavlönade",
+    "kategori": "Medarbetartjänster",
+    "status": "avvecklad",
+    "ingress": "Avvecklad intern tjänst för att söka fram digitala personakter för timavlönade medarbetare och hantera dokument kopplade till anställningar.",
+    "beskrivning": [
+      "Tjänsten gav behöriga medarbetare, exempelvis inom HR, möjlighet att söka fram personakter via personnummer. I denna version omfattades enbart timavlönade medarbetare. Från personakten visades personens anställningar, och dokument kunde laddas upp till respektive anställning eller tas bort.",
+      "Behörigheten styrdes via inloggning med SAML och behörighetsgrupper i flera nivåer (läsbehörighet, administratör och superadministratör).",
+      "Repot är markerat som avvecklat (deprecated) och tjänsten ska inte betraktas som aktiv i denna form."
+    ],
+    "malgrupp": "HR-personal och behöriga administratörer",
+    "funktioner": [
+      {
+        "titel": "Sök personakt",
+        "text": "Sökning via personnummer för att öppna en timavlönad medarbetares personakt."
+      },
+      {
+        "titel": "Anställningsöversikt",
+        "text": "Visar personens anställningar kopplade till akten."
+      },
+      {
+        "titel": "Dokumenthantering",
+        "text": "Ladda upp och ta bort dokument kopplade till en anställning."
+      },
+      {
+        "titel": "Behörighetsnivåer",
+        "text": "Åtkomst styrd av behörighetsgrupper med olika rättigheter."
+      }
+    ],
+    "apis": [
+      {
+        "name": "SimulatorServer",
+        "version": "2.0",
+        "usage": "Simulerade svar vid test och utveckling"
+      },
+      {
+        "name": "Employee",
+        "version": "1.0",
+        "usage": "Uppgifter om anställningar och medarbetare"
+      },
+      {
+        "name": "Citizen",
+        "version": "2.0",
+        "usage": "Personuppgifter via personnummer"
+      },
+      {
+        "name": "Document",
+        "version": "3.0",
+        "usage": "Lagring och hämtning av personaktens dokument"
+      },
+      {
+        "name": "FoundationObjects (fo)",
+        "version": "1.0",
+        "usage": "Grunddata om organisation/objekt"
+      }
+    ],
+    "integrationer": [
+      "SAML IdP",
+      "WSO2 API-gateway"
+    ],
+    "auth": "SAML (SSO) med behörighetsgrupper (AUTHORIZED/ADMIN/SUPERADMIN)",
+    "teknik": {
+      "frontend": "Next.js (App Router), React, TypeScript, sk-web-gui, Tailwind CSS, Zustand, react-hook-form, i18next",
+      "backend": "Node.js, Express, routing-controllers, Passport SAML, Prisma, Multer (filuppladdning)",
+      "tester": null
+    },
+    "konfiguration": [
+      ".env-filer för frontend och backend utifrån .env-exempel",
+      "CLIENT_KEY/CLIENT_SECRET mot kommunens API-gateway",
+      "SAML-certifikat, nycklar och callback-URL:er",
+      "Behörighetsgrupper via AUTHORIZED_GROUPS, ADMIN_GROUPS och SUPERADMIN_GROUPS"
+    ],
+    "anteckningar": [
+      "Repots namn innehåller 'deprecated' – tjänsten är avvecklad i denna form.",
+      "Gränssnittet uppgav uttryckligen att endast personakter för timavlönade kunde sökas i denna version."
+    ],
+    "slug": "digital-personakt-for-timavlonade"
+  },
+  {
+    "repo": "web-app-new-personal-files",
+    "namn": "Digitala personakter för medarbetare",
+    "kategori": "Medarbetartjänster",
+    "status": "aktiv",
+    "ingress": "Intern tjänst där medarbetare kan se sin egen personakt, chefer kan se sina medarbetares akter och behörig personal kan söka fram personakter.",
+    "beskrivning": [
+      "Tjänsten samlar medarbetarnas personakter digitalt. En inloggad medarbetare kan öppna sin egen personakt, medan chefer ser en lista över sina medarbetare och kan öppna deras akter. Behörig personal kan dessutom söka fram en personakt genom att ange fullständigt personnummer.",
+      "Dokumenten i akterna hämtas från kommunens centrala dokumenttjänst, och organisationstillhörighet och anställningsuppgifter hämtas från kommunens personal- och organisationsdata.",
+      "Tjänsten är under uppbyggnad och namnet antyder att den ersätter en tidigare lösning för personakter."
+    ],
+    "malgrupp": "medarbetare, chefer och HR-personal inom kommunen",
+    "funktioner": [
+      {
+        "titel": "Min personakt",
+        "text": "Medarbetare ser dokumenten i sin egen personakt."
+      },
+      {
+        "titel": "Mina medarbetare",
+        "text": "Chefer ser sina medarbetare och kan öppna deras personakter."
+      },
+      {
+        "titel": "Sök personakt",
+        "text": "Behörig personal söker fram akter via fullständigt personnummer."
+      },
+      {
+        "titel": "Central dokumentlagring",
+        "text": "Handlingarna hämtas från kommunens gemensamma dokumenttjänst."
+      }
+    ],
+    "apis": [
+      {
+        "name": "Document",
+        "version": "3.0",
+        "usage": "Hämtar dokumenten i personakterna."
+      },
+      {
+        "name": "Employee",
+        "version": "2.0",
+        "usage": "Anställnings- och medarbetaruppgifter, bl.a. chefers medarbetarlistor."
+      },
+      {
+        "name": "Citizen",
+        "version": "3.0",
+        "usage": "Personuppgifter via personnummer."
+      },
+      {
+        "name": "FoundationObjects (FO)",
+        "version": "1.0",
+        "usage": "Organisations- och grunddata."
+      },
+      {
+        "name": "Party",
+        "version": "2.2",
+        "usage": "Översättning mellan personnummer och part-ID."
+      },
+      {
+        "name": "SimulatorServer",
+        "version": "2.0",
+        "usage": "Simulerings-API för test och utveckling."
+      }
+    ],
+    "integrationer": [
+      "SAML IdP"
+    ],
+    "auth": "SAML (SSO)",
+    "teknik": {
+      "frontend": "Next.js 16, React 19, i18next",
+      "backend": "Node.js, Express 4, TypeScript",
+      "tester": "Jest (enhetstester), Cypress (e2e)"
+    },
+    "konfiguration": [
+      "Miljöfiler: frontend/.env-example och backend/.env.example.local",
+      "CLIENT_KEY och CLIENT_SECRET mot kommunens API-plattform (WSO2)",
+      "SAML-inställningar med IdP-adress och certifikat"
+    ],
+    "anteckningar": [
+      "Repot är byggt på kommunens startmall och innehåller fortfarande exempelsidor från mallen, vilket tyder på tidig utvecklingsfas.",
+      "Namnet 'new-personal-files' indikerar att tjänsten ersätter en äldre personaktslösning.",
+      "Behörighet styrs via SAML-grupper; användare utan rätt grupp nekas åtkomst."
+    ],
+    "slug": "digitala-personakter-for-medarbetare"
+  },
+  {
+    "repo": "web-app-document",
+    "namn": "Dokumentsökning",
+    "kategori": "Medarbetartjänster",
+    "status": "aktiv",
+    "ingress": "Intern söktjänst där behöriga medarbetare söker fram kommunens lagrade dokument som refererar till en person eller organisation.",
+    "beskrivning": [
+      "Tjänsten låter behöriga medarbetare söka efter dokument i kommunens centrala dokumentlager utifrån person- eller organisationsnummer. Sökningen kan även omfatta sekretessbelagda dokument när användaren har behörighet, och görs per kommun.",
+      "Träfflistan visar dokumentnummer, beskrivning, känslighet (publikt eller konfidentiellt) och när dokumentet skapades. För varje dokument kan detaljerad information visas, med revisioner, lagrum, arkiveringsstatus, metadata och ingående filer som kan laddas ner."
+    ],
+    "malgrupp": "handläggare och medarbetare med behörighet",
+    "funktioner": [
+      {
+        "titel": "Sök på person eller organisation",
+        "text": "Sökning via person- eller organisationsnummer som översätts till en intern part-identitet."
+      },
+      {
+        "titel": "Sekretesshantering",
+        "text": "Möjlighet att inkludera sekretessbelagda dokument i sökningen, med tydlig märkning av konfidentiella dokument."
+      },
+      {
+        "titel": "Dokumentdetaljer",
+        "text": "Detaljvy med revisioner, beskrivning, lagrum, arkivering och metadata."
+      },
+      {
+        "titel": "Filnedladdning",
+        "text": "Ingående filer i ett dokument kan hämtas direkt från tjänsten."
+      },
+      {
+        "titel": "Kommunval",
+        "text": "Sökningen görs per vald kommun."
+      }
+    ],
+    "apis": [
+      {
+        "name": "Document",
+        "version": "3.0",
+        "usage": "Sökning, dokumentdetaljer och filnedladdning"
+      },
+      {
+        "name": "Party",
+        "version": "2.0",
+        "usage": "Översättning av person-/organisationsnummer till part-ID"
+      }
+    ],
+    "integrationer": [
+      "SAML IdP",
+      "WSO2 API-gateway"
+    ],
+    "auth": "SAML (SSO)",
+    "teknik": {
+      "frontend": "Next.js (pages router), React, TypeScript, sk-web-gui, Tailwind CSS, next-i18next, Zustand",
+      "backend": "Node.js, Express, routing-controllers, Passport SAML, Prisma",
+      "tester": null
+    },
+    "konfiguration": [
+      ".env-filer för frontend och backend utifrån .env-exempel",
+      "CLIENT_KEY/CLIENT_SECRET mot kommunens API-gateway",
+      "SAML-certifikat, nycklar och callback-URL:er",
+      "Möjlighet att peka direkt mot lokala Document-/Party-API:er via DISABLE_OAUTH2, DOCUMENT_API_BASE_URL och PARTY_API_BASE_URL vid utveckling"
+    ],
+    "anteckningar": [
+      "Gränssnittet finns på både svenska och engelska.",
+      "Backend kan köras utan OAuth2 mot lokalt installerade API:er för utveckling och test."
+    ],
+    "slug": "dokumentsokning"
+  },
+  {
+    "repo": "web-app-nidhogg",
+    "namn": "Krisinformation till medarbetare",
+    "kategori": "Medarbetartjänster",
+    "status": "poc",
+    "ingress": "Verktyg för att snabbt skicka krisinformation till kommunens chefer och medarbetare via SMS och Microsoft Teams.",
+    "beskrivning": [
+      "Tjänsten låter behöriga användare skapa och skicka utskick med krisinformation till utvalda mottagare inom kommunens organisation. Mottagare kan väljas via ett organisationsträd, fördefinierade grupper (till exempel alla chefer eller alla medarbetare) eller egna sparade grupper.",
+      "Meddelanden kan skickas via SMS, Microsoft Teams eller båda kanalerna, och avsändaren kan i efterhand följa upp sina utskick och se mottagarlistor med leveransstatus. En adminpanel finns för att hantera vilka användare som får logga in och göra utskick.",
+      "Applikationen bedöms vara under uppbyggnad: den använder en egen lokal användardatabas med e-post och lösenord för inloggning och pekar mot lokala mikrotjänster i utvecklingsmiljö."
+    ],
+    "malgrupp": "Krisledning och kommunikationsansvariga; mottagare är chefer och medarbetare",
+    "funktioner": [
+      {
+        "titel": "Utskick i flera kanaler",
+        "text": "Skicka meddelanden via SMS och/eller Microsoft Teams till valda mottagare."
+      },
+      {
+        "titel": "Mottagarval via organisationsträd",
+        "text": "Välj mottagare från kommunens organisationsstruktur eller fördefinierade grupper som alla chefer och alla medarbetare."
+      },
+      {
+        "titel": "Egna mottagargrupper",
+        "text": "Skapa, spara och hantera egna grupper av mottagare för återkommande utskick."
+      },
+      {
+        "titel": "Uppföljning av utskick",
+        "text": "Se historik över gjorda utskick med mottagare och leveransstatus."
+      },
+      {
+        "titel": "Adminpanel",
+        "text": "Administrera användarkonton och behörigheter för dem som får göra utskick."
+      }
+    ],
+    "apis": [],
+    "integrationer": [
+      "Microsoft Teams (utskick via egen teamssender-tjänst med Microsoft-inloggning)",
+      "SMS-utskick via intern notifier-tjänst",
+      "Intern användartjänst (users)"
+    ],
+    "auth": "E-post och lösenord mot egen användardatabas (JWT), samt separat Microsoft-inloggning för Teams-utskick",
+    "teknik": {
+      "frontend": "Next.js 15 (App Router), React 19, sk-web-gui, next-intl, Tailwind CSS",
+      "backend": "Next.js API-routes med Prisma mot MySQL, proxy till interna mikrotjänster (notifier, users, teamssender)",
+      "tester": "Cypress"
+    },
+    "konfiguration": [
+      ".env med DATABASE_URL (MySQL via Docker Compose)",
+      "Proxy-adresser till mikrotjänster: API_PROXY_TARGET_NOTIFIER, API_PROXY_TARGET_USERS, API_PROXY_TARGET_TEAMSSENDER",
+      "NEXT_PUBLIC_TREE_ROOT_ORG_ID för organisationsträdets rot"
+    ],
+    "anteckningar": [
+      "UI-texterna anger namnet Krisinformation med undertiteln Sundsvalls Kommun.",
+      "Ingen koppling till kommunens API-gateway (api.sundsvall.se) hittades i koden; alla anrop går till lokala/interna tjänster.",
+      "Rollstyrning finns med rollen ADMIN i JWT som ger åtkomst till adminpanelen.",
+      "Databasen seedas via Prisma och innehåller användare, medarbetare, grupper och meddelanden."
+    ],
+    "slug": "krisinformation-till-medarbetare"
+  },
+  {
+    "repo": "web-app-dispatch-portal",
+    "namn": "Postportalen",
+    "kategori": "Medarbetartjänster",
+    "status": "aktiv",
+    "ingress": "En portal där kommunens medarbetare skickar brev, rekommenderade brev och sms till invånare – digitalt till mottagare med digital brevlåda och annars som vanlig post.",
+    "beskrivning": [
+      "Postportalen samlar kommunens utskick till invånare på ett ställe. Medarbetare laddar upp dokument, anger mottagare via exempelvis personnummer och skickar sedan brevet. Mottagare med digital brevlåda får försändelsen digitalt, medan övriga automatiskt får den som vanlig post. Även rekommenderade brev och sms-utskick stöds.",
+      "Utskicket görs i ett guidat flöde med stegen mottagare, filer, rubrik och förvaltning samt granskning innan det skickas. Efteråt kan medarbetaren följa status för sina utskick under Dina utskick, och portalen visar även samlad statistik per förvaltning upp till ett år bakåt i tiden.",
+      "Tjänsten sänker kostnaden för utskick (digitala brev är väsentligt billigare än fysisk post) och mottagaruppgifter slås upp mot kommunens register för både privatpersoner och företag."
+    ],
+    "malgrupp": "Medarbetare och förvaltningar som gör utskick till invånare och företag",
+    "funktioner": [
+      {
+        "titel": "Skicka brev digitalt",
+        "text": "Brev når digitala brevlådor direkt och skrivs annars ut och skickas som fysisk post."
+      },
+      {
+        "titel": "Rekommenderat brev",
+        "text": "Skicka viktiga handlingar som rekommenderad försändelse."
+      },
+      {
+        "titel": "Sms-utskick",
+        "text": "Skicka sms till en eller flera mottagare med organisationen som avsändare."
+      },
+      {
+        "titel": "Guidat utskicksflöde",
+        "text": "Stegvis flöde med mottagare, filer, rubrik/förvaltning och granskning."
+      },
+      {
+        "titel": "Statistik och uppföljning",
+        "text": "Följ egna utskick och se statistik per förvaltning upp till ett år bakåt."
+      }
+    ],
+    "apis": [
+      {
+        "name": "PostPortalService",
+        "version": "1.8",
+        "usage": "Själva utskickstjänsten: brev, rekommenderade brev, sms och status."
+      },
+      {
+        "name": "Citizen",
+        "version": "3.0",
+        "usage": "Uppslag av invånare som mottagare via personnummer."
+      },
+      {
+        "name": "Company",
+        "version": "1.0",
+        "usage": "Uppslag av företag som mottagare."
+      },
+      {
+        "name": "LegalEntity",
+        "version": "2.0",
+        "usage": "Uppgifter om juridiska personer."
+      },
+      {
+        "name": "Employee",
+        "version": "2.0",
+        "usage": "Uppgifter om den inloggade medarbetaren och organisationstillhörighet."
+      },
+      {
+        "name": "MessagingSettings",
+        "version": "3.0",
+        "usage": "Inställningar för avsändare och meddelandekanaler."
+      },
+      {
+        "name": "SimulatorServer",
+        "version": "2.0",
+        "usage": "Hälsokontroll i utvecklingsmiljö."
+      }
+    ],
+    "integrationer": [
+      "WSO2 API-gateway (api.sundsvall.se)",
+      "SAML IdP",
+      "Digital brevlåda (via PostPortalService)"
+    ],
+    "auth": "SAML (SSO); särskild administratörsgrupp för adminfunktioner",
+    "teknik": {
+      "frontend": "Next.js 16, React 19, sk-web-gui, next-i18next (svenska och engelska)",
+      "backend": "Node.js/Express 5 med TypeScript",
+      "tester": "Jest, Cypress"
+    },
+    "konfiguration": [
+      "Miljöfiler: frontend/.env, backend/.env.development.local och .env.test.local",
+      "CLIENT_KEY/CLIENT_SECRET för WSO2-prenumerationer",
+      "SAML-certifikat, nycklar och callback-URL:er",
+      "SESSION_STORE och ADMIN_CMS_ENABLED som tillval i backend"
+    ],
+    "anteckningar": [
+      "Startsidan anger pris per mottagare (0,5 kr för digitalt brev), vilket visar att tjänsten används skarpt för kostnadseffektiva utskick.",
+      "Repot innehåller även en separat admin-app utöver frontend och backend.",
+      "Aktivt underhållet med över 175 sammanslagna pull requests, senast juli 2026."
+    ],
+    "slug": "postportalen"
+  },
+  {
+    "repo": "web-app-katla",
+    "namn": "Registrering av färdtjänstärenden",
+    "kategori": "Myndighetsutövning",
+    "status": "aktiv",
+    "ingress": "Internt verktyg där kommunens medarbetare registrerar anmälningar och ansökningar om färdtjänst direkt i kommunens ärendehanteringssystem.",
+    "beskrivning": [
+      "Tjänsten används av kommunens personal för att registrera färdtjänstärenden, till exempel nya anmälningar, förnyelser, ändringar, omprövningar, busskort och riksfärdtjänst. Uppgifter om den sökande hämtas automatiskt via personnummer och ärendet skapas direkt i kommunens gemensamma ärendehanteringssystem.",
+      "Registreraren kan bifoga relevanta bilagor till ansökan och får en översikt över registrerade ärenden med uppgift om när de skapades. Formulärens innehåll styrs av centrala formulärdefinitioner.",
+      "Inloggning sker med kommunens gemensamma inloggning och behörigheten styrs via AD-roller."
+    ],
+    "malgrupp": "handläggare och registrerande medarbetare inom färdtjänst",
+    "funktioner": [
+      {
+        "titel": "Registrera färdtjänstärenden",
+        "text": "Stöd för flera ärendetyper: ny anmälan, förnyelse, ändring, omprövning, busskort, riksfärdtjänst med flera."
+      },
+      {
+        "titel": "Automatiska personuppslag",
+        "text": "Den sökandes uppgifter hämtas via personnummer ur befolkningsdata."
+      },
+      {
+        "titel": "Bilagor",
+        "text": "Relevanta handlingar kan laddas upp och kopplas till ansökan."
+      },
+      {
+        "titel": "Ärendeöversikt",
+        "text": "Lista över registrerade ärenden med registreringsdatum och status."
+      },
+      {
+        "titel": "Formulär från mallar",
+        "text": "Formulären styrs av centrala formulärdefinitioner som kan uppdateras utan omprogrammering."
+      }
+    ],
+    "apis": [
+      {
+        "name": "CaseData",
+        "version": "13.0",
+        "usage": "Skapande och hantering av färdtjänstärenden."
+      },
+      {
+        "name": "Citizen",
+        "version": "3.0",
+        "usage": "Uppslag av den sökandes personuppgifter via personnummer."
+      },
+      {
+        "name": "Employee",
+        "version": "2.0",
+        "usage": "Uppgifter om den registrerande medarbetaren."
+      },
+      {
+        "name": "Messaging",
+        "version": "7.11",
+        "usage": "Meddelanden kopplade till ärenden."
+      },
+      {
+        "name": "PartyAssets",
+        "version": "6.5",
+        "usage": "Innehav kopplade till en part, t.ex. tillstånd och kort."
+      },
+      {
+        "name": "JsonSchema",
+        "version": "1.0",
+        "usage": "Formulärdefinitioner som styr registreringsformulären."
+      },
+      {
+        "name": "SimulatorServer",
+        "version": "2.0",
+        "usage": "Simulerings-API för test och utveckling."
+      }
+    ],
+    "integrationer": [
+      "SAML IdP",
+      "Active Directory (rollstyrning)"
+    ],
+    "auth": "SAML (SSO) med behörighetsstyrning via AD-roller",
+    "teknik": {
+      "frontend": "Next.js 15, React 19, i18next",
+      "backend": "Node.js, Express 4, TypeScript",
+      "tester": "Jest"
+    },
+    "konfiguration": [
+      "Miljöfiler: frontend/.env-example (appnamn 'Färdtjänstregistrering') och backend/.env.example.local",
+      "CLIENT_KEY och CLIENT_SECRET mot kommunens API-plattform (WSO2)",
+      "SAML-inställningar med IdP-adress och certifikat"
+    ],
+    "anteckningar": [
+      "Appnamnet i konfigurationen är 'Färdtjänstregistrering'; koden hanterar ärendetyper med prefixet PARATRANSIT_NOTIFICATION (bl.a. busskort, ändring, riksfärdtjänst, omprövning och förnyelse).",
+      "Ärendena skapas i kommunens gemensamma ärendehanteringssystem (CaseData).",
+      "Repots interna kodnamn förekommer inte i användargränssnittet."
+    ],
+    "slug": "registrering-av-fardtjanstarenden"
+  },
+  {
+    "repo": "web-app-drakel",
+    "namn": "Ärendehantering för ekonomiskt bistånd",
+    "kategori": "Myndighetsutövning",
+    "status": "aktiv",
+    "ingress": "Handläggarapplikation för ärenden om ekonomiskt bistånd, med stöd för normberäkning, beslut och digitala utskick av beslut.",
+    "beskrivning": [
+      "Tjänsten är en handläggararbetsyta för ärenden inom ekonomiskt bistånd (försörjningsstöd). Handläggaren kan lista och filtrera ärenden, se ärendedetaljer med parter och kontakter, hantera bilagor, föra journalanteckningar och registrera beslut.",
+      "Inbyggda beslutsfraser enligt socialtjänstlagen underlättar att formulera bifall och avslag, och en normberäkningsfunktion hanterar hushållets personer, inkomster och utgifter som underlag för beslut. Fattade beslut kan skickas digitalt till den enskilde via Mina sidor, digital brevlåda eller brev, med automatisk kontroll av om mottagaren har digital brevlåda.",
+      "Applikationen är en avskalad vidareutveckling av kommunens tidigare handläggarapplikation, ombyggd mot ett nyare ärende-API. Utvecklingen sker stegvis och all funktionalitet från föregångaren är ännu inte på plats."
+    ],
+    "malgrupp": "Handläggare inom ekonomiskt bistånd",
+    "funktioner": [
+      {
+        "titel": "Ärendelista med filtrering",
+        "text": "Överblick över ärenden med filtrering på kategori, status och typ."
+      },
+      {
+        "titel": "Normberäkning",
+        "text": "Beräkningsstöd för hushållets personer, inkomster och utgifter inför beslut om ekonomiskt bistånd."
+      },
+      {
+        "titel": "Beslut med frasbibliotek",
+        "text": "Registrera bifall och avslag med färdiga beslutsfraser enligt socialtjänstlagen."
+      },
+      {
+        "titel": "Digitalt utskick av beslut",
+        "text": "Skicka beslut till Mina sidor, digital brevlåda eller som brev, med kontroll av digital brevlåda."
+      },
+      {
+        "titel": "Journal och bilagor",
+        "text": "För journalanteckningar och hantera dokument och bilagor i ärendet."
+      }
+    ],
+    "apis": [
+      {
+        "name": "citizen",
+        "version": "3.0",
+        "usage": "Slår upp personuppgifter/personnummer för parter i ärendet."
+      },
+      {
+        "name": "messaging",
+        "version": "7.0",
+        "usage": "Skickar beslut via Mina sidor, digital brevlåda och brev samt kontrollerar digital brevlåda."
+      },
+      {
+        "name": "simulatorserver",
+        "version": "2.0",
+        "usage": "Simulering/test av API-anrop under utveckling."
+      }
+    ],
+    "integrationer": [
+      "Caremanagement-API (ärendehantering, direktanslutning utanför API-gatewayen)",
+      "WSO2 API-gateway",
+      "SAML IdP",
+      "Mina sidor och digital brevlåda (via messaging-API:et)"
+    ],
+    "auth": "SAML (SSO) med behörighetsstyrning via AD-grupper (AUTHORIZED_GROUPS)",
+    "teknik": {
+      "frontend": "Next.js 16, React 19, sk-web-gui",
+      "backend": "Node.js med Express 5 och routing-controllers (TypeScript, BFF)",
+      "tester": "Vitest och Playwright"
+    },
+    "konfiguration": [
+      ".env-filer för frontend och backend enligt exempel",
+      "CLIENT_KEY och CLIENT_SECRET från WSO2-portalen för gateway-API:er",
+      "CAREMANAGEMENT_BASE_URL för direktanslutning till ärende-API:et",
+      "SAML-certifikat och nycklar samt AUTHORIZED_GROUPS för behörighet"
+    ],
+    "anteckningar": [
+      "Avskalad vidareutveckling av den tidigare handläggarapplikationen, med uttalat mål att minska teknisk skuld.",
+      "Ärende-API:et caremanagement anropas direkt på egen host och går medvetet inte via WSO2-gatewayen.",
+      "Typade datakontrakt genereras automatiskt hela vägen från underliggande API:er till frontend.",
+      "Repot innehåller AGENTS.md med detaljerade arbetsinstruktioner för AI-agenter och utvecklare."
+    ],
+    "slug": "arendehantering-for-ekonomiskt-bistand"
+  },
+  {
+    "repo": "web-app-student-account-admin",
+    "namn": "Elevkontohantering",
+    "kategori": "Utbildning",
+    "status": "aktiv",
+    "ingress": "Ett verktyg där skolpersonal hanterar elevkonton – återställer lösenord, aktiverar och inaktiverar konton samt skapar resurskonton per skola och klass.",
+    "beskrivning": [
+      "Elevkontohantering är ett administrationsverktyg för skolans personal. Genom att välja skola och klass får personalen upp elevernas konton och kan hjälpa elever som exempelvis glömt sitt lösenord, genom att sätta nya lösenord samt aktivera eller inaktivera konton.",
+      "Verktyget hanterar även resurskonton kopplade till skolorna, som kan skapas, redigeras och genereras vid behov. Kontouppgifter kan sammanställas till PDF, exempelvis för att dela ut inloggningsuppgifter.",
+      "Uppgifter om skolor, klasser och elever hämtas från kommunens skoldatakällor, och åtkomsten begränsas till en behörig administratörsgrupp via kommunens inloggning."
+    ],
+    "malgrupp": "Skolpersonal och skoladministratörer",
+    "funktioner": [
+      {
+        "titel": "Sök via skola och klass",
+        "text": "Navigera till rätt elever genom att välja skolenhet och klass."
+      },
+      {
+        "titel": "Lösenordshantering",
+        "text": "Sätt nytt lösenord för elever som glömt sina inloggningsuppgifter."
+      },
+      {
+        "titel": "Aktivera/inaktivera konton",
+        "text": "Slå på eller stäng av elevkonton vid behov."
+      },
+      {
+        "titel": "Resurskonton",
+        "text": "Skapa, redigera och generera resurskonton per skola."
+      },
+      {
+        "titel": "PDF-utskrifter",
+        "text": "Generera PDF med kontouppgifter för utdelning."
+      }
+    ],
+    "apis": [
+      {
+        "name": "PupilAccountManager",
+        "version": "1.0",
+        "usage": "Skolor, klasser, elever, lösenord, aktivering/inaktivering och resurskonton."
+      },
+      {
+        "name": "Education",
+        "version": "2.0",
+        "usage": "Skoldata: skolenheter, klasser, elevinformation och skolplaceringar."
+      },
+      {
+        "name": "Employee",
+        "version": "2.0",
+        "usage": "Person- och elevuppgifter."
+      },
+      {
+        "name": "SimulatorServer",
+        "version": "2.0",
+        "usage": "Hälsokontroll i utvecklingsmiljö."
+      }
+    ],
+    "integrationer": [
+      "WSO2 API-gateway (api.sundsvall.se)",
+      "Intern API-gateway (api-i-test.sundsvall.se) för PupilAccountManager",
+      "SAML IdP",
+      "Active Directory (visningsnamn i AD)"
+    ],
+    "auth": "SAML (SSO) med behörig administratörsgrupp (ADMIN_GROUP)",
+    "teknik": {
+      "frontend": "Next.js 14, React 18, sk-web-gui",
+      "backend": "Node.js/Express med TypeScript (routing-controllers)",
+      "tester": "Jest, Cypress"
+    },
+    "konfiguration": [
+      "Miljöfiler: frontend/.env, backend/.env.development.local och .env.test.local",
+      "CLIENT_KEY/CLIENT_SECRET för WSO2-prenumerationer",
+      "SAML-certifikat och nycklar samt callback-URL:er",
+      "TypeScript-datakontrakt genereras från API:ernas OpenAPI-specar (yarn generate:contracts)"
+    ],
+    "anteckningar": [
+      "PupilAccountManager-API:et ligger på kommunens interna gateway, inte den publika.",
+      "Senaste utveckling (augusti 2026) gäller övergång till SS 12000-baserad skoldata.",
+      "Gränssnittet är på svenska och byggt med kommunens designsystem."
+    ],
+    "slug": "elevkontohantering"
+  },
+  {
+    "repo": "web-app-scenario",
+    "namn": "Med livet som insats – interaktiva AI-scenarier",
+    "kategori": "Utbildning",
+    "status": "aktiv",
+    "ingress": "AI-stött diskussionsverktyg där ungdomsgrupper under ledning av en utbildad vuxen utforskar livsval och deras konsekvenser genom interaktiva scenarier.",
+    "beskrivning": [
+      "Verktyget Med livet som insats används för att engagera unga i samtal om livsval och konsekvenser. En utbildad vuxen samtalsledare presenterar ett fiktivt scenario för gruppen, deltagarna gör val tillsammans, och AI anpassar berättelsen i realtid utifrån gruppens beslut.",
+      "Syftet är att unga i en trygg miljö ska kunna prova olika vägval och uppleva konsekvenser utan verkliga följder, träna beslutsfattande och stärka självförtroendet. Efter scenariot leder samtalsledaren en reflektion kring utfallet.",
+      "Lösningen är modulär så att nya scenarier kan läggas till över tid, och en separat administrationsdel finns för att hantera scenarier, kategorier och introduktionstexter. På grund av ämnenas känsliga natur kräver verktyget utbildade samtalsledare och är inte avsett att användas av unga på egen hand. Hela lösningen är öppen källkod och kan återanvändas av andra kommuner."
+    ],
+    "malgrupp": "Utbildade vuxna samtalsledare som arbetar med ungdomsgrupper",
+    "funktioner": [
+      {
+        "titel": "AI-drivna scenarier",
+        "text": "Berättelser som anpassas dynamiskt i realtid utifrån gruppens val, via kommunens AI-plattform Eneo."
+      },
+      {
+        "titel": "Ledarledd gruppdiskussion",
+        "text": "Utformad för sessioner där en utbildad vuxen leder gruppen genom scenario, val och reflektion."
+      },
+      {
+        "titel": "Uppläsning med talsyntes",
+        "text": "Text kan läsas upp med hjälp av Azures taltjänster."
+      },
+      {
+        "titel": "Administration av scenarier",
+        "text": "Separat adminapplikation för att hantera scenarier, kategorier och introduktionstexter."
+      },
+      {
+        "titel": "Modulär och delbar",
+        "text": "Nya scenarier kan läggas till över tid och lösningen kan införas av andra kommuner."
+      }
+    ],
+    "apis": [
+      {
+        "name": "simulatorserver",
+        "version": "2.0",
+        "usage": "Simulering/test av API-anrop under utveckling."
+      },
+      {
+        "name": "eneo-sundsvall",
+        "version": "1.2",
+        "usage": "Kommunens AI-plattform Eneo som driver de dynamiska scenarierna."
+      }
+    ],
+    "integrationer": [
+      "Eneo (kommunens öppna AI-plattform)",
+      "Azure Speech (talsyntes/taltjänster)",
+      "WSO2 API-gateway",
+      "SAML IdP"
+    ],
+    "auth": "SAML (SSO) mot kommunens centrala inloggning",
+    "teknik": {
+      "frontend": "Next.js 15, React 19, sk-web-gui (separat frontend- och adminapplikation)",
+      "backend": "Node.js med Express och Prisma mot MySQL (TypeScript)",
+      "tester": "Cypress med kodtäckning"
+    },
+    "konfiguration": [
+      ".env-filer för frontend, admin och backend enligt exempel",
+      "CLIENT_KEY och CLIENT_SECRET från WSO2-portalen",
+      "ENEO_API_KEY för AI-plattformen",
+      "AZURE_REGION och AZURE_SUBSCRIPTION_KEY för taltjänster",
+      "SAML-certifikat och nycklar"
+    ],
+    "anteckningar": [
+      "README beskriver OIDC-inloggning men koden använder SAML mot kommunens IdP.",
+      "README anger Eneo-API version 1.0 men koden prenumererar på version 1.2.",
+      "Består av tre delar: deltagarfrontend, adminapplikation och backend med databas."
+    ],
+    "slug": "med-livet-som-insats-interaktiva-ai-scenarier"
+  },
+  {
+    "repo": "web-app-education-forecast",
+    "namn": "Resultatprognoser för skolan",
+    "kategori": "Utbildning",
+    "status": "aktiv",
+    "ingress": "Verktyg där lärare, mentorer och rektorer registrerar och följer prognoser över elevers möjlighet att nå målen i sina ämnen.",
+    "beskrivning": [
+      "Tjänsten, i gränssnittet kallad Resultatprognoser, låter lärare fylla i prognoser per elev och ämnesgrupp för aktuell period – till exempel om eleven väntas nå målen eller riskerar att inte göra det (varning). Prognoserna sparas centralt och kan följas över tid, med jämförelse mot tidigare perioder.",
+      "Olika roller ser olika delar: lärare fyller i och ser sina egna ämnen och grupper, mentorer följer sin mentorsklass, och rektorer ser samtliga klasser, ämnesgrupper och elever på skolan. Tjänsten omfattar både grundskola och gymnasium (inklusive anpassad skola).",
+      "Rollerna hämtas automatiskt utifrån användarens anställning och koppling till skolenheter, så att behörigheten följer den faktiska organisationen."
+    ],
+    "malgrupp": "lärare, mentorer och rektorer",
+    "funktioner": [
+      {
+        "titel": "Prognos per elev och ämne",
+        "text": "Lärare registrerar prognoser för elever i sina ämnesgrupper för aktuell period."
+      },
+      {
+        "titel": "Rollstyrda vyer",
+        "text": "Lärare ser sina ämnen och grupper, mentorer sin mentorsklass och rektorer hela skolan."
+      },
+      {
+        "titel": "Uppföljning över tid",
+        "text": "Prognoser kan jämföras med tidigare perioder och sammanställas per klass och elev."
+      },
+      {
+        "titel": "Signalering",
+        "text": "Elever markeras utifrån prognos, till exempel godkänd, varning eller ej godkänd."
+      },
+      {
+        "titel": "Sökning",
+        "text": "Sök bland elever, klasser och ämnesgrupper."
+      }
+    ],
+    "apis": [
+      {
+        "name": "SimulatorServer",
+        "version": "2.0",
+        "usage": "Simulerade svar vid test och utveckling"
+      },
+      {
+        "name": "Education",
+        "version": "2.0",
+        "usage": "Skolenheter, klasser, ämnesgrupper och elever"
+      },
+      {
+        "name": "PupilForecast",
+        "version": "1.0",
+        "usage": "Lagring och hämtning av elevprognoser"
+      },
+      {
+        "name": "Employee",
+        "version": "2.0",
+        "usage": "Medarbetaruppgifter för roll- och behörighetsstyrning"
+      }
+    ],
+    "integrationer": [
+      "SAML IdP",
+      "WSO2 API-gateway"
+    ],
+    "auth": "SAML (SSO) med rollstyrning (ForecastUser/rektor, GradeAuthor/lärare, Mentor)",
+    "teknik": {
+      "frontend": "Next.js (pages router), React, TypeScript, sk-web-gui, Tailwind CSS, Zustand, react-hook-form",
+      "backend": "Node.js, Express, routing-controllers, Passport SAML",
+      "tester": "Jest och Cypress (frontend), Jest och Supertest (backend)"
+    },
+    "konfiguration": [
+      ".env-filer för frontend och backend utifrån .env-exempel",
+      "CLIENT_KEY/CLIENT_SECRET mot kommunens API-gateway",
+      "SAML-certifikat, nycklar och callback-URL:er"
+    ],
+    "anteckningar": [
+      "Roller i koden: ForecastUser (rektor), GradeAuthor (lärare) och Mentor, med skoltyperna GR/GRS och GY/GYS.",
+      "Appnamnet i konfigurationen är 'Resultatprognoser'."
+    ],
+    "slug": "resultatprognoser-for-skolan"
+  },
+  {
+    "repo": "web-app-edu-locker-management",
+    "namn": "Skåphantering för skolor",
+    "kategori": "Utbildning",
+    "status": "aktiv",
+    "ingress": "Webbtjänst där skolpersonal administrerar elevskåp, kodlås och skåptilldelning på kommunens skolenheter.",
+    "beskrivning": [
+      "Skåphantering är ett verktyg för skolpersonal, med Sundsvalls gymnasium som utpekad verksamhet i gränssnittet. I tjänsten hanteras skolans elevskåp per skolenhet: personalen ser vilka skåp som finns, vilken status de har och vilken elev som disponerar respektive skåp.",
+      "Tjänsten hanterar även kodlås och koder kopplade till skåpen samt elevlistor med klasstillhörighet, så att skåp kan tilldelas, sägas upp och underhållas löpande under läsåret. Via kommunens meddelandetjänst kan information skickas ut, exempelvis i samband med skåptilldelning.",
+      "Inloggning sker med kommunens gemensamma inloggning (SAML) och åtkomst kan begränsas till särskilda AD-grupper."
+    ],
+    "malgrupp": "Skolpersonal och skoladministratörer, i första hand på gymnasiet",
+    "funktioner": [
+      {
+        "titel": "Skåpsöversikt per skolenhet",
+        "text": "Lista, sök och filtrera skolans elevskåp med status och inställningar."
+      },
+      {
+        "titel": "Tilldelning av skåp till elever",
+        "text": "Koppla skåp till elever och se vilka elever som saknar skåp."
+      },
+      {
+        "titel": "Hantering av kodlås",
+        "text": "Administrera kodlås och koder kopplade till skåpen."
+      },
+      {
+        "titel": "Elevregister",
+        "text": "Elever hämtas med klasstillhörighet från kommunens utbildnings- och folkbokföringsdata."
+      },
+      {
+        "titel": "Meddelandeutskick",
+        "text": "Skicka meddelanden via kommunens meddelandetjänst, med avsändar- och svarsadresser i konfigurationen."
+      }
+    ],
+    "apis": [
+      {
+        "name": "SimulatorServer",
+        "version": "2.0",
+        "usage": "Simulering av API-svar i test och utveckling."
+      },
+      {
+        "name": "Education",
+        "version": "2.0",
+        "usage": "Uppgifter om skolenheter, klasser och elever."
+      },
+      {
+        "name": "Citizen",
+        "version": "3.0",
+        "usage": "Person- och folkbokföringsuppgifter för elever."
+      },
+      {
+        "name": "PupilLocker",
+        "version": "1.0",
+        "usage": "Lagring och hantering av elevskåp och tilldelningar."
+      },
+      {
+        "name": "Messaging",
+        "version": "7.3",
+        "usage": "Utskick av meddelanden till elever och vårdnadshavare."
+      }
+    ],
+    "integrationer": [
+      "SAML IdP",
+      "WSO2 API-gateway"
+    ],
+    "auth": "SAML (SSO), med möjlighet att kräva särskilda AD-grupper",
+    "teknik": {
+      "frontend": "Next.js/React med sk-web-gui, i18next och Zustand",
+      "backend": "Node.js/Express med routing-controllers, Prisma och Passport-SAML",
+      "tester": "Jest, Testing Library och Cypress"
+    },
+    "konfiguration": [
+      ".env-filer för frontend och backend utifrån .env-exempel",
+      "CLIENT_KEY/CLIENT_SECRET mot kommunens API-gateway (api-test.sundsvall.se)",
+      "SAML-certifikat, nycklar och callback-adresser",
+      "MUNICIPALITY_ID (2281), AD_GROUP för behörighetsstyrning",
+      "Avsändaruppgifter för meddelandeutskick (SENDER_EMAIL, REPLY_EMAIL m.fl.)"
+    ],
+    "anteckningar": [
+      "README anger att både version 1 och 2 av Education-API:et behövs eftersom vissa endpoints ännu saknas i v2.",
+      "Gränssnittet är översatt till svenska med undertiteln 'Sundsvalls gymnasium'."
+    ],
+    "slug": "skaphantering-for-skolor"
+  },
+  {
+    "repo": "web-app-vocational-education",
+    "namn": "Yrkesutbildning Mitt",
+    "kategori": "Utbildning",
+    "status": "aktiv",
+    "ingress": "Publik webbplats där invånare kan söka, jämföra och intresseanmäla sig till yrkesutbildningar i regionen.",
+    "beskrivning": [
+      "Yrkesutbildning Mitt är en öppen webbplats som samlar yrkesutbildningar och kurser i Sundsvallsregionen. Besökare kan söka bland utbildningar, filtrera på bland annat utbildningsform och studieort, jämföra utbildningar med varandra och läsa detaljerad information om varje utbildning.",
+      "Webbplatsen hämtar utbildningsutbudet från kommunens utbildningsdatabas och visar även statistik. Besökare kan kontakta verksamheten och lämna intresseanmälningar, där meddelanden skickas vidare via kommunens meddelandetjänst. Inloggade användare kan spara sökningar och intresseområden.",
+      "Till tjänsten hör ett administrationsgränssnitt där redaktörer och administratörer hanterar sidinnehåll och användarkonton med olika behörighetsroller."
+    ],
+    "malgrupp": "Invånare och studieintresserade; redaktörer och administratörer för innehållshantering",
+    "funktioner": [
+      {
+        "titel": "Sök utbildningar",
+        "text": "Fritextsökning och filtrering av yrkesutbildningar på bland annat utbildningsform och ort."
+      },
+      {
+        "titel": "Jämför utbildningar",
+        "text": "Besökare kan lägga utbildningar i en jämförelsevy och se dem sida vid sida."
+      },
+      {
+        "titel": "Kontakt och intresseanmälan",
+        "text": "Formulär för att kontakta verksamheten, med utskick via kommunens meddelandetjänst."
+      },
+      {
+        "titel": "Sparade sökningar och intressen",
+        "text": "Inloggade användare kan spara sökningar och bevaka intresseområden."
+      },
+      {
+        "titel": "Administrationsgränssnitt",
+        "text": "Redaktörer hanterar innehåll och konton med rollstyrd behörighet (administratör/redaktör)."
+      }
+    ],
+    "apis": [
+      {
+        "name": "EducationFinder",
+        "version": "3.0",
+        "usage": "Hämtar utbildningar, kurser, filtervärden och statistik."
+      },
+      {
+        "name": "Messaging",
+        "version": "7.10",
+        "usage": "Skickar e-post vid kontakt, intresseanmälan och kontohantering."
+      },
+      {
+        "name": "SimulatorServer",
+        "version": "2.0",
+        "usage": "Hälsokontroll av API-anslutningen."
+      }
+    ],
+    "integrationer": [
+      "WSO2 API-gateway (api.sundsvall.se)",
+      "MySQL-databas"
+    ],
+    "auth": "Publik webbplats utan inloggning; lokala användarkonton med roller (ADMIN/EDITOR) och sessionsinloggning för admin",
+    "teknik": {
+      "frontend": "Next.js/React (publik webbplats) samt React med react-admin (administration)",
+      "backend": "Node.js med Express och routing-controllers, Prisma mot MySQL",
+      "tester": "Jest och Cypress"
+    },
+    "konfiguration": [
+      "Miljöfiler för frontend, admin och backend (.env-example respektive .env.example.local)",
+      "CLIENT_KEY/CLIENT_SECRET för API-gatewayn (WSO2)",
+      "Databasanslutningar (DATABASE_URL och skuggdatabas för migrationer)",
+      "Initialt administratörskonto anges via INIT_ADMIN_USER"
+    ],
+    "anteckningar": [
+      "Appnamnet i konfigurationen är YrkesutbildningMitt.",
+      "API-anropen är kodverifierade: education-finder/3.0, messaging/7.10 och simulatorserver/2.0.",
+      "Ingen SAML-inloggning – administrationen använder egna konton lagrade i databasen."
+    ],
+    "slug": "yrkesutbildning-mitt"
+  },
+  {
+    "repo": "web-app-operaton-modeler",
+    "namn": "Processmodellering för automatiserade flöden",
+    "kategori": "Utvecklingsverktyg",
+    "status": "verktyg",
+    "ingress": "Webbaserat ritverktyg där utvecklare skapar och publicerar BPMN-processer och DMN-beslut till kommunens processmotor.",
+    "beskrivning": [
+      "Verktyget är en webbapplikation för att rita processdiagram (BPMN) och beslutsmodeller (DMN) och publicera dem direkt till kommunens processmotor Operaton, som driver automatiserade ärendeflöden.",
+      "Editorn bygger på etablerade modelleringsverktyg och kompletteras med byggblock som hämtas i realtid från processmotorn, så att tillgängliga automatiska arbetsmoment visas som färdiga drag-och-släpp-komponenter.",
+      "Användare loggar in med kommunens gemensamma inloggning, och verktyget kan även hantera driftsättningar, till exempel att ta bort tidigare publicerade processer. Detta är ett internt utvecklingsverktyg, inte en tjänst för invånare eller allmän verksamhet."
+    ],
+    "malgrupp": "Utvecklare och processdesigners",
+    "funktioner": [
+      {
+        "titel": "BPMN-modellering",
+        "text": "Rita processdiagram med egenskapspanel och Camunda-kompatibla inställningar."
+      },
+      {
+        "titel": "DMN-modellering",
+        "text": "Skapa beslutsmodeller och beslutstabeller."
+      },
+      {
+        "titel": "Färdiga byggblock",
+        "text": "Automatiska arbetsmoment i processmotorn hämtas i realtid och visas som drag-och-släpp-komponenter."
+      },
+      {
+        "titel": "Publicering till processmotorn",
+        "text": "Modeller driftsätts direkt till processmotorn Operaton via kommunens API."
+      },
+      {
+        "titel": "Hantering av driftsättningar",
+        "text": "Tidigare publicerade processer kan listas och tas bort."
+      }
+    ],
+    "apis": [
+      {
+        "name": "Operaton",
+        "version": "1.0",
+        "usage": "Publicerar och hanterar processer och beslut i processmotorn (via OAuth2-klientuppgifter mot API-gatewayn)."
+      }
+    ],
+    "integrationer": [
+      "Operaton (processmotor)",
+      "SAML IdP",
+      "WSO2 API-gateway"
+    ],
+    "auth": "SAML (SSO)",
+    "teknik": {
+      "frontend": "Next.js 14, React, bpmn-js/dmn-js med Camunda properties-panel, Tailwind CSS",
+      "backend": "Node.js, Express, TypeScript (BFF med OAuth2 client credentials)",
+      "tester": null
+    },
+    "konfiguration": [
+      "Backend: .env.example.local med CLIENT_KEY/CLIENT_SECRET (OAuth2) och API_BASE_URL mot processmotorns API",
+      "SAML-inställningar för användarinloggning via BFF",
+      "MUNICIPALITY_ID styr vilken kommun anropen gäller",
+      "Frontend: .env-example kopieras till .env"
+    ],
+    "anteckningar": [
+      "Next.js är medvetet låst till version 14.1.4 på grund av en bugg i senare 14.x-versioner (dokumenterat i package.json).",
+      "Element-mallar hämtas i runtime från backend så att processmotorns arbetsmoment (@TopicWorker) blir byggblock i editorn.",
+      "Inga automatiska tester finns i repot."
+    ],
+    "slug": "processmodellering-for-automatiserade-floden"
+  },
+  {
+    "repo": "web-app-starter",
+    "namn": "Startmall för webbapplikationer",
+    "kategori": "Utvecklingsverktyg",
+    "status": "verktyg",
+    "ingress": "Gemensam startmall som nya webbapplikationer inom Sundsvalls kommun utgår ifrån, med färdig inloggning, administrationsgränssnitt och kvalitetskontroller.",
+    "beskrivning": [
+      "Startmallen är utgångspunkten när kommunen bygger nya webbtjänster. Den innehåller en färdig grundstruktur med publik webbdel, serverdel och ett separat administrationsgränssnitt, så att nya projekt inte behöver börja från noll.",
+      "Mallen har inbyggd inloggning via kommunens gemensamma inloggningslösning, koppling mot kommunens API-plattform samt färdiga rutiner för kodkvalitet, tester och driftsättning. Det gör att alla tjänster som byggs på mallen får en enhetlig grund och samma säkerhetsnivå.",
+      "Detta är inte en tjänst för slutanvändare utan ett internt verktyg för kommunens utvecklingsteam."
+    ],
+    "malgrupp": "utvecklare inom Sundsvalls kommun",
+    "funktioner": [
+      {
+        "titel": "Färdig grundstruktur",
+        "text": "Publik webbdel, serverdel och administrationsgränssnitt i ett och samma paket."
+      },
+      {
+        "titel": "Inbyggd inloggning",
+        "text": "Färdig koppling till kommunens gemensamma inloggning (SAML SSO) med certifikathantering."
+      },
+      {
+        "titel": "API-koppling",
+        "text": "Standardiserad anslutning till kommunens API-plattform med central lista över vilka API:er som används."
+      },
+      {
+        "titel": "Kvalitetskontroller",
+        "text": "Färdiga rutiner för kodgranskning, formatkontroll, typkontroll och automatiska tester."
+      },
+      {
+        "titel": "Stöd för flera instanser",
+        "text": "Valbart stöd för delad sessionslagring via Redis vid drift på flera servrar."
+      }
+    ],
+    "apis": [
+      {
+        "name": "SimulatorServer",
+        "version": "2.0",
+        "usage": "Exempel-API som visar hur API-anrop görs; byts ut mot riktiga API:er i nya projekt."
+      }
+    ],
+    "integrationer": [
+      "SAML IdP",
+      "WSO2 API-portal",
+      "Redis (valfritt)"
+    ],
+    "auth": "SAML (SSO)",
+    "teknik": {
+      "frontend": "Next.js 16, React 19 (frontend och admin)",
+      "backend": "Node.js, Express 5, TypeScript",
+      "tester": "Vitest (enhetstester), Playwright (e2e)"
+    },
+    "konfiguration": [
+      "Miljöfiler: frontend/.env-example, admin och backend/.env.example.local kopieras till lokala .env-filer",
+      "CLIENT_KEY och CLIENT_SECRET för kommunens API-plattform (WSO2)",
+      "SAML-certifikat och nycklar (IdP-cert, privat nyckel, publik nyckel)",
+      "Valfria Redis-inställningar för delad sessionslagring vid flera instanser"
+    ],
+    "anteckningar": [
+      "API-listan i backend/src/config/api-config.ts är utpekad som enda sanningskälla för API-prenumerationer.",
+      "Innehåller ett separat admin-paket utöver frontend och backend.",
+      "Repot är uttryckligen tänkt att klonas som mall (via tiged) när nya projekt startas."
+    ],
+    "slug": "startmall-for-webbapplikationer"
+  },
+  {
+    "repo": "web-app-fake-sso-idp",
+    "namn": "Test-IdP för utveckling",
+    "kategori": "Utvecklingsverktyg",
+    "status": "verktyg",
+    "ingress": "En enkel simulerad SAML-inloggningstjänst som utvecklare använder lokalt för att testa kommunens webbappar utan riktig inloggning.",
+    "beskrivning": [
+      "Det här är ett litet utvecklingsverktyg som härmar kommunens centrala inloggningstjänst (SAML SSO). När utvecklare bygger och testar webbappar lokalt pekar de appens inloggning mot detta verktyg i stället för den riktiga identitetsleverantören.",
+      "Testanvändare definieras i en konfigurationsfil med namn, lösenord och de attribut som apparna förväntar sig, och visas som valbara inloggningsalternativ. Verktyget är en vidareutveckling (fork) av ett öppet npm-paket, med stöd för bland annat RelayState och audience.",
+      "Verktyget är inte en tjänst för verksamheten eller invånare, och är på väg att ersättas av en nyare test-IdP med administrationsgränssnitt."
+    ],
+    "malgrupp": "Utvecklare",
+    "funktioner": [
+      {
+        "titel": "Simulerad SSO-inloggning",
+        "text": "Besvarar SAML-autentiseringsförfrågningar som en riktig IdP i utvecklingsmiljö."
+      },
+      {
+        "titel": "Konfigurerbara testanvändare",
+        "text": "Testanvändare med attribut definieras i en enkel konfigurationsfil och listas som inloggningsval."
+      },
+      {
+        "titel": "Sessionshantering",
+        "text": "Inloggningar sparas i session och kan göras direkt utan autentiseringsförfrågan."
+      },
+      {
+        "titel": "Körbar i Docker",
+        "text": "Levereras med Dockerfile och miljövariabler för port, destination och metadata."
+      }
+    ],
+    "apis": [],
+    "integrationer": [
+      "SAML (agerar IdP mot appars Service Provider)"
+    ],
+    "auth": "Ingen riktig autentisering – verktyget är självt en simulerad IdP med låtsasanvändare",
+    "teknik": {
+      "frontend": null,
+      "backend": "Node.js/Express (JavaScript, npm-paketet fake-sso-idp)",
+      "tester": "Mocha"
+    },
+    "konfiguration": [
+      "Miljövariabler via envalid: PORT (standard 7000), HOST, DESTINATION, METADATA, BASEPATH, AUDIENCE, ENUMERATEUSERS",
+      "Testanvändare i users-example.js / egen users-fil",
+      "Dockerfile för containerkörning"
+    ],
+    "anteckningar": [
+      "Fork av det öppna npm-paketet fake-sso-idp med tillägg för RelayState och audience.",
+      "Refereras som lokal inloggningslösning i andra kommun-repon, t.ex. Systemregistret.",
+      "Planeras ersättas av web-app-fake-idp-admin enligt det repots README."
+    ],
+    "slug": "test-idp-for-utveckling"
+  },
+  {
+    "repo": "web-app-fake-idp-admin",
+    "namn": "Test-IdP med användaradministration",
+    "kategori": "Utvecklingsverktyg",
+    "status": "verktyg",
+    "ingress": "Ett utvecklingsverktyg som simulerar kommunens SAML-inloggning och låter utvecklare administrera testanvändare och deras attribut i ett eget gränssnitt.",
+    "beskrivning": [
+      "Det här är ett internt utvecklingsverktyg som fungerar som en låtsas-identitetsleverantör (IdP) för SAML-inloggning. Under utveckling och test kan kommunens webbappar logga in mot den i stället för den riktiga inloggningstjänsten, vilket gör det enkelt att testa olika användare och behörigheter utan att röra produktionsmiljön.",
+      "Till skillnad från den enklare test-IdP:n som funnits tidigare har verktyget ett administrationsgränssnitt där testanvändare, deras attribut och inställningar hanteras och sparas i en lokal databas. Verktyget är avsett att på sikt ersätta den fristående test-IdP:n.",
+      "Verktyget är inte en tjänst för invånare eller verksamhet utan enbart ett stöd i systemutveckling."
+    ],
+    "malgrupp": "Utvecklare",
+    "funktioner": [
+      {
+        "titel": "Simulerad SAML-inloggning",
+        "text": "Agerar identitetsleverantör så att appar kan testa inloggningsflöden lokalt."
+      },
+      {
+        "titel": "Administration av testanvändare",
+        "text": "Skapa, redigera och ta bort testanvändare med attribut via ett webbgränssnitt."
+      },
+      {
+        "titel": "Lagring i databas",
+        "text": "Testanvändare och inställningar sparas beständigt i en lokal databas."
+      },
+      {
+        "titel": "Både SP och IdP",
+        "text": "Backenden agerar både SAML Service Provider och test-IdP, med metadata och svarsbyggare."
+      }
+    ],
+    "apis": [
+      {
+        "name": "SimulatorServer",
+        "version": "2.0",
+        "usage": "Hälsokontroll/simulering i utvecklingsmiljö."
+      }
+    ],
+    "integrationer": [
+      "SAML (SP och IdP)"
+    ],
+    "auth": "SAML (SSO) för admingränssnittet; verktyget är självt en test-IdP",
+    "teknik": {
+      "frontend": "Next.js 16, React (separata frontend- och admin-appar, byggda på sk-web-gui webbappsmall)",
+      "backend": "Node.js/Express med TypeScript, Prisma ORM mot SQLite",
+      "tester": "Jest, Cypress"
+    },
+    "konfiguration": [
+      "Miljöfiler: frontend/.env, backend/.env.development.local och .env.test.local",
+      "Egna IdP-nycklar och metadata (SAML_IDP_ENTITY_ID, SAML_IDP_PRIVATE_KEY, SAML_SP_AUDIENCE m.fl.)",
+      "SAML_IDP_ENUMERATE_USERS för att lista testanvändare på inloggningssidan",
+      "Databas initieras med Prisma (generate/migrate/seed)",
+      "Docker Compose-filer, inklusive variant med extern proxy (nginx)"
+    ],
+    "anteckningar": [
+      "Avsett att ersätta det fristående verktyget web-app-fake-sso-idp enligt README.",
+      "Datamodellen innehåller User, Attribute och UserSettings i SQLite via Prisma.",
+      "Repot är nystartat (första sammanslagna ändringen juli 2026) och bygger på kommunens webbappstartmall."
+    ],
+    "slug": "test-idp-med-anvandaradministration"
+  },
+  {
+    "repo": "web-app-os-poc",
+    "namn": "Utforskande webbapp-prototyp",
+    "kategori": "Utvecklingsverktyg",
+    "status": "poc",
+    "ingress": "Ett i stort sett orört skal av kommunens webbapp-startmall, uppsatt som proof-of-concept utan implementerad verksamhetsfunktion.",
+    "beskrivning": [
+      "Repot är en klon av kommunens standardmall för webbappar (web-app-starter) med frontend, backend och administrationsgränssnitt, men innehåller ingen egen verksamhetslogik – sidorna består av mallens exempel- och inloggningssidor.",
+      "Vad förkortningen 'os' i namnet syftar på framgår inte av koden, och eftersom ingen funktionalitet byggts utöver mallen är syftet osäkert. Repot bör betraktas som ett tekniskt experiment eller en startpunkt som inte utvecklats vidare."
+    ],
+    "malgrupp": "utvecklare",
+    "funktioner": [
+      {
+        "titel": "Komplett mallstruktur",
+        "text": "Frontend, backend och admin-gränssnitt enligt kommunens startmall."
+      },
+      {
+        "titel": "Inloggningsflöde",
+        "text": "Mallens färdiga SAML-inloggning med behörighetsgrupper."
+      },
+      {
+        "titel": "Exempelsidor",
+        "text": "Endast mallens exempelsida och inloggningssida finns implementerade."
+      }
+    ],
+    "apis": [
+      {
+        "name": "SimulatorServer",
+        "version": "2.0",
+        "usage": "Mallens standardprenumeration för simulerade svar"
+      }
+    ],
+    "integrationer": [
+      "SAML IdP"
+    ],
+    "auth": "SAML (SSO) enligt startmallen",
+    "teknik": {
+      "frontend": "Next.js (App Router), React, TypeScript, sk-web-gui, Tailwind CSS",
+      "backend": "Node.js, Express, routing-controllers, Passport SAML",
+      "tester": null
+    },
+    "konfiguration": [
+      ".env-filer enligt startmallens exempel för frontend, backend och admin",
+      "SAML-certifikat och API-nycklar enligt mallen"
+    ],
+    "anteckningar": [
+      "Git-historiken i klonen visar endast mallarbete ('use node 20 in backend'); inga verksamhetsspecifika sidor, texter eller API-anrop har hittats i koden.",
+      "README är startmallens generiska text med rubriken 'Projektnamn'."
+    ],
+    "slug": "utforskande-webbapp-prototyp"
+  },
+  {
+    "repo": "web-app-katla-sm",
+    "namn": "Rapportering och hantering av supportärenden",
+    "kategori": "Ärendehantering",
+    "status": "aktiv",
+    "ingress": "Internt verktyg där medarbetare rapporterar in och följer ärenden som hanteras i kommunens gemensamma ärendeplattform för verksamhetsstöd.",
+    "beskrivning": [
+      "Tjänsten låter inloggade medarbetare registrera rapporter och ärenden via formulär, med möjlighet att spara utkast innan de skickas in. Formulären styrs av centralt definierade formulärmallar, vilket gör att nya ärendetyper kan läggas till utan att bygga om applikationen.",
+      "I en översikt kan användaren se och filtrera sina ärenden, följa händelser som nya meddelanden, beslut och bilagor via notifieringar samt söka upp berörda personer via personnummer eller medarbetare via användarnamn.",
+      "Ärendena lagras och hanteras i kommunens gemensamma plattform för supportärenden. Applikationen är under aktiv utveckling."
+    ],
+    "malgrupp": "medarbetare och handläggare inom kommunen",
+    "funktioner": [
+      {
+        "titel": "Registrera ärenden",
+        "text": "Rapporter och ärenden fylls i via formulär med stöd för att spara utkast innan inskick."
+      },
+      {
+        "titel": "Formulär från mallar",
+        "text": "Formulärens innehåll styrs av centrala formulärdefinitioner, vilket gör ärendetyper lätta att ändra."
+      },
+      {
+        "titel": "Ärendeöversikt med filter",
+        "text": "Inloggade användare ser sina ärenden och kan filtrera bland pågående och avslutade."
+      },
+      {
+        "titel": "Notifieringar",
+        "text": "Avisering vid nya meddelanden, beslut, bilagor och fasbyten i ärenden."
+      },
+      {
+        "titel": "Person- och medarbetarsökning",
+        "text": "Berörda parter hämtas via sökning på personnummer eller användarnamn."
+      }
+    ],
+    "apis": [
+      {
+        "name": "SupportManagement",
+        "version": "12.4",
+        "usage": "Lagring och hantering av ärenden."
+      },
+      {
+        "name": "SupportManagement (sprint)",
+        "version": "14.14",
+        "usage": "Tillfällig utvecklingsversion av ärende-API:t som trafiken styrs om till under pågående sprint."
+      },
+      {
+        "name": "Citizen",
+        "version": "3.0",
+        "usage": "Uppslag av personuppgifter via personnummer."
+      },
+      {
+        "name": "Employee",
+        "version": "2.0",
+        "usage": "Uppslag av medarbetare via användarnamn."
+      },
+      {
+        "name": "Company",
+        "version": "1.0",
+        "usage": "Uppslag av företagsuppgifter."
+      },
+      {
+        "name": "JsonSchema",
+        "version": "1.0",
+        "usage": "Hämtar formulärdefinitioner som styr ärendeformulären."
+      },
+      {
+        "name": "SimulatorServer",
+        "version": "2.0",
+        "usage": "Simulerings-API för test och utveckling."
+      }
+    ],
+    "integrationer": [
+      "SAML IdP"
+    ],
+    "auth": "SAML (SSO)",
+    "teknik": {
+      "frontend": "Next.js 16, React 19, i18next (svenska och engelska)",
+      "backend": "Node.js, Express 4, TypeScript",
+      "tester": "Vitest (enhetstester), Playwright (e2e)"
+    },
+    "konfiguration": [
+      "Miljöfiler: frontend/.env-example och backend/.env.example.local",
+      "CLIENT_KEY och CLIENT_SECRET mot kommunens API-plattform (WSO2)",
+      "SAML-inställningar med IdP-adress och certifikat",
+      "Funktionsflaggor i frontend, bl.a. utkastläge, ärendefilter och reducerad partsinformation",
+      "Inställningar för automatisk utloggning vid inaktivitet"
+    ],
+    "anteckningar": [
+      "Koden innehåller en tillfällig omstyrning till en sprintversion av ärende-API:t, vilket visar på pågående aktiv utveckling.",
+      "Behörighet styrs via SAML-grupper och attribut; användare utan rätt grupp nekas inloggning.",
+      "Gränssnittet finns på både svenska och engelska."
+    ],
+    "slug": "rapportering-och-hantering-av-supportarenden"
+  },
+  {
+    "repo": "web-app-katla-aid",
+    "namn": "Ärenderapportering ekonomiskt bistånd",
+    "kategori": "Ärendehantering",
+    "status": "aktiv",
+    "ingress": "Webbtjänst där medarbetare rapporterar in ärenden och uppgifter kring ekonomiskt bistånd via guidade formulär.",
+    "beskrivning": [
+      "Tjänsten används för att registrera rapporter och ärenden som rör ekonomiskt bistånd. Användaren söker fram en person via personnummer eller en medarbetare via användarnamn, fyller i uppgifter steg för steg i en guidad formulärsprocess (wizard) med sammanfattning innan inskick, och kan spara utkast innan ärendet skickas in.",
+      "Inskickade rapporter samlas i en översikt där de kan filtreras och följas per status, ärendenummer och typ av rapport. Formulären styrs av centralt publicerade formulärscheman, vilket gör att innehållet i rapporterna kan ändras utan att tjänsten byggs om.",
+      "Tjänsten är under aktiv utveckling och är en systerapplikation till kommunens övriga ärendehanteringsappar byggda på samma grund. Exakt verksamhetsprocess kan därför fortfarande förändras."
+    ],
+    "malgrupp": "handläggare och medarbetare inom socialtjänsten",
+    "funktioner": [
+      {
+        "titel": "Guidad rapportering",
+        "text": "Steg-för-steg-formulär med sammanfattning och kompletthetskontroll innan inskick."
+      },
+      {
+        "titel": "Personsökning",
+        "text": "Sök på personnummer eller användarnamn för att koppla rapporten till rätt person eller medarbetare."
+      },
+      {
+        "titel": "Utkast",
+        "text": "Rapporter kan sparas som utkast och färdigställas senare (funktion bakom funktionsflagga)."
+      },
+      {
+        "titel": "Ärendeöversikt",
+        "text": "Lista över inskickade ärenden med status, ärendenummer och typ av rapport, med filtrering."
+      },
+      {
+        "titel": "Schemastyrda formulär",
+        "text": "Formulärens innehåll hämtas som formulärscheman från ett centralt API."
+      }
+    ],
+    "apis": [
+      {
+        "name": "SimulatorServer",
+        "version": "2.0",
+        "usage": "Simulerade svar vid test och utveckling"
+      },
+      {
+        "name": "CareManagement",
+        "version": "1.0",
+        "usage": "Hantering av ärenden inom vård/omsorg och bistånd"
+      },
+      {
+        "name": "Employee",
+        "version": "2.0",
+        "usage": "Uppslag av medarbetaruppgifter via användarnamn"
+      },
+      {
+        "name": "Citizen",
+        "version": "3.0",
+        "usage": "Uppslag av personuppgifter via personnummer"
+      },
+      {
+        "name": "Company",
+        "version": "1.0",
+        "usage": "Uppslag av företagsuppgifter"
+      },
+      {
+        "name": "JsonSchema",
+        "version": "1.0",
+        "usage": "Hämtning av formulärscheman som styr rapportformulären"
+      }
+    ],
+    "integrationer": [
+      "SAML IdP",
+      "WSO2 API-gateway"
+    ],
+    "auth": "SAML (SSO) med behörighetsgrupper",
+    "teknik": {
+      "frontend": "Next.js 16 (App Router), React 19, TypeScript, sk-web-gui, Tailwind CSS, Zustand, react-hook-form, RJSF (JSON Schema-formulär), i18next",
+      "backend": "Node.js, Express, routing-controllers, Passport SAML",
+      "tester": "Jest och Playwright (frontend), Vitest (backend)"
+    },
+    "konfiguration": [
+      ".env-filer för frontend och backend utifrån .env-exempel",
+      "CLIENT_KEY/CLIENT_SECRET mot kommunens API-gateway (WSO2)",
+      "SAML-certifikat och nycklar (IdP-cert, privat nyckel, callback-URL:er)",
+      "MUNICIPALITY_ID och NAMESPACE för ärendehanteringen",
+      "USE_LOCAL_SCHEMAS för att läsa formulärscheman lokalt under utveckling",
+      "Funktionsflaggor, t.ex. NEXT_PUBLIC_DRAFT_ERRAND och inaktivitetsvarning med automatisk utloggning"
+    ],
+    "anteckningar": [
+      "README anger SupportManagement 10.7 men koden (api-config.ts) prenumererar i stället på CareManagement 1.0 samt Company och JsonSchema.",
+      "Frontend visas under sökvägen /eb (ekonomiskt bistånd) och sidrubriken är 'Ekonomiskt bistånd'.",
+      "Systerapplikation till web-app-katla-sm, byggd från samma kodbas.",
+      "Inaktivitetsvarning med nedräkning till automatisk utloggning är konfigurerbar."
+    ],
+    "slug": "arenderapportering-ekonomiskt-bistand"
+  }
+]

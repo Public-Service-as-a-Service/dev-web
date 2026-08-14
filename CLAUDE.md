@@ -56,10 +56,28 @@ specifika API:er (MEX: Contract, Estateinfo, Billing*, Company; PT:
 PartyAssets, JsonSchema, Messaging). Gemensamma master-data-API:er för alla:
 Citizen, Employee, LegalEntity, Party, ActiveDirectory.
 
+## Två sätt att skapa tjänstesidor
+
+1. **Datadrivet (standard).** Lägg till ett objekt i `scripts/apps-data.json`
+   med de fält som redan finns där (repo, namn, slug, kategori, status,
+   ingress, beskrivning, målgrupp, funktioner, apis, integrationer, auth,
+   teknik, konfiguration, anteckningar) och kör
+   `python3 scripts/generate-pages.py` följt av
+   `python3 scripts/generate-diagrams.py`. Sidan, arkitekturritningen och
+   startsidans kort (mellan `APP-CARDS`-markörerna i `index.html`) genereras
+   då automatiskt med rätt struktur. Fyll fälten enligt tabellen ovan –
+   uppgifterna ska vara härledda ur källkodsrepot.
+2. **Handskrivet.** De tre ärendehanteringssidorna
+   (`generisk-arendehantering`, `myndighetsutovning-*`) är handskrivna och
+   rörs inte av generatorn; deras diagram definieras direkt i
+   `scripts/generate-diagrams.py`. Använd det här sättet bara när en sida
+   behöver avvika från standardstrukturen.
+
 ## Tjänstesidans struktur
 
-Skapa sidan som `tjanster/<slug>.html` (slug utan å/ä/ö, med bindestreck).
-Kopiera en befintlig sida som mall och behåll ordningen:
+Sidan heter `tjanster/<slug>.html` (slug utan å/ä/ö, med bindestreck,
+härledd ur tjänstens namn – inte ur repots kodnamn). Strukturen, som
+generatorn producerar och handskrivna sidor ska följa:
 
 1. **Sidhuvud** – samma `site-header` som övriga sidor (länkar med `../`).
 2. **`page-hero`** – brödsmulor (Start / Webbapplikationer / sidnamn),
@@ -96,9 +114,12 @@ Kopiera en befintlig sida som mall och behåll ordningen:
 ## Arkitekturritningen
 
 En SVG per applikation i `assets/diagrams/<samma slug>.svg`, genererad med
-`scripts/generate-diagrams.py` (kör `python3 scripts/generate-diagrams.py` från
-repots rot). Lägg till nya applikationer som ett nytt `diagram(...)`-anrop i
-skriptet i stället för att rita för hand – då blir stil och layout konsekvent.
+`scripts/generate-diagrams.py`. Datadrivna applikationer får sin ritning
+automatiskt ur `scripts/apps-data.json`; lager utan innehåll utelämnas
+(en app utan API-plattformskopplingar visar bara webb-app, eventuell
+inloggning och externa integrationer). Handskrivna sidor har egna
+`diagram(...)`-anrop i skriptet. Rita aldrig för hand – generatorn håller
+stil och layout konsekvent.
 
 Ritningens lager, uppifrån och ned:
 
@@ -119,10 +140,11 @@ exakt med sidans API-tabell – båda kommer från samma källor i repot.
 
 ## Övrigt att uppdatera
 
-- **`index.html`** – lägg till ett `teaser-card` för den nya sidan i sektionen
-  "Webbapplikationer i katalogen" (tagg, rubrik, 2–3 raders beskrivning,
-  "Läs mer →"). Uppdatera vid behov texten i `coming-soon`-rutan.
-- **`README.md`** – lägg till sidan i innehållslistan.
+- **`index.html`** – korten mellan `<!-- BEGIN:APP-CARDS -->` och
+  `<!-- END:APP-CARDS -->` genereras av `scripts/generate-pages.py`
+  (grupperade per kategori, sorterade på namn, med statusetikett för
+  prototyper/avvecklade/verktyg); redigera aldrig det blocket för hand.
+- **`README.md`** – uppdatera vid behov beskrivningen av innehållet.
 - **Verifiera lokalt** innan push: rendera sidorna med headless Chromium och
   kontrollera layout, diagram och att inget projektnamn syns i löptext
   (`grep -i <projektnamn> *.html tjanster/*.html` ska bara träffa URL:er).

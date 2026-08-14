@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI-baserad scenarioövning för ungdomar – Webbkatalogen</title>
+  <meta name="description" content="Testapp där en AI-spelledare driver interaktiva scenarioövningar som låter ungdomar uppleva svåra valsituationer, till exempel kopplade till gängkriminalitet och droger.">
+  <link rel="stylesheet" href="../assets/styles.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%93%98%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">▦</span>
+      <a class="brand-name" href="../index.html">Webbkatalogen</a>
+    </div>
+    <nav class="site-nav" aria-label="Huvudmeny">
+      <a href="../index.html#om-katalogen">Om katalogen</a>
+      <a href="../index.html#tjanster">Webbapplikationer</a>
+      <a href="https://github.com/Sundsvallskommun" rel="external">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="page-hero">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Brödsmulor">
+        <a href="../index.html">Start</a> <span aria-hidden="true">/</span>
+        <a href="../index.html#tjanster">Webbapplikationer</a> <span aria-hidden="true">/</span>
+        <span aria-current="page">AI-baserad scenarioövning för ungdomar</span>
+      </nav>
+      <span class="app-tag app-tag-light">AI-tjänster</span> <span class="app-tag app-tag-light app-tag-status">Prototyp</span>
+      <h1>AI-baserad scenarioövning för ungdomar</h1>
+      <p class="hero-lead">
+        Testapp där en AI-spelledare driver interaktiva scenarioövningar som låter ungdomar uppleva svåra valsituationer, till exempel kopplade till gängkriminalitet och droger.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>Om applikationen</h2>
+      <div class="columns">
+        <div class="column-text">
+          <p>
+            Appen är en proof of concept som prövar konceptet AI-assistent som spelledare. I gränssnittet kallas övningen 'Med livet som insats' med scenariot 'Bara en liten tjänst': deltagaren möter en berättelse som simulerar verkliga situationer och får göra val vars konsekvenser AI:n spelar upp.
+          </p>
+          <p>
+            Syftet är förebyggande – att ge ungdomar en trygg miljö att reflektera över svåra val kring exempelvis gängkriminalitet och droger. Övningen inleds med en introduktion som förklarar att innehållet kan upplevas obehagligt, och deltagaren kan när som helst pausa, fortsätta eller avsluta och få en summering.
+          </p>
+          <p>
+            AI-funktionerna drivs av kommunens AI-plattform Intric via den gemensamma AI-proxyn. Som POC saknar appen inloggning och konfigureras med assistent-id och nyckel.
+          </p>
+
+          <h3>Det här stödjer applikationen</h3>
+          <ul class="app-modules">
+            <li><strong>AI-driven berättelse</strong> – En AI-spelledare driver scenariot framåt utifrån deltagarens val och fria svar.</li>
+            <li><strong>Introduktion och samtycke</strong> – Tydlig introduktion om innehållets karaktär innan övningen startar.</li>
+            <li><strong>Paus och avslut</strong> – Deltagaren kan pausa, fortsätta eller avsluta med en avslutande summering.</li>
+            <li><strong>Installerbar app</strong> – Kan installeras som app (PWA) för bästa upplevelse.</li>
+          </ul>
+        </div>
+        <aside class="fact-box" aria-label="Snabbfakta">
+          <h3>Snabbfakta</h3>
+          <ul>
+            <li>Målgrupp: <strong>Ungdomar, exempelvis i skola eller förebyggande verksamhet</strong></li>
+            <li>Kategori: <strong>AI-tjänster</strong></li>
+            <li>Status: <strong>Prototyp</strong></li>
+            <li>Inloggning: <strong>Ingen användarinloggning – appen autentiseras mot AI-proxyn med API-nyckel eller applikationsnamn och hash</strong></li>
+          </ul>
+          <p class="fact-box-link">
+            <a href="https://github.com/Sundsvallskommun/web-app-ai-scenario-poc" rel="external">Källkod på GitHub</a>
+          </p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="teknisk-dokumentation">
+    <div class="container">
+      <h2>Teknisk dokumentation</h2>
+      <p class="section-intro">
+        Nedan beskrivs hur applikationen är uppbyggd, vilka API:er den använder och vad
+        som krävs för att driftsätta den. Informationen är härledd ur källkoden och
+        dess konfiguration på GitHub.
+      </p>
+
+      <h3>Arkitektur</h3>
+      <figure class="diagram">
+        <div class="diagram-wrap">
+          <img src="../assets/diagrams/ai-baserad-scenarioovning-for-ungdomar.svg" alt="Arkitekturskiss för AI-baserad scenarioövning för ungdomar: webbappens delar och dess integrationer.">
+        </div>
+        <figcaption>Lösningsarkitektur, härledd ur källkodens konfiguration.</figcaption>
+      </figure>
+      <p>
+        Applikationen är en webbaserad frontend (React med Vite, sk-web-gui/ai, i18next och react-webcam). Övriga integrationer som förekommer i koden: Intric, Kommunens AI-proxy (web-app-intric-backend), Azure (typdefinitioner för taltjänster finns i koden).
+      </p>
+
+      <h3>Teknikstack</h3>
+      <ul>
+        <li><strong>Frontend:</strong> React med Vite, sk-web-gui/ai, i18next och react-webcam</li>
+      </ul>
+
+      <h3>API-beroenden</h3>
+      <p>
+        Inga prenumerationer på kommunens API-plattform hittades i källkodens
+        konfiguration.
+      </p>
+
+      <h3>Konfiguration och driftsättning</h3>
+      <ul>
+        <li>.env utifrån .env.example.env</li>
+        <li>VITE_INTRIC_API_BASE_URL till AI-proxyn samt VITE_ASSISTANT (assistent-id)</li>
+        <li>VITE_INTRIC_API_KEY eller VITE_APPLICATION + VITE_HASH</li>
+        <li>Valfri bakgrundsbild och tillåtna värdar</li>
+      </ul>
+      <h3>Noterbart ur källkoden</h3>
+      <ul>
+        <li>Uttryckligen en POC enligt README ('En testapp för att prova på konceptet med AI-assistent').</li>
+        <li>Paketnamnet i package.json skiljer sig från reponamnet, vilket tyder på att koden delar ursprung med en annan samtalsapp.</li>
+      </ul>
+
+      <h3>Källkod</h3>
+      <p>
+        Källkoden är öppen och finns hos
+        <a href="https://github.com/Sundsvallskommun/web-app-ai-scenario-poc" rel="external">Sundsvalls kommun på GitHub</a>.
+        I källkodsförrådet finns även instruktioner för att klona, konfigurera och
+        starta applikationen i egen miljö.
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div>
+      <p class="footer-title">Webbkatalogen</p>
+      <p>En översikt över de webbapplikationer som Sundsvalls kommun delar som öppen källkod.</p>
+    </div>
+    <div>
+      <p class="footer-title">Länkar</p>
+      <ul class="footer-links">
+        <li><a href="https://github.com/Sundsvallskommun" rel="external">Sundsvalls kommun på GitHub</a></li>
+        <li><a href="https://sundsvall.se" rel="external">sundsvall.se</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

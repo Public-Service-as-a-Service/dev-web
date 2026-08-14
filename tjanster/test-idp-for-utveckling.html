@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Test-IdP för utveckling – Webbkatalogen</title>
+  <meta name="description" content="En enkel simulerad SAML-inloggningstjänst som utvecklare använder lokalt för att testa kommunens webbappar utan riktig inloggning.">
+  <link rel="stylesheet" href="../assets/styles.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%93%98%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">▦</span>
+      <a class="brand-name" href="../index.html">Webbkatalogen</a>
+    </div>
+    <nav class="site-nav" aria-label="Huvudmeny">
+      <a href="../index.html#om-katalogen">Om katalogen</a>
+      <a href="../index.html#tjanster">Webbapplikationer</a>
+      <a href="https://github.com/Sundsvallskommun" rel="external">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="page-hero">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Brödsmulor">
+        <a href="../index.html">Start</a> <span aria-hidden="true">/</span>
+        <a href="../index.html#tjanster">Webbapplikationer</a> <span aria-hidden="true">/</span>
+        <span aria-current="page">Test-IdP för utveckling</span>
+      </nav>
+      <span class="app-tag app-tag-light">Utvecklingsverktyg</span> <span class="app-tag app-tag-light app-tag-status">Verktyg</span>
+      <h1>Test-IdP för utveckling</h1>
+      <p class="hero-lead">
+        En enkel simulerad SAML-inloggningstjänst som utvecklare använder lokalt för att testa kommunens webbappar utan riktig inloggning.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>Om applikationen</h2>
+      <div class="columns">
+        <div class="column-text">
+          <p>
+            Det här är ett litet utvecklingsverktyg som härmar kommunens centrala inloggningstjänst (SAML SSO). När utvecklare bygger och testar webbappar lokalt pekar de appens inloggning mot detta verktyg i stället för den riktiga identitetsleverantören.
+          </p>
+          <p>
+            Testanvändare definieras i en konfigurationsfil med namn, lösenord och de attribut som apparna förväntar sig, och visas som valbara inloggningsalternativ. Verktyget är en vidareutveckling (fork) av ett öppet npm-paket, med stöd för bland annat RelayState och audience.
+          </p>
+          <p>
+            Verktyget är inte en tjänst för verksamheten eller invånare, och är på väg att ersättas av en nyare test-IdP med administrationsgränssnitt.
+          </p>
+
+          <h3>Det här stödjer applikationen</h3>
+          <ul class="app-modules">
+            <li><strong>Simulerad SSO-inloggning</strong> – Besvarar SAML-autentiseringsförfrågningar som en riktig IdP i utvecklingsmiljö.</li>
+            <li><strong>Konfigurerbara testanvändare</strong> – Testanvändare med attribut definieras i en enkel konfigurationsfil och listas som inloggningsval.</li>
+            <li><strong>Sessionshantering</strong> – Inloggningar sparas i session och kan göras direkt utan autentiseringsförfrågan.</li>
+            <li><strong>Körbar i Docker</strong> – Levereras med Dockerfile och miljövariabler för port, destination och metadata.</li>
+          </ul>
+        </div>
+        <aside class="fact-box" aria-label="Snabbfakta">
+          <h3>Snabbfakta</h3>
+          <ul>
+            <li>Målgrupp: <strong>Utvecklare</strong></li>
+            <li>Kategori: <strong>Utvecklingsverktyg</strong></li>
+            <li>Status: <strong>Verktyg</strong></li>
+            <li>Inloggning: <strong>Ingen riktig autentisering – verktyget är självt en simulerad IdP med låtsasanvändare</strong></li>
+          </ul>
+          <p class="fact-box-link">
+            <a href="https://github.com/Sundsvallskommun/web-app-fake-sso-idp" rel="external">Källkod på GitHub</a>
+          </p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="teknisk-dokumentation">
+    <div class="container">
+      <h2>Teknisk dokumentation</h2>
+      <p class="section-intro">
+        Nedan beskrivs hur applikationen är uppbyggd, vilka API:er den använder och vad
+        som krävs för att driftsätta den. Informationen är härledd ur källkoden och
+        dess konfiguration på GitHub.
+      </p>
+
+      <h3>Arkitektur</h3>
+      <figure class="diagram">
+        <div class="diagram-wrap">
+          <img src="../assets/diagrams/test-idp-for-utveckling.svg" alt="Arkitekturskiss för Test-IdP för utveckling: webbappens delar och dess integrationer.">
+        </div>
+        <figcaption>Lösningsarkitektur, härledd ur källkodens konfiguration.</figcaption>
+      </figure>
+      <p>
+        Applikationen är en backendtjänst (Node.js/Express (JavaScript, npm-paketet fake-sso-idp)). Övriga integrationer som förekommer i koden: SAML (agerar IdP mot appars Service Provider).
+      </p>
+
+      <h3>Teknikstack</h3>
+      <ul>
+        <li><strong>Backend:</strong> Node.js/Express (JavaScript, npm-paketet fake-sso-idp)</li>
+        <li><strong>Test:</strong> Mocha</li>
+      </ul>
+
+      <h3>API-beroenden</h3>
+      <p>
+        Inga prenumerationer på kommunens API-plattform hittades i källkodens
+        konfiguration.
+      </p>
+
+      <h3>Konfiguration och driftsättning</h3>
+      <ul>
+        <li>Miljövariabler via envalid: PORT (standard 7000), HOST, DESTINATION, METADATA, BASEPATH, AUDIENCE, ENUMERATEUSERS</li>
+        <li>Testanvändare i users-example.js / egen users-fil</li>
+        <li>Dockerfile för containerkörning</li>
+      </ul>
+      <h3>Noterbart ur källkoden</h3>
+      <ul>
+        <li>Fork av det öppna npm-paketet fake-sso-idp med tillägg för RelayState och audience.</li>
+        <li>Refereras som lokal inloggningslösning i andra kommun-repon, t.ex. Systemregistret.</li>
+        <li>Planeras ersättas av web-app-fake-idp-admin enligt det repots README.</li>
+      </ul>
+
+      <h3>Källkod</h3>
+      <p>
+        Källkoden är öppen och finns hos
+        <a href="https://github.com/Sundsvallskommun/web-app-fake-sso-idp" rel="external">Sundsvalls kommun på GitHub</a>.
+        I källkodsförrådet finns även instruktioner för att klona, konfigurera och
+        starta applikationen i egen miljö.
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div>
+      <p class="footer-title">Webbkatalogen</p>
+      <p>En översikt över de webbapplikationer som Sundsvalls kommun delar som öppen källkod.</p>
+    </div>
+    <div>
+      <p class="footer-title">Länkar</p>
+      <ul class="footer-links">
+        <li><a href="https://github.com/Sundsvallskommun" rel="external">Sundsvalls kommun på GitHub</a></li>
+        <li><a href="https://sundsvall.se" rel="external">sundsvall.se</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

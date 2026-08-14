@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Felanmälan – Webbkatalogen</title>
+  <meta name="description" content="Öppen e-tjänst där invånare enkelt rapporterar fel och brister i den offentliga miljön med bild, kartposition och beskrivning.">
+  <link rel="stylesheet" href="../assets/styles.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%93%98%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">▦</span>
+      <a class="brand-name" href="../index.html">Webbkatalogen</a>
+    </div>
+    <nav class="site-nav" aria-label="Huvudmeny">
+      <a href="../index.html#om-katalogen">Om katalogen</a>
+      <a href="../index.html#tjanster">Webbapplikationer</a>
+      <a href="https://github.com/Sundsvallskommun" rel="external">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="page-hero">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Brödsmulor">
+        <a href="../index.html">Start</a> <span aria-hidden="true">/</span>
+        <a href="../index.html#tjanster">Webbapplikationer</a> <span aria-hidden="true">/</span>
+        <span aria-current="page">Felanmälan</span>
+      </nav>
+      <span class="app-tag app-tag-light">Invånartjänster</span>
+      <h1>Felanmälan</h1>
+      <p class="hero-lead">
+        Öppen e-tjänst där invånare enkelt rapporterar fel och brister i den offentliga miljön med bild, kartposition och beskrivning.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>Om applikationen</h2>
+      <div class="columns">
+        <div class="column-text">
+          <p>
+            Felanmälan låter invånare rapportera fel och brister i Sundsvalls offentliga miljö, till exempel skador på vägar, trasig belysning, klotter, nedskräpning eller problem med lekplatser. Anmälan görs i en enkel guide där man tar eller laddar upp bilder, markerar platsen på kommunens karta och beskriver felet.
+          </p>
+          <p>
+            När anmälan skickas in klassificeras den automatiskt med AI utifrån bild och beskrivning, så att den hamnar i rätt kategori – exempelvis vägskada, belysning, snö och is eller park och grönytor – och skapas som ett ärende i kommunens ärendehanteringssystem.
+          </p>
+          <p>
+            Tjänsten kräver ingen inloggning. Kontaktuppgifter är frivilliga och anges bara om man vill ha återkoppling.
+          </p>
+
+          <h3>Det här stödjer applikationen</h3>
+          <ul class="app-modules">
+            <li><strong>Guidad felanmälan</strong> – Stegvis guide där invånaren beskriver felet, laddar upp bilder och granskar sin anmälan innan den skickas.</li>
+            <li><strong>Kartmarkering</strong> – Platsen markeras på kommunens karta (Origo/karta.sundsvall.se).</li>
+            <li><strong>Automatisk AI-klassificering</strong> – Bild och beskrivning analyseras av en AI-assistent som föreslår rätt felkategori, med reservkategori om AI inte är konfigurerad.</li>
+            <li><strong>Ärende skapas automatiskt</strong> – Anmälan blir ett ärende i kommunens ärendehanteringssystem med bilderna som bilagor.</li>
+            <li><strong>Frivillig återkoppling</strong> – E-post eller telefonnummer kan lämnas om invånaren vill bli kontaktad.</li>
+          </ul>
+        </div>
+        <aside class="fact-box" aria-label="Snabbfakta">
+          <h3>Snabbfakta</h3>
+          <ul>
+            <li>Målgrupp: <strong>Invånare</strong></li>
+            <li>Kategori: <strong>Invånartjänster</strong></li>
+            <li>Status: <strong>Aktiv</strong></li>
+            <li>Inloggning: <strong>Ingen inloggning</strong></li>
+          </ul>
+          <p class="fact-box-link">
+            <a href="https://github.com/Sundsvallskommun/web-app-felanmalan" rel="external">Källkod på GitHub</a>
+          </p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="teknisk-dokumentation">
+    <div class="container">
+      <h2>Teknisk dokumentation</h2>
+      <p class="section-intro">
+        Nedan beskrivs hur applikationen är uppbyggd, vilka API:er den använder och vad
+        som krävs för att driftsätta den. Informationen är härledd ur källkoden och
+        dess konfiguration på GitHub.
+      </p>
+
+      <h3>Arkitektur</h3>
+      <figure class="diagram">
+        <div class="diagram-wrap">
+          <img src="../assets/diagrams/felanmalan.svg" alt="Arkitekturskiss för Felanmälan: webbappens delar och dess integrationer.">
+        </div>
+        <figcaption>Lösningsarkitektur, härledd ur källkodens konfiguration.</figcaption>
+      </figure>
+      <p>
+        Applikationen består av en webbaserad frontend (Next.js 15 (App Router), React 19, i18next, Origo-kartklient) och en backend (Node.js, Express 4, TypeScript, bildbehandling med sharp) som utvecklas i samma kodbas. Verksamhetsanrop går via kommunens gemensamma API-plattform (WSO2) – frontend pratar aldrig direkt med underliggande system. Övriga integrationer som förekommer i koden: Eneo, Origo-karta (karta.sundsvall.se, GeoServer WMS/WFS), WSO2 API-gateway.
+      </p>
+
+      <h3>Teknikstack</h3>
+      <ul>
+        <li><strong>Frontend:</strong> Next.js 15 (App Router), React 19, i18next, Origo-kartklient</li>
+        <li><strong>Backend:</strong> Node.js, Express 4, TypeScript, bildbehandling med sharp</li>
+      </ul>
+
+      <h3>API-beroenden</h3>
+      <p>
+        Applikationen konsumerar följande API:er via kommunens API-plattform.
+        Versionerna är hämtade ur källkodens API-konfiguration.
+      </p>
+      <div class="table-wrap">
+        <table>
+          <caption class="sr-only">API-beroenden för Felanmälan</caption>
+          <thead>
+            <tr><th scope="col">API</th><th scope="col">Version</th><th scope="col">Användning</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>SupportManagement</td><td>12.6</td><td>Skapar felanmälningsärenden med bilagor i kommunens ärendehantering.</td></tr>
+            <tr><td>Eneo-Sundsvall</td><td>1.1</td><td>AI-assistent som klassificerar anmälans kategori utifrån bild och beskrivning.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Konfiguration och driftsättning</h3>
+      <ul>
+        <li>Backend: .env.example med API_BASE_URL, CLIENT_KEY/CLIENT_SECRET mot WSO2</li>
+        <li>ENEO_ASSISTANT_ID och ENEO_API_KEY för AI-klassificeringen (tjänsten fungerar utan, då används standardkategori)</li>
+        <li>MUNICIPALITY_ID och NAMESPACE styr vilket ärendeutrymme anmälningarna hamnar i</li>
+        <li>Frontend: .env.example kopieras till .env</li>
+      </ul>
+      <h3>Noterbart ur källkoden</h3>
+      <ul>
+        <li>Bilder skalas ner till max 1080 pixlar innan AI-klassificering för snabbhet, medan originalbilden bifogas ärendet i full upplösning.</li>
+        <li>Elva fördefinierade felkategorier finns i koden, bl.a. vägskada, belysning, vatten/avlopp, klotter, snö/is och lekplatsutrustning.</li>
+        <li>Inga automatiska tester finns i repot.</li>
+      </ul>
+
+      <h3>Källkod</h3>
+      <p>
+        Källkoden är öppen och finns hos
+        <a href="https://github.com/Sundsvallskommun/web-app-felanmalan" rel="external">Sundsvalls kommun på GitHub</a>.
+        I källkodsförrådet finns även instruktioner för att klona, konfigurera och
+        starta applikationen i egen miljö.
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div>
+      <p class="footer-title">Webbkatalogen</p>
+      <p>En översikt över de webbapplikationer som Sundsvalls kommun delar som öppen källkod.</p>
+    </div>
+    <div>
+      <p class="footer-title">Länkar</p>
+      <ul class="footer-links">
+        <li><a href="https://github.com/Sundsvallskommun" rel="external">Sundsvalls kommun på GitHub</a></li>
+        <li><a href="https://sundsvall.se" rel="external">sundsvall.se</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

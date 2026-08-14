@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Inbäddningsbar AI-assistentmodul – Webbkatalogen</title>
+  <meta name="description" content="En AI-assistentklient som bäddas in direkt i innehållet på en webbsida, som en sökruta där besökaren kan ställa frågor till en AI-assistent.">
+  <link rel="stylesheet" href="../assets/styles.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%93%98%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">▦</span>
+      <a class="brand-name" href="../index.html">Webbkatalogen</a>
+    </div>
+    <nav class="site-nav" aria-label="Huvudmeny">
+      <a href="../index.html#om-katalogen">Om katalogen</a>
+      <a href="../index.html#tjanster">Webbapplikationer</a>
+      <a href="https://github.com/Sundsvallskommun" rel="external">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="page-hero">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Brödsmulor">
+        <a href="../index.html">Start</a> <span aria-hidden="true">/</span>
+        <a href="../index.html#tjanster">Webbapplikationer</a> <span aria-hidden="true">/</span>
+        <span aria-current="page">Inbäddningsbar AI-assistentmodul</span>
+      </nav>
+      <span class="app-tag app-tag-light">AI-tjänster</span>
+      <h1>Inbäddningsbar AI-assistentmodul</h1>
+      <p class="hero-lead">
+        En AI-assistentklient som bäddas in direkt i innehållet på en webbsida, som en sökruta där besökaren kan ställa frågor till en AI-assistent.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>Om applikationen</h2>
+      <div class="columns">
+        <div class="column-text">
+          <p>
+            Detta är en React-baserad klient för AI-assistenter som integreras direkt i befintliga webbsidor, placerad där det inbäddande elementet ligger i stället för som en flytande chattbubbla. Besökaren ställer sin fråga i modulen och får ett strömmat svar från assistenten.
+          </p>
+          <p>
+            Precis som systermodulen med chattbubbla byggs applikationen i olika lägen för olika verksamheter; i koden finns varianter för vuxenutbildningen och ServaNet med egna texter, logotyper och grafiska profiler. Modulen körs i shadow DOM som webbkomponent för att inte påverka den omgivande sidans utseende.
+          </p>
+          <p>
+            Kommunikationen sker mot en central assistent-backend där varje anrop verifieras med en signerad hash, vilket gör att modulen kan användas både publikt och på inloggade sidor som intranätet.
+          </p>
+
+          <h3>Det här stödjer applikationen</h3>
+          <ul class="app-modules">
+            <li><strong>AI-assistent i sidan</strong> – Modulen bäddas in mitt i innehållet och fungerar som en fråga-svar-ruta med AI.</li>
+            <li><strong>Strömmande svar</strong> – Svaren visas löpande medan de genereras (Server-Sent Events).</li>
+            <li><strong>Verksamhetsanpassning</strong> – Texter, logotyper och färger byts per verksamhet, t.ex. vuxenutbildningen och ServaNet.</li>
+            <li><strong>Säker anropsverifiering</strong> – Varje anrop signeras med hash av användare, assistent-id, appnamn och salt; fel hash ger avslag.</li>
+            <li><strong>Flexibel inbäddning</strong> – Kan köras som isolerad webbkomponent i shadow DOM eller inkluderas direkt på sidan.</li>
+          </ul>
+        </div>
+        <aside class="fact-box" aria-label="Snabbfakta">
+          <h3>Snabbfakta</h3>
+          <ul>
+            <li>Målgrupp: <strong>invånare och kunder på kommunens och bolagens webbplatser</strong></li>
+            <li>Kategori: <strong>AI-tjänster</strong></li>
+            <li>Status: <strong>Aktiv</strong></li>
+            <li>Inloggning: <strong>Ingen inloggning; anropen verifieras med signerad hash (SHA-256 av användare, assistent-id, appnamn och salt)</strong></li>
+          </ul>
+          <p class="fact-box-link">
+            <a href="https://github.com/Sundsvallskommun/web-app-ai-service-module" rel="external">Källkod på GitHub</a>
+          </p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="teknisk-dokumentation">
+    <div class="container">
+      <h2>Teknisk dokumentation</h2>
+      <p class="section-intro">
+        Nedan beskrivs hur applikationen är uppbyggd, vilka API:er den använder och vad
+        som krävs för att driftsätta den. Informationen är härledd ur källkoden och
+        dess konfiguration på GitHub.
+      </p>
+
+      <h3>Arkitektur</h3>
+      <figure class="diagram">
+        <div class="diagram-wrap">
+          <img src="../assets/diagrams/inbaddningsbar-ai-assistentmodul.svg" alt="Arkitekturskiss för Inbäddningsbar AI-assistentmodul: webbappens delar och dess integrationer.">
+        </div>
+        <figcaption>Lösningsarkitektur, härledd ur källkodens konfiguration.</figcaption>
+      </figure>
+      <p>
+        Applikationen är en webbaserad frontend (React 18, Vite, TypeScript, Tailwind CSS, sk-web-gui). Övriga integrationer som förekommer i koden: Assistent-backend (Intric-baserad AI-plattform), ServaNet, Vuxenutbildningen.
+      </p>
+
+      <h3>Teknikstack</h3>
+      <ul>
+        <li><strong>Frontend:</strong> React 18, Vite, TypeScript, Tailwind CSS, sk-web-gui</li>
+      </ul>
+
+      <h3>API-beroenden</h3>
+      <p>
+        Inga prenumerationer på kommunens API-plattform hittades i källkodens
+        konfiguration.
+      </p>
+
+      <h3>Konfiguration och driftsättning</h3>
+      <ul>
+        <li>Miljöfil per verksamhet (.env.&lt;namn&gt;.local) med VITE_API_BASE_URL, assistent-id, namn, texter och funktionsflaggor</li>
+        <li>index.html skapas från mall med data-user, data-hash och data-assistant</li>
+        <li>Byggs per läge med yarn build --mode=&lt;namn&gt;</li>
+      </ul>
+      <h3>Noterbart ur källkoden</h3>
+      <ul>
+        <li>Väl dokumenterad svensk README som beskriver inbäddning, hashgenerering och backendkommunikation.</li>
+        <li>Anropen skickar headers _skuser, _skhash, _skassistant och _skapp som backend verifierar (HTTP 401 vid fel).</li>
+        <li>Nära besläktad med web-app-qwerty-assistant – samma kodbas i grunden men denna variant bäddas in i sidinnehållet.</li>
+        <li>Senaste ändring juni 2024 med release-anpassningar för ServaNet.</li>
+      </ul>
+
+      <h3>Källkod</h3>
+      <p>
+        Källkoden är öppen och finns hos
+        <a href="https://github.com/Sundsvallskommun/web-app-ai-service-module" rel="external">Sundsvalls kommun på GitHub</a>.
+        I källkodsförrådet finns även instruktioner för att klona, konfigurera och
+        starta applikationen i egen miljö.
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div>
+      <p class="footer-title">Webbkatalogen</p>
+      <p>En översikt över de webbapplikationer som Sundsvalls kommun delar som öppen källkod.</p>
+    </div>
+    <div>
+      <p class="footer-title">Länkar</p>
+      <ul class="footer-links">
+        <li><a href="https://github.com/Sundsvallskommun" rel="external">Sundsvalls kommun på GitHub</a></li>
+        <li><a href="https://sundsvall.se" rel="external">sundsvall.se</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

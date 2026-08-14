@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kontohantering för LOV-utförare – Webbkatalogen</title>
+  <meta name="description" content="Internt verktyg där handläggare hanterar konton för privata LOV-utförares personal i verksamhetssystemet Lifecare.">
+  <link rel="stylesheet" href="../assets/styles.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%93%98%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">▦</span>
+      <a class="brand-name" href="../index.html">Webbkatalogen</a>
+    </div>
+    <nav class="site-nav" aria-label="Huvudmeny">
+      <a href="../index.html#om-katalogen">Om katalogen</a>
+      <a href="../index.html#tjanster">Webbapplikationer</a>
+      <a href="https://github.com/Sundsvallskommun" rel="external">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="page-hero">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Brödsmulor">
+        <a href="../index.html">Start</a> <span aria-hidden="true">/</span>
+        <a href="../index.html#tjanster">Webbapplikationer</a> <span aria-hidden="true">/</span>
+        <span aria-current="page">Kontohantering för LOV-utförare</span>
+      </nav>
+      <span class="app-tag app-tag-light">Administration</span>
+      <h1>Kontohantering för LOV-utförare</h1>
+      <p class="hero-lead">
+        Internt verktyg där handläggare hanterar konton för privata LOV-utförares personal i verksamhetssystemet Lifecare.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>Om applikationen</h2>
+      <div class="columns">
+        <div class="column-text">
+          <p>
+            Tjänsten (Kontohantering.sundsvall.se) används för att skapa, ändra och avsluta användarkonton för personal hos privata utförare inom valfrihetssystemet LOV, så att de kan arbeta i vård- och omsorgssystemet Lifecare.
+          </p>
+          <p>
+            Handläggaren slår upp personen via personnummer, kopplar kontot till rätt utförarorganisation och anger giltighetstid och kontaktuppgifter. Kontona är tidsbegränsade och kan förlängas eller tas bort. Det går även att återställa en utförares lösenord, varvid ett nytt skickas ut via SMS.
+          </p>
+          <p>
+            Inloggning sker med kommunens centrala inloggning och tjänsten kontrollerar att handläggaren har rätt behörighet innan konton kan hanteras.
+          </p>
+
+          <h3>Det här stödjer applikationen</h3>
+          <ul class="app-modules">
+            <li><strong>Skapa utförarkonton</strong> – Registrera nya konton för LOV-utförares personal med koppling till rätt organisation.</li>
+            <li><strong>Personuppslag</strong> – Hämta personuppgifter via personnummer för säker identifiering.</li>
+            <li><strong>Tidsbegränsade konton</strong> – Sätt och förläng giltighetstid för konton samt avsluta konton som inte längre behövs.</li>
+            <li><strong>Lösenordsåterställning via SMS</strong> – Återställ en utförares lösenord och skicka det nya via SMS.</li>
+          </ul>
+        </div>
+        <aside class="fact-box" aria-label="Snabbfakta">
+          <h3>Snabbfakta</h3>
+          <ul>
+            <li>Målgrupp: <strong>Handläggare/administratörer inom vård och omsorg</strong></li>
+            <li>Kategori: <strong>Administration</strong></li>
+            <li>Status: <strong>Aktiv</strong></li>
+            <li>Inloggning: <strong>SAML (SSO)</strong></li>
+          </ul>
+          <p class="fact-box-link">
+            <a href="https://github.com/Sundsvallskommun/web-app-lifecare" rel="external">Källkod på GitHub</a>
+          </p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="teknisk-dokumentation">
+    <div class="container">
+      <h2>Teknisk dokumentation</h2>
+      <p class="section-intro">
+        Nedan beskrivs hur applikationen är uppbyggd, vilka API:er den använder och vad
+        som krävs för att driftsätta den. Informationen är härledd ur källkoden och
+        dess konfiguration på GitHub.
+      </p>
+
+      <h3>Arkitektur</h3>
+      <figure class="diagram">
+        <div class="diagram-wrap">
+          <img src="../assets/diagrams/kontohantering-for-lov-utforare.svg" alt="Arkitekturskiss för Kontohantering för LOV-utförare: webbappens delar och dess integrationer.">
+        </div>
+        <figcaption>Lösningsarkitektur, härledd ur källkodens konfiguration.</figcaption>
+      </figure>
+      <p>
+        Applikationen består av en webbaserad frontend (Next.js 14, React 18, sk-web-gui, Tailwind CSS) och en backend (Node.js med Express och routing-controllers (TypeScript)) som utvecklas i samma kodbas. Verksamhetsanrop går via kommunens gemensamma API-plattform (WSO2) – frontend pratar aldrig direkt med underliggande system. Inloggning: SAML (SSO). Övriga integrationer som förekommer i koden: Lifecare (verksamhetssystem för vård och omsorg), WSO2 API-gateway, SAML IdP.
+      </p>
+
+      <h3>Teknikstack</h3>
+      <ul>
+        <li><strong>Frontend:</strong> Next.js 14, React 18, sk-web-gui, Tailwind CSS</li>
+        <li><strong>Backend:</strong> Node.js med Express och routing-controllers (TypeScript)</li>
+        <li><strong>Test:</strong> Jest och Cypress</li>
+      </ul>
+
+      <h3>API-beroenden</h3>
+      <p>
+        Applikationen konsumerar följande API:er via kommunens API-plattform.
+        Versionerna är hämtade ur källkodens API-konfiguration.
+      </p>
+      <div class="table-wrap">
+        <table>
+          <caption class="sr-only">API-beroenden för Kontohantering för LOV-utförare</caption>
+          <thead>
+            <tr><th scope="col">API</th><th scope="col">Version</th><th scope="col">Användning</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>metaadmin</td><td>1.0</td><td>Kontoadministration i Lifecare, inklusive lösenordsåterställning med SMS-utskick.</td></tr>
+            <tr><td>simulatorserver</td><td>2.0</td><td>Simulering/test av API-anrop under utveckling.</td></tr>
+            <tr><td>employee</td><td>2.0</td><td>Uppgifter om kommunens medarbetare och behörighetskontroll.</td></tr>
+            <tr><td>citizen</td><td>3.0</td><td>Uppslag av personuppgifter utifrån personnummer.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Konfiguration och driftsättning</h3>
+      <ul>
+        <li>.env-filer för frontend och backend enligt exempel (.env-example, .env.example.local)</li>
+        <li>CLIENT_KEY och CLIENT_SECRET från WSO2-portalen för API-åtkomst</li>
+        <li>SAML-konfiguration med certifikat och nycklar (SAML_ENTRY_SSO, SAML_IDP_PUBLIC_CERT m.fl.)</li>
+      </ul>
+      <h3>Noterbart ur källkoden</h3>
+      <ul>
+        <li>Sidtitlarna anger tjänstens namn som Kontohantering.sundsvall.se med beskrivningen Hantering av LOV-användare till Lifecare.</li>
+        <li>Byggd på kommunens web-app-starter-mall med separat backend (BFF) och frontend.</li>
+      </ul>
+
+      <h3>Källkod</h3>
+      <p>
+        Källkoden är öppen och finns hos
+        <a href="https://github.com/Sundsvallskommun/web-app-lifecare" rel="external">Sundsvalls kommun på GitHub</a>.
+        I källkodsförrådet finns även instruktioner för att klona, konfigurera och
+        starta applikationen i egen miljö.
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div>
+      <p class="footer-title">Webbkatalogen</p>
+      <p>En översikt över de webbapplikationer som Sundsvalls kommun delar som öppen källkod.</p>
+    </div>
+    <div>
+      <p class="footer-title">Länkar</p>
+      <ul class="footer-links">
+        <li><a href="https://github.com/Sundsvallskommun" rel="external">Sundsvalls kommun på GitHub</a></li>
+        <li><a href="https://sundsvall.se" rel="external">sundsvall.se</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
