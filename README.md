@@ -21,6 +21,10 @@ beskrivning följt av teknisk dokumentation (härledd från GitHub) på samma si
   - `myndighetsutovning-mark-och-exploatering.html`
   - `myndighetsutovning-parkeringstillstand.html`
 - `assets/styles.css` – webbplatsens utseende.
+- `assets/diagrams/*.svg` – arkitekturritningar, genererade med
+  `scripts/generate-diagrams.py`.
+- `CLAUDE.md` – AI-instruktion som i detalj beskriver hur en tjänst
+  dokumenteras i katalogen.
 - `.github/workflows/deploy-pages.yml` – arbetsflöde som publicerar webbplatsen
   till GitHub Pages.
 
@@ -36,13 +40,13 @@ som källa ("Source"). Därefter publiceras sidan på
 
 ## Lägga till fler applikationer
 
-1. Skapa en ny sida under `tjanster/` (kopiera gärna en befintlig sida som
-   mall). Sidan ska innehålla en verksamhetsnära beskrivning överst och en
-   sektion "Teknisk dokumentation" (arkitektur, teknikstack, API-beroenden,
-   konfiguration, källkod) längre ned.
-2. Lägg till ett kort som länkar till sidan i sektionen "Webbapplikationer i
-   katalogen" i `index.html`.
+Följ instruktionen i [`CLAUDE.md`](CLAUDE.md) – den beskriver i detalj hur
+teknisk fakta härleds ur källkodsrepot (API-versioner ur `api-config.ts`,
+instanser och funktioner ur miljöfiler och funktionsflaggor), hur tjänstesidan
+struktureras och hur arkitekturritningen genereras.
 
-Beskriv applikationen utifrån verksamhetsnytta – vad den gör och vem den
-hjälper. Interna projektnamn används inte i katalogen; applikationerna
-presenteras under sina verksamhetsnamn.
+Kort version: skapa en sida under `tjanster/` med verksamhetsnära beskrivning
+överst och teknisk dokumentation längre ned, generera en arkitekturritning via
+`scripts/generate-diagrams.py`, och lägg till ett kort i `index.html`. Interna
+projektnamn används inte i katalogen; applikationerna presenteras under sina
+verksamhetsnamn.
