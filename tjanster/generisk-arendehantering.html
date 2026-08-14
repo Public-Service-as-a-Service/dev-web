@@ -106,11 +106,17 @@
       <h2>Teknisk dokumentation</h2>
       <p class="section-intro">
         Nedan beskrivs hur applikationen är uppbyggd, vilka API:er den använder och vad
-        som krävs för att driftsätta den. Informationen är hämtad från källkodens
-        dokumentation på GitHub.
+        som krävs för att driftsätta den. Informationen är härledd ur källkoden och
+        dess konfiguration på GitHub.
       </p>
 
       <h3>Arkitektur</h3>
+      <figure class="diagram">
+        <div class="diagram-wrap">
+          <img src="../assets/diagrams/generisk-arendehantering.svg" alt="Lösningsarkitektur för generisk ärendehantering: webbappen anropar verksamhets- och master-data-API:er via kommunens API-plattform WSO2, med inloggning via SAML.">
+        </div>
+        <figcaption>Lösningsarkitektur, härledd ur källkodens konfiguration (API-prenumerationer, miljöfiler och funktionsflaggor).</figcaption>
+      </figure>
       <p>
         Applikationen består av en webbaserad frontend och en tillhörande backend som
         utvecklas i samma kodbas (monorepo). Backend förmedlar alla anrop till
@@ -135,7 +141,7 @@
       <h3>API-beroenden</h3>
       <p>
         Applikationen konsumerar följande API:er via kommunens API-plattform.
-        Versionerna anger vilka API-versioner applikationen är byggd mot.
+        Versionerna är hämtade ur källkodens API-konfiguration.
       </p>
       <div class="table-wrap">
         <table>
@@ -144,13 +150,18 @@
             <tr><th scope="col">API</th><th scope="col">Version</th><th scope="col">Användning</th></tr>
           </thead>
           <tbody>
-            <tr><td>SupportManagement</td><td>14.9</td><td>Kärnan i ärendehanteringen – ärenden, kategorier, status och handläggning</td></tr>
-            <tr><td>ActiveDirectory</td><td>2.0</td><td>Uppslag av användare och behörigheter</td></tr>
+            <tr><td>SupportManagement</td><td>14.9</td><td>Kärnan i ärendehanteringen – ärenden, kategorier, status, kommunikation och handläggning</td></tr>
+            <tr><td>CaseData</td><td>13.0</td><td>Eskalering av ärenden till myndighetsärende</td></tr>
+            <tr><td>CaseStatus</td><td>4.3</td><td>Statusinformation om ärenden</td></tr>
+            <tr><td>Relations</td><td>1.1</td><td>Relationer mellan ärenden</td></tr>
+            <tr><td>Templating</td><td>2.1</td><td>Mallar för brev, beslut och andra dokument</td></tr>
+            <tr><td>BillingPreprocessor</td><td>4.5</td><td>Faktureringsunderlag (används av vissa verksamheter, t.ex. Lön och pension)</td></tr>
+            <tr><td>Estateinfo</td><td>2.2</td><td>Fastighetsinformation i fastighetsanknutna ärenden</td></tr>
             <tr><td>Citizen</td><td>3.0</td><td>Uppgifter om invånare</td></tr>
             <tr><td>Employee</td><td>2.0</td><td>Uppgifter om medarbetare</td></tr>
             <tr><td>LegalEntity</td><td>2.0</td><td>Uppgifter om organisationer och företag</td></tr>
-            <tr><td>Templating</td><td>2.1</td><td>Mallar för brev, beslut och andra dokument</td></tr>
-            <tr><td>Relations</td><td>1.1</td><td>Relationer mellan ärenden (används av vissa verksamheter)</td></tr>
+            <tr><td>Party</td><td>2.1</td><td>Id-översättning av parter i ärenden</td></tr>
+            <tr><td>ActiveDirectory</td><td>2.0</td><td>Uppslag av användare och behörigheter</td></tr>
           </tbody>
         </table>
       </div>

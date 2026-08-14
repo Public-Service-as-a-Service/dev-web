@@ -333,6 +333,31 @@ h1, h2, h3 {
   margin: 2rem 0 0.6rem;
 }
 
+.diagram {
+  margin: 1rem 0 1.75rem;
+}
+
+.diagram-wrap {
+  overflow-x: auto;
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 0.75rem;
+}
+
+.diagram-wrap img {
+  display: block;
+  width: 100%;
+  min-width: 900px;
+  height: auto;
+}
+
+.diagram figcaption {
+  font-size: 0.9rem;
+  color: var(--color-ink-soft);
+  margin-top: 0.5rem;
+}
+
 .table-wrap {
   overflow-x: auto;
   margin: 1rem 0 1.5rem;

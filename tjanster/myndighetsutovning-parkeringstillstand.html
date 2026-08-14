@@ -99,11 +99,17 @@
       <h2>Teknisk dokumentation</h2>
       <p class="section-intro">
         Nedan beskrivs hur applikationen är uppbyggd, vilka API:er den använder och vad
-        som krävs för att driftsätta den. Informationen är hämtad från källkodens
-        dokumentation på GitHub.
+        som krävs för att driftsätta den. Informationen är härledd ur källkoden och
+        dess konfiguration på GitHub.
       </p>
 
       <h3>Arkitektur</h3>
+      <figure class="diagram">
+        <div class="diagram-wrap">
+          <img src="../assets/diagrams/myndighetsutovning-parkeringstillstand.svg" alt="Lösningsarkitektur för myndighetsutövning parkeringstillstånd: webbappen anropar verksamhets- och master-data-API:er via kommunens API-plattform WSO2, med inloggning via SAML.">
+        </div>
+        <figcaption>Lösningsarkitektur, härledd ur källkodens konfiguration (API-prenumerationer, miljöfiler och funktionsflaggor).</figcaption>
+      </figure>
       <p>
         Applikationen består av en webbaserad frontend och en tillhörande backend som
         utvecklas i samma kodbas (monorepo). Backend förmedlar alla anrop till
@@ -128,7 +134,7 @@
       <h3>API-beroenden</h3>
       <p>
         Applikationen konsumerar följande API:er via kommunens API-plattform.
-        Versionerna anger vilka API-versioner applikationen är byggd mot.
+        Versionerna är hämtade ur källkodens API-konfiguration.
       </p>
       <div class="table-wrap">
         <table>
@@ -137,18 +143,18 @@
             <tr><th scope="col">API</th><th scope="col">Version</th><th scope="col">Användning</th></tr>
           </thead>
           <tbody>
-            <tr><td>CaseData</td><td>12.10</td><td>Kärnan i ärendehanteringen – ärenden, utredning, beslut och status</td></tr>
-            <tr><td>PartyAssets</td><td>3.2</td><td>Register över utfärdade tillstånd kopplade till person</td></tr>
+            <tr><td>CaseData</td><td>13.0</td><td>Kärnan i ärendehanteringen – ärenden, utredning, beslut och status</td></tr>
+            <tr><td>PartyAssets</td><td>6.5</td><td>Register över utfärdade tillstånd kopplade till person</td></tr>
             <tr><td>JsonSchema</td><td>1.0</td><td>Validering av strukturerade ansökningsuppgifter</td></tr>
-            <tr><td>Messaging</td><td>7.10</td><td>Meddelanden till sökande</td></tr>
-            <tr><td>Contract</td><td>7.0</td><td>Avtalshantering</td></tr>
+            <tr><td>Messaging</td><td>7.10</td><td>Meddelanden till sökande (sms och digital brevlåda; e-post används inte)</td></tr>
+            <tr><td>CaseStatus</td><td>4.3</td><td>Statusinformation om ärenden</td></tr>
             <tr><td>Relations</td><td>1.1</td><td>Relationer mellan ärenden</td></tr>
-            <tr><td>CaseStatus</td><td>4.1</td><td>Ärendestatus, bland annat för uppföljning</td></tr>
-            <tr><td>ActiveDirectory</td><td>2.0</td><td>Uppslag av användare och behörigheter</td></tr>
+            <tr><td>Templating</td><td>2.1</td><td>Mallar för brev, beslut och andra dokument</td></tr>
             <tr><td>Citizen</td><td>3.0</td><td>Uppgifter om invånare</td></tr>
             <tr><td>Employee</td><td>2.0</td><td>Uppgifter om medarbetare</td></tr>
             <tr><td>LegalEntity</td><td>2.0</td><td>Uppgifter om organisationer och företag</td></tr>
-            <tr><td>Templating</td><td>2.1</td><td>Mallar för brev, beslut och andra dokument</td></tr>
+            <tr><td>Party</td><td>2.1</td><td>Id-översättning av parter i ärenden</td></tr>
+            <tr><td>ActiveDirectory</td><td>2.0</td><td>Uppslag av användare och behörigheter</td></tr>
           </tbody>
         </table>
       </div>
