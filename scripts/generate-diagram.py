@@ -208,7 +208,7 @@ def build_focus_areas():
     parts = []
     y = 16
 
-    parts.append(f'<text x="{W/2}" y="{y+18}" text-anchor="middle" font-size="22" font-weight="bold" fill="{PRIMARY_DARK}">Fokusområden för egenutveckling</text>')
+    parts.append(f'<text x="{W/2}" y="{y+18}" text-anchor="middle" font-size="22" font-weight="bold" fill="{PRIMARY_DARK}">Fokusområde — Förenkla för medborgare och företagare</text>')
     y += 44
     parts.append(f'<text x="{W/2}" y="{y}" text-anchor="middle" font-size="13" fill="{INK_SOFT}">Pilar visar anrop. AI-märket anger förmågor med inbyggt AI-stöd; i ärendeflödena maximeras automatiseringsgraden.</text>')
     y += 30
@@ -240,7 +240,7 @@ def build_focus_areas():
     y = band_bottom + 56
 
     # Shared supporting capabilities
-    sup_h = 116
+    sup_h = 188
     for cx in area_centers:
         parts.append(arrow(cx, band_bottom, cx, y, color=YELLOW_EDGE))
     parts.append(group_rect(MARGIN, y, W - 2 * MARGIN, sup_h, "GEMENSAMMA STÖDFÖRMÅGOR — ANVÄNDS AV ALLA ÄRENDEOMRÅDEN", "#fdf8ea", YELLOW_EDGE))
@@ -248,8 +248,12 @@ def build_focus_areas():
         ("Dokumenthantering", "personalakter med flera"),
         ("Diarium", "registrering av handlingar"),
         ("E-arkiv", "långsiktigt digitalt bevarande"),
+    ], y + 40, 410, 56, YELLOW_FILL, YELLOW_EDGE, sub_size=10.5)
+    centered_row(parts, [
         ("E-signering", "elektroniska underskrifter"),
-    ], y + 40, 300, 56, YELLOW_FILL, YELLOW_EDGE, sub_size=10.5)
+        ("Kommunikation", "meddelanden och utskick i alla kanaler"),
+        ("Masterdata", "metakatalog — gemensamma grunddata om personer, företag och organisation"),
+    ], y + 112, 410, 56, YELLOW_FILL, YELLOW_EDGE, sub_size=10.5)
     y += sup_h + 34
 
     notes = [
@@ -270,7 +274,7 @@ def build_focus_areas():
     ], y)
     y += 40
 
-    write_svg("egenutveckling.svg", parts, y, "Fokusområden för Sundsvalls kommuns egenutveckling")
+    write_svg("egenutveckling.svg", parts, y, "Fokusområdet Förenkla för medborgare och företagare i Sundsvalls kommuns egenutveckling")
 
 
 build_overview()
