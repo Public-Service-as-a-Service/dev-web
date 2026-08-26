@@ -14,6 +14,12 @@ börjar med `web-app`. Publiceras till GitHub Pages via
 
 ## Grundprinciper
 
+0. **Endast applikationer i drift.** Katalogen listar de webbapplikationer som
+   körs i drift. Prototyper och avvecklade applikationer ska inte finnas i
+   katalogen – när en applikation avvecklas tas dess post bort ur
+   `scripts/apps-data.json` tillsammans med de genererade filerna (tjänstesidan
+   och arkitekturritningen), varefter generatorskripten körs om.
+
 1. **Verksamhetsnamn, inte projektnamn.** Interna projekt-/kodnamn (t.ex.
    "Draken") används aldrig i katalogen. Applikationer presenteras under sina
    verksamhetsvända namn ("Generisk ärendehantering",
@@ -143,7 +149,7 @@ exakt med sidans API-tabell – båda kommer från samma källor i repot.
 - **`index.html`** – korten mellan `<!-- BEGIN:APP-CARDS -->` och
   `<!-- END:APP-CARDS -->` genereras av `scripts/generate-pages.py`
   (grupperade per kategori, sorterade på namn, med statusetikett för
-  prototyper/avvecklade/verktyg); redigera aldrig det blocket för hand.
+  verktyg); redigera aldrig det blocket för hand.
 - **`README.md`** – uppdatera vid behov beskrivningen av innehållet.
 - **Verifiera lokalt** innan push: rendera sidorna med headless Chromium och
   kontrollera layout, diagram och att inget projektnamn syns i löptext

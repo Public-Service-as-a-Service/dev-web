@@ -2,7 +2,8 @@
 
 En katalog över de webbapplikationer som Sundsvalls kommun publicerar som öppen
 källkod på GitHub ([github.com/Sundsvallskommun](https://github.com/Sundsvallskommun)
-– repon som börjar med `web-app`).
+– repon som börjar med `web-app`). Katalogen listar endast webbapplikationer som
+körs i drift – prototyper och avvecklade applikationer ingår inte.
 
 Katalogen beskriver applikationerna på ett lättillgängligt sätt: vad varje tjänst
 gör, vem den är till för och vilken nytta den skapar – utan tekniska
@@ -15,7 +16,7 @@ beskrivning följt av teknisk dokumentation (härledd från GitHub) på samma si
 
 - `index.html` – förstasidan med information om katalogen och en översikt över
   applikationerna, grupperad per kategori.
-- `tjanster/*.html` – en sida per webbapplikation (ett 50-tal), med
+- `tjanster/*.html` – en sida per webbapplikation (ett 40-tal), med
   beskrivning och teknisk dokumentation. Tre sidor är handskrivna
   (`generisk-arendehantering`, `myndighetsutovning-*`); övriga genereras från
   `scripts/apps-data.json` med `scripts/generate-pages.py`.
