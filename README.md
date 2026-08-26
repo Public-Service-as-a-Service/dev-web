@@ -39,6 +39,12 @@ som källa ("Source"). Därefter publiceras sidan på
 `https://<organisation>.github.io/web-catalogue/` vid varje push till `main`
 (eller manuellt via *Run workflow*).
 
+Webbplatsen kan även driftsättas som container: `Dockerfile` bygger en
+nginx-avbildning som serverar sidan på port 80 (används för deploy via
+Dokploy – byggtyp Dockerfile, containerport 80, källan klonad över HTTPS
+eftersom repot är publikt, med webhook som triggar deploy vid push till
+`main`).
+
 ## Lägga till fler applikationer
 
 Följ instruktionen i [`CLAUDE.md`](CLAUDE.md) – den beskriver i detalj hur
