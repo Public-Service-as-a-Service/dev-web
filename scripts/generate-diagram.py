@@ -90,10 +90,9 @@ parts.append(arrow(W / 2, users_bottom, W / 2, y, color=GREY_EDGE))
 parts.append(group_rect(MARGIN, y, W - 2 * MARGIN, ch_h, "DIGITALA KANALER — GRÄNSSNITTEN MOT ANVÄNDARNA", "#eef4fb", BLUE_EDGE))
 centered_row(parts, [
     ("Webbtjänster och appar", "digital service i vardagen"),
-    ("Mina sidor", "samlad bild av ärenden och engagemang"),
-    ("E-tjänster", "ansökningar och anmälningar"),
+    ("Mina sidor", "registrera och följa ärenden, samlad bild av engagemang"),
     ("AI-assistenter", "stöd och självservice"),
-], y + 40, 300, 64, BLUE_FILL, BLUE_EDGE)
+], y + 40, 400, 64, BLUE_FILL, BLUE_EDGE)
 channels_bottom = y + ch_h
 y = channels_bottom + 46
 
