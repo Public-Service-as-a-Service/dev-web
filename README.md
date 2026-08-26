@@ -16,13 +16,15 @@ ren HTML/CSS utan byggsteg, allt innehåll på svenska.
 ## Innehåll
 
 - `index.html` – hela webbplatsen: målarkitekturens syfte, arkitekturen på hög
-  nivå (skikt för skikt), riktlinjerna samt fördjupningslänkar.
+  nivå (skikt för skikt), fokusområdena för egenutveckling, riktlinjerna samt
+  fördjupningslänkar.
 - `assets/styles.css` – webbplatsens utseende (samma profil som katalogerna).
-- `assets/diagrams/malarkitektur.svg` – översiktsritningen av målarkitekturen,
-  genererad med `scripts/generate-diagram.py`. Rita aldrig för hand – ändra i
-  skriptet och generera om.
-- `scripts/generate-diagram.py` – genererar översiktsritningen i samma
-  diagramstil som katalogernas arkitekturritningar.
+- `assets/diagrams/malarkitektur.svg` – översiktsritningen av målarkitekturen.
+- `assets/diagrams/egenutveckling.svg` – ritningen över fokusområdena för
+  egenutveckling.
+- `scripts/generate-diagram.py` – genererar båda ritningarna i samma
+  diagramstil som katalogernas arkitekturritningar. Rita aldrig för hand –
+  ändra i skriptet och generera om.
 - `.github/workflows/deploy-pages.yml` – arbetsflöde som publicerar webbplatsen
   till GitHub Pages.
 
@@ -34,10 +36,10 @@ GitHub Pages när ändringar pushas till `main`-grenen, på
 
 ## Uppdatera innehållet
 
-Texterna redigeras direkt i `index.html`. Diagrammet ändras i
+Texterna redigeras direkt i `index.html`. Diagrammen ändras i
 `scripts/generate-diagram.py` följt av `python3 scripts/generate-diagram.py`.
 Verifiera lokalt innan push: rendera sidan med headless Chromium och
-kontrollera layout och att diagrammet läses in korrekt.
+kontrollera layout och att diagrammen läses in korrekt.
 
 ## Underlag
 
