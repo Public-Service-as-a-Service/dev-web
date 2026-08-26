@@ -34,6 +34,11 @@ Webbplatsen är statisk och kräver inget byggsteg. Den publiceras automatiskt v
 GitHub Pages när ändringar pushas till `main`-grenen, på
 `https://<organisation>.github.io/target-architecture/`.
 
+Webbplatsen kan även driftsättas som container: `Dockerfile` bygger en
+nginx-avbildning som serverar sidan på port 80 (används av deployn till
+[arkitektur.sundsvall.dev](https://arkitektur.sundsvall.dev/) via Dokploy –
+byggtyp Dockerfile, containerport 80).
+
 ## Uppdatera innehållet
 
 Texterna redigeras direkt i `index.html`. Diagrammen ändras i
