@@ -4,6 +4,10 @@ En webbplats som beskriver Sundsvalls kommuns målarkitektur på hög nivå samt
 riktlinjer – öppenhet, transparens, återanvändning med flera – som styr
 kommunens digitala utveckling.
 
+Beskrivningen hålls medvetet på en abstrakt nivå: skikt, komponenter och
+principer, inte teknik- eller produktval. Målarkitekturen omfattar ett ekosystem
+av både egenutvecklade och upphandlade komponenter.
+
 Webbplatsen delar grafisk profil och teknik med systerkatalogerna
 [api-catalogue](https://github.com/Public-Service-as-a-Service/api-catalogue)
 och [web-catalogue](https://github.com/Public-Service-as-a-Service/web-catalogue):
@@ -11,8 +15,8 @@ ren HTML/CSS utan byggsteg, allt innehåll på svenska.
 
 ## Innehåll
 
-- `index.html` – hela webbplatsen: vad målarkitekturen är, arkitekturen på hög
-  nivå (skikt för skikt), riktlinjerna samt länkar till byggstenarna.
+- `index.html` – hela webbplatsen: målarkitekturens syfte, arkitekturen på hög
+  nivå (skikt för skikt), riktlinjerna samt fördjupningslänkar.
 - `assets/styles.css` – webbplatsens utseende (samma profil som katalogerna).
 - `assets/diagrams/malarkitektur.svg` – översiktsritningen av målarkitekturen,
   genererad med `scripts/generate-diagram.py`. Rita aldrig för hand – ändra i
@@ -25,12 +29,8 @@ ren HTML/CSS utan byggsteg, allt innehåll på svenska.
 ## Publicering
 
 Webbplatsen är statisk och kräver inget byggsteg. Den publiceras automatiskt via
-GitHub Pages när ändringar pushas till `main`-grenen.
-
-Engångsinställning: under **Settings → Pages** i repot, välj **GitHub Actions**
-som källa ("Source"). Därefter publiceras sidan på
-`https://<organisation>.github.io/target-architecture/` vid varje push till
-`main` (eller manuellt via *Run workflow*).
+GitHub Pages när ändringar pushas till `main`-grenen, på
+`https://<organisation>.github.io/target-architecture/`.
 
 ## Uppdatera innehållet
 
@@ -43,9 +43,15 @@ kontrollera layout och att diagrammet läses in korrekt.
 
 Innehållet är framtaget ur bland annat:
 
-- [utveckling.sundsvall.se](https://utveckling.sundsvall.se/)
-- [API-katalogen](https://public-service-as-a-service.github.io/api-catalogue/index.html)
-- [Webbkatalogen](https://public-service-as-a-service.github.io/web-catalogue/index.html)
-- [Sundsvalls kommun på GitHub](https://github.com/Sundsvallskommun)
-- [Kommunens utvecklarwiki](https://sundsvall.atlassian.net/wiki/home)
+- [Målbild och strategi](https://utveckling.sundsvall.se/malbild-och-strategi)
+  samt [API-strategin](https://utveckling.sundsvall.se/malbild-och-strategi/api-strategi)
+  på utveckling.sundsvall.se
+- [Digital infrastruktur](https://utveckling.sundsvall.se/digital-infrastruktur)
+  med undersidor (digitala kanaler, API-infrastruktur, koncerngemensamma
+  komponenter, metakatalogen, datalager, generellt processtöd, paketerade
+  lösningar) på utveckling.sundsvall.se
+- [Målarkitektur-sidan i kommunens utvecklarwiki](https://sundsvall.atlassian.net/wiki/spaces/SKA/pages/1117323272)
 - [kommuna.se](https://kommuna.se/)
+- [API-katalogen](https://public-service-as-a-service.github.io/api-catalogue/index.html)
+  och [Webbkatalogen](https://public-service-as-a-service.github.io/web-catalogue/index.html)
+- [Sundsvalls kommun på GitHub](https://github.com/Sundsvallskommun)

@@ -3,8 +3,9 @@
 
 The drawing style (palette, box/arrow helpers, legend) follows the
 architecture diagrams in the API and web catalogues, so the sites share
-one visual language. Run from anywhere: output is written to
-assets/diagrams/ in the repo root.
+one visual language. The content is deliberately abstract: capabilities
+and layers, not technology or product choices. Run from anywhere:
+output is written to assets/diagrams/ in the repo root.
 """
 
 import os
@@ -20,7 +21,6 @@ BLUE_FILL = "#dbeafe"
 BLUE_EDGE = "#2563eb"
 GREEN_FILL = "#e8f5ee"
 GREEN_EDGE = "#15803d"
-GREEN_DARK_FILL = "#d1ecdd"
 YELLOW_FILL = "#fdf3d7"
 YELLOW_EDGE = "#b45309"
 GREY_FILL = "#eef1f4"
@@ -47,14 +47,9 @@ def box(x, y, w, h, title, sub, fill, edge, dashed=False, title_size=15, sub_siz
     return s
 
 
-def arrow(x1, y1, x2, y2, color=ARROW, dashed=False, curve=True):
+def arrow(x1, y1, x2, y2, color=ARROW, dashed=False):
     dash = ' stroke-dasharray="6,5"' if dashed else ""
-    if curve:
-        my = (y1 + y2) / 2
-        d = f"M {x1} {y1} C {x1} {my}, {x2} {my}, {x2} {y2}"
-    else:
-        d = f"M {x1} {y1} L {x2} {y2}"
-    return f'<path d="{d}" fill="none" stroke="{color}" stroke-width="1.6"{dash} marker-end="url(#arr)"/>'
+    return f'<path d="M {x1} {y1} L {x2} {y2}" fill="none" stroke="{color}" stroke-width="1.6"{dash} marker-end="url(#arr)"/>'
 
 
 def group_rect(x, y, w, h, label, fill, edge):
@@ -62,15 +57,15 @@ def group_rect(x, y, w, h, label, fill, edge):
             f'<text x="{x+16}" y="{y+24}" font-size="13" font-weight="bold" letter-spacing="1" fill="{INK}">{esc(label)}</text>')
 
 
-def centered_row(parts, items, y, bw, bh, fill, edge, gap=14, dashed=False, title_size=13.5, sub_size=11):
+def centered_row(parts, items, y, bw, bh, fill, edge, gap=14, dashed=False, title_size=13.5, sub_size=11, per_item_style=None):
     total = len(items) * bw + (len(items) - 1) * gap
     x = (W - total) / 2
-    centers = []
-    for title, sub in items:
-        parts.append(box(x, y, bw, bh, title, sub, fill, edge, dashed=dashed, title_size=title_size, sub_size=sub_size))
-        centers.append(x + bw / 2)
+    for i, (title, sub) in enumerate(items):
+        f, e, d = fill, edge, dashed
+        if per_item_style:
+            f, e, d = per_item_style[i]
+        parts.append(box(x, y, bw, bh, title, sub, f, e, dashed=d, title_size=title_size, sub_size=sub_size))
         x += bw + gap
-    return centers
 
 
 parts = []
@@ -78,97 +73,77 @@ y = 16
 
 parts.append(f'<text x="{W/2}" y="{y+18}" text-anchor="middle" font-size="22" font-weight="bold" fill="{PRIMARY_DARK}">Målarkitektur — Sundsvalls kommun</text>')
 y += 44
-parts.append(f'<text x="{W/2}" y="{y}" text-anchor="middle" font-size="13" fill="{INK_SOFT}">Pilar visar anrop. Digitala kanaler når verksamhetens förmågor via en gemensam API-plattform; bakom den ligger återanvändbara mikrotjänster.</text>')
+parts.append(f'<text x="{W/2}" y="{y}" text-anchor="middle" font-size="13" fill="{INK_SOFT}">Pilar visar anrop. Ett ekosystem av egenutvecklade och upphandlade komponenter; funktionalitet och data exponeras via API:er.</text>')
 y += 26
 
 # Layer 1: users
 gh_ = 96
 parts.append(group_rect(MARGIN, y, W - 2 * MARGIN, gh_, "ANVÄNDARE", "#f4f5f7", GREY_EDGE))
-centered_row(parts, [("Invånare", None), ("Företag", None), ("Medarbetare", None), ("Andra kommuner", "samverkan och återanvändning")],
-             y + 36, 240, 48, GREY_FILL, GREY_EDGE, dashed=True)
+centered_row(parts, [("Invånare", None), ("Företag", None), ("Medarbetare", None), ("Samverkande kommuner", "delar behov och lösningar")],
+             y + 36, 250, 48, GREY_FILL, GREY_EDGE, dashed=True)
 users_bottom = y + gh_
 y = users_bottom + 40
 
-# Layer 2: channels
+# Layer 2: digital channels
 ch_h = 128
-parts.append(arrow(W / 2, users_bottom, W / 2, y, color=GREY_EDGE, curve=False))
-parts.append(group_rect(MARGIN, y, W - 2 * MARGIN, ch_h, "DIGITALA KANALER", "#eef4fb", BLUE_EDGE))
+parts.append(arrow(W / 2, users_bottom, W / 2, y, color=GREY_EDGE))
+parts.append(group_rect(MARGIN, y, W - 2 * MARGIN, ch_h, "DIGITALA KANALER — GRÄNSSNITTEN MOT ANVÄNDARNA", "#eef4fb", BLUE_EDGE))
 centered_row(parts, [
-    ("Webbapplikationer", "React/Next.js med backend for frontend"),
-    ("E-tjänster", "Open ePlatform"),
-    ("AI-assistenter", "AI-plattformen Eneo"),
-    ("Mina sidor och portaler", "för invånare, företag och medarbetare"),
+    ("Webbtjänster och appar", "digital service i vardagen"),
+    ("Mina sidor", "samlad bild av ärenden och engagemang"),
+    ("E-tjänster", "ansökningar och anmälningar"),
+    ("AI-assistenter", "stöd och självservice"),
 ], y + 40, 300, 64, BLUE_FILL, BLUE_EDGE)
-# SAML IdP to the right
-idp_w, idp_h = 200, 56
-idp_x = W - MARGIN - idp_w - 10
-parts.append(box(idp_x, y - 28, idp_w, idp_h, "SAML IdP", "inloggning (SSO)", GREY_FILL, GREY_EDGE, dashed=True, title_size=13.5, sub_size=11))
 channels_bottom = y + ch_h
 y = channels_bottom + 46
 
-# Layer 3: API platform
-gw, gh2 = 700, 58
-parts.append(arrow(W / 2, channels_bottom, W / 2, y, color=BLUE_EDGE, curve=False))
-parts.append(f'<text x="{W/2 + 12}" y="{channels_bottom + 28}" font-size="11" fill="{INK_SOFT}">OAuth2 (klientuppgifter) — all trafik går genom plattformen</text>')
-parts.append(box((W - gw) / 2, y, gw, gh2, "API-plattform (WSO2)", "api.sundsvall.se — gemensam, säker ingång till alla verksamhets-API:er", GREY_FILL, PRIMARY, title_size=16))
+# Layer 3: API infrastructure
+gw, gh2 = 760, 58
+parts.append(arrow(W / 2, channels_bottom, W / 2, y, color=BLUE_EDGE))
+parts.append(f'<text x="{W/2 + 12}" y="{channels_bottom + 28}" font-size="11" fill="{INK_SOFT}">krypterade, autentiserade anrop — kanalerna skapas med API:er</text>')
+parts.append(box((W - gw) / 2, y, gw, gh2, "API-infrastruktur", "gemensam, säker ingång till ekosystemets funktionalitet och data", GREY_FILL, PRIMARY, title_size=16))
 gate_bottom = y + gh2
 y = gate_bottom + 46
 
-# Layer 4: microservices
-ms_h = 210
-parts.append(arrow(W / 2, gate_bottom, W / 2, y, color=GREEN_EDGE, curve=False))
-parts.append(group_rect(MARGIN, y, W - 2 * MARGIN, ms_h, "MIKROTJÄNSTER — ETT 70-TAL API:ER MED VAR SITT AVGRÄNSAT ANSVAR", "#f4faf6", GREEN_EDGE))
-row1 = [("Kommunikation", "meddelanden, brev, sms, e-post"),
-        ("Ärendehantering", "ärenden, status, beslut"),
-        ("Ekonomi och fakturering", "fakturaunderlag och fakturor"),
-        ("Dokument och arkiv", "lagring, signering, arkivering")]
-row2 = [("Samhällsservice", "störningar, felanmälan, avfall"),
-        ("Utbildning", "utbildningsdata och sök"),
-        ("AI-tjänster", "AI-flöden och assistenter"),
-        ("Processmotor (Operaton)", "BPMN/DMN, återanvändbara processteg")]
-centered_row(parts, row1, y + 40, 300, 64, GREEN_FILL, GREEN_EDGE)
-centered_row(parts, row2, y + 120, 300, 64, GREEN_FILL, GREEN_EDGE)
-ms_bottom = y + ms_h
-y = ms_bottom + 42
+# Layer 4: the component ecosystem
+eco_h = 300
+parts.append(arrow(W / 2, gate_bottom, W / 2, y, color=GREEN_EDGE))
+parts.append(group_rect(MARGIN, y, W - 2 * MARGIN, eco_h, "EKOSYSTEM AV KOMPONENTER — EGENUTVECKLADE OCH UPPHANDLADE", "#f4faf6", GREEN_EDGE))
+centered_row(parts, [
+    ("Kommunikation", "meddelanden och utskick i alla kanaler"),
+    ("Ärende- och processtöd", "ärenden, status, automatiserade flöden"),
+    ("Dokumenthantering", "lagring, signering, arkivering"),
+    ("Analys, data och AI", "datalager och AI-infrastruktur"),
+], y + 40, 300, 64, GREEN_FILL, GREEN_EDGE)
+centered_row(parts, [
+    ("Masterdata", "metakatalog — gemensamma grunddata om personer, företag och organisation"),
+    ("Specialiserade verksamhetssystem", "upphandlade lösningar, anslutna via API-krav"),
+], y + 124, 614, 64, YELLOW_FILL, YELLOW_EDGE, per_item_style=[
+    (YELLOW_FILL, YELLOW_EDGE, False),
+    (GREY_FILL, GREY_EDGE, False),
+])
+centered_row(parts, [
+    ("Paketerade lösningar", "sammansatta tjänster av flera komponenter — återanvändbara som helhet"),
+], y + 208, 1242, 64, GREEN_FILL, GREEN_EDGE)
+eco_bottom = y + eco_h
+y = eco_bottom + 46
 
-# Layer 5: master data (left) and business systems / external services (right)
-half_w = (W - 2 * MARGIN - 24) / 2
-right_x = MARGIN + half_w + 24
-band_h = 180
-
-
-def row_in(parts, items, x0, w, y, bw, bh, fill, edge, gap=12, dashed=False, sub_size=10.5):
-    total = len(items) * bw + (len(items) - 1) * gap
-    x = x0 + (w - total) / 2
-    for title, sub in items:
-        parts.append(box(x, y, bw, bh, title, sub, fill, edge, dashed=dashed, title_size=13, sub_size=sub_size))
-        x += bw + gap
-
-
-left_cx = MARGIN + half_w / 2
-right_cx = right_x + half_w / 2
-parts.append(arrow(left_cx, ms_bottom, left_cx, y, curve=False))
-parts.append(arrow(right_cx, ms_bottom, right_cx, y, curve=False))
-parts.append(f'<text x="{right_cx + 12}" y="{ms_bottom + 26}" font-size="11" fill="{INK_SOFT}">integrations-API:er kapslar in systemen</text>')
-
-parts.append(group_rect(MARGIN, y, half_w, band_h, "MASTER DATA — GEMENSAMMA GRUNDDATA", "#fdf8ea", YELLOW_EDGE))
-row_in(parts, [("Party", "partyId i stället för personnummer"),
-               ("Citizen", "folkbokförda invånare")], MARGIN, half_w, y + 40, 300, 54, YELLOW_FILL, YELLOW_EDGE)
-row_in(parts, [("Employee", "medarbetare och organisation"),
-               ("LegalEntity", "företag och organisationer")], MARGIN, half_w, y + 108, 300, 54, YELLOW_FILL, YELLOW_EDGE)
-
-parts.append(group_rect(right_x, y, half_w, band_h, "VERKSAMHETSSYSTEM OCH EXTERNA TJÄNSTER", "#f4f5f7", GREY_EDGE))
-row_in(parts, [("Verksamhetssystem", "ByggR, Ecos, Lifecare, Raindance …"),
-               ("Nationella tjänster", "SSBTEK, Skolverket, dataportal.se")], right_x, half_w, y + 40, 300, 54, GREY_FILL, GREY_EDGE, dashed=True)
-row_in(parts, [("Digitala brevlådor", "Kivra, Min myndighetspost"),
-               ("Övriga leverantörer", "sms, tryck, signering …")], right_x, half_w, y + 108, 300, 54, GREY_FILL, GREY_EDGE, dashed=True)
-y += band_h + 34
+# Layer 5: national services and external providers
+ex_h = 96
+parts.append(arrow(W / 2, eco_bottom, W / 2, y, color=GREY_EDGE))
+parts.append(group_rect(MARGIN, y, W - 2 * MARGIN, ex_h, "OMVÄRLD", "#f4f5f7", GREY_EDGE))
+centered_row(parts, [
+    ("Nationella tjänster", "myndigheters bastjänster och öppna data"),
+    ("Externa leverantörstjänster", "distribution, signering med mera"),
+    ("Delade lösningar", "tjänster som delas mellan kommuner"),
+], y + 36, 340, 52, GREY_FILL, GREY_EDGE, dashed=True, sub_size=10.5)
+y += ex_h + 34
 
 # Notes
 notes = [
-    "Öppen källkod först — koden delas på github.com/Sundsvallskommun och dokumenteras öppet i API- och webbkatalogerna.",
-    "Varje mikrotjänst äger sina data och sin databas; kontraktet mot omvärlden är tjänstens OpenAPI-specifikation.",
-    "Plattformen är byggd för flera kommuner: municipalityId ingår i API-vägarna och varje kommun konfigureras för sig.",
+    "Samma krav gäller oavsett ursprung: väl avgränsat ansvar för funktion och data, skalbarhet för hela koncernen och API:er enligt öppna standarder.",
+    "Kompletta lösningar skapas genom att komponenter integreras med varandra — inte genom monolitiska helhetssystem.",
+    "Det som utvecklas delas öppet och kan återanvändas av andra kommuner; upphandlade lösningar ansluts till ekosystemet via API-relaterade krav.",
 ]
 for note in notes:
     parts.append(f'<text x="{MARGIN}" y="{y}" font-size="12" fill="{INK_SOFT}">• {esc(note)}</text>')
@@ -177,17 +152,18 @@ y += 10
 
 # Legend
 legend = [
-    (BLUE_FILL, BLUE_EDGE, False, "Kommunens applikationer"),
-    (GREEN_FILL, GREEN_EDGE, False, "Mikrotjänster (API:er)"),
-    (YELLOW_FILL, YELLOW_EDGE, False, "Master data"),
-    (GREY_FILL, GREY_EDGE, True, "Externa system och tjänster"),
+    (BLUE_FILL, BLUE_EDGE, False, "Digitala kanaler"),
+    (GREEN_FILL, GREEN_EDGE, False, "Gemensamma komponenter"),
+    (YELLOW_FILL, YELLOW_EDGE, False, "Masterdata"),
+    (GREY_FILL, GREY_EDGE, False, "Verksamhetssystem"),
+    (GREY_FILL, GREY_EDGE, True, "Externa och delade tjänster"),
 ]
 lx = MARGIN
 for fill, edge, dashed, label in legend:
     dash = ' stroke-dasharray="5,4"' if dashed else ""
     parts.append(f'<rect x="{lx}" y="{y}" width="26" height="16" rx="4" fill="{fill}" stroke="{edge}" stroke-width="1.5"{dash}/>')
     parts.append(f'<text x="{lx+33}" y="{y+13}" font-size="12.5" fill="{INK}">{esc(label)}</text>')
-    lx += 33 + 8 * len(label) + 60
+    lx += 33 + 8 * len(label) + 50
 y += 40
 
 svg = (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {int(y)}" '
