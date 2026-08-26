@@ -37,7 +37,9 @@ GitHub Pages när ändringar pushas till `main`-grenen, på
 Webbplatsen kan även driftsättas som container: `Dockerfile` bygger en
 nginx-avbildning som serverar sidan på port 80 (används av deployn till
 [arkitektur.sundsvall.dev](https://arkitektur.sundsvall.dev/) via Dokploy –
-byggtyp Dockerfile, containerport 80).
+byggtyp Dockerfile, containerport 80). En webhook i repot anropar Dokploy vid
+varje push till `main`, så containerdeployn sker automatiskt precis som
+GitHub Pages-publiceringen.
 
 ## Uppdatera innehållet
 
