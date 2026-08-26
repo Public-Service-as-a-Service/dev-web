@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Målarkitekturen – Sundsvalls kommuns målarkitektur</title>
+  <meta name="description" content="Sundsvalls kommuns målarkitektur på hög nivå: en gemensam, öppen plattform av återanvändbara byggstenar – och de riktlinjer om öppenhet och transparens som styr utvecklingen.">
+  <link rel="stylesheet" href="assets/styles.css">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+  <link rel="apple-touch-icon" href="assets/favicon-180.png">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">⬢</span>
+      <a class="brand-name" href="index.html">Målarkitekturen</a>
+    </div>
+    <nav class="site-nav" aria-label="Huvudmeny">
+      <a href="#om-malarkitekturen">Om målarkitekturen</a>
+      <a href="#arkitekturen">Arkitekturen</a>
+      <a href="#riktlinjer">Riktlinjer</a>
+      <a href="#byggstenar">Byggstenar</a>
+      <a href="https://github.com/Sundsvallskommun" rel="external">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero">
+    <div class="container">
+      <p class="hero-kicker">Sundsvalls kommun</p>
+      <h1>Vår målarkitektur – offentlig service som en tjänst</h1>
+      <p class="hero-lead">
+        Sundsvalls kommun bygger sin digitala service på en gemensam, öppen plattform
+        av återanvändbara byggstenar – API:er, webbapplikationer, processer och
+        AI-tjänster. Här beskriver vi målarkitekturen på hög nivå och de riktlinjer
+        om öppenhet och transparens som styr utvecklingen.
+      </p>
+      <div class="hero-actions">
+        <a class="button button-primary" href="#arkitekturen">Utforska arkitekturen</a>
+        <a class="button button-secondary" href="#riktlinjer">Läs våra riktlinjer</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="om-malarkitekturen" class="section">
+    <div class="container">
+      <h2>Vad är målarkitekturen?</h2>
+      <div class="columns">
+        <div class="column-text">
+          <p>
+            Målarkitekturen beskriver det läge kommunens digitala miljö rör sig mot:
+            i stället för att varje verksamhet skaffar egna helhetslösningar sätts ny
+            service ihop av gemensamma, återanvändbara byggstenar. Vi kallar
+            arbetssättet <em>Public Service as a Service</em> – offentlig service som
+            en tjänst, byggd för att kunna delas.
+          </p>
+          <p>
+            Arkitekturen är ingen skrivbordsprodukt utan realiseras redan i dag: ett
+            70-tal mikrotjänster kör i produktion bakom kommunens gemensamma
+            API-plattform, och ett 50-tal webbapplikationer för invånare, företag och
+            medarbetare byggs ovanpå dem. Varje ny tjänst gör nästa tjänst enklare
+            att bygga, eftersom byggstenarna växer för varje behov som löses.
+          </p>
+          <p>
+            Plattformen är byggd för fler än en kommun. Tjänsterna är multitenanta –
+            varje kommun konfigureras för sig – och det mesta av koden delas som
+            öppen källkod, så att andra kommuner och organisationer kan använda,
+            granska och vidareutveckla den. Så bidrar arkitekturen till en gemensam
+            digital infrastruktur för offentlig sektor, inte bara för Sundsvall.
+          </p>
+        </div>
+        <aside class="fact-box" aria-label="Snabbfakta">
+          <h3>Snabbfakta</h3>
+          <ul>
+            <li><strong>Ett 70-tal API:er</strong> i skarp produktion</li>
+            <li><strong>Ett 50-tal</strong> öppna webbapplikationer</li>
+            <li>All trafik via en <strong>gemensam API-plattform</strong></li>
+            <li>Utvecklas enligt principen <strong>öppen källkod först</strong></li>
+            <li>Byggd för <strong>flera kommuner</strong> i samverkan</li>
+          </ul>
+          <p class="fact-box-link">
+            <a href="https://utveckling.sundsvall.se/" rel="external">Mer om utvecklingsarbetet →</a>
+          </p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section id="arkitekturen" class="section section-alt">
+    <div class="container">
+      <h2>Arkitekturen på hög nivå</h2>
+      <p class="section-intro">
+        Målarkitekturen är skiktad: digitala kanaler möter användarna, en gemensam
+        API-plattform är den enda vägen in, och bakom den ligger mikrotjänster som
+        bär verksamhetens förmågor. Verksamhetssystem och externa tjänster kapslas
+        in bakom integrations-API:er så att de kan bytas ut utan att tjänsterna
+        ovanpå påverkas.
+      </p>
+
+      <figure class="diagram">
+        <div class="diagram-wrap">
+          <img src="assets/diagrams/malarkitektur.svg" alt="Arkitekturritning: användare når digitala kanaler, som via API-plattformen WSO2 anropar kommunens mikrotjänster. Mikrotjänsterna använder gemensamma master data-API:er och kapslar in verksamhetssystem och externa tjänster bakom integrations-API:er.">
+        </div>
+        <figcaption>
+          Målarkitekturen på hög nivå. Pilar visar anrop; all trafik till
+          verksamhets-API:erna går genom den gemensamma API-plattformen.
+        </figcaption>
+      </figure>
+
+      <h3>Digitala kanaler</h3>
+      <p>
+        Invånare, företag och medarbetare möter kommunen genom webbapplikationer,
+        e-tjänster på Open ePlatform, AI-assistenter på AI-plattformen Eneo samt
+        mina sidor och portaler. Webbapplikationerna byggs med React/Next.js och en
+        backend for frontend; inloggning sker med enkel inloggning (SSO) via SAML.
+        Kanalerna innehåller ingen verksamhetslogik – frontend anropar aldrig
+        verksamhets-API:er direkt.
+      </p>
+
+      <h3>En gemensam API-plattform</h3>
+      <p>
+        API-plattformen (WSO2) på <code>api.sundsvall.se</code> är den gemensamma,
+        säkra ingången till alla verksamhets-API:er. Anrop autentiseras med OAuth2
+        och klientuppgifter, och <code>municipalityId</code> ingår i API-vägarna –
+        det är så plattformen bär flera kommuner samtidigt. Att all trafik går genom
+        en punkt ger enhetlig säkerhet, versionshantering och överblick.
+      </p>
+
+      <h3>Mikrotjänster som byggstenar</h3>
+      <p>
+        Verksamhetens förmågor realiseras som mikrotjänster – ett 70-tal API:er med
+        var sitt avgränsat ansvar, inom områden som kommunikation, ärendehantering,
+        ekonomi, dokument och arkiv, samhällsservice, utbildning och AI. Varje
+        tjänst äger sina data och sin databas, och tjänstens kontrakt mot omvärlden
+        är dess OpenAPI-specifikation. Tjänsterna byggs på en gemensam
+        tjänsteplattform (dept44, Spring Boot/Java) som ger enhetlig struktur,
+        loggning och test. Processer som spänner över flera tjänster modelleras i
+        BPMN och körs i den gemensamma processmotorn Operaton, med återanvändbara
+        processbyggstenar som ”skicka e-post” och ”skapa ärende”.
+      </p>
+
+      <h3>Gemensamma master data</h3>
+      <p>
+        Grunddata om personer, medarbetare och organisationer hanteras av gemensamma
+        master data-API:er – Party, Citizen, Employee och LegalEntity – som alla
+        tjänster använder i stället för egna kopior. Ett bärande integritetsval är
+        att tjänsterna arbetar med ett internt <code>partyId</code> i stället för
+        personnummer; endast Party-tjänsten översätter mellan de två.
+      </p>
+
+      <h3>Inkapslade verksamhetssystem</h3>
+      <p>
+        Verksamhetssystem som ByggR, Ecos, Lifecare och Raindance, liksom nationella
+        tjänster och externa leverantörer, nås aldrig direkt av applikationerna.
+        De kapslas in bakom integrations-API:er som talar plattformens gemensamma
+        språk. Därmed kan ett system bytas ut utan att tjänsterna ovanpå behöver
+        byggas om – och leverantörsberoenden blir en fråga om att byta en
+        integration, inte en hel lösning.
+      </p>
+    </div>
+  </section>
+
+  <section id="riktlinjer" class="section">
+    <div class="container">
+      <h2>Riktlinjer och principer</h2>
+      <p class="section-intro">
+        Utvecklingen mot målarkitekturen styrs av ett antal riktlinjer. De avgör hur
+        vi bygger, vad vi delar och hur vi väljer mellan alternativ – och de gäller
+        oavsett om en lösning byggs internt, upphandlas eller återanvänds från någon
+        annan.
+      </p>
+
+      <div class="card-grid">
+        <div class="teaser-card">
+          <span class="app-tag">Öppenhet</span>
+          <h3>Öppen källkod först</h3>
+          <p>
+            Det vi bygger delas som öppen källkod på GitHub när det är möjligt.
+            Andra kommuner och organisationer kan fritt använda, granska och
+            vidareutveckla koden – och vi återanvänder gärna andras öppna lösningar.
+          </p>
+        </div>
+        <div class="teaser-card">
+          <span class="app-tag">Transparens</span>
+          <h3>Öppen dokumentation</h3>
+          <p>
+            Arkitektur, API-kontrakt och programvaruförteckningar (SBOM) publiceras
+            öppet i våra kataloger, och kommunens öppna data skördas av Sveriges
+            dataportal. Den som vill ska kunna se hur våra tjänster är byggda.
+          </p>
+        </div>
+        <div class="teaser-card">
+          <span class="app-tag">API-först</span>
+          <h3>Allt exponeras som API:er</h3>
+          <p>
+            Varje förmåga byggs som ett API med ett tydligt OpenAPI-kontrakt innan
+            någon kanal byggs ovanpå. Kontraktet är sanningskällan, och samma API
+            kan bära e-tjänster, webbappar, AI-assistenter och automatisering.
+          </p>
+        </div>
+        <div class="teaser-card">
+          <span class="app-tag">Återanvändning</span>
+          <h3>Återanvänd före nybygge</h3>
+          <p>
+            Nya behov löses i första hand med befintliga byggstenar, i andra hand
+            genom att en generisk lösning konfigureras – och först i sista hand
+            genom nyutveckling. Det som ändå nyutvecklas byggs för att kunna
+            återanvändas.
+          </p>
+        </div>
+        <div class="teaser-card">
+          <span class="app-tag">Utbytbarhet</span>
+          <h3>Lös koppling och inkapsling</h3>
+          <p>
+            Mikrotjänster med avgränsat ansvar och inkapslade verksamhetssystem gör
+            att delar kan bytas ut var för sig. Inget system får bli så
+            sammanvävt med resten att det inte går att lämna.
+          </p>
+        </div>
+        <div class="teaser-card">
+          <span class="app-tag">Säkerhet</span>
+          <h3>Säkerhet och integritet inbyggt</h3>
+          <p>
+            All trafik autentiseras via API-plattformen med OAuth2, användare loggar
+            in med SSO, och tjänsterna arbetar med interna part-id:n i stället för
+            personnummer. Skyddet av personuppgifter är en del av arkitekturen, inte
+            ett tillägg.
+          </p>
+        </div>
+        <div class="teaser-card">
+          <span class="app-tag">Samverkan</span>
+          <h3>Byggt för att delas</h3>
+          <p>
+            Tjänsterna är multitenanta och byggda för flera kommuner från början.
+            Vi samverkar med andra kommuner om gemensamma lösningar – för
+            offentlig sektor är delad utveckling både billigare och bättre.
+          </p>
+        </div>
+        <div class="teaser-card">
+          <span class="app-tag">Automatisering</span>
+          <h3>Automatisera flödena</h3>
+          <p>
+            Verksamhetsprocesser modelleras i BPMN och körs i en gemensam
+            processmotor, med regelbeslut i regelmotorer och en gemensam
+            händelselogg. Handläggare ska ägna sig åt bedömningar – inte åt att
+            flytta information mellan system.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="byggstenar" class="section section-alt">
+    <div class="container">
+      <h2>Byggstenarna i praktiken</h2>
+      <p class="section-intro">
+        Målarkitekturen dokumenteras och realiseras i öppna kataloger, källkod och
+        utvecklingsdokumentation. Här kan du fördjupa dig.
+      </p>
+
+      <div class="card-grid">
+        <a class="teaser-card" href="https://public-service-as-a-service.github.io/api-catalogue/index.html" rel="external">
+          <span class="app-tag">Katalog</span>
+          <h3>API-katalogen</h3>
+          <p>
+            De API:er som körs i produktion på kommunens API-plattform, med
+            verksamhetsnära beskrivningar, arkitekturritningar och interaktiv
+            dokumentation via Swagger UI.
+          </p>
+          <span class="teaser-more">Till katalogen →</span>
+        </a>
+        <a class="teaser-card" href="https://public-service-as-a-service.github.io/web-catalogue/index.html" rel="external">
+          <span class="app-tag">Katalog</span>
+          <h3>Webbkatalogen</h3>
+          <p>
+            De webbapplikationer kommunen publicerar som öppen källkod – vad varje
+            tjänst gör, vem den är till för och hur den är byggd.
+          </p>
+          <span class="teaser-more">Till katalogen →</span>
+        </a>
+        <a class="teaser-card" href="https://github.com/Sundsvallskommun" rel="external">
+          <span class="app-tag">Källkod</span>
+          <h3>Sundsvalls kommun på GitHub</h3>
+          <p>
+            Källkoden till mikrotjänster, webbapplikationer och tjänsteplattform –
+            öppen att använda, granska och vidareutveckla.
+          </p>
+          <span class="teaser-more">Till GitHub →</span>
+        </a>
+        <a class="teaser-card" href="https://utveckling.sundsvall.se/" rel="external">
+          <span class="app-tag">Utveckling</span>
+          <h3>utveckling.sundsvall.se</h3>
+          <p>
+            Kommunens webbplats om det digitala utvecklingsarbetet – hur vi arbetar,
+            vad som är på gång och hur du kan samverka med oss.
+          </p>
+          <span class="teaser-more">Läs mer →</span>
+        </a>
+        <a class="teaser-card" href="https://sundsvall.atlassian.net/wiki/home" rel="external">
+          <span class="app-tag">Dokumentation</span>
+          <h3>Utvecklarwikin</h3>
+          <p>
+            Fördjupad teknisk dokumentation för dig som utvecklar på eller
+            integrerar mot plattformen, i kommunens Confluence-wiki.
+          </p>
+          <span class="teaser-more">Till wikin →</span>
+        </a>
+        <a class="teaser-card" href="https://kommuna.se/" rel="external">
+          <span class="app-tag">Samverkan</span>
+          <h3>Kommuna</h3>
+          <p>
+            Samverkan kring gemensamma digitala lösningar för kommuner – vägen till
+            att fler delar på samma öppna byggstenar.
+          </p>
+          <span class="teaser-more">Läs mer →</span>
+        </a>
+      </div>
+
+      <div class="coming-soon" role="note">
+        <p>
+          Målarkitekturen är ett levande dokument: den utvecklas i takt med att nya
+          byggstenar driftsätts och nya behov löses. Den här sidan beskriver
+          riktningen på hög nivå – detaljerna finns i katalogerna och i
+          utvecklingsdokumentationen.
+        </p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div>
+      <p class="footer-title">Målarkitekturen</p>
+      <p>
+        En översiktlig beskrivning av Sundsvalls kommuns målarkitektur och de
+        riktlinjer som styr kommunens digitala utveckling.
+      </p>
+    </div>
+    <div>
+      <p class="footer-title">Länkar</p>
+      <ul class="footer-links">
+        <li><a href="https://utveckling.sundsvall.se/" rel="external">utveckling.sundsvall.se</a></li>
+        <li><a href="https://public-service-as-a-service.github.io/api-catalogue/index.html" rel="external">API-katalogen</a></li>
+        <li><a href="https://public-service-as-a-service.github.io/web-catalogue/index.html" rel="external">Webbkatalogen</a></li>
+        <li><a href="https://github.com/Sundsvallskommun" rel="external">Sundsvalls kommun på GitHub</a></li>
+        <li><a href="https://kommuna.se/" rel="external">kommuna.se</a></li>
+        <li><a href="https://sundsvall.se" rel="external">sundsvall.se</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
