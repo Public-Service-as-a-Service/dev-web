@@ -123,7 +123,7 @@ def build_overview():
     # Layer 1: users
     gh_ = 96
     parts.append(group_rect(MARGIN, y, W - 2 * MARGIN, gh_, "ANVÄNDARE", "#f4f5f7", GREY_EDGE))
-    centered_row(parts, [("Invånare", None), ("Företag", None), ("Medarbetare", None), ("Samverkande kommuner", "delar behov och lösningar")],
+    centered_row(parts, [("Invånare", None), ("Företag", None), ("Medarbetare", None), ("Externa aktörer", "delar behov och lösningar")],
                  y + 36, 250, 48, GREY_FILL, GREY_EDGE, dashed=True)
     users_bottom = y + gh_
     y = users_bottom + 40
