@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ekosystemet – Sundsvalls kommuns målarkitektur</title>
+  <meta name="description" content="Hela ekosystemet i en bild: alla webbapplikationer, alla API:er de anropar och hur API:erna integrerar med varandra – från webbkatalogen och API-katalogen.">
+  <link rel="stylesheet" href="assets/styles.css">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+  <link rel="apple-touch-icon" href="assets/favicon-180.png">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">⬢</span>
+      <a class="brand-name" href="index.html">Målarkitekturen</a>
+    </div>
+    <nav class="site-nav" aria-label="Huvudmeny">
+      <a href="#kartan">Hela kartan</a>
+      <a href="#lasa-bilden">Så läser du bilden</a>
+      <a href="#underlag">Underlag</a>
+      <a href="https://github.com/Sundsvallskommun" rel="external">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero">
+    <div class="container">
+      <p class="hero-kicker">Sundsvalls kommun</p>
+      <h1>Ekosystemet</h1>
+      <p class="hero-lead">
+        Målarkitekturens översiktsbilder är medvetet abstrakta. Den här sidan
+        visar i stället helheten som den faktiskt ser ut: alla webbapplikationer
+        i webbkatalogen, alla API:er i API-katalogen, vilka API:er varje webb
+        anropar och hur API:erna integrerar med varandra. Bilden är stor och
+        tät – det är poängen. Så här ser ett ekosystem av väl avgränsade
+        komponenter ut i verkligheten.
+      </p>
+      <div class="hero-actions">
+        <a class="button button-primary" href="#kartan">Till kartan</a>
+        <a class="button button-secondary" href="#lasa-bilden">Så läser du bilden</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="kartan" class="section">
+    <div class="container">
+      <h2>Hela kartan</h2>
+      <p class="section-intro">
+        39 webbapplikationer, 75 API:er på API-plattformen, masterdata-API:erna
+        i metakatalogen samt anropade API:er och tjänster utanför katalogerna –
+        med samtliga 296 anropsrelationer utritade. Bilden rullas i sidled;
+        öppna den gärna i full storlek.
+      </p>
+
+      <figure class="diagram">
+        <div class="diagram-wrap">
+          <img class="diagram-xl" src="assets/diagrams/ekosystemet.svg" alt="Stor arkitekturritning över hela ekosystemet: överst alla webbapplikationer, därunder API-katalogens API:er skiktade efter beroenden, längst ned masterdata-API:erna i metakatalogen samt API:er och tjänster utanför katalogerna. Pilar visar varje anropsrelation – webbappar som anropar API:er och API:er som anropar varandra, till exempel Party som anropar Citizen och LegalEntity.">
+        </div>
+        <figcaption>
+          Hela ekosystemet med alla anropsrelationer. Pilar visar anrop från
+          anropande till anropad komponent; alla anrop går via den gemensamma
+          API-plattformen.
+          <a href="assets/diagrams/ekosystemet.svg" target="_blank" rel="noopener">Öppna bilden i full storlek →</a>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section id="lasa-bilden" class="section section-alt">
+    <div class="container">
+      <h2>Så läser du bilden</h2>
+      <div class="columns">
+        <div class="column-text">
+          <p>
+            Bilden är ordnad i band uppifrån och ned. Överst ligger
+            <strong>webbapplikationerna</strong> (blå) – gränssnitten som
+            invånare, företagare och medarbetare möter. De innehåller ingen egen
+            verksamhetslogik utan skapas med API:er: varje blå pil nedåt är ett
+            API som webben anropar via API-plattformen.
+          </p>
+          <p>
+            Mittenbandet är <strong>API:erna i API-katalogen</strong> (gröna).
+            De är skiktade efter sina beroenden: ett API ligger alltid under de
+            webbappar och API:er som anropar det, så anropen pekar nedåt genom
+            bilden. Gröna pilar är API:er som anropar varandra – det är så
+            kompletta lösningar sätts samman av väl avgränsade komponenter. De
+            få pilar som böjer av åt höger och pekar uppåt markerar ömsesidiga
+            beroenden mellan två API:er.
+          </p>
+          <p>
+            Näst längst ned ligger <strong>masterdata</strong> (gula) –
+            metakatalogens API:er med gemensamma grunddata om personer, företag,
+            organisation och medarbetare. Här syns arkitekturens
+            masterdata-mönster tydligt: <strong>Party</strong> anropar
+            <strong>Citizen</strong> och <strong>LegalEntity</strong> och
+            översätter mellan partId och person- eller organisationsnummer, så
+            att övriga API:er bara behöver känna till Party i stället för att
+            själva hantera personuppgifter.
+          </p>
+          <p>
+            Längst ned samlas <strong>anropade API:er och tjänster utanför
+            katalogerna</strong> (grå, streckade): interna stöd-API:er som ännu
+            inte publicerats i katalogen, verksamhetsspecifika process-API:er
+            samt externa och delade tjänster, till exempel den Intric-baserade
+            AI-plattformen Eneo.
+          </p>
+          <p>
+            Några komponenter sticker ut som ekosystemets nav.
+            <strong>Messaging</strong> är den mest anropade komponenten – all
+            kommunikation och alla utskick går genom den. <strong>Party</strong>
+            och masterdata-API:erna <strong>Employee</strong> och
+            <strong>Citizen</strong> anropas från hela ekosystemet, och
+            <strong>SimulatorServer</strong> anropas av de flesta webbappar som
+            simulerings- och teststöd under utveckling. Det är återanvändning i
+            praktiken: en förmåga etableras en gång och används av många.
+          </p>
+        </div>
+        <aside class="fact-box" aria-label="Snabbfakta">
+          <h3>Snabbfakta</h3>
+          <ul>
+            <li><strong>39</strong> webbapplikationer i webbkatalogen</li>
+            <li><strong>75</strong> API:er i API-katalogen</li>
+            <li><strong>160</strong> anrop från webbappar till API:er</li>
+            <li><strong>136</strong> anrop mellan API:er</li>
+            <li>Mest anropade: <strong>Messaging</strong>, <strong>SimulatorServer</strong>, <strong>Party</strong>, <strong>Employee</strong> och <strong>Citizen</strong></li>
+            <li>Alla anrop går via den gemensamma <strong>API-plattformen</strong></li>
+          </ul>
+          <p class="fact-box-link">
+            <a href="https://public-service-as-a-service.github.io/api-catalogue/index.html" rel="external">API-katalogen →</a><br>
+            <a href="https://public-service-as-a-service.github.io/web-catalogue/index.html" rel="external">Webbkatalogen →</a>
+          </p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section id="underlag" class="section">
+    <div class="container">
+      <h2>Underlag och avgränsningar</h2>
+      <p class="section-intro">
+        Bilden är genererad ur katalogernas dokumentation – varje pil är en
+        dokumenterad anropsrelation, ingen är ritad på fri hand.
+      </p>
+      <p>
+        Webbapplikationerna och deras API-anrop kommer från
+        <a href="https://public-service-as-a-service.github.io/web-catalogue/index.html" rel="external">webbkatalogen</a>
+        och API:erna med sina inbördes beroenden från
+        <a href="https://public-service-as-a-service.github.io/api-catalogue/index.html" rel="external">API-katalogen</a>,
+        där informationen i sin tur är härledd ur källkoden på
+        <a href="https://github.com/Sundsvallskommun" rel="external">GitHub</a>.
+        Ögonblicksbilden är från augusti 2026 och uppdateras genom att
+        diagrammet genereras om från katalogernas data.
+      </p>
+      <p>
+        Några avgränsningar: bilden visar anropsrelationer, inte anropsvolymer
+        eller flödesordning. Upphandlade verksamhetssystem syns bara indirekt,
+        via de integrations-API:er som ansluter dem (till exempel
+        ByggrIntegrator, OepIntegrator och LifecareIntegrator). Masterdata-API:erna
+        och tjänsterna utanför katalogerna är med för att beroendena på dem ska
+        synas, men de har ännu inga egna katalogsidor.
+      </p>
+      <div class="coming-soon" role="note">
+        <p>
+          Detta är en fristående arbetsbild som kompletterar målarkitekturens
+          översiktliga beskrivning. Den länkas inte från startsidan och kan
+          komma att ändras i takt med att katalogerna växer.
+        </p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div>
+      <p class="footer-title">Ekosystemet</p>
+      <p>
+        Hela ekosystemet i en bild: alla webbapplikationer, alla API:er och
+        samtliga anropsrelationer mellan dem – genererad ur webb- och
+        API-katalogernas dokumentation.
+      </p>
+    </div>
+    <div>
+      <p class="footer-title">Länkar</p>
+      <ul class="footer-links">
+        <li><a href="index.html">Målarkitekturen</a></li>
+        <li><a href="https://public-service-as-a-service.github.io/api-catalogue/index.html" rel="external">API-katalogen</a></li>
+        <li><a href="https://public-service-as-a-service.github.io/web-catalogue/index.html" rel="external">Webbkatalogen</a></li>
+        <li><a href="https://utveckling.sundsvall.se/" rel="external">utveckling.sundsvall.se</a></li>
+        <li><a href="https://github.com/Sundsvallskommun" rel="external">Sundsvalls kommun på GitHub</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

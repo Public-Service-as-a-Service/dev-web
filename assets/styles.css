@@ -363,6 +363,14 @@ h1, h2, h3 {
   height: auto;
 }
 
+/* Extra-wide drawings (e.g. the full ecosystem map) keep their natural
+   width and scroll horizontally instead of shrinking to unreadability. */
+.diagram-wrap img.diagram-xl {
+  width: 2760px;
+  max-width: none;
+  min-width: 2760px;
+}
+
 .diagram figcaption {
   font-size: 0.9rem;
   color: var(--color-ink-soft);

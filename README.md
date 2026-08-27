@@ -18,13 +18,25 @@ ren HTML/CSS utan byggsteg, allt innehåll på svenska.
 - `index.html` – hela webbplatsen: målarkitekturens syfte, arkitekturen på hög
   nivå (skikt för skikt), fokusområdena för egenutveckling, riktlinjerna samt
   fördjupningslänkar.
+- `ekosystemet.html` – fristående undersida (länkas inte från startsidan) som
+  visar hela ekosystemet i en bild: alla webbappar, alla API:er de anropar och
+  API:ernas inbördes integrationer.
 - `assets/styles.css` – webbplatsens utseende (samma profil som katalogerna).
 - `assets/diagrams/malarkitektur.svg` – översiktsritningen av målarkitekturen.
 - `assets/diagrams/egenutveckling.svg` – ritningen över fokusområdena för
   egenutveckling.
-- `scripts/generate-diagram.py` – genererar båda ritningarna i samma
+- `assets/diagrams/ekosystemet.svg` – helhetsritningen över ekosystemet med
+  samtliga anropsrelationer.
+- `scripts/generate-diagram.py` – genererar de två översiktsritningarna i samma
   diagramstil som katalogernas arkitekturritningar. Rita aldrig för hand –
   ändra i skriptet och generera om.
+- `scripts/generate-ekosystem-diagram.py` – genererar helhetsritningen ur en
+  ögonblicksbild av katalogernas data (`apis-data.json` och `apps-data.json` i
+  [api-catalogue](https://github.com/Public-Service-as-a-Service/api-catalogue)
+  respektive
+  [web-catalogue](https://github.com/Public-Service-as-a-Service/web-catalogue)).
+  Layouten beräknas ur beroendegrafen; uppdatera datalitteralerna i skriptet
+  från katalogerna och generera om.
 - `.github/workflows/deploy-pages.yml` – arbetsflöde som publicerar webbplatsen
   till GitHub Pages.
 
@@ -43,8 +55,11 @@ GitHub Pages-publiceringen.
 
 ## Uppdatera innehållet
 
-Texterna redigeras direkt i `index.html`. Diagrammen ändras i
-`scripts/generate-diagram.py` följt av `python3 scripts/generate-diagram.py`.
+Texterna redigeras direkt i `index.html` respektive `ekosystemet.html`.
+Översiktsdiagrammen ändras i `scripts/generate-diagram.py` följt av
+`python3 scripts/generate-diagram.py`; helhetsritningen på ekosystemsidan
+ändras i `scripts/generate-ekosystem-diagram.py` följt av
+`python3 scripts/generate-ekosystem-diagram.py`.
 Verifiera lokalt innan push: rendera sidan med headless Chromium och
 kontrollera layout och att diagrammen läses in korrekt.
 
