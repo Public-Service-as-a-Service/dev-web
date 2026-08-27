@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Test-IdP för utveckling – Programvaruförteckning (SBOM) – Webbkatalogen</title>
+  <meta name="description" content="Programvaruförteckning (SBOM) i SPDX-format för Test-IdP för utveckling: tredjepartskomponenter med version och licens.">
+  <link rel="stylesheet" href="../assets/styles.css">
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+  <link rel="apple-touch-icon" href="../assets/favicon-180.png">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">▦</span>
+      <a class="brand-name" href="../index.html">Webbkatalogen</a>
+    </div>
+    <nav class="site-nav" aria-label="Huvudmeny">
+      <a href="../index.html#om-katalogen">Om katalogen</a>
+      <a href="../index.html#tjanster">Webbapplikationer</a>
+      <a href="https://github.com/Sundsvallskommun" rel="external">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="page-hero page-hero-slim">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Brödsmulor">
+        <a href="../index.html">Start</a> <span aria-hidden="true">/</span>
+        <a href="../index.html#tjanster">Webbapplikationer</a> <span aria-hidden="true">/</span>
+        <a href="test-idp-for-utveckling.html">Test-IdP för utveckling</a> <span aria-hidden="true">/</span>
+        <span aria-current="page">SBOM</span>
+      </nav>
+      <span class="app-tag app-tag-light">Utvecklingsverktyg</span>
+      <h1>Test-IdP för utveckling – programvaruförteckning</h1>
+      <p class="hero-lead">
+        Samtliga tredjepartskomponenter som ingår i applikationens bygge, med version och
+        licens. Förteckningen är maskinellt härledd ur källkodens beroendeträd och
+        publiceras i SPDX-format.
+      </p>
+      <div class="hero-actions">
+        <a class="button button-primary" href="../assets/sbom/test-idp-for-utveckling.spdx.json" download>Ladda ner SPDX (JSON)</a>
+        <a class="button button-secondary" href="test-idp-for-utveckling.html">Tillbaka till Test-IdP för utveckling</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-slim" id="om-forteckningen">
+    <div class="container">
+      <h2>Om förteckningen</h2>
+      <ul>
+        <li>Antal komponenter: <strong>80</strong></li>
+        <li>Antal unika licenser: <strong>7</strong></li>
+        <li>Källa: <strong>web-app-fake-sso-idp@c7bbf8d</strong> (<a href="https://github.com/Sundsvallskommun/web-app-fake-sso-idp" rel="external">källkod på GitHub</a>)</li>
+        <li>Avser källkod från: <strong>2026-07-30</strong></li>
+        <li>Format: <strong>SPDX-2.3</strong>, genererad med <strong>trivy-0.74.0</strong></li>
+      </ul>
+      <p>
+        Förteckningen uppdateras automatiskt och beskriver beroendena i
+        applikationens huvudgren vid angivet datum. Den omfattar hela beroendeträdet,
+        alltså även byggkedjan – vilka API:er applikationen anropar framgår av
+        <a href="test-idp-for-utveckling.html#teknisk-dokumentation">den tekniska dokumentationen</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="licenser">
+    <div class="container">
+      <h2>Licenser</h2>
+      <p class="section-intro">
+        Fördelning av deklarerade licenser bland komponenterna.
+      </p>
+      <div class="table-wrap">
+        <table>
+          <caption class="sr-only">Licensfördelning för Test-IdP för utveckling</caption>
+          <thead>
+            <tr><th scope="col">Licens</th><th scope="col">Antal komponenter</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>MIT</td><td>70</td></tr>
+            <tr><td>ISC</td><td>4</td></tr>
+            <tr><td>BSD-3-Clause</td><td>2</td></tr>
+            <tr><td>0BSD</td><td>1</td></tr>
+            <tr><td>Apache-2.0</td><td>1</td></tr>
+            <tr><td>BSD-2-Clause</td><td>1</td></tr>
+            <tr><td>Ej angiven</td><td>1</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="komponenter">
+    <div class="container">
+      <h2>Komponenter</h2>
+      <p class="section-intro">
+        Samtliga 80 komponenter, inklusive transitiva beroenden.
+      </p>
+      <p class="sbom-filter" hidden>
+        <label for="sbom-filter">Filtrera listan</label>
+        <input type="search" id="sbom-filter" placeholder="Sök på komponent eller licens" autocomplete="off">
+        <span id="sbom-count" aria-live="polite"></span>
+      </p>
+      <div class="table-wrap">
+        <table id="sbom-table">
+          <caption class="sr-only">Tredjepartskomponenter i Test-IdP för utveckling</caption>
+          <thead>
+            <tr><th scope="col">Komponent</th><th scope="col">Version</th><th scope="col">Licens</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>accepts</td><td>1.3.7</td><td>MIT</td></tr>
+            <tr><td>array-flatten</td><td>1.1.1</td><td>MIT</td></tr>
+            <tr><td>body-parser</td><td>1.19.0</td><td>MIT</td></tr>
+            <tr><td>bytes</td><td>3.1.0</td><td>MIT</td></tr>
+            <tr><td>content-disposition</td><td>0.5.3</td><td>MIT</td></tr>
+            <tr><td>content-type</td><td>1.0.4</td><td>MIT</td></tr>
+            <tr><td>cookie</td><td>0.3.1</td><td>MIT</td></tr>
+            <tr><td>cookie</td><td>0.4.0</td><td>MIT</td></tr>
+            <tr><td>cookie-parser</td><td>1.4.4</td><td>MIT</td></tr>
+            <tr><td>cookie-signature</td><td>1.0.6</td><td>MIT</td></tr>
+            <tr><td>debug</td><td>2.6.9</td><td>MIT</td></tr>
+            <tr><td>debug</td><td>4.1.1</td><td>MIT</td></tr>
+            <tr><td>depd</td><td>1.1.2</td><td>MIT</td></tr>
+            <tr><td>depd</td><td>2.0.0</td><td>MIT</td></tr>
+            <tr><td>destroy</td><td>1.0.4</td><td>MIT</td></tr>
+            <tr><td>dotenv</td><td>16.4.5</td><td>BSD-2-Clause</td></tr>
+            <tr><td>ee-first</td><td>1.1.1</td><td>MIT</td></tr>
+            <tr><td>ejs</td><td>3.0.1</td><td>Apache-2.0</td></tr>
+            <tr><td>encodeurl</td><td>1.0.2</td><td>MIT</td></tr>
+            <tr><td>envalid</td><td>7.3.1</td><td>MIT</td></tr>
+            <tr><td>escape-html</td><td>1.0.3</td><td>MIT</td></tr>
+            <tr><td>etag</td><td>1.8.1</td><td>MIT</td></tr>
+            <tr><td>express</td><td>4.17.1</td><td>MIT</td></tr>
+            <tr><td>express-session</td><td>1.17.0</td><td>MIT</td></tr>
+            <tr><td>extend</td><td>3.0.2</td><td>MIT</td></tr>
+            <tr><td>fake-sso-idp</td><td>1.0.0</td><td>MIT</td></tr>
+            <tr><td>finalhandler</td><td>1.1.2</td><td>MIT</td></tr>
+            <tr><td>forwarded</td><td>0.1.2</td><td>MIT</td></tr>
+            <tr><td>fresh</td><td>0.5.2</td><td>MIT</td></tr>
+            <tr><td>http-errors</td><td>1.7.2</td><td>MIT</td></tr>
+            <tr><td>http-errors</td><td>1.7.3</td><td>MIT</td></tr>
+            <tr><td>iconv-lite</td><td>0.4.24</td><td>MIT</td></tr>
+            <tr><td>inherits</td><td>2.0.3</td><td>ISC</td></tr>
+            <tr><td>inherits</td><td>2.0.4</td><td>ISC</td></tr>
+            <tr><td>ip</td><td>1.1.5</td><td>MIT</td></tr>
+            <tr><td>ipaddr.js</td><td>1.9.0</td><td>MIT</td></tr>
+            <tr><td>lodash</td><td>4.17.15</td><td>MIT</td></tr>
+            <tr><td>lodash</td><td>4.17.20</td><td>MIT</td></tr>
+            <tr><td>media-typer</td><td>0.3.0</td><td>MIT</td></tr>
+            <tr><td>merge-descriptors</td><td>1.0.1</td><td>MIT</td></tr>
+            <tr><td>methods</td><td>1.1.2</td><td>MIT</td></tr>
+            <tr><td>mime</td><td>1.6.0</td><td>MIT</td></tr>
+            <tr><td>mime-db</td><td>1.43.0</td><td>MIT</td></tr>
+            <tr><td>mime-types</td><td>2.1.26</td><td>MIT</td></tr>
+            <tr><td>moment</td><td>2.24.0</td><td>MIT</td></tr>
+            <tr><td>ms</td><td>2.0.0</td><td>MIT</td></tr>
+            <tr><td>ms</td><td>2.1.1</td><td>MIT</td></tr>
+            <tr><td>ms</td><td>2.1.2</td><td>MIT</td></tr>
+            <tr><td>negotiator</td><td>0.6.2</td><td>MIT</td></tr>
+            <tr><td>on-finished</td><td>2.3.0</td><td>MIT</td></tr>
+            <tr><td>on-headers</td><td>1.0.2</td><td>MIT</td></tr>
+            <tr><td>parseurl</td><td>1.3.3</td><td>MIT</td></tr>
+            <tr><td>path-to-regexp</td><td>0.1.7</td><td>MIT</td></tr>
+            <tr><td>proxy-addr</td><td>2.0.5</td><td>MIT</td></tr>
+            <tr><td>purecss</td><td>1.0.1</td><td>BSD-3-Clause</td></tr>
+            <tr><td>qs</td><td>6.7.0</td><td>BSD-3-Clause</td></tr>
+            <tr><td>random-bytes</td><td>1.0.0</td><td>MIT</td></tr>
+            <tr><td>range-parser</td><td>1.2.1</td><td>MIT</td></tr>
+            <tr><td>raw-body</td><td>2.4.0</td><td>MIT</td></tr>
+            <tr><td>safe-buffer</td><td>5.1.1</td><td>MIT</td></tr>
+            <tr><td>safe-buffer</td><td>5.1.2</td><td>MIT</td></tr>
+            <tr><td>safe-buffer</td><td>5.2.0</td><td>MIT</td></tr>
+            <tr><td>safer-buffer</td><td>2.1.2</td><td>MIT</td></tr>
+            <tr><td>sax</td><td>1.4.1</td><td>ISC</td></tr>
+            <tr><td>send</td><td>0.17.1</td><td>MIT</td></tr>
+            <tr><td>serve-favicon</td><td>2.5.0</td><td>MIT</td></tr>
+            <tr><td>serve-static</td><td>1.14.1</td><td>MIT</td></tr>
+            <tr><td>setprototypeof</td><td>1.1.1</td><td>ISC</td></tr>
+            <tr><td>statuses</td><td>1.5.0</td><td>MIT</td></tr>
+            <tr><td>toidentifier</td><td>1.0.0</td><td>MIT</td></tr>
+            <tr><td>tslib</td><td>2.3.1</td><td>0BSD</td></tr>
+            <tr><td>type-is</td><td>1.6.18</td><td>MIT</td></tr>
+            <tr><td>uid-safe</td><td>2.1.5</td><td>MIT</td></tr>
+            <tr><td>unpipe</td><td>1.0.0</td><td>MIT</td></tr>
+            <tr><td>utils-merge</td><td>1.0.1</td><td>MIT</td></tr>
+            <tr><td>vary</td><td>1.1.2</td><td>MIT</td></tr>
+            <tr><td>xml-crypto</td><td>1.4.0</td><td>MIT</td></tr>
+            <tr><td>xml-js</td><td>1.6.11</td><td>MIT</td></tr>
+            <tr><td>xmldom</td><td>0.1.27</td><td>Ej angiven</td></tr>
+            <tr><td>xpath</td><td>0.0.27</td><td>MIT</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div>
+      <p class="footer-title">Webbkatalogen</p>
+      <p>En översikt över de webbapplikationer som Sundsvalls kommun delar som öppen källkod.</p>
+    </div>
+    <div>
+      <p class="footer-title">Länkar</p>
+      <ul class="footer-links">
+        <li><a href="https://github.com/Sundsvallskommun" rel="external">Sundsvalls kommun på GitHub</a></li>
+        <li><a href="https://sundsvall.se" rel="external">sundsvall.se</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Progressive enhancement: the table is fully rendered server-side and stays
+  // usable without JavaScript.
+  (function () {
+    var input = document.getElementById('sbom-filter');
+    var count = document.getElementById('sbom-count');
+    var rows = Array.prototype.slice.call(
+      document.querySelectorAll('#sbom-table tbody tr')
+    );
+    if (!input || !rows.length) return;
+    document.querySelector('.sbom-filter').hidden = false;
+    input.addEventListener('input', function () {
+      var q = input.value.trim().toLowerCase();
+      var shown = 0;
+      rows.forEach(function (row) {
+        var match = !q || row.textContent.toLowerCase().indexOf(q) !== -1;
+        row.hidden = !match;
+        if (match) shown++;
+      });
+      count.textContent = q ? shown + ' av ' + rows.length : '';
+    });
+  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,706 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kontohantering för LOV-utförare – Programvaruförteckning (SBOM) – Webbkatalogen</title>
+  <meta name="description" content="Programvaruförteckning (SBOM) i SPDX-format för Kontohantering för LOV-utförare: tredjepartskomponenter med version och licens.">
+  <link rel="stylesheet" href="../assets/styles.css">
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+  <link rel="apple-touch-icon" href="../assets/favicon-180.png">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">▦</span>
+      <a class="brand-name" href="../index.html">Webbkatalogen</a>
+    </div>
+    <nav class="site-nav" aria-label="Huvudmeny">
+      <a href="../index.html#om-katalogen">Om katalogen</a>
+      <a href="../index.html#tjanster">Webbapplikationer</a>
+      <a href="https://github.com/Sundsvallskommun" rel="external">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="page-hero page-hero-slim">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Brödsmulor">
+        <a href="../index.html">Start</a> <span aria-hidden="true">/</span>
+        <a href="../index.html#tjanster">Webbapplikationer</a> <span aria-hidden="true">/</span>
+        <a href="kontohantering-for-lov-utforare.html">Kontohantering för LOV-utförare</a> <span aria-hidden="true">/</span>
+        <span aria-current="page">SBOM</span>
+      </nav>
+      <span class="app-tag app-tag-light">Administration</span>
+      <h1>Kontohantering för LOV-utförare – programvaruförteckning</h1>
+      <p class="hero-lead">
+        Samtliga tredjepartskomponenter som ingår i applikationens bygge, med version och
+        licens. Förteckningen är maskinellt härledd ur källkodens beroendeträd och
+        publiceras i SPDX-format.
+      </p>
+      <div class="hero-actions">
+        <a class="button button-primary" href="../assets/sbom/kontohantering-for-lov-utforare.spdx.json" download>Ladda ner SPDX (JSON)</a>
+        <a class="button button-secondary" href="kontohantering-for-lov-utforare.html">Tillbaka till Kontohantering för LOV-utförare</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-slim" id="om-forteckningen">
+    <div class="container">
+      <h2>Om förteckningen</h2>
+      <ul>
+        <li>Antal komponenter: <strong>535</strong></li>
+        <li>Antal unika licenser: <strong>13</strong></li>
+        <li>Källa: <strong>web-app-lifecare@4509f2f</strong> (<a href="https://github.com/Sundsvallskommun/web-app-lifecare" rel="external">källkod på GitHub</a>)</li>
+        <li>Avser källkod från: <strong>2026-06-29</strong></li>
+        <li>Format: <strong>SPDX-2.3</strong>, genererad med <strong>trivy-0.74.0</strong></li>
+      </ul>
+      <p>
+        Förteckningen uppdateras automatiskt och beskriver beroendena i
+        applikationens huvudgren vid angivet datum. Den omfattar hela beroendeträdet,
+        alltså även byggkedjan – vilka API:er applikationen anropar framgår av
+        <a href="kontohantering-for-lov-utforare.html#teknisk-dokumentation">den tekniska dokumentationen</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="licenser">
+    <div class="container">
+      <h2>Licenser</h2>
+      <p class="section-intro">
+        Fördelning av deklarerade licenser bland komponenterna.
+      </p>
+      <div class="table-wrap">
+        <table>
+          <caption class="sr-only">Licensfördelning för Kontohantering för LOV-utförare</caption>
+          <thead>
+            <tr><th scope="col">Licens</th><th scope="col">Antal komponenter</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>MIT</td><td>412</td></tr>
+            <tr><td>ISC</td><td>55</td></tr>
+            <tr><td>Ej angiven</td><td>42</td></tr>
+            <tr><td>Apache-2.0</td><td>7</td></tr>
+            <tr><td>BSD-3-Clause</td><td>7</td></tr>
+            <tr><td>0BSD</td><td>2</td></tr>
+            <tr><td>Apache-2.0 AND MIT</td><td>2</td></tr>
+            <tr><td>BlueOak-1.0.0</td><td>2</td></tr>
+            <tr><td>BSD-2-Clause</td><td>2</td></tr>
+            <tr><td>CC-BY-4.0</td><td>1</td></tr>
+            <tr><td>MIT OR CC0-1.0</td><td>1</td></tr>
+            <tr><td>WTFPL OR CC0-1.0</td><td>1</td></tr>
+            <tr><td>WTFPL OR MIT</td><td>1</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="komponenter">
+    <div class="container">
+      <h2>Komponenter</h2>
+      <p class="section-intro">
+        Samtliga 535 komponenter, inklusive transitiva beroenden.
+      </p>
+      <p class="sbom-filter" hidden>
+        <label for="sbom-filter">Filtrera listan</label>
+        <input type="search" id="sbom-filter" placeholder="Sök på komponent eller licens" autocomplete="off">
+        <span id="sbom-count" aria-live="polite"></span>
+      </p>
+      <div class="table-wrap">
+        <table id="sbom-table">
+          <caption class="sr-only">Tredjepartskomponenter i Kontohantering för LOV-utförare</caption>
+          <thead>
+            <tr><th scope="col">Komponent</th><th scope="col">Version</th><th scope="col">Licens</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>@babel/code-frame</td><td>7.24.2</td><td>MIT</td></tr>
+            <tr><td>@babel/helper-module-imports</td><td>7.24.3</td><td>MIT</td></tr>
+            <tr><td>@babel/helper-string-parser</td><td>7.24.1</td><td>MIT</td></tr>
+            <tr><td>@babel/helper-validator-identifier</td><td>7.24.5</td><td>MIT</td></tr>
+            <tr><td>@babel/highlight</td><td>7.24.5</td><td>MIT</td></tr>
+            <tr><td>@babel/plugin-proposal-export-namespace-from</td><td>7.18.9</td><td>MIT</td></tr>
+            <tr><td>@babel/plugin-syntax-export-namespace-from</td><td>7.8.3</td><td>MIT</td></tr>
+            <tr><td>@babel/plugin-transform-modules-commonjs</td><td>7.24.1</td><td>MIT</td></tr>
+            <tr><td>@babel/runtime</td><td>7.24.5</td><td>MIT</td></tr>
+            <tr><td>@babel/types</td><td>7.24.5</td><td>MIT</td></tr>
+            <tr><td>@colors/colors</td><td>1.5.0</td><td>MIT</td></tr>
+            <tr><td>@colors/colors</td><td>1.6.0</td><td>MIT</td></tr>
+            <tr><td>@dabh/diagnostics</td><td>2.0.3</td><td>MIT</td></tr>
+            <tr><td>@discoveryjs/json-ext</td><td>0.5.7</td><td>MIT</td></tr>
+            <tr><td>@emnapi/runtime</td><td>1.1.1</td><td>Ej angiven</td></tr>
+            <tr><td>@emotion/babel-plugin</td><td>11.11.0</td><td>MIT</td></tr>
+            <tr><td>@emotion/cache</td><td>11.11.0</td><td>MIT</td></tr>
+            <tr><td>@emotion/hash</td><td>0.9.1</td><td>MIT</td></tr>
+            <tr><td>@emotion/is-prop-valid</td><td>1.2.2</td><td>MIT</td></tr>
+            <tr><td>@emotion/memoize</td><td>0.8.1</td><td>MIT</td></tr>
+            <tr><td>@emotion/react</td><td>11.11.4</td><td>MIT</td></tr>
+            <tr><td>@emotion/serialize</td><td>1.1.4</td><td>MIT</td></tr>
+            <tr><td>@emotion/sheet</td><td>1.2.2</td><td>MIT</td></tr>
+            <tr><td>@emotion/styled</td><td>11.11.5</td><td>MIT</td></tr>
+            <tr><td>@emotion/unitless</td><td>0.8.1</td><td>MIT</td></tr>
+            <tr><td>@emotion/use-insertion-effect-with-fallbacks</td><td>1.0.1</td><td>MIT</td></tr>
+            <tr><td>@emotion/utils</td><td>1.2.1</td><td>MIT</td></tr>
+            <tr><td>@emotion/weak-memoize</td><td>0.3.1</td><td>MIT</td></tr>
+            <tr><td>@headlessui/react</td><td>1.7.19</td><td>MIT</td></tr>
+            <tr><td>@img/sharp-darwin-arm64</td><td>0.33.3</td><td>Ej angiven</td></tr>
+            <tr><td>@img/sharp-darwin-x64</td><td>0.33.3</td><td>Ej angiven</td></tr>
+            <tr><td>@img/sharp-libvips-darwin-arm64</td><td>1.0.2</td><td>Ej angiven</td></tr>
+            <tr><td>@img/sharp-libvips-darwin-x64</td><td>1.0.2</td><td>Ej angiven</td></tr>
+            <tr><td>@img/sharp-libvips-linux-arm</td><td>1.0.2</td><td>Ej angiven</td></tr>
+            <tr><td>@img/sharp-libvips-linux-arm64</td><td>1.0.2</td><td>Ej angiven</td></tr>
+            <tr><td>@img/sharp-libvips-linux-s390x</td><td>1.0.2</td><td>Ej angiven</td></tr>
+            <tr><td>@img/sharp-libvips-linux-x64</td><td>1.0.2</td><td>Ej angiven</td></tr>
+            <tr><td>@img/sharp-libvips-linuxmusl-arm64</td><td>1.0.2</td><td>Ej angiven</td></tr>
+            <tr><td>@img/sharp-libvips-linuxmusl-x64</td><td>1.0.2</td><td>Ej angiven</td></tr>
+            <tr><td>@img/sharp-linux-arm</td><td>0.33.3</td><td>Ej angiven</td></tr>
+            <tr><td>@img/sharp-linux-arm64</td><td>0.33.3</td><td>Ej angiven</td></tr>
+            <tr><td>@img/sharp-linux-s390x</td><td>0.33.3</td><td>Ej angiven</td></tr>
+            <tr><td>@img/sharp-linux-x64</td><td>0.33.3</td><td>Ej angiven</td></tr>
+            <tr><td>@img/sharp-linuxmusl-arm64</td><td>0.33.3</td><td>Ej angiven</td></tr>
+            <tr><td>@img/sharp-linuxmusl-x64</td><td>0.33.3</td><td>Ej angiven</td></tr>
+            <tr><td>@img/sharp-wasm32</td><td>0.33.3</td><td>Ej angiven</td></tr>
+            <tr><td>@img/sharp-win32-ia32</td><td>0.33.3</td><td>Ej angiven</td></tr>
+            <tr><td>@img/sharp-win32-x64</td><td>0.33.3</td><td>Ej angiven</td></tr>
+            <tr><td>@isaacs/cliui</td><td>8.0.2</td><td>ISC</td></tr>
+            <tr><td>@koa/multer</td><td>3.0.2</td><td>MIT</td></tr>
+            <tr><td>@koa/router</td><td>12.0.1</td><td>MIT</td></tr>
+            <tr><td>@lottiefiles/react-lottie-player</td><td>3.5.3</td><td>MIT</td></tr>
+            <tr><td>@mapbox/node-pre-gyp</td><td>1.0.11</td><td>BSD-3-Clause</td></tr>
+            <tr><td>@next/bundle-analyzer</td><td>14.1.4</td><td>MIT</td></tr>
+            <tr><td>@next/env</td><td>14.1.4</td><td>MIT</td></tr>
+            <tr><td>@next/swc-darwin-arm64</td><td>14.1.4</td><td>Ej angiven</td></tr>
+            <tr><td>@next/swc-darwin-x64</td><td>14.1.4</td><td>Ej angiven</td></tr>
+            <tr><td>@next/swc-linux-arm64-gnu</td><td>14.1.4</td><td>Ej angiven</td></tr>
+            <tr><td>@next/swc-linux-arm64-musl</td><td>14.1.4</td><td>Ej angiven</td></tr>
+            <tr><td>@next/swc-linux-x64-gnu</td><td>14.1.4</td><td>MIT</td></tr>
+            <tr><td>@next/swc-linux-x64-musl</td><td>14.1.4</td><td>MIT</td></tr>
+            <tr><td>@next/swc-win32-arm64-msvc</td><td>14.1.4</td><td>Ej angiven</td></tr>
+            <tr><td>@next/swc-win32-ia32-msvc</td><td>14.1.4</td><td>Ej angiven</td></tr>
+            <tr><td>@next/swc-win32-x64-msvc</td><td>14.1.4</td><td>Ej angiven</td></tr>
+            <tr><td>@pkgjs/parseargs</td><td>0.11.0</td><td>MIT</td></tr>
+            <tr><td>@polka/url</td><td>1.0.0-next.25</td><td>MIT</td></tr>
+            <tr><td>@reach/alert</td><td>0.18.0</td><td>MIT</td></tr>
+            <tr><td>@reach/auto-id</td><td>0.18.0</td><td>MIT</td></tr>
+            <tr><td>@reach/polymorphic</td><td>0.18.0</td><td>MIT</td></tr>
+            <tr><td>@reach/utils</td><td>0.18.0</td><td>MIT</td></tr>
+            <tr><td>@reach/visually-hidden</td><td>0.18.0</td><td>MIT</td></tr>
+            <tr><td>@react-hookz/deep-equal</td><td>1.0.4</td><td>MIT</td></tr>
+            <tr><td>@react-hookz/web</td><td>23.1.0</td><td>MIT</td></tr>
+            <tr><td>@react-spring/animated</td><td>9.7.3</td><td>MIT</td></tr>
+            <tr><td>@react-spring/core</td><td>9.7.3</td><td>MIT</td></tr>
+            <tr><td>@react-spring/konva</td><td>9.7.3</td><td>MIT</td></tr>
+            <tr><td>@react-spring/native</td><td>9.7.3</td><td>MIT</td></tr>
+            <tr><td>@react-spring/shared</td><td>9.7.3</td><td>MIT</td></tr>
+            <tr><td>@react-spring/three</td><td>9.7.3</td><td>MIT</td></tr>
+            <tr><td>@react-spring/types</td><td>9.7.3</td><td>MIT</td></tr>
+            <tr><td>@react-spring/web</td><td>9.7.3</td><td>MIT</td></tr>
+            <tr><td>@react-spring/zdog</td><td>9.7.3</td><td>MIT</td></tr>
+            <tr><td>@sk-web-gui/accordion</td><td>1.0.3</td><td>MIT</td></tr>
+            <tr><td>@sk-web-gui/avatar</td><td>1.0.1</td><td>MIT</td></tr>
+            <tr><td>@sk-web-gui/badge</td><td>1.0.0</td><td>MIT</td></tr>
+            <tr><td>@sk-web-gui/breadcrumb</td><td>1.0.1</td><td>MIT</td></tr>
+            <tr><td>@sk-web-gui/button</td><td>1.0.3</td><td>MIT</td></tr>
+            <tr><td>@sk-web-gui/card</td><td>1.0.2</td><td>MIT</td></tr>
+            <tr><td>@sk-web-gui/cookie-consent</td><td>1.0.3</td><td>MIT</td></tr>
+            <tr><td>@sk-web-gui/core</td><td>1.0.3</td><td>MIT</td></tr>
+            <tr><td>@sk-web-gui/divider</td><td>1.0.1</td><td>MIT</td></tr>
+            <tr><td>@sk-web-gui/filter</td><td>1.0.2</td><td>MIT</td></tr>
+            <tr><td>@sk-web-gui/forms</td><td>1.0.2</td><td>MIT</td></tr>
+            <tr><td>@sk-web-gui/icon</td><td>1.0.0</td><td>MIT</td></tr>
+            <tr><td>@sk-web-gui/image</td><td>1.0.1</td><td>MIT</td></tr>
+            <tr><td>@sk-web-gui/label</td><td>1.0.1</td><td>MIT</td></tr>
+            <tr><td>@sk-web-gui/layout</td><td>1.0.1</td><td>MIT</td></tr>
+            <tr><td>@sk-web-gui/link</td><td>1.0.1</td><td>MIT</td></tr>
+            <tr><td>@sk-web-gui/list</td><td>1.1.1</td><td>MIT</td></tr>
+            <tr><td>@sk-web-gui/logo</td><td>1.0.1</td><td>MIT</td></tr>
+            <tr><td>@sk-web-gui/menu-vertical</td><td>1.0.1</td><td>MIT</td></tr>
+            <tr><td>@sk-web-gui/menubar</td><td>1.0.1</td><td>MIT</td></tr>
+            <tr><td>@sk-web-gui/modal</td><td>1.0.3</td><td>MIT</td></tr>
+            <tr><td>@sk-web-gui/pagination</td><td>1.0.2</td><td>MIT</td></tr>
+            <tr><td>@sk-web-gui/popup-menu</td><td>1.0.3</td><td>MIT</td></tr>
+            <tr><td>@sk-web-gui/progress-bar</td><td>1.0.0</td><td>MIT</td></tr>
+            <tr><td>@sk-web-gui/progress-stepper</td><td>1.0.1</td><td>MIT</td></tr>
+            <tr><td>@sk-web-gui/react</td><td>1.1.3</td><td>MIT</td></tr>
+            <tr><td>@sk-web-gui/searchfield</td><td>1.0.3</td><td>MIT</td></tr>
+            <tr><td>@sk-web-gui/snackbar</td><td>1.0.3</td><td>MIT</td></tr>
+            <tr><td>@sk-web-gui/spinner</td><td>1.0.3</td><td>MIT</td></tr>
+            <tr><td>@sk-web-gui/table</td><td>1.0.3</td><td>MIT</td></tr>
+            <tr><td>@sk-web-gui/text</td><td>1.0.1</td><td>MIT</td></tr>
+            <tr><td>@sk-web-gui/theme</td><td>1.0.1</td><td>MIT</td></tr>
+            <tr><td>@sk-web-gui/toast</td><td>1.0.1</td><td>MIT</td></tr>
+            <tr><td>@sk-web-gui/toasted-notes</td><td>1.0.0</td><td>MIT</td></tr>
+            <tr><td>@sk-web-gui/user-menu</td><td>1.0.3</td><td>MIT</td></tr>
+            <tr><td>@sk-web-gui/utils</td><td>1.0.0</td><td>MIT</td></tr>
+            <tr><td>@sk-web-gui/utils</td><td>1.1.0</td><td>MIT</td></tr>
+            <tr><td>@swc/core-darwin-arm64</td><td>1.5.5</td><td>Ej angiven</td></tr>
+            <tr><td>@swc/core-darwin-x64</td><td>1.5.5</td><td>Ej angiven</td></tr>
+            <tr><td>@swc/core-linux-arm-gnueabihf</td><td>1.5.5</td><td>Ej angiven</td></tr>
+            <tr><td>@swc/core-linux-arm64-gnu</td><td>1.5.5</td><td>Ej angiven</td></tr>
+            <tr><td>@swc/core-linux-arm64-musl</td><td>1.5.5</td><td>Ej angiven</td></tr>
+            <tr><td>@swc/core-linux-x64-gnu</td><td>1.5.5</td><td>Apache-2.0 AND MIT</td></tr>
+            <tr><td>@swc/core-linux-x64-musl</td><td>1.5.5</td><td>Apache-2.0 AND MIT</td></tr>
+            <tr><td>@swc/core-win32-arm64-msvc</td><td>1.5.5</td><td>Ej angiven</td></tr>
+            <tr><td>@swc/core-win32-ia32-msvc</td><td>1.5.5</td><td>Ej angiven</td></tr>
+            <tr><td>@swc/core-win32-x64-msvc</td><td>1.5.5</td><td>Ej angiven</td></tr>
+            <tr><td>@swc/helpers</td><td>0.5.2</td><td>Apache-2.0</td></tr>
+            <tr><td>@tailwindcss/forms</td><td>0.5.7</td><td>MIT</td></tr>
+            <tr><td>@tanstack/react-virtual</td><td>3.5.0</td><td>MIT</td></tr>
+            <tr><td>@tanstack/virtual-core</td><td>3.5.0</td><td>MIT</td></tr>
+            <tr><td>@types/cookie</td><td>0.6.0</td><td>MIT</td></tr>
+            <tr><td>@types/parse-json</td><td>4.0.2</td><td>MIT</td></tr>
+            <tr><td>@types/triple-beam</td><td>1.3.5</td><td>MIT</td></tr>
+            <tr><td>@types/validator</td><td>13.11.9</td><td>MIT</td></tr>
+            <tr><td>@types/yauzl</td><td>2.10.3</td><td>MIT</td></tr>
+            <tr><td>@xmldom/xmldom</td><td>0.7.13</td><td>MIT</td></tr>
+            <tr><td>abbrev</td><td>1.1.1</td><td>ISC</td></tr>
+            <tr><td>accepts</td><td>1.3.8</td><td>MIT</td></tr>
+            <tr><td>acorn</td><td>8.11.3</td><td>MIT</td></tr>
+            <tr><td>acorn-walk</td><td>8.3.2</td><td>MIT</td></tr>
+            <tr><td>agent-base</td><td>6.0.2</td><td>MIT</td></tr>
+            <tr><td>ansi-regex</td><td>5.0.1</td><td>MIT</td></tr>
+            <tr><td>ansi-regex</td><td>6.0.1</td><td>MIT</td></tr>
+            <tr><td>ansi-styles</td><td>3.2.1</td><td>MIT</td></tr>
+            <tr><td>ansi-styles</td><td>4.3.0</td><td>MIT</td></tr>
+            <tr><td>ansi-styles</td><td>6.2.1</td><td>MIT</td></tr>
+            <tr><td>anymatch</td><td>3.1.3</td><td>ISC</td></tr>
+            <tr><td>append-field</td><td>1.0.0</td><td>MIT</td></tr>
+            <tr><td>aproba</td><td>2.0.0</td><td>ISC</td></tr>
+            <tr><td>are-we-there-yet</td><td>2.0.0</td><td>ISC</td></tr>
+            <tr><td>array-flatten</td><td>1.1.1</td><td>MIT</td></tr>
+            <tr><td>asn1.js</td><td>5.4.1</td><td>MIT</td></tr>
+            <tr><td>async</td><td>3.2.5</td><td>MIT</td></tr>
+            <tr><td>asynckit</td><td>0.4.0</td><td>MIT</td></tr>
+            <tr><td>axios</td><td>1.6.8</td><td>MIT</td></tr>
+            <tr><td>babel-plugin-macros</td><td>3.1.0</td><td>MIT</td></tr>
+            <tr><td>backend</td><td>0.0.1</td><td>ISC</td></tr>
+            <tr><td>bagpipe</td><td>0.3.5</td><td>MIT</td></tr>
+            <tr><td>balanced-match</td><td>1.0.2</td><td>MIT</td></tr>
+            <tr><td>basic-auth</td><td>2.0.1</td><td>MIT</td></tr>
+            <tr><td>bcrypt</td><td>5.1.1</td><td>MIT</td></tr>
+            <tr><td>binary-extensions</td><td>2.3.0</td><td>MIT</td></tr>
+            <tr><td>bn.js</td><td>4.12.0</td><td>MIT</td></tr>
+            <tr><td>body-parser</td><td>1.20.2</td><td>MIT</td></tr>
+            <tr><td>brace-expansion</td><td>1.1.11</td><td>MIT</td></tr>
+            <tr><td>brace-expansion</td><td>2.0.1</td><td>MIT</td></tr>
+            <tr><td>braces</td><td>3.0.2</td><td>MIT</td></tr>
+            <tr><td>buffer-equal-constant-time</td><td>1.0.1</td><td>BSD-3-Clause</td></tr>
+            <tr><td>busboy</td><td>1.6.0</td><td>MIT</td></tr>
+            <tr><td>bytes</td><td>3.0.0</td><td>MIT</td></tr>
+            <tr><td>bytes</td><td>3.1.2</td><td>MIT</td></tr>
+            <tr><td>cache-content-type</td><td>1.0.1</td><td>MIT</td></tr>
+            <tr><td>call-bind</td><td>1.0.7</td><td>MIT</td></tr>
+            <tr><td>callsites</td><td>3.1.0</td><td>MIT</td></tr>
+            <tr><td>caniuse-lite</td><td>1.0.30001616</td><td>CC-BY-4.0</td></tr>
+            <tr><td>chalk</td><td>2.4.2</td><td>MIT</td></tr>
+            <tr><td>chokidar</td><td>3.6.0</td><td>MIT</td></tr>
+            <tr><td>chownr</td><td>2.0.0</td><td>ISC</td></tr>
+            <tr><td>class-transformer</td><td>0.5.1</td><td>MIT</td></tr>
+            <tr><td>class-validator</td><td>0.14.1</td><td>MIT</td></tr>
+            <tr><td>class-validator-jsonschema</td><td>5.0.0</td><td>MIT</td></tr>
+            <tr><td>client-only</td><td>0.0.1</td><td>MIT</td></tr>
+            <tr><td>clsx</td><td>1.2.1</td><td>MIT</td></tr>
+            <tr><td>co-body</td><td>6.1.0</td><td>MIT</td></tr>
+            <tr><td>color</td><td>3.2.1</td><td>MIT</td></tr>
+            <tr><td>color</td><td>4.2.3</td><td>MIT</td></tr>
+            <tr><td>color-convert</td><td>1.9.3</td><td>MIT</td></tr>
+            <tr><td>color-convert</td><td>2.0.1</td><td>MIT</td></tr>
+            <tr><td>color-name</td><td>1.1.3</td><td>MIT</td></tr>
+            <tr><td>color-name</td><td>1.1.4</td><td>MIT</td></tr>
+            <tr><td>color-string</td><td>1.9.1</td><td>MIT</td></tr>
+            <tr><td>color-support</td><td>1.1.3</td><td>ISC</td></tr>
+            <tr><td>colorspace</td><td>1.1.4</td><td>MIT</td></tr>
+            <tr><td>combined-stream</td><td>1.0.8</td><td>MIT</td></tr>
+            <tr><td>commander</td><td>7.2.0</td><td>MIT</td></tr>
+            <tr><td>compressible</td><td>2.0.18</td><td>MIT</td></tr>
+            <tr><td>compression</td><td>1.7.4</td><td>MIT</td></tr>
+            <tr><td>concat-map</td><td>0.0.1</td><td>MIT</td></tr>
+            <tr><td>concat-stream</td><td>1.6.2</td><td>MIT</td></tr>
+            <tr><td>console-control-strings</td><td>1.1.0</td><td>ISC</td></tr>
+            <tr><td>content-disposition</td><td>0.5.4</td><td>MIT</td></tr>
+            <tr><td>content-type</td><td>1.0.5</td><td>MIT</td></tr>
+            <tr><td>convert-source-map</td><td>1.9.0</td><td>MIT</td></tr>
+            <tr><td>cookie</td><td>0.4.1</td><td>MIT</td></tr>
+            <tr><td>cookie</td><td>0.5.0</td><td>MIT</td></tr>
+            <tr><td>cookie</td><td>0.6.0</td><td>MIT</td></tr>
+            <tr><td>cookie-parser</td><td>1.4.6</td><td>MIT</td></tr>
+            <tr><td>cookie-signature</td><td>1.0.6</td><td>MIT</td></tr>
+            <tr><td>cookie-signature</td><td>1.0.7</td><td>MIT</td></tr>
+            <tr><td>cookies</td><td>0.9.1</td><td>MIT</td></tr>
+            <tr><td>copy-to</td><td>2.0.1</td><td>MIT</td></tr>
+            <tr><td>core-util-is</td><td>1.0.3</td><td>MIT</td></tr>
+            <tr><td>cors</td><td>2.8.5</td><td>MIT</td></tr>
+            <tr><td>cosmiconfig</td><td>7.1.0</td><td>MIT</td></tr>
+            <tr><td>cross-spawn</td><td>7.0.3</td><td>MIT</td></tr>
+            <tr><td>csstype</td><td>3.1.3</td><td>MIT</td></tr>
+            <tr><td>dayjs</td><td>1.11.11</td><td>MIT</td></tr>
+            <tr><td>debounce</td><td>1.2.1</td><td>MIT</td></tr>
+            <tr><td>debug</td><td>2.6.9</td><td>MIT</td></tr>
+            <tr><td>debug</td><td>4.3.4</td><td>MIT</td></tr>
+            <tr><td>deep-equal</td><td>1.0.1</td><td>MIT</td></tr>
+            <tr><td>define-data-property</td><td>1.1.4</td><td>MIT</td></tr>
+            <tr><td>delayed-stream</td><td>1.0.0</td><td>MIT</td></tr>
+            <tr><td>delegates</td><td>1.0.0</td><td>MIT</td></tr>
+            <tr><td>depd</td><td>1.1.2</td><td>MIT</td></tr>
+            <tr><td>depd</td><td>2.0.0</td><td>MIT</td></tr>
+            <tr><td>destroy</td><td>1.2.0</td><td>MIT</td></tr>
+            <tr><td>detect-libc</td><td>2.0.3</td><td>Apache-2.0</td></tr>
+            <tr><td>dotenv</td><td>16.4.5</td><td>BSD-2-Clause</td></tr>
+            <tr><td>duplexer</td><td>0.1.2</td><td>MIT</td></tr>
+            <tr><td>eastasianwidth</td><td>0.2.0</td><td>MIT</td></tr>
+            <tr><td>ecdsa-sig-formatter</td><td>1.0.11</td><td>Apache-2.0</td></tr>
+            <tr><td>ee-first</td><td>1.1.1</td><td>MIT</td></tr>
+            <tr><td>emoji-regex</td><td>8.0.0</td><td>MIT</td></tr>
+            <tr><td>emoji-regex</td><td>9.2.2</td><td>MIT</td></tr>
+            <tr><td>enabled</td><td>2.0.0</td><td>MIT</td></tr>
+            <tr><td>encodeurl</td><td>1.0.2</td><td>MIT</td></tr>
+            <tr><td>envalid</td><td>7.3.1</td><td>MIT</td></tr>
+            <tr><td>error-ex</td><td>1.3.2</td><td>MIT</td></tr>
+            <tr><td>es-define-property</td><td>1.0.0</td><td>MIT</td></tr>
+            <tr><td>es-errors</td><td>1.3.0</td><td>MIT</td></tr>
+            <tr><td>escape-html</td><td>1.0.3</td><td>MIT</td></tr>
+            <tr><td>escape-string-regexp</td><td>1.0.5</td><td>MIT</td></tr>
+            <tr><td>escape-string-regexp</td><td>4.0.0</td><td>MIT</td></tr>
+            <tr><td>etag</td><td>1.8.1</td><td>MIT</td></tr>
+            <tr><td>express</td><td>4.19.2</td><td>MIT</td></tr>
+            <tr><td>express-session</td><td>1.18.0</td><td>MIT</td></tr>
+            <tr><td>fecha</td><td>4.2.3</td><td>MIT</td></tr>
+            <tr><td>file-stream-rotator</td><td>0.6.1</td><td>MIT</td></tr>
+            <tr><td>fill-range</td><td>7.0.1</td><td>MIT</td></tr>
+            <tr><td>finalhandler</td><td>1.2.0</td><td>MIT</td></tr>
+            <tr><td>find-root</td><td>1.1.0</td><td>MIT</td></tr>
+            <tr><td>fix-esm</td><td>1.0.1</td><td>WTFPL OR CC0-1.0</td></tr>
+            <tr><td>fn.name</td><td>1.1.0</td><td>MIT</td></tr>
+            <tr><td>follow-redirects</td><td>1.15.6</td><td>MIT</td></tr>
+            <tr><td>foreground-child</td><td>3.1.1</td><td>ISC</td></tr>
+            <tr><td>form-data</td><td>4.0.0</td><td>MIT</td></tr>
+            <tr><td>forwarded</td><td>0.2.0</td><td>MIT</td></tr>
+            <tr><td>fresh</td><td>0.5.2</td><td>MIT</td></tr>
+            <tr><td>frontend</td><td>0.1.0</td><td>Ej angiven</td></tr>
+            <tr><td>fs-extra</td><td>8.1.0</td><td>MIT</td></tr>
+            <tr><td>fs-minipass</td><td>2.1.0</td><td>ISC</td></tr>
+            <tr><td>fs.realpath</td><td>1.0.0</td><td>ISC</td></tr>
+            <tr><td>fsevents</td><td>2.3.3</td><td>Ej angiven</td></tr>
+            <tr><td>function-bind</td><td>1.1.2</td><td>MIT</td></tr>
+            <tr><td>gauge</td><td>3.0.2</td><td>ISC</td></tr>
+            <tr><td>get-intrinsic</td><td>1.2.4</td><td>MIT</td></tr>
+            <tr><td>glob</td><td>10.3.12</td><td>ISC</td></tr>
+            <tr><td>glob</td><td>7.2.3</td><td>ISC</td></tr>
+            <tr><td>glob-parent</td><td>5.1.2</td><td>ISC</td></tr>
+            <tr><td>gopd</td><td>1.0.1</td><td>MIT</td></tr>
+            <tr><td>graceful-fs</td><td>4.2.11</td><td>ISC</td></tr>
+            <tr><td>gzip-size</td><td>6.0.0</td><td>MIT</td></tr>
+            <tr><td>has-flag</td><td>3.0.0</td><td>MIT</td></tr>
+            <tr><td>has-property-descriptors</td><td>1.0.2</td><td>MIT</td></tr>
+            <tr><td>has-proto</td><td>1.0.3</td><td>MIT</td></tr>
+            <tr><td>has-symbols</td><td>1.0.3</td><td>MIT</td></tr>
+            <tr><td>has-tostringtag</td><td>1.0.2</td><td>MIT</td></tr>
+            <tr><td>has-unicode</td><td>2.0.1</td><td>ISC</td></tr>
+            <tr><td>hasown</td><td>2.0.2</td><td>MIT</td></tr>
+            <tr><td>helmet</td><td>7.1.0</td><td>MIT</td></tr>
+            <tr><td>hoist-non-react-statics</td><td>3.3.2</td><td>BSD-3-Clause</td></tr>
+            <tr><td>hpp</td><td>0.2.3</td><td>ISC</td></tr>
+            <tr><td>html-escaper</td><td>2.0.2</td><td>MIT</td></tr>
+            <tr><td>http-assert</td><td>1.5.0</td><td>MIT</td></tr>
+            <tr><td>http-errors</td><td>1.8.1</td><td>MIT</td></tr>
+            <tr><td>http-errors</td><td>2.0.0</td><td>MIT</td></tr>
+            <tr><td>https-proxy-agent</td><td>5.0.1</td><td>MIT</td></tr>
+            <tr><td>iconv-lite</td><td>0.4.24</td><td>MIT</td></tr>
+            <tr><td>immutable</td><td>4.3.5</td><td>MIT</td></tr>
+            <tr><td>import-fresh</td><td>3.3.0</td><td>MIT</td></tr>
+            <tr><td>imurmurhash</td><td>0.1.4</td><td>MIT</td></tr>
+            <tr><td>inflation</td><td>2.1.0</td><td>MIT</td></tr>
+            <tr><td>inflight</td><td>1.0.6</td><td>ISC</td></tr>
+            <tr><td>inherits</td><td>2.0.4</td><td>ISC</td></tr>
+            <tr><td>ipaddr.js</td><td>1.9.1</td><td>MIT</td></tr>
+            <tr><td>is-arrayish</td><td>0.2.1</td><td>MIT</td></tr>
+            <tr><td>is-arrayish</td><td>0.3.2</td><td>MIT</td></tr>
+            <tr><td>is-binary-path</td><td>2.1.0</td><td>MIT</td></tr>
+            <tr><td>is-core-module</td><td>2.13.1</td><td>MIT</td></tr>
+            <tr><td>is-extglob</td><td>2.1.1</td><td>MIT</td></tr>
+            <tr><td>is-fullwidth-code-point</td><td>3.0.0</td><td>MIT</td></tr>
+            <tr><td>is-generator-function</td><td>1.0.10</td><td>MIT</td></tr>
+            <tr><td>is-glob</td><td>4.0.3</td><td>MIT</td></tr>
+            <tr><td>is-number</td><td>7.0.0</td><td>MIT</td></tr>
+            <tr><td>is-plain-object</td><td>5.0.0</td><td>MIT</td></tr>
+            <tr><td>is-stream</td><td>2.0.1</td><td>MIT</td></tr>
+            <tr><td>is-typedarray</td><td>1.0.0</td><td>MIT</td></tr>
+            <tr><td>isarray</td><td>1.0.0</td><td>MIT</td></tr>
+            <tr><td>isexe</td><td>2.0.0</td><td>ISC</td></tr>
+            <tr><td>jackspeak</td><td>2.3.6</td><td>BlueOak-1.0.0</td></tr>
+            <tr><td>js-tokens</td><td>4.0.0</td><td>MIT</td></tr>
+            <tr><td>json-parse-even-better-errors</td><td>2.3.1</td><td>MIT</td></tr>
+            <tr><td>jsonfile</td><td>4.0.0</td><td>MIT</td></tr>
+            <tr><td>jsonwebtoken</td><td>9.0.2</td><td>MIT</td></tr>
+            <tr><td>jwa</td><td>1.4.1</td><td>MIT</td></tr>
+            <tr><td>jws</td><td>3.2.2</td><td>MIT</td></tr>
+            <tr><td>keygrip</td><td>1.1.0</td><td>MIT</td></tr>
+            <tr><td>koa</td><td>2.15.3</td><td>MIT</td></tr>
+            <tr><td>koa-bodyparser</td><td>4.4.1</td><td>MIT</td></tr>
+            <tr><td>koa-compose</td><td>4.1.0</td><td>MIT</td></tr>
+            <tr><td>koa-convert</td><td>2.0.0</td><td>MIT</td></tr>
+            <tr><td>kruptein</td><td>2.2.3</td><td>MIT</td></tr>
+            <tr><td>kuler</td><td>2.0.0</td><td>MIT</td></tr>
+            <tr><td>libphonenumber-js</td><td>1.11.1</td><td>MIT</td></tr>
+            <tr><td>lines-and-columns</td><td>1.2.4</td><td>MIT</td></tr>
+            <tr><td>lodash</td><td>4.17.21</td><td>MIT</td></tr>
+            <tr><td>lodash.capitalize</td><td>4.2.1</td><td>MIT</td></tr>
+            <tr><td>lodash.debounce</td><td>4.0.8</td><td>MIT</td></tr>
+            <tr><td>lodash.groupby</td><td>4.6.0</td><td>MIT</td></tr>
+            <tr><td>lodash.includes</td><td>4.3.0</td><td>MIT</td></tr>
+            <tr><td>lodash.isboolean</td><td>3.0.3</td><td>MIT</td></tr>
+            <tr><td>lodash.isinteger</td><td>4.0.4</td><td>MIT</td></tr>
+            <tr><td>lodash.isnumber</td><td>3.0.3</td><td>MIT</td></tr>
+            <tr><td>lodash.isplainobject</td><td>4.0.6</td><td>MIT</td></tr>
+            <tr><td>lodash.isstring</td><td>4.0.1</td><td>MIT</td></tr>
+            <tr><td>lodash.merge</td><td>4.6.2</td><td>MIT</td></tr>
+            <tr><td>lodash.once</td><td>4.1.1</td><td>MIT</td></tr>
+            <tr><td>lodash.set</td><td>4.3.2</td><td>MIT</td></tr>
+            <tr><td>lodash.startcase</td><td>4.4.0</td><td>MIT</td></tr>
+            <tr><td>logform</td><td>2.6.0</td><td>MIT</td></tr>
+            <tr><td>loose-envify</td><td>1.4.0</td><td>MIT</td></tr>
+            <tr><td>lottie-web</td><td>5.12.2</td><td>MIT</td></tr>
+            <tr><td>lru-cache</td><td>10.2.2</td><td>ISC</td></tr>
+            <tr><td>lru-cache</td><td>4.1.5</td><td>ISC</td></tr>
+            <tr><td>lucide-react</td><td>0.292.0</td><td>ISC</td></tr>
+            <tr><td>lucide-react</td><td>0.294.0</td><td>ISC</td></tr>
+            <tr><td>make-dir</td><td>3.1.0</td><td>MIT</td></tr>
+            <tr><td>media-typer</td><td>0.3.0</td><td>MIT</td></tr>
+            <tr><td>memorystore</td><td>1.6.7</td><td>MIT</td></tr>
+            <tr><td>merge-descriptors</td><td>1.0.1</td><td>MIT</td></tr>
+            <tr><td>methods</td><td>1.1.2</td><td>MIT</td></tr>
+            <tr><td>mime</td><td>1.6.0</td><td>MIT</td></tr>
+            <tr><td>mime-db</td><td>1.52.0</td><td>MIT</td></tr>
+            <tr><td>mime-types</td><td>2.1.35</td><td>MIT</td></tr>
+            <tr><td>mini-svg-data-uri</td><td>1.4.4</td><td>MIT</td></tr>
+            <tr><td>minimalistic-assert</td><td>1.0.1</td><td>ISC</td></tr>
+            <tr><td>minimatch</td><td>3.1.2</td><td>ISC</td></tr>
+            <tr><td>minimatch</td><td>9.0.4</td><td>ISC</td></tr>
+            <tr><td>minipass</td><td>3.3.6</td><td>ISC</td></tr>
+            <tr><td>minipass</td><td>5.0.0</td><td>ISC</td></tr>
+            <tr><td>minipass</td><td>7.1.0</td><td>ISC</td></tr>
+            <tr><td>minizlib</td><td>2.1.2</td><td>MIT</td></tr>
+            <tr><td>mkdirp</td><td>0.5.6</td><td>MIT</td></tr>
+            <tr><td>mkdirp</td><td>1.0.4</td><td>MIT</td></tr>
+            <tr><td>moment</td><td>2.30.1</td><td>MIT</td></tr>
+            <tr><td>morgan</td><td>1.10.0</td><td>MIT</td></tr>
+            <tr><td>mrmime</td><td>2.0.0</td><td>MIT</td></tr>
+            <tr><td>ms</td><td>2.0.0</td><td>MIT</td></tr>
+            <tr><td>ms</td><td>2.1.2</td><td>MIT</td></tr>
+            <tr><td>ms</td><td>2.1.3</td><td>MIT</td></tr>
+            <tr><td>multer</td><td>1.4.5-lts.1</td><td>MIT</td></tr>
+            <tr><td>nanoid</td><td>3.3.7</td><td>MIT</td></tr>
+            <tr><td>negotiator</td><td>0.6.3</td><td>MIT</td></tr>
+            <tr><td>next</td><td>14.1.4</td><td>MIT</td></tr>
+            <tr><td>node-addon-api</td><td>5.1.0</td><td>MIT</td></tr>
+            <tr><td>node-fetch</td><td>2.7.0</td><td>MIT</td></tr>
+            <tr><td>nopt</td><td>5.0.0</td><td>ISC</td></tr>
+            <tr><td>normalize-path</td><td>3.0.0</td><td>MIT</td></tr>
+            <tr><td>npmlog</td><td>5.0.1</td><td>ISC</td></tr>
+            <tr><td>object-assign</td><td>4.1.1</td><td>MIT</td></tr>
+            <tr><td>object-hash</td><td>2.2.0</td><td>MIT</td></tr>
+            <tr><td>object-inspect</td><td>1.13.1</td><td>MIT</td></tr>
+            <tr><td>on-finished</td><td>2.3.0</td><td>MIT</td></tr>
+            <tr><td>on-finished</td><td>2.4.1</td><td>MIT</td></tr>
+            <tr><td>on-headers</td><td>1.0.2</td><td>MIT</td></tr>
+            <tr><td>once</td><td>1.4.0</td><td>ISC</td></tr>
+            <tr><td>one-time</td><td>1.0.0</td><td>MIT</td></tr>
+            <tr><td>only</td><td>0.0.2</td><td>Ej angiven</td></tr>
+            <tr><td>openapi3-ts</td><td>2.0.2</td><td>MIT</td></tr>
+            <tr><td>openapi3-ts</td><td>3.2.0</td><td>MIT</td></tr>
+            <tr><td>opener</td><td>1.5.2</td><td>WTFPL OR MIT</td></tr>
+            <tr><td>parent-module</td><td>1.0.1</td><td>MIT</td></tr>
+            <tr><td>parse-json</td><td>5.2.0</td><td>MIT</td></tr>
+            <tr><td>parseurl</td><td>1.3.3</td><td>MIT</td></tr>
+            <tr><td>passport</td><td>0.7.0</td><td>MIT</td></tr>
+            <tr><td>passport-saml</td><td>3.2.4</td><td>MIT</td></tr>
+            <tr><td>passport-strategy</td><td>1.0.0</td><td>MIT</td></tr>
+            <tr><td>path-is-absolute</td><td>1.0.1</td><td>MIT</td></tr>
+            <tr><td>path-key</td><td>3.1.1</td><td>MIT</td></tr>
+            <tr><td>path-parse</td><td>1.0.7</td><td>MIT</td></tr>
+            <tr><td>path-scurry</td><td>1.10.2</td><td>BlueOak-1.0.0</td></tr>
+            <tr><td>path-to-regexp</td><td>0.1.7</td><td>MIT</td></tr>
+            <tr><td>path-to-regexp</td><td>6.2.2</td><td>MIT</td></tr>
+            <tr><td>path-type</td><td>4.0.0</td><td>MIT</td></tr>
+            <tr><td>pause</td><td>0.0.1</td><td>Ej angiven</td></tr>
+            <tr><td>picocolors</td><td>1.0.0</td><td>ISC</td></tr>
+            <tr><td>picomatch</td><td>2.3.1</td><td>MIT</td></tr>
+            <tr><td>postcss</td><td>8.4.31</td><td>MIT</td></tr>
+            <tr><td>process-nextick-args</td><td>2.0.1</td><td>MIT</td></tr>
+            <tr><td>property-expr</td><td>2.0.6</td><td>MIT</td></tr>
+            <tr><td>proxy-addr</td><td>2.0.7</td><td>MIT</td></tr>
+            <tr><td>proxy-from-env</td><td>1.1.0</td><td>MIT</td></tr>
+            <tr><td>pseudomap</td><td>1.0.2</td><td>ISC</td></tr>
+            <tr><td>qs</td><td>6.11.0</td><td>BSD-3-Clause</td></tr>
+            <tr><td>qs</td><td>6.12.1</td><td>BSD-3-Clause</td></tr>
+            <tr><td>random-bytes</td><td>1.0.0</td><td>MIT</td></tr>
+            <tr><td>range-parser</td><td>1.2.1</td><td>MIT</td></tr>
+            <tr><td>raw-body</td><td>2.5.2</td><td>MIT</td></tr>
+            <tr><td>react</td><td>18.2.0</td><td>MIT</td></tr>
+            <tr><td>react-dom</td><td>18.2.0</td><td>MIT</td></tr>
+            <tr><td>react-hook-form</td><td>7.51.4</td><td>MIT</td></tr>
+            <tr><td>react-is</td><td>16.13.1</td><td>MIT</td></tr>
+            <tr><td>react-spring</td><td>9.7.3</td><td>MIT</td></tr>
+            <tr><td>readable-stream</td><td>2.3.8</td><td>MIT</td></tr>
+            <tr><td>readable-stream</td><td>3.6.2</td><td>MIT</td></tr>
+            <tr><td>readdirp</td><td>3.6.0</td><td>MIT</td></tr>
+            <tr><td>reflect-metadata</td><td>0.1.14</td><td>Apache-2.0</td></tr>
+            <tr><td>regenerator-runtime</td><td>0.14.1</td><td>MIT</td></tr>
+            <tr><td>resolve</td><td>1.22.8</td><td>MIT</td></tr>
+            <tr><td>resolve-from</td><td>4.0.0</td><td>MIT</td></tr>
+            <tr><td>retry</td><td>0.12.0</td><td>MIT</td></tr>
+            <tr><td>rimraf</td><td>3.0.2</td><td>ISC</td></tr>
+            <tr><td>routing-controllers</td><td>0.10.4</td><td>MIT</td></tr>
+            <tr><td>routing-controllers-openapi</td><td>4.0.0</td><td>MIT</td></tr>
+            <tr><td>safe-buffer</td><td>5.1.2</td><td>MIT</td></tr>
+            <tr><td>safe-buffer</td><td>5.2.1</td><td>MIT</td></tr>
+            <tr><td>safe-stable-stringify</td><td>2.4.3</td><td>MIT</td></tr>
+            <tr><td>safer-buffer</td><td>2.1.2</td><td>MIT</td></tr>
+            <tr><td>sass</td><td>1.77.0</td><td>MIT</td></tr>
+            <tr><td>sax</td><td>1.3.0</td><td>ISC</td></tr>
+            <tr><td>scheduler</td><td>0.23.2</td><td>MIT</td></tr>
+            <tr><td>semver</td><td>6.3.1</td><td>ISC</td></tr>
+            <tr><td>semver</td><td>7.6.1</td><td>ISC</td></tr>
+            <tr><td>send</td><td>0.18.0</td><td>MIT</td></tr>
+            <tr><td>serve-static</td><td>1.15.0</td><td>MIT</td></tr>
+            <tr><td>session-file-store</td><td>1.5.0</td><td>Apache-2.0</td></tr>
+            <tr><td>set-blocking</td><td>2.0.0</td><td>ISC</td></tr>
+            <tr><td>set-function-length</td><td>1.2.2</td><td>MIT</td></tr>
+            <tr><td>setprototypeof</td><td>1.2.0</td><td>ISC</td></tr>
+            <tr><td>sharp</td><td>0.33.3</td><td>Apache-2.0</td></tr>
+            <tr><td>shebang-command</td><td>2.0.0</td><td>MIT</td></tr>
+            <tr><td>shebang-regex</td><td>3.0.0</td><td>MIT</td></tr>
+            <tr><td>side-channel</td><td>1.0.6</td><td>MIT</td></tr>
+            <tr><td>signal-exit</td><td>3.0.7</td><td>ISC</td></tr>
+            <tr><td>signal-exit</td><td>4.1.0</td><td>ISC</td></tr>
+            <tr><td>simple-swizzle</td><td>0.2.2</td><td>MIT</td></tr>
+            <tr><td>sirv</td><td>2.0.4</td><td>MIT</td></tr>
+            <tr><td>source-map</td><td>0.5.7</td><td>BSD-3-Clause</td></tr>
+            <tr><td>source-map-js</td><td>1.2.0</td><td>BSD-3-Clause</td></tr>
+            <tr><td>stack-trace</td><td>0.0.10</td><td>MIT</td></tr>
+            <tr><td>statuses</td><td>1.5.0</td><td>MIT</td></tr>
+            <tr><td>statuses</td><td>2.0.1</td><td>MIT</td></tr>
+            <tr><td>streamsearch</td><td>1.1.0</td><td>MIT</td></tr>
+            <tr><td>string-width</td><td>5.1.2</td><td>MIT</td></tr>
+            <tr><td>string-width-cjs</td><td>4.2.3</td><td>Ej angiven</td></tr>
+            <tr><td>string_decoder</td><td>1.1.1</td><td>MIT</td></tr>
+            <tr><td>string_decoder</td><td>1.3.0</td><td>MIT</td></tr>
+            <tr><td>strip-ansi</td><td>7.1.0</td><td>MIT</td></tr>
+            <tr><td>strip-ansi-cjs</td><td>6.0.1</td><td>Ej angiven</td></tr>
+            <tr><td>styled-jsx</td><td>5.1.1</td><td>MIT</td></tr>
+            <tr><td>stylis</td><td>4.2.0</td><td>MIT</td></tr>
+            <tr><td>supports-color</td><td>5.5.0</td><td>MIT</td></tr>
+            <tr><td>supports-preserve-symlinks-flag</td><td>1.0.0</td><td>MIT</td></tr>
+            <tr><td>swagger-ui-dist</td><td>5.17.6</td><td>Apache-2.0</td></tr>
+            <tr><td>swagger-ui-express</td><td>4.6.3</td><td>MIT</td></tr>
+            <tr><td>tar</td><td>6.2.1</td><td>ISC</td></tr>
+            <tr><td>template-url</td><td>1.0.0</td><td>ISC</td></tr>
+            <tr><td>text-hex</td><td>1.0.0</td><td>MIT</td></tr>
+            <tr><td>tiny-case</td><td>1.0.3</td><td>MIT</td></tr>
+            <tr><td>to-fast-properties</td><td>2.0.0</td><td>MIT</td></tr>
+            <tr><td>to-regex-range</td><td>5.0.1</td><td>MIT</td></tr>
+            <tr><td>toidentifier</td><td>1.0.1</td><td>MIT</td></tr>
+            <tr><td>toposort</td><td>2.0.2</td><td>MIT</td></tr>
+            <tr><td>totalist</td><td>3.0.1</td><td>MIT</td></tr>
+            <tr><td>tr46</td><td>0.0.3</td><td>MIT</td></tr>
+            <tr><td>triple-beam</td><td>1.4.1</td><td>MIT</td></tr>
+            <tr><td>tslib</td><td>2.3.1</td><td>0BSD</td></tr>
+            <tr><td>tslib</td><td>2.6.2</td><td>0BSD</td></tr>
+            <tr><td>tsscmp</td><td>1.0.6</td><td>MIT</td></tr>
+            <tr><td>type-fest</td><td>2.19.0</td><td>MIT OR CC0-1.0</td></tr>
+            <tr><td>type-is</td><td>1.6.18</td><td>MIT</td></tr>
+            <tr><td>typedarray</td><td>0.0.6</td><td>MIT</td></tr>
+            <tr><td>typedarray-to-buffer</td><td>3.1.5</td><td>MIT</td></tr>
+            <tr><td>uid-safe</td><td>2.1.5</td><td>MIT</td></tr>
+            <tr><td>universal-cookie</td><td>6.1.3</td><td>MIT</td></tr>
+            <tr><td>universal-cookie</td><td>7.1.4</td><td>MIT</td></tr>
+            <tr><td>universalify</td><td>0.1.2</td><td>MIT</td></tr>
+            <tr><td>unpipe</td><td>1.0.0</td><td>MIT</td></tr>
+            <tr><td>use-sync-external-store</td><td>1.2.0</td><td>MIT</td></tr>
+            <tr><td>usehooks-ts</td><td>2.16.0</td><td>MIT</td></tr>
+            <tr><td>util-deprecate</td><td>1.0.2</td><td>MIT</td></tr>
+            <tr><td>utils-merge</td><td>1.0.1</td><td>MIT</td></tr>
+            <tr><td>validator</td><td>13.11.0</td><td>MIT</td></tr>
+            <tr><td>vary</td><td>1.1.2</td><td>MIT</td></tr>
+            <tr><td>webidl-conversions</td><td>3.0.1</td><td>BSD-2-Clause</td></tr>
+            <tr><td>webpack-bundle-analyzer</td><td>4.10.1</td><td>MIT</td></tr>
+            <tr><td>whatwg-url</td><td>5.0.0</td><td>MIT</td></tr>
+            <tr><td>which</td><td>2.0.2</td><td>ISC</td></tr>
+            <tr><td>wide-align</td><td>1.1.5</td><td>ISC</td></tr>
+            <tr><td>winston</td><td>3.13.0</td><td>MIT</td></tr>
+            <tr><td>winston-daily-rotate-file</td><td>4.7.1</td><td>MIT</td></tr>
+            <tr><td>winston-transport</td><td>4.7.0</td><td>MIT</td></tr>
+            <tr><td>wrap-ansi</td><td>8.1.0</td><td>MIT</td></tr>
+            <tr><td>wrap-ansi-cjs</td><td>7.0.0</td><td>Ej angiven</td></tr>
+            <tr><td>wrappy</td><td>1.0.2</td><td>ISC</td></tr>
+            <tr><td>write-file-atomic</td><td>3.0.3</td><td>ISC</td></tr>
+            <tr><td>ws</td><td>7.5.9</td><td>MIT</td></tr>
+            <tr><td>xml-crypto</td><td>2.1.5</td><td>MIT</td></tr>
+            <tr><td>xml-encryption</td><td>2.0.0</td><td>MIT</td></tr>
+            <tr><td>xml2js</td><td>0.4.23</td><td>MIT</td></tr>
+            <tr><td>xmlbuilder</td><td>11.0.1</td><td>MIT</td></tr>
+            <tr><td>xmlbuilder</td><td>15.1.1</td><td>MIT</td></tr>
+            <tr><td>xpath</td><td>0.0.32</td><td>MIT</td></tr>
+            <tr><td>xtend</td><td>4.0.2</td><td>MIT</td></tr>
+            <tr><td>yallist</td><td>2.1.2</td><td>ISC</td></tr>
+            <tr><td>yallist</td><td>4.0.0</td><td>ISC</td></tr>
+            <tr><td>yaml</td><td>1.10.2</td><td>ISC</td></tr>
+            <tr><td>yaml</td><td>2.4.2</td><td>ISC</td></tr>
+            <tr><td>ylru</td><td>1.4.0</td><td>MIT</td></tr>
+            <tr><td>yup</td><td>1.4.0</td><td>MIT</td></tr>
+            <tr><td>zustand</td><td>4.5.2</td><td>MIT</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div>
+      <p class="footer-title">Webbkatalogen</p>
+      <p>En översikt över de webbapplikationer som Sundsvalls kommun delar som öppen källkod.</p>
+    </div>
+    <div>
+      <p class="footer-title">Länkar</p>
+      <ul class="footer-links">
+        <li><a href="https://github.com/Sundsvallskommun" rel="external">Sundsvalls kommun på GitHub</a></li>
+        <li><a href="https://sundsvall.se" rel="external">sundsvall.se</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Progressive enhancement: the table is fully rendered server-side and stays
+  // usable without JavaScript.
+  (function () {
+    var input = document.getElementById('sbom-filter');
+    var count = document.getElementById('sbom-count');
+    var rows = Array.prototype.slice.call(
+      document.querySelectorAll('#sbom-table tbody tr')
+    );
+    if (!input || !rows.length) return;
+    document.querySelector('.sbom-filter').hidden = false;
+    input.addEventListener('input', function () {
+      var q = input.value.trim().toLowerCase();
+      var shown = 0;
+      rows.forEach(function (row) {
+        var match = !q || row.textContent.toLowerCase().indexOf(q) !== -1;
+        row.hidden = !match;
+        if (match) shown++;
+      });
+      count.textContent = q ? shown + ' av ' + rows.length : '';
+    });
+  })();
+</script>
+
+</body>
+</html>
