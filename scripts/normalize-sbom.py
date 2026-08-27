@@ -190,7 +190,11 @@ def apply_licence_overrides(doc, overrides):
             continue
         if concluded_licence(pkg) is not None:
             continue
-        override = overrides.get(pkg.get("name", ""))
+        # name@version first: where a package relicensed between versions the map
+        # records each, and the bare name must not flatten that into one answer.
+        name = pkg.get("name", "")
+        version = pkg.get("versionInfo", "")
+        override = overrides.get(f"{name}@{version}") or overrides.get(name)
         if override is None:
             remaining.add((pkg.get("name", ""), pkg.get("versionInfo", "")))
             continue

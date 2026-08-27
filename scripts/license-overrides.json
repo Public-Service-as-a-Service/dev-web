@@ -1,4 +1,2753 @@
 {
   "beskrivning": "Manuellt fastställda licenser för komponenter där Trivy inte kan härleda någon ur paketmetadatan. npm-lockfiler bär ingen licensinformation alls — licensen läses ur node_modules/<paket>/package.json, så paket vars metadata saknar fältet blir kvar utan licens. Används av normalize-sbom.py, som ENDAST fyller i licenseConcluded när scanningen gav NOASSERTION/NONE — en licens Trivy själv hittat skrivs aldrig över. licenseDeclared lämnas orörd.",
-  "komponenter": {}
+  "komponenter": {
+    "@babel/code-frame": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fcode-frame",
+      "licens": "MIT"
+    },
+    "@babel/compat-data": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fcompat-data",
+      "licens": "MIT"
+    },
+    "@babel/core": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fcore",
+      "licens": "MIT"
+    },
+    "@babel/generator": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fgenerator",
+      "licens": "MIT"
+    },
+    "@babel/helper-annotate-as-pure": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fhelper-annotate-as-pure",
+      "licens": "MIT"
+    },
+    "@babel/helper-builder-binary-assignment-operator-visitor": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fhelper-builder-binary-assignment-operator-visitor",
+      "licens": "MIT"
+    },
+    "@babel/helper-create-class-features-plugin": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fhelper-create-class-features-plugin",
+      "licens": "MIT"
+    },
+    "@babel/helper-create-regexp-features-plugin": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fhelper-create-regexp-features-plugin",
+      "licens": "MIT"
+    },
+    "@babel/helper-define-polyfill-provider": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fhelper-define-polyfill-provider",
+      "licens": "MIT"
+    },
+    "@babel/helper-member-expression-to-functions": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fhelper-member-expression-to-functions",
+      "licens": "MIT"
+    },
+    "@babel/helper-module-imports": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fhelper-module-imports",
+      "licens": "MIT"
+    },
+    "@babel/helper-module-transforms": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fhelper-module-transforms",
+      "licens": "MIT"
+    },
+    "@babel/helper-optimise-call-expression": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fhelper-optimise-call-expression",
+      "licens": "MIT"
+    },
+    "@babel/helper-plugin-utils": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fhelper-plugin-utils",
+      "licens": "MIT"
+    },
+    "@babel/helper-remap-async-to-generator": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fhelper-remap-async-to-generator",
+      "licens": "MIT"
+    },
+    "@babel/helper-replace-supers": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fhelper-replace-supers",
+      "licens": "MIT"
+    },
+    "@babel/helper-simple-access": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fhelper-simple-access",
+      "licens": "MIT"
+    },
+    "@babel/helper-skip-transparent-expression-wrappers": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fhelper-skip-transparent-expression-wrappers",
+      "licens": "MIT"
+    },
+    "@babel/helper-split-export-declaration": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fhelper-split-export-declaration",
+      "licens": "MIT"
+    },
+    "@babel/helper-string-parser": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fhelper-string-parser",
+      "licens": "MIT"
+    },
+    "@babel/helper-validator-identifier": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fhelper-validator-identifier",
+      "licens": "MIT"
+    },
+    "@babel/helper-wrap-function": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fhelper-wrap-function",
+      "licens": "MIT"
+    },
+    "@babel/helpers": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fhelpers",
+      "licens": "MIT"
+    },
+    "@babel/highlight": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fhighlight",
+      "licens": "MIT"
+    },
+    "@babel/parser": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fparser",
+      "licens": "MIT"
+    },
+    "@babel/plugin-bugfix-safari-id-destructuring-collision-in-function-expression": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fplugin-bugfix-safari-id-destructuring-collision-in-function-expression",
+      "licens": "MIT"
+    },
+    "@babel/plugin-bugfix-v8-spread-parameters-in-optional-chaining": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fplugin-bugfix-v8-spread-parameters-in-optional-chaining",
+      "licens": "MIT"
+    },
+    "@babel/plugin-bugfix-v8-static-class-fields-redefine-readonly": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fplugin-bugfix-v8-static-class-fields-redefine-readonly",
+      "licens": "MIT"
+    },
+    "@babel/plugin-proposal-async-generator-functions": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fplugin-proposal-async-generator-functions",
+      "licens": "MIT"
+    },
+    "@babel/plugin-proposal-class-properties": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fplugin-proposal-class-properties",
+      "licens": "MIT"
+    },
+    "@babel/plugin-proposal-export-default-from": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fplugin-proposal-export-default-from",
+      "licens": "MIT"
+    },
+    "@babel/plugin-proposal-nullish-coalescing-operator": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fplugin-proposal-nullish-coalescing-operator",
+      "licens": "MIT"
+    },
+    "@babel/plugin-proposal-numeric-separator": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fplugin-proposal-numeric-separator",
+      "licens": "MIT"
+    },
+    "@babel/plugin-proposal-object-rest-spread": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fplugin-proposal-object-rest-spread",
+      "licens": "MIT"
+    },
+    "@babel/plugin-proposal-optional-catch-binding": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fplugin-proposal-optional-catch-binding",
+      "licens": "MIT"
+    },
+    "@babel/plugin-proposal-optional-chaining": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fplugin-proposal-optional-chaining",
+      "licens": "MIT"
+    },
+    "@babel/plugin-proposal-private-property-in-object": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fplugin-proposal-private-property-in-object",
+      "licens": "MIT"
+    },
+    "@babel/plugin-syntax-dynamic-import": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fplugin-syntax-dynamic-import",
+      "licens": "MIT"
+    },
+    "@babel/plugin-syntax-export-default-from": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fplugin-syntax-export-default-from",
+      "licens": "MIT"
+    },
+    "@babel/plugin-syntax-flow": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fplugin-syntax-flow",
+      "licens": "MIT"
+    },
+    "@babel/plugin-syntax-import-assertions": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fplugin-syntax-import-assertions",
+      "licens": "MIT"
+    },
+    "@babel/plugin-syntax-import-attributes": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fplugin-syntax-import-attributes",
+      "licens": "MIT"
+    },
+    "@babel/plugin-syntax-jsx": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fplugin-syntax-jsx",
+      "licens": "MIT"
+    },
+    "@babel/plugin-syntax-typescript": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fplugin-syntax-typescript",
+      "licens": "MIT"
+    },
+    "@babel/plugin-syntax-unicode-sets-regex": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fplugin-syntax-unicode-sets-regex",
+      "licens": "MIT"
+    },
+    "@babel/plugin-transform-arrow-functions": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fplugin-transform-arrow-functions",
+      "licens": "MIT"
+    },
+    "@babel/plugin-transform-async-generator-functions": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fplugin-transform-async-generator-functions",
+      "licens": "MIT"
+    },
+    "@babel/plugin-transform-async-to-generator": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fplugin-transform-async-to-generator",
+      "licens": "MIT"
+    },
+    "@babel/plugin-transform-block-scoped-functions": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fplugin-transform-block-scoped-functions",
+      "licens": "MIT"
+    },
+    "@babel/plugin-transform-block-scoping": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fplugin-transform-block-scoping",
+      "licens": "MIT"
+    },
+    "@babel/plugin-transform-class-properties": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fplugin-transform-class-properties",
+      "licens": "MIT"
+    },
+    "@babel/plugin-transform-class-static-block": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fplugin-transform-class-static-block",
+      "licens": "MIT"
+    },
+    "@babel/plugin-transform-classes": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fplugin-transform-classes",
+      "licens": "MIT"
+    },
+    "@babel/plugin-transform-computed-properties": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fplugin-transform-computed-properties",
+      "licens": "MIT"
+    },
+    "@babel/plugin-transform-destructuring": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fplugin-transform-destructuring",
+      "licens": "MIT"
+    },
+    "@babel/plugin-transform-dotall-regex": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fplugin-transform-dotall-regex",
+      "licens": "MIT"
+    },
+    "@babel/plugin-transform-duplicate-keys": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fplugin-transform-duplicate-keys",
+      "licens": "MIT"
+    },
+    "@babel/plugin-transform-dynamic-import": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fplugin-transform-dynamic-import",
+      "licens": "MIT"
+    },
+    "@babel/plugin-transform-exponentiation-operator": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fplugin-transform-exponentiation-operator",
+      "licens": "MIT"
+    },
+    "@babel/plugin-transform-export-namespace-from": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fplugin-transform-export-namespace-from",
+      "licens": "MIT"
+    },
+    "@babel/plugin-transform-flow-strip-types": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fplugin-transform-flow-strip-types",
+      "licens": "MIT"
+    },
+    "@babel/plugin-transform-for-of": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fplugin-transform-for-of",
+      "licens": "MIT"
+    },
+    "@babel/plugin-transform-function-name": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fplugin-transform-function-name",
+      "licens": "MIT"
+    },
+    "@babel/plugin-transform-json-strings": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fplugin-transform-json-strings",
+      "licens": "MIT"
+    },
+    "@babel/plugin-transform-literals": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fplugin-transform-literals",
+      "licens": "MIT"
+    },
+    "@babel/plugin-transform-logical-assignment-operators": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fplugin-transform-logical-assignment-operators",
+      "licens": "MIT"
+    },
+    "@babel/plugin-transform-member-expression-literals": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fplugin-transform-member-expression-literals",
+      "licens": "MIT"
+    },
+    "@babel/plugin-transform-modules-amd": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fplugin-transform-modules-amd",
+      "licens": "MIT"
+    },
+    "@babel/plugin-transform-modules-commonjs": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fplugin-transform-modules-commonjs",
+      "licens": "MIT"
+    },
+    "@babel/plugin-transform-modules-systemjs": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fplugin-transform-modules-systemjs",
+      "licens": "MIT"
+    },
+    "@babel/plugin-transform-modules-umd": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fplugin-transform-modules-umd",
+      "licens": "MIT"
+    },
+    "@babel/plugin-transform-named-capturing-groups-regex": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fplugin-transform-named-capturing-groups-regex",
+      "licens": "MIT"
+    },
+    "@babel/plugin-transform-new-target": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fplugin-transform-new-target",
+      "licens": "MIT"
+    },
+    "@babel/plugin-transform-nullish-coalescing-operator": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fplugin-transform-nullish-coalescing-operator",
+      "licens": "MIT"
+    },
+    "@babel/plugin-transform-numeric-separator": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fplugin-transform-numeric-separator",
+      "licens": "MIT"
+    },
+    "@babel/plugin-transform-object-rest-spread": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fplugin-transform-object-rest-spread",
+      "licens": "MIT"
+    },
+    "@babel/plugin-transform-object-super": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fplugin-transform-object-super",
+      "licens": "MIT"
+    },
+    "@babel/plugin-transform-optional-catch-binding": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fplugin-transform-optional-catch-binding",
+      "licens": "MIT"
+    },
+    "@babel/plugin-transform-optional-chaining": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fplugin-transform-optional-chaining",
+      "licens": "MIT"
+    },
+    "@babel/plugin-transform-parameters": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fplugin-transform-parameters",
+      "licens": "MIT"
+    },
+    "@babel/plugin-transform-private-methods": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fplugin-transform-private-methods",
+      "licens": "MIT"
+    },
+    "@babel/plugin-transform-private-property-in-object": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fplugin-transform-private-property-in-object",
+      "licens": "MIT"
+    },
+    "@babel/plugin-transform-property-literals": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fplugin-transform-property-literals",
+      "licens": "MIT"
+    },
+    "@babel/plugin-transform-react-display-name": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fplugin-transform-react-display-name",
+      "licens": "MIT"
+    },
+    "@babel/plugin-transform-react-jsx": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fplugin-transform-react-jsx",
+      "licens": "MIT"
+    },
+    "@babel/plugin-transform-react-jsx-self": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fplugin-transform-react-jsx-self",
+      "licens": "MIT"
+    },
+    "@babel/plugin-transform-react-jsx-source": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fplugin-transform-react-jsx-source",
+      "licens": "MIT"
+    },
+    "@babel/plugin-transform-regenerator": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fplugin-transform-regenerator",
+      "licens": "MIT"
+    },
+    "@babel/plugin-transform-reserved-words": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fplugin-transform-reserved-words",
+      "licens": "MIT"
+    },
+    "@babel/plugin-transform-runtime": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fplugin-transform-runtime",
+      "licens": "MIT"
+    },
+    "@babel/plugin-transform-shorthand-properties": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fplugin-transform-shorthand-properties",
+      "licens": "MIT"
+    },
+    "@babel/plugin-transform-spread": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fplugin-transform-spread",
+      "licens": "MIT"
+    },
+    "@babel/plugin-transform-sticky-regex": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fplugin-transform-sticky-regex",
+      "licens": "MIT"
+    },
+    "@babel/plugin-transform-template-literals": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fplugin-transform-template-literals",
+      "licens": "MIT"
+    },
+    "@babel/plugin-transform-typeof-symbol": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fplugin-transform-typeof-symbol",
+      "licens": "MIT"
+    },
+    "@babel/plugin-transform-typescript": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fplugin-transform-typescript",
+      "licens": "MIT"
+    },
+    "@babel/plugin-transform-unicode-escapes": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fplugin-transform-unicode-escapes",
+      "licens": "MIT"
+    },
+    "@babel/plugin-transform-unicode-property-regex": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fplugin-transform-unicode-property-regex",
+      "licens": "MIT"
+    },
+    "@babel/plugin-transform-unicode-regex": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fplugin-transform-unicode-regex",
+      "licens": "MIT"
+    },
+    "@babel/plugin-transform-unicode-sets-regex": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fplugin-transform-unicode-sets-regex",
+      "licens": "MIT"
+    },
+    "@babel/preset-env": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fpreset-env",
+      "licens": "MIT"
+    },
+    "@babel/preset-flow": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fpreset-flow",
+      "licens": "MIT"
+    },
+    "@babel/preset-modules": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fpreset-modules",
+      "licens": "MIT"
+    },
+    "@babel/preset-typescript": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fpreset-typescript",
+      "licens": "MIT"
+    },
+    "@babel/register": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fregister",
+      "licens": "MIT"
+    },
+    "@babel/regjsgen": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fregjsgen",
+      "licens": "MIT"
+    },
+    "@babel/runtime": {
+      "källa": "https://registry.npmjs.org/%40babel%2Fruntime",
+      "licens": "MIT"
+    },
+    "@babel/template": {
+      "källa": "https://registry.npmjs.org/%40babel%2Ftemplate",
+      "licens": "MIT"
+    },
+    "@babel/traverse": {
+      "källa": "https://registry.npmjs.org/%40babel%2Ftraverse",
+      "licens": "MIT"
+    },
+    "@babel/types": {
+      "källa": "https://registry.npmjs.org/%40babel%2Ftypes",
+      "licens": "MIT"
+    },
+    "@emnapi/core": {
+      "källa": "https://registry.npmjs.org/%40emnapi%2Fcore",
+      "licens": "MIT"
+    },
+    "@emnapi/runtime": {
+      "källa": "https://registry.npmjs.org/%40emnapi%2Fruntime",
+      "licens": "MIT"
+    },
+    "@emnapi/wasi-threads": {
+      "källa": "https://registry.npmjs.org/%40emnapi%2Fwasi-threads",
+      "licens": "MIT"
+    },
+    "@esbuild/aix-ppc64": {
+      "källa": "https://registry.npmjs.org/%40esbuild%2Faix-ppc64",
+      "licens": "MIT"
+    },
+    "@esbuild/android-arm": {
+      "källa": "https://registry.npmjs.org/%40esbuild%2Fandroid-arm",
+      "licens": "MIT"
+    },
+    "@esbuild/android-arm64": {
+      "källa": "https://registry.npmjs.org/%40esbuild%2Fandroid-arm64",
+      "licens": "MIT"
+    },
+    "@esbuild/android-x64": {
+      "källa": "https://registry.npmjs.org/%40esbuild%2Fandroid-x64",
+      "licens": "MIT"
+    },
+    "@esbuild/darwin-arm64": {
+      "källa": "https://registry.npmjs.org/%40esbuild%2Fdarwin-arm64",
+      "licens": "MIT"
+    },
+    "@esbuild/darwin-x64": {
+      "källa": "https://registry.npmjs.org/%40esbuild%2Fdarwin-x64",
+      "licens": "MIT"
+    },
+    "@esbuild/freebsd-arm64": {
+      "källa": "https://registry.npmjs.org/%40esbuild%2Ffreebsd-arm64",
+      "licens": "MIT"
+    },
+    "@esbuild/freebsd-x64": {
+      "källa": "https://registry.npmjs.org/%40esbuild%2Ffreebsd-x64",
+      "licens": "MIT"
+    },
+    "@esbuild/linux-arm": {
+      "källa": "https://registry.npmjs.org/%40esbuild%2Flinux-arm",
+      "licens": "MIT"
+    },
+    "@esbuild/linux-arm64": {
+      "källa": "https://registry.npmjs.org/%40esbuild%2Flinux-arm64",
+      "licens": "MIT"
+    },
+    "@esbuild/linux-ia32": {
+      "källa": "https://registry.npmjs.org/%40esbuild%2Flinux-ia32",
+      "licens": "MIT"
+    },
+    "@esbuild/linux-loong64": {
+      "källa": "https://registry.npmjs.org/%40esbuild%2Flinux-loong64",
+      "licens": "MIT"
+    },
+    "@esbuild/linux-mips64el": {
+      "källa": "https://registry.npmjs.org/%40esbuild%2Flinux-mips64el",
+      "licens": "MIT"
+    },
+    "@esbuild/linux-ppc64": {
+      "källa": "https://registry.npmjs.org/%40esbuild%2Flinux-ppc64",
+      "licens": "MIT"
+    },
+    "@esbuild/linux-riscv64": {
+      "källa": "https://registry.npmjs.org/%40esbuild%2Flinux-riscv64",
+      "licens": "MIT"
+    },
+    "@esbuild/linux-s390x": {
+      "källa": "https://registry.npmjs.org/%40esbuild%2Flinux-s390x",
+      "licens": "MIT"
+    },
+    "@esbuild/netbsd-arm64": {
+      "källa": "https://registry.npmjs.org/%40esbuild%2Fnetbsd-arm64",
+      "licens": "MIT"
+    },
+    "@esbuild/netbsd-x64": {
+      "källa": "https://registry.npmjs.org/%40esbuild%2Fnetbsd-x64",
+      "licens": "MIT"
+    },
+    "@esbuild/openbsd-arm64": {
+      "källa": "https://registry.npmjs.org/%40esbuild%2Fopenbsd-arm64",
+      "licens": "MIT"
+    },
+    "@esbuild/openbsd-x64": {
+      "källa": "https://registry.npmjs.org/%40esbuild%2Fopenbsd-x64",
+      "licens": "MIT"
+    },
+    "@esbuild/openharmony-arm64": {
+      "källa": "https://registry.npmjs.org/%40esbuild%2Fopenharmony-arm64",
+      "licens": "MIT"
+    },
+    "@esbuild/sunos-x64": {
+      "källa": "https://registry.npmjs.org/%40esbuild%2Fsunos-x64",
+      "licens": "MIT"
+    },
+    "@esbuild/win32-arm64": {
+      "källa": "https://registry.npmjs.org/%40esbuild%2Fwin32-arm64",
+      "licens": "MIT"
+    },
+    "@esbuild/win32-ia32": {
+      "källa": "https://registry.npmjs.org/%40esbuild%2Fwin32-ia32",
+      "licens": "MIT"
+    },
+    "@esbuild/win32-x64": {
+      "källa": "https://registry.npmjs.org/%40esbuild%2Fwin32-x64",
+      "licens": "MIT"
+    },
+    "@hapi/hoek": {
+      "källa": "https://registry.npmjs.org/%40hapi%2Fhoek",
+      "licens": "BSD-3-Clause"
+    },
+    "@hapi/topo": {
+      "källa": "https://registry.npmjs.org/%40hapi%2Ftopo",
+      "licens": "BSD-3-Clause"
+    },
+    "@img/sharp-darwin-arm64": {
+      "källa": "https://registry.npmjs.org/%40img%2Fsharp-darwin-arm64",
+      "licens": "Apache-2.0"
+    },
+    "@img/sharp-darwin-x64": {
+      "källa": "https://registry.npmjs.org/%40img%2Fsharp-darwin-x64",
+      "licens": "Apache-2.0"
+    },
+    "@img/sharp-freebsd-wasm32": {
+      "källa": "https://registry.npmjs.org/%40img%2Fsharp-freebsd-wasm32",
+      "licens": "Apache-2.0"
+    },
+    "@img/sharp-libvips-darwin-arm64": {
+      "källa": "https://registry.npmjs.org/%40img%2Fsharp-libvips-darwin-arm64",
+      "licens": "LGPL-3.0-or-later"
+    },
+    "@img/sharp-libvips-darwin-x64": {
+      "källa": "https://registry.npmjs.org/%40img%2Fsharp-libvips-darwin-x64",
+      "licens": "LGPL-3.0-or-later"
+    },
+    "@img/sharp-libvips-linux-arm": {
+      "källa": "https://registry.npmjs.org/%40img%2Fsharp-libvips-linux-arm",
+      "licens": "LGPL-3.0-or-later"
+    },
+    "@img/sharp-libvips-linux-arm64": {
+      "källa": "https://registry.npmjs.org/%40img%2Fsharp-libvips-linux-arm64",
+      "licens": "LGPL-3.0-or-later"
+    },
+    "@img/sharp-libvips-linux-ppc64": {
+      "källa": "https://registry.npmjs.org/%40img%2Fsharp-libvips-linux-ppc64",
+      "licens": "LGPL-3.0-or-later"
+    },
+    "@img/sharp-libvips-linux-riscv64": {
+      "källa": "https://registry.npmjs.org/%40img%2Fsharp-libvips-linux-riscv64",
+      "licens": "LGPL-3.0-or-later"
+    },
+    "@img/sharp-libvips-linux-s390x": {
+      "källa": "https://registry.npmjs.org/%40img%2Fsharp-libvips-linux-s390x",
+      "licens": "LGPL-3.0-or-later"
+    },
+    "@img/sharp-libvips-linuxmusl-arm64": {
+      "källa": "https://registry.npmjs.org/%40img%2Fsharp-libvips-linuxmusl-arm64",
+      "licens": "LGPL-3.0-or-later"
+    },
+    "@img/sharp-linux-arm": {
+      "källa": "https://registry.npmjs.org/%40img%2Fsharp-linux-arm",
+      "licens": "Apache-2.0"
+    },
+    "@img/sharp-linux-arm64": {
+      "källa": "https://registry.npmjs.org/%40img%2Fsharp-linux-arm64",
+      "licens": "Apache-2.0"
+    },
+    "@img/sharp-linux-ppc64": {
+      "källa": "https://registry.npmjs.org/%40img%2Fsharp-linux-ppc64",
+      "licens": "Apache-2.0"
+    },
+    "@img/sharp-linux-riscv64": {
+      "källa": "https://registry.npmjs.org/%40img%2Fsharp-linux-riscv64",
+      "licens": "Apache-2.0"
+    },
+    "@img/sharp-linux-s390x": {
+      "källa": "https://registry.npmjs.org/%40img%2Fsharp-linux-s390x",
+      "licens": "Apache-2.0"
+    },
+    "@img/sharp-linuxmusl-arm64": {
+      "källa": "https://registry.npmjs.org/%40img%2Fsharp-linuxmusl-arm64",
+      "licens": "Apache-2.0"
+    },
+    "@img/sharp-wasm32": {
+      "källa": "https://registry.npmjs.org/%40img%2Fsharp-wasm32",
+      "licens": "Apache-2.0 AND LGPL-3.0-or-later AND MIT"
+    },
+    "@img/sharp-webcontainers-wasm32": {
+      "källa": "https://registry.npmjs.org/%40img%2Fsharp-webcontainers-wasm32",
+      "licens": "Apache-2.0"
+    },
+    "@img/sharp-win32-arm64": {
+      "källa": "https://registry.npmjs.org/%40img%2Fsharp-win32-arm64",
+      "licens": "Apache-2.0 AND LGPL-3.0-or-later"
+    },
+    "@img/sharp-win32-ia32": {
+      "källa": "https://registry.npmjs.org/%40img%2Fsharp-win32-ia32",
+      "licens": "Apache-2.0 AND LGPL-3.0-or-later"
+    },
+    "@img/sharp-win32-x64": {
+      "källa": "https://registry.npmjs.org/%40img%2Fsharp-win32-x64",
+      "licens": "Apache-2.0 AND LGPL-3.0-or-later"
+    },
+    "@isaacs/ttlcache": {
+      "källa": "https://registry.npmjs.org/%40isaacs%2Fttlcache",
+      "licens": "ISC"
+    },
+    "@jest/create-cache-key-function": {
+      "källa": "https://registry.npmjs.org/%40jest%2Fcreate-cache-key-function",
+      "licens": "MIT"
+    },
+    "@jest/types": {
+      "källa": "https://registry.npmjs.org/%40jest%2Ftypes",
+      "licens": "MIT"
+    },
+    "@jridgewell/source-map": {
+      "källa": "https://registry.npmjs.org/%40jridgewell%2Fsource-map",
+      "licens": "MIT"
+    },
+    "@jridgewell/trace-mapping": {
+      "källa": "https://registry.npmjs.org/%40jridgewell%2Ftrace-mapping",
+      "licens": "MIT"
+    },
+    "@napi-rs/nice-android-arm-eabi": {
+      "källa": "https://registry.npmjs.org/%40napi-rs%2Fnice-android-arm-eabi",
+      "licens": "MIT"
+    },
+    "@napi-rs/nice-android-arm64": {
+      "källa": "https://registry.npmjs.org/%40napi-rs%2Fnice-android-arm64",
+      "licens": "MIT"
+    },
+    "@napi-rs/nice-darwin-arm64": {
+      "källa": "https://registry.npmjs.org/%40napi-rs%2Fnice-darwin-arm64",
+      "licens": "MIT"
+    },
+    "@napi-rs/nice-darwin-x64": {
+      "källa": "https://registry.npmjs.org/%40napi-rs%2Fnice-darwin-x64",
+      "licens": "MIT"
+    },
+    "@napi-rs/nice-freebsd-x64": {
+      "källa": "https://registry.npmjs.org/%40napi-rs%2Fnice-freebsd-x64",
+      "licens": "MIT"
+    },
+    "@napi-rs/nice-linux-arm-gnueabihf": {
+      "källa": "https://registry.npmjs.org/%40napi-rs%2Fnice-linux-arm-gnueabihf",
+      "licens": "MIT"
+    },
+    "@napi-rs/nice-linux-arm64-gnu": {
+      "källa": "https://registry.npmjs.org/%40napi-rs%2Fnice-linux-arm64-gnu",
+      "licens": "MIT"
+    },
+    "@napi-rs/nice-linux-arm64-musl": {
+      "källa": "https://registry.npmjs.org/%40napi-rs%2Fnice-linux-arm64-musl",
+      "licens": "MIT"
+    },
+    "@napi-rs/nice-linux-ppc64-gnu": {
+      "källa": "https://registry.npmjs.org/%40napi-rs%2Fnice-linux-ppc64-gnu",
+      "licens": "MIT"
+    },
+    "@napi-rs/nice-linux-riscv64-gnu": {
+      "källa": "https://registry.npmjs.org/%40napi-rs%2Fnice-linux-riscv64-gnu",
+      "licens": "MIT"
+    },
+    "@napi-rs/nice-linux-s390x-gnu": {
+      "källa": "https://registry.npmjs.org/%40napi-rs%2Fnice-linux-s390x-gnu",
+      "licens": "MIT"
+    },
+    "@napi-rs/nice-openharmony-arm64": {
+      "källa": "https://registry.npmjs.org/%40napi-rs%2Fnice-openharmony-arm64",
+      "licens": "MIT"
+    },
+    "@napi-rs/nice-win32-arm64-msvc": {
+      "källa": "https://registry.npmjs.org/%40napi-rs%2Fnice-win32-arm64-msvc",
+      "licens": "MIT"
+    },
+    "@napi-rs/nice-win32-ia32-msvc": {
+      "källa": "https://registry.npmjs.org/%40napi-rs%2Fnice-win32-ia32-msvc",
+      "licens": "MIT"
+    },
+    "@napi-rs/nice-win32-x64-msvc": {
+      "källa": "https://registry.npmjs.org/%40napi-rs%2Fnice-win32-x64-msvc",
+      "licens": "MIT"
+    },
+    "@napi-rs/wasm-runtime": {
+      "källa": "https://registry.npmjs.org/%40napi-rs%2Fwasm-runtime",
+      "licens": "MIT"
+    },
+    "@next/swc-darwin-arm64": {
+      "källa": "https://registry.npmjs.org/%40next%2Fswc-darwin-arm64",
+      "licens": "MIT"
+    },
+    "@next/swc-darwin-x64": {
+      "källa": "https://registry.npmjs.org/%40next%2Fswc-darwin-x64",
+      "licens": "MIT"
+    },
+    "@next/swc-linux-arm64-gnu": {
+      "källa": "https://registry.npmjs.org/%40next%2Fswc-linux-arm64-gnu",
+      "licens": "MIT"
+    },
+    "@next/swc-linux-arm64-musl": {
+      "källa": "https://registry.npmjs.org/%40next%2Fswc-linux-arm64-musl",
+      "licens": "MIT"
+    },
+    "@next/swc-linux-x64-gnu": {
+      "källa": "https://registry.npmjs.org/%40next%2Fswc-linux-x64-gnu",
+      "licens": "MIT"
+    },
+    "@next/swc-linux-x64-musl": {
+      "källa": "https://registry.npmjs.org/%40next%2Fswc-linux-x64-musl",
+      "licens": "MIT"
+    },
+    "@next/swc-win32-arm64-msvc": {
+      "källa": "https://registry.npmjs.org/%40next%2Fswc-win32-arm64-msvc",
+      "licens": "MIT"
+    },
+    "@next/swc-win32-ia32-msvc": {
+      "källa": "https://registry.npmjs.org/%40next%2Fswc-win32-ia32-msvc",
+      "licens": "MIT"
+    },
+    "@next/swc-win32-x64-msvc": {
+      "källa": "https://registry.npmjs.org/%40next%2Fswc-win32-x64-msvc",
+      "licens": "MIT"
+    },
+    "@oxc-parser/binding-android-arm-eabi": {
+      "källa": "https://registry.npmjs.org/%40oxc-parser%2Fbinding-android-arm-eabi",
+      "licens": "MIT"
+    },
+    "@oxc-parser/binding-android-arm64": {
+      "källa": "https://registry.npmjs.org/%40oxc-parser%2Fbinding-android-arm64",
+      "licens": "MIT"
+    },
+    "@oxc-parser/binding-darwin-arm64": {
+      "källa": "https://registry.npmjs.org/%40oxc-parser%2Fbinding-darwin-arm64",
+      "licens": "MIT"
+    },
+    "@oxc-parser/binding-darwin-x64": {
+      "källa": "https://registry.npmjs.org/%40oxc-parser%2Fbinding-darwin-x64",
+      "licens": "MIT"
+    },
+    "@oxc-parser/binding-freebsd-x64": {
+      "källa": "https://registry.npmjs.org/%40oxc-parser%2Fbinding-freebsd-x64",
+      "licens": "MIT"
+    },
+    "@oxc-parser/binding-linux-arm-gnueabihf": {
+      "källa": "https://registry.npmjs.org/%40oxc-parser%2Fbinding-linux-arm-gnueabihf",
+      "licens": "MIT"
+    },
+    "@oxc-parser/binding-linux-arm-musleabihf": {
+      "källa": "https://registry.npmjs.org/%40oxc-parser%2Fbinding-linux-arm-musleabihf",
+      "licens": "MIT"
+    },
+    "@oxc-parser/binding-linux-arm64-gnu": {
+      "källa": "https://registry.npmjs.org/%40oxc-parser%2Fbinding-linux-arm64-gnu",
+      "licens": "MIT"
+    },
+    "@oxc-parser/binding-linux-arm64-musl": {
+      "källa": "https://registry.npmjs.org/%40oxc-parser%2Fbinding-linux-arm64-musl",
+      "licens": "MIT"
+    },
+    "@oxc-parser/binding-linux-ppc64-gnu": {
+      "källa": "https://registry.npmjs.org/%40oxc-parser%2Fbinding-linux-ppc64-gnu",
+      "licens": "MIT"
+    },
+    "@oxc-parser/binding-linux-riscv64-gnu": {
+      "källa": "https://registry.npmjs.org/%40oxc-parser%2Fbinding-linux-riscv64-gnu",
+      "licens": "MIT"
+    },
+    "@oxc-parser/binding-linux-riscv64-musl": {
+      "källa": "https://registry.npmjs.org/%40oxc-parser%2Fbinding-linux-riscv64-musl",
+      "licens": "MIT"
+    },
+    "@oxc-parser/binding-linux-s390x-gnu": {
+      "källa": "https://registry.npmjs.org/%40oxc-parser%2Fbinding-linux-s390x-gnu",
+      "licens": "MIT"
+    },
+    "@oxc-parser/binding-openharmony-arm64": {
+      "källa": "https://registry.npmjs.org/%40oxc-parser%2Fbinding-openharmony-arm64",
+      "licens": "MIT"
+    },
+    "@oxc-parser/binding-wasm32-wasi": {
+      "källa": "https://registry.npmjs.org/%40oxc-parser%2Fbinding-wasm32-wasi",
+      "licens": "MIT"
+    },
+    "@oxc-parser/binding-win32-arm64-msvc": {
+      "källa": "https://registry.npmjs.org/%40oxc-parser%2Fbinding-win32-arm64-msvc",
+      "licens": "MIT"
+    },
+    "@oxc-parser/binding-win32-ia32-msvc": {
+      "källa": "https://registry.npmjs.org/%40oxc-parser%2Fbinding-win32-ia32-msvc",
+      "licens": "MIT"
+    },
+    "@oxc-parser/binding-win32-x64-msvc": {
+      "källa": "https://registry.npmjs.org/%40oxc-parser%2Fbinding-win32-x64-msvc",
+      "licens": "MIT"
+    },
+    "@oxc-resolver/binding-android-arm-eabi": {
+      "källa": "https://registry.npmjs.org/%40oxc-resolver%2Fbinding-android-arm-eabi",
+      "licens": "MIT"
+    },
+    "@oxc-resolver/binding-android-arm64": {
+      "källa": "https://registry.npmjs.org/%40oxc-resolver%2Fbinding-android-arm64",
+      "licens": "MIT"
+    },
+    "@oxc-resolver/binding-darwin-arm64": {
+      "källa": "https://registry.npmjs.org/%40oxc-resolver%2Fbinding-darwin-arm64",
+      "licens": "MIT"
+    },
+    "@oxc-resolver/binding-darwin-x64": {
+      "källa": "https://registry.npmjs.org/%40oxc-resolver%2Fbinding-darwin-x64",
+      "licens": "MIT"
+    },
+    "@oxc-resolver/binding-freebsd-x64": {
+      "källa": "https://registry.npmjs.org/%40oxc-resolver%2Fbinding-freebsd-x64",
+      "licens": "MIT"
+    },
+    "@oxc-resolver/binding-linux-arm-gnueabihf": {
+      "källa": "https://registry.npmjs.org/%40oxc-resolver%2Fbinding-linux-arm-gnueabihf",
+      "licens": "MIT"
+    },
+    "@oxc-resolver/binding-linux-arm-musleabihf": {
+      "källa": "https://registry.npmjs.org/%40oxc-resolver%2Fbinding-linux-arm-musleabihf",
+      "licens": "MIT"
+    },
+    "@oxc-resolver/binding-linux-arm64-gnu": {
+      "källa": "https://registry.npmjs.org/%40oxc-resolver%2Fbinding-linux-arm64-gnu",
+      "licens": "MIT"
+    },
+    "@oxc-resolver/binding-linux-arm64-musl": {
+      "källa": "https://registry.npmjs.org/%40oxc-resolver%2Fbinding-linux-arm64-musl",
+      "licens": "MIT"
+    },
+    "@oxc-resolver/binding-linux-ppc64-gnu": {
+      "källa": "https://registry.npmjs.org/%40oxc-resolver%2Fbinding-linux-ppc64-gnu",
+      "licens": "MIT"
+    },
+    "@oxc-resolver/binding-linux-riscv64-gnu": {
+      "källa": "https://registry.npmjs.org/%40oxc-resolver%2Fbinding-linux-riscv64-gnu",
+      "licens": "MIT"
+    },
+    "@oxc-resolver/binding-linux-riscv64-musl": {
+      "källa": "https://registry.npmjs.org/%40oxc-resolver%2Fbinding-linux-riscv64-musl",
+      "licens": "MIT"
+    },
+    "@oxc-resolver/binding-linux-s390x-gnu": {
+      "källa": "https://registry.npmjs.org/%40oxc-resolver%2Fbinding-linux-s390x-gnu",
+      "licens": "MIT"
+    },
+    "@oxc-resolver/binding-openharmony-arm64": {
+      "källa": "https://registry.npmjs.org/%40oxc-resolver%2Fbinding-openharmony-arm64",
+      "licens": "MIT"
+    },
+    "@oxc-resolver/binding-wasm32-wasi": {
+      "källa": "https://registry.npmjs.org/%40oxc-resolver%2Fbinding-wasm32-wasi",
+      "licens": "MIT"
+    },
+    "@oxc-resolver/binding-win32-arm64-msvc": {
+      "källa": "https://registry.npmjs.org/%40oxc-resolver%2Fbinding-win32-arm64-msvc",
+      "licens": "MIT"
+    },
+    "@oxc-resolver/binding-win32-ia32-msvc": {
+      "källa": "https://registry.npmjs.org/%40oxc-resolver%2Fbinding-win32-ia32-msvc",
+      "licens": "MIT"
+    },
+    "@oxc-resolver/binding-win32-x64-msvc": {
+      "källa": "https://registry.npmjs.org/%40oxc-resolver%2Fbinding-win32-x64-msvc",
+      "licens": "MIT"
+    },
+    "@parcel/watcher-android-arm64": {
+      "källa": "https://registry.npmjs.org/%40parcel%2Fwatcher-android-arm64",
+      "licens": "MIT"
+    },
+    "@parcel/watcher-darwin-arm64": {
+      "källa": "https://registry.npmjs.org/%40parcel%2Fwatcher-darwin-arm64",
+      "licens": "MIT"
+    },
+    "@parcel/watcher-darwin-x64": {
+      "källa": "https://registry.npmjs.org/%40parcel%2Fwatcher-darwin-x64",
+      "licens": "MIT"
+    },
+    "@parcel/watcher-freebsd-x64": {
+      "källa": "https://registry.npmjs.org/%40parcel%2Fwatcher-freebsd-x64",
+      "licens": "MIT"
+    },
+    "@parcel/watcher-linux-arm-glibc": {
+      "källa": "https://registry.npmjs.org/%40parcel%2Fwatcher-linux-arm-glibc",
+      "licens": "MIT"
+    },
+    "@parcel/watcher-linux-arm-musl": {
+      "källa": "https://registry.npmjs.org/%40parcel%2Fwatcher-linux-arm-musl",
+      "licens": "MIT"
+    },
+    "@parcel/watcher-linux-arm64-glibc": {
+      "källa": "https://registry.npmjs.org/%40parcel%2Fwatcher-linux-arm64-glibc",
+      "licens": "MIT"
+    },
+    "@parcel/watcher-linux-arm64-musl": {
+      "källa": "https://registry.npmjs.org/%40parcel%2Fwatcher-linux-arm64-musl",
+      "licens": "MIT"
+    },
+    "@parcel/watcher-win32-arm64": {
+      "källa": "https://registry.npmjs.org/%40parcel%2Fwatcher-win32-arm64",
+      "licens": "MIT"
+    },
+    "@parcel/watcher-win32-ia32": {
+      "källa": "https://registry.npmjs.org/%40parcel%2Fwatcher-win32-ia32",
+      "licens": "MIT"
+    },
+    "@parcel/watcher-win32-x64": {
+      "källa": "https://registry.npmjs.org/%40parcel%2Fwatcher-win32-x64",
+      "licens": "MIT"
+    },
+    "@react-native-community/cli": {
+      "källa": "https://registry.npmjs.org/%40react-native-community%2Fcli",
+      "licens": "MIT"
+    },
+    "@react-native-community/cli-clean": {
+      "källa": "https://registry.npmjs.org/%40react-native-community%2Fcli-clean",
+      "licens": "MIT"
+    },
+    "@react-native-community/cli-config": {
+      "källa": "https://registry.npmjs.org/%40react-native-community%2Fcli-config",
+      "licens": "MIT"
+    },
+    "@react-native-community/cli-debugger-ui": {
+      "källa": "https://registry.npmjs.org/%40react-native-community%2Fcli-debugger-ui",
+      "licens": "MIT"
+    },
+    "@react-native-community/cli-doctor": {
+      "källa": "https://registry.npmjs.org/%40react-native-community%2Fcli-doctor",
+      "licens": "MIT"
+    },
+    "@react-native-community/cli-hermes": {
+      "källa": "https://registry.npmjs.org/%40react-native-community%2Fcli-hermes",
+      "licens": "MIT"
+    },
+    "@react-native-community/cli-platform-android": {
+      "källa": "https://registry.npmjs.org/%40react-native-community%2Fcli-platform-android",
+      "licens": "MIT"
+    },
+    "@react-native-community/cli-platform-ios": {
+      "källa": "https://registry.npmjs.org/%40react-native-community%2Fcli-platform-ios",
+      "licens": "MIT"
+    },
+    "@react-native-community/cli-plugin-metro": {
+      "källa": "https://registry.npmjs.org/%40react-native-community%2Fcli-plugin-metro",
+      "licens": "MIT"
+    },
+    "@react-native-community/cli-server-api": {
+      "källa": "https://registry.npmjs.org/%40react-native-community%2Fcli-server-api",
+      "licens": "MIT"
+    },
+    "@react-native-community/cli-tools": {
+      "källa": "https://registry.npmjs.org/%40react-native-community%2Fcli-tools",
+      "licens": "MIT"
+    },
+    "@react-native-community/cli-types": {
+      "källa": "https://registry.npmjs.org/%40react-native-community%2Fcli-types",
+      "licens": "MIT"
+    },
+    "@react-native/assets-registry": {
+      "källa": "https://registry.npmjs.org/%40react-native%2Fassets-registry",
+      "licens": "MIT"
+    },
+    "@react-native/babel-plugin-codegen": {
+      "källa": "https://registry.npmjs.org/%40react-native%2Fbabel-plugin-codegen",
+      "licens": "MIT"
+    },
+    "@react-native/babel-preset": {
+      "källa": "https://registry.npmjs.org/%40react-native%2Fbabel-preset",
+      "licens": "MIT"
+    },
+    "@react-native/codegen": {
+      "källa": "https://registry.npmjs.org/%40react-native%2Fcodegen",
+      "licens": "MIT"
+    },
+    "@react-native/community-cli-plugin": {
+      "källa": "https://registry.npmjs.org/%40react-native%2Fcommunity-cli-plugin",
+      "licens": "MIT"
+    },
+    "@react-native/debugger-frontend": {
+      "källa": "https://registry.npmjs.org/%40react-native%2Fdebugger-frontend",
+      "licens": "BSD-3-Clause"
+    },
+    "@react-native/dev-middleware": {
+      "källa": "https://registry.npmjs.org/%40react-native%2Fdev-middleware",
+      "licens": "MIT"
+    },
+    "@react-native/gradle-plugin": {
+      "källa": "https://registry.npmjs.org/%40react-native%2Fgradle-plugin",
+      "licens": "MIT"
+    },
+    "@react-native/js-polyfills": {
+      "källa": "https://registry.npmjs.org/%40react-native%2Fjs-polyfills",
+      "licens": "MIT"
+    },
+    "@react-native/metro-babel-transformer": {
+      "källa": "https://registry.npmjs.org/%40react-native%2Fmetro-babel-transformer",
+      "licens": "MIT"
+    },
+    "@react-native/normalize-colors": {
+      "källa": "https://registry.npmjs.org/%40react-native%2Fnormalize-colors",
+      "licens": "MIT"
+    },
+    "@react-native/virtualized-lists": {
+      "källa": "https://registry.npmjs.org/%40react-native%2Fvirtualized-lists",
+      "licens": "MIT"
+    },
+    "@react-pdf/fns": {
+      "källa": "https://registry.npmjs.org/%40react-pdf%2Ffns",
+      "licens": "MIT"
+    },
+    "@react-pdf/font": {
+      "källa": "https://registry.npmjs.org/%40react-pdf%2Ffont",
+      "licens": "MIT"
+    },
+    "@react-pdf/image": {
+      "källa": "https://registry.npmjs.org/%40react-pdf%2Fimage",
+      "licens": "MIT"
+    },
+    "@react-pdf/layout": {
+      "källa": "https://registry.npmjs.org/%40react-pdf%2Flayout",
+      "licens": "MIT"
+    },
+    "@react-pdf/pdfkit": {
+      "källa": "https://registry.npmjs.org/%40react-pdf%2Fpdfkit",
+      "licens": "MIT"
+    },
+    "@react-pdf/png-js": {
+      "källa": "https://registry.npmjs.org/%40react-pdf%2Fpng-js",
+      "licens": "MIT"
+    },
+    "@react-pdf/primitives": {
+      "källa": "https://registry.npmjs.org/%40react-pdf%2Fprimitives",
+      "licens": "MIT"
+    },
+    "@react-pdf/render": {
+      "källa": "https://registry.npmjs.org/%40react-pdf%2Frender",
+      "licens": "MIT"
+    },
+    "@react-pdf/renderer": {
+      "källa": "https://registry.npmjs.org/%40react-pdf%2Frenderer",
+      "licens": "MIT"
+    },
+    "@react-pdf/stylesheet": {
+      "källa": "https://registry.npmjs.org/%40react-pdf%2Fstylesheet",
+      "licens": "MIT"
+    },
+    "@react-pdf/textkit": {
+      "källa": "https://registry.npmjs.org/%40react-pdf%2Ftextkit",
+      "licens": "MIT"
+    },
+    "@react-pdf/types": {
+      "källa": "https://registry.npmjs.org/%40react-pdf%2Ftypes",
+      "licens": "MIT"
+    },
+    "@react-three/fiber": {
+      "källa": "https://registry.npmjs.org/%40react-three%2Ffiber",
+      "licens": "MIT"
+    },
+    "@rolldown/binding-android-arm64": {
+      "källa": "https://registry.npmjs.org/%40rolldown%2Fbinding-android-arm64",
+      "licens": "MIT"
+    },
+    "@rolldown/binding-darwin-arm64": {
+      "källa": "https://registry.npmjs.org/%40rolldown%2Fbinding-darwin-arm64",
+      "licens": "MIT"
+    },
+    "@rolldown/binding-darwin-x64": {
+      "källa": "https://registry.npmjs.org/%40rolldown%2Fbinding-darwin-x64",
+      "licens": "MIT"
+    },
+    "@rolldown/binding-freebsd-x64": {
+      "källa": "https://registry.npmjs.org/%40rolldown%2Fbinding-freebsd-x64",
+      "licens": "MIT"
+    },
+    "@rolldown/binding-linux-arm-gnueabihf": {
+      "källa": "https://registry.npmjs.org/%40rolldown%2Fbinding-linux-arm-gnueabihf",
+      "licens": "MIT"
+    },
+    "@rolldown/binding-linux-arm64-gnu": {
+      "källa": "https://registry.npmjs.org/%40rolldown%2Fbinding-linux-arm64-gnu",
+      "licens": "MIT"
+    },
+    "@rolldown/binding-linux-arm64-musl": {
+      "källa": "https://registry.npmjs.org/%40rolldown%2Fbinding-linux-arm64-musl",
+      "licens": "MIT"
+    },
+    "@rolldown/binding-linux-ppc64-gnu": {
+      "källa": "https://registry.npmjs.org/%40rolldown%2Fbinding-linux-ppc64-gnu",
+      "licens": "MIT"
+    },
+    "@rolldown/binding-linux-s390x-gnu": {
+      "källa": "https://registry.npmjs.org/%40rolldown%2Fbinding-linux-s390x-gnu",
+      "licens": "MIT"
+    },
+    "@rolldown/binding-openharmony-arm64": {
+      "källa": "https://registry.npmjs.org/%40rolldown%2Fbinding-openharmony-arm64",
+      "licens": "MIT"
+    },
+    "@rolldown/binding-wasm32-wasi": {
+      "källa": "https://registry.npmjs.org/%40rolldown%2Fbinding-wasm32-wasi",
+      "licens": "MIT"
+    },
+    "@rolldown/binding-win32-arm64-msvc": {
+      "källa": "https://registry.npmjs.org/%40rolldown%2Fbinding-win32-arm64-msvc",
+      "licens": "MIT"
+    },
+    "@rolldown/binding-win32-x64-msvc": {
+      "källa": "https://registry.npmjs.org/%40rolldown%2Fbinding-win32-x64-msvc",
+      "licens": "MIT"
+    },
+    "@rollup/rollup-android-arm-eabi": {
+      "källa": "https://registry.npmjs.org/%40rollup%2Frollup-android-arm-eabi",
+      "licens": "MIT"
+    },
+    "@rollup/rollup-android-arm64": {
+      "källa": "https://registry.npmjs.org/%40rollup%2Frollup-android-arm64",
+      "licens": "MIT"
+    },
+    "@rollup/rollup-darwin-arm64": {
+      "källa": "https://registry.npmjs.org/%40rollup%2Frollup-darwin-arm64",
+      "licens": "MIT"
+    },
+    "@rollup/rollup-darwin-x64": {
+      "källa": "https://registry.npmjs.org/%40rollup%2Frollup-darwin-x64",
+      "licens": "MIT"
+    },
+    "@rollup/rollup-freebsd-arm64": {
+      "källa": "https://registry.npmjs.org/%40rollup%2Frollup-freebsd-arm64",
+      "licens": "MIT"
+    },
+    "@rollup/rollup-freebsd-x64": {
+      "källa": "https://registry.npmjs.org/%40rollup%2Frollup-freebsd-x64",
+      "licens": "MIT"
+    },
+    "@rollup/rollup-linux-arm-gnueabihf": {
+      "källa": "https://registry.npmjs.org/%40rollup%2Frollup-linux-arm-gnueabihf",
+      "licens": "MIT"
+    },
+    "@rollup/rollup-linux-arm-musleabihf": {
+      "källa": "https://registry.npmjs.org/%40rollup%2Frollup-linux-arm-musleabihf",
+      "licens": "MIT"
+    },
+    "@rollup/rollup-linux-arm64-gnu": {
+      "källa": "https://registry.npmjs.org/%40rollup%2Frollup-linux-arm64-gnu",
+      "licens": "MIT"
+    },
+    "@rollup/rollup-linux-arm64-musl": {
+      "källa": "https://registry.npmjs.org/%40rollup%2Frollup-linux-arm64-musl",
+      "licens": "MIT"
+    },
+    "@rollup/rollup-linux-loongarch64-gnu": {
+      "källa": "https://registry.npmjs.org/%40rollup%2Frollup-linux-loongarch64-gnu",
+      "licens": "MIT"
+    },
+    "@rollup/rollup-linux-powerpc64le-gnu": {
+      "källa": "https://registry.npmjs.org/%40rollup%2Frollup-linux-powerpc64le-gnu",
+      "licens": "MIT"
+    },
+    "@rollup/rollup-linux-riscv64-gnu": {
+      "källa": "https://registry.npmjs.org/%40rollup%2Frollup-linux-riscv64-gnu",
+      "licens": "MIT"
+    },
+    "@rollup/rollup-linux-riscv64-musl": {
+      "källa": "https://registry.npmjs.org/%40rollup%2Frollup-linux-riscv64-musl",
+      "licens": "MIT"
+    },
+    "@rollup/rollup-linux-s390x-gnu": {
+      "källa": "https://registry.npmjs.org/%40rollup%2Frollup-linux-s390x-gnu",
+      "licens": "MIT"
+    },
+    "@rollup/rollup-win32-arm64-msvc": {
+      "källa": "https://registry.npmjs.org/%40rollup%2Frollup-win32-arm64-msvc",
+      "licens": "MIT"
+    },
+    "@rollup/rollup-win32-ia32-msvc": {
+      "källa": "https://registry.npmjs.org/%40rollup%2Frollup-win32-ia32-msvc",
+      "licens": "MIT"
+    },
+    "@rollup/rollup-win32-x64-msvc": {
+      "källa": "https://registry.npmjs.org/%40rollup%2Frollup-win32-x64-msvc",
+      "licens": "MIT"
+    },
+    "@sideway/address": {
+      "källa": "https://registry.npmjs.org/%40sideway%2Faddress",
+      "licens": "BSD-3-Clause"
+    },
+    "@sideway/formula": {
+      "källa": "https://registry.npmjs.org/%40sideway%2Fformula",
+      "licens": "BSD-3-Clause"
+    },
+    "@sideway/pinpoint": {
+      "källa": "https://registry.npmjs.org/%40sideway%2Fpinpoint",
+      "licens": "BSD-3-Clause"
+    },
+    "@sinonjs/commons": {
+      "källa": "https://registry.npmjs.org/%40sinonjs%2Fcommons",
+      "licens": "BSD-3-Clause"
+    },
+    "@sinonjs/samsam": {
+      "källa": "https://registry.npmjs.org/%40sinonjs%2Fsamsam",
+      "licens": "BSD-3-Clause"
+    },
+    "@sinonjs/text-encoding": {
+      "källa": "https://registry.npmjs.org/%40sinonjs%2Ftext-encoding",
+      "licens": "(Unlicense OR Apache-2.0)"
+    },
+    "@swc/core-darwin-arm64": {
+      "källa": "https://registry.npmjs.org/%40swc%2Fcore-darwin-arm64",
+      "licens": "Apache-2.0 AND MIT"
+    },
+    "@swc/core-darwin-x64": {
+      "källa": "https://registry.npmjs.org/%40swc%2Fcore-darwin-x64",
+      "licens": "Apache-2.0 AND MIT"
+    },
+    "@swc/core-linux-arm-gnueabihf": {
+      "källa": "https://registry.npmjs.org/%40swc%2Fcore-linux-arm-gnueabihf",
+      "licens": "Apache-2.0"
+    },
+    "@swc/core-linux-arm64-gnu": {
+      "källa": "https://registry.npmjs.org/%40swc%2Fcore-linux-arm64-gnu",
+      "licens": "Apache-2.0 AND MIT"
+    },
+    "@swc/core-linux-arm64-musl": {
+      "källa": "https://registry.npmjs.org/%40swc%2Fcore-linux-arm64-musl",
+      "licens": "Apache-2.0 AND MIT"
+    },
+    "@swc/core-linux-ppc64-gnu": {
+      "källa": "https://registry.npmjs.org/%40swc%2Fcore-linux-ppc64-gnu",
+      "licens": "Apache-2.0 AND MIT"
+    },
+    "@swc/core-linux-s390x-gnu": {
+      "källa": "https://registry.npmjs.org/%40swc%2Fcore-linux-s390x-gnu",
+      "licens": "Apache-2.0 AND MIT"
+    },
+    "@swc/core-win32-arm64-msvc": {
+      "källa": "https://registry.npmjs.org/%40swc%2Fcore-win32-arm64-msvc",
+      "licens": "Apache-2.0 AND MIT"
+    },
+    "@swc/core-win32-ia32-msvc": {
+      "källa": "https://registry.npmjs.org/%40swc%2Fcore-win32-ia32-msvc",
+      "licens": "Apache-2.0 AND MIT"
+    },
+    "@swc/core-win32-x64-msvc": {
+      "källa": "https://registry.npmjs.org/%40swc%2Fcore-win32-x64-msvc",
+      "licens": "Apache-2.0 AND MIT"
+    },
+    "@swc/helpers": {
+      "källa": "https://registry.npmjs.org/%40swc%2Fhelpers",
+      "licens": "Apache-2.0"
+    },
+    "@tailwindcss/oxide-android-arm64": {
+      "källa": "https://registry.npmjs.org/%40tailwindcss%2Foxide-android-arm64",
+      "licens": "MIT"
+    },
+    "@tailwindcss/oxide-darwin-arm64": {
+      "källa": "https://registry.npmjs.org/%40tailwindcss%2Foxide-darwin-arm64",
+      "licens": "MIT"
+    },
+    "@tailwindcss/oxide-darwin-x64": {
+      "källa": "https://registry.npmjs.org/%40tailwindcss%2Foxide-darwin-x64",
+      "licens": "MIT"
+    },
+    "@tailwindcss/oxide-freebsd-x64": {
+      "källa": "https://registry.npmjs.org/%40tailwindcss%2Foxide-freebsd-x64",
+      "licens": "MIT"
+    },
+    "@tailwindcss/oxide-linux-arm-gnueabihf": {
+      "källa": "https://registry.npmjs.org/%40tailwindcss%2Foxide-linux-arm-gnueabihf",
+      "licens": "MIT"
+    },
+    "@tailwindcss/oxide-linux-arm64-gnu": {
+      "källa": "https://registry.npmjs.org/%40tailwindcss%2Foxide-linux-arm64-gnu",
+      "licens": "MIT"
+    },
+    "@tailwindcss/oxide-linux-arm64-musl": {
+      "källa": "https://registry.npmjs.org/%40tailwindcss%2Foxide-linux-arm64-musl",
+      "licens": "MIT"
+    },
+    "@tailwindcss/oxide-wasm32-wasi": {
+      "källa": "https://registry.npmjs.org/%40tailwindcss%2Foxide-wasm32-wasi",
+      "licens": "MIT"
+    },
+    "@tailwindcss/oxide-win32-arm64-msvc": {
+      "källa": "https://registry.npmjs.org/%40tailwindcss%2Foxide-win32-arm64-msvc",
+      "licens": "MIT"
+    },
+    "@tailwindcss/oxide-win32-x64-msvc": {
+      "källa": "https://registry.npmjs.org/%40tailwindcss%2Foxide-win32-x64-msvc",
+      "licens": "MIT"
+    },
+    "@tybys/wasm-util": {
+      "källa": "https://registry.npmjs.org/%40tybys%2Fwasm-util",
+      "licens": "MIT"
+    },
+    "@types/dotenv": {
+      "källa": "https://registry.npmjs.org/%40types%2Fdotenv",
+      "licens": "MIT"
+    },
+    "@types/lodash": {
+      "källa": "https://registry.npmjs.org/%40types%2Flodash",
+      "licens": "MIT"
+    },
+    "@types/react-dom": {
+      "källa": "https://registry.npmjs.org/%40types%2Freact-dom",
+      "licens": "MIT"
+    },
+    "@types/react-reconciler": {
+      "källa": "https://registry.npmjs.org/%40types%2Freact-reconciler",
+      "licens": "MIT"
+    },
+    "@types/webxr": {
+      "källa": "https://registry.npmjs.org/%40types%2Fwebxr",
+      "licens": "MIT"
+    },
+    "@types/yargs": {
+      "källa": "https://registry.npmjs.org/%40types%2Fyargs",
+      "licens": "MIT"
+    },
+    "@unrs/resolver-binding-android-arm-eabi": {
+      "källa": "https://registry.npmjs.org/%40unrs%2Fresolver-binding-android-arm-eabi",
+      "licens": "MIT"
+    },
+    "@unrs/resolver-binding-android-arm64": {
+      "källa": "https://registry.npmjs.org/%40unrs%2Fresolver-binding-android-arm64",
+      "licens": "MIT"
+    },
+    "@unrs/resolver-binding-darwin-arm64": {
+      "källa": "https://registry.npmjs.org/%40unrs%2Fresolver-binding-darwin-arm64",
+      "licens": "MIT"
+    },
+    "@unrs/resolver-binding-darwin-x64": {
+      "källa": "https://registry.npmjs.org/%40unrs%2Fresolver-binding-darwin-x64",
+      "licens": "MIT"
+    },
+    "@unrs/resolver-binding-freebsd-x64": {
+      "källa": "https://registry.npmjs.org/%40unrs%2Fresolver-binding-freebsd-x64",
+      "licens": "MIT"
+    },
+    "@unrs/resolver-binding-linux-arm-gnueabihf": {
+      "källa": "https://registry.npmjs.org/%40unrs%2Fresolver-binding-linux-arm-gnueabihf",
+      "licens": "MIT"
+    },
+    "@unrs/resolver-binding-linux-arm-musleabihf": {
+      "källa": "https://registry.npmjs.org/%40unrs%2Fresolver-binding-linux-arm-musleabihf",
+      "licens": "MIT"
+    },
+    "@unrs/resolver-binding-linux-arm64-gnu": {
+      "källa": "https://registry.npmjs.org/%40unrs%2Fresolver-binding-linux-arm64-gnu",
+      "licens": "MIT"
+    },
+    "@unrs/resolver-binding-linux-arm64-musl": {
+      "källa": "https://registry.npmjs.org/%40unrs%2Fresolver-binding-linux-arm64-musl",
+      "licens": "MIT"
+    },
+    "@unrs/resolver-binding-linux-loong64-gnu": {
+      "källa": "https://registry.npmjs.org/%40unrs%2Fresolver-binding-linux-loong64-gnu",
+      "licens": "MIT"
+    },
+    "@unrs/resolver-binding-linux-loong64-musl": {
+      "källa": "https://registry.npmjs.org/%40unrs%2Fresolver-binding-linux-loong64-musl",
+      "licens": "MIT"
+    },
+    "@unrs/resolver-binding-linux-ppc64-gnu": {
+      "källa": "https://registry.npmjs.org/%40unrs%2Fresolver-binding-linux-ppc64-gnu",
+      "licens": "MIT"
+    },
+    "@unrs/resolver-binding-linux-riscv64-gnu": {
+      "källa": "https://registry.npmjs.org/%40unrs%2Fresolver-binding-linux-riscv64-gnu",
+      "licens": "MIT"
+    },
+    "@unrs/resolver-binding-linux-riscv64-musl": {
+      "källa": "https://registry.npmjs.org/%40unrs%2Fresolver-binding-linux-riscv64-musl",
+      "licens": "MIT"
+    },
+    "@unrs/resolver-binding-linux-s390x-gnu": {
+      "källa": "https://registry.npmjs.org/%40unrs%2Fresolver-binding-linux-s390x-gnu",
+      "licens": "MIT"
+    },
+    "@unrs/resolver-binding-openharmony-arm64": {
+      "källa": "https://registry.npmjs.org/%40unrs%2Fresolver-binding-openharmony-arm64",
+      "licens": "MIT"
+    },
+    "@unrs/resolver-binding-wasm32-wasi": {
+      "källa": "https://registry.npmjs.org/%40unrs%2Fresolver-binding-wasm32-wasi",
+      "licens": "MIT"
+    },
+    "@unrs/resolver-binding-win32-arm64-msvc": {
+      "källa": "https://registry.npmjs.org/%40unrs%2Fresolver-binding-win32-arm64-msvc",
+      "licens": "MIT"
+    },
+    "@unrs/resolver-binding-win32-ia32-msvc": {
+      "källa": "https://registry.npmjs.org/%40unrs%2Fresolver-binding-win32-ia32-msvc",
+      "licens": "MIT"
+    },
+    "@unrs/resolver-binding-win32-x64-msvc": {
+      "källa": "https://registry.npmjs.org/%40unrs%2Fresolver-binding-win32-x64-msvc",
+      "licens": "MIT"
+    },
+    "abort-controller": {
+      "källa": "https://registry.npmjs.org/abort-controller",
+      "licens": "MIT"
+    },
+    "accepts": {
+      "källa": "https://registry.npmjs.org/accepts",
+      "licens": "MIT"
+    },
+    "acorn-jsx": {
+      "källa": "https://registry.npmjs.org/acorn-jsx",
+      "licens": "MIT"
+    },
+    "admin": {
+      "källa": "https://registry.npmjs.org/admin",
+      "licens": "MIT"
+    },
+    "ajv": {
+      "källa": "https://registry.npmjs.org/ajv",
+      "licens": "MIT"
+    },
+    "anser": {
+      "källa": "https://registry.npmjs.org/anser",
+      "licens": "MIT"
+    },
+    "ansi-escapes": {
+      "källa": "https://registry.npmjs.org/ansi-escapes",
+      "licens": "MIT"
+    },
+    "ansi-fragments": {
+      "källa": "https://registry.npmjs.org/ansi-fragments",
+      "licens": "MIT"
+    },
+    "ansi-regex": {
+      "källa": "https://registry.npmjs.org/ansi-regex",
+      "licens": "MIT"
+    },
+    "anymatch": {
+      "källa": "https://registry.npmjs.org/anymatch",
+      "licens": "ISC"
+    },
+    "appdirsjs": {
+      "källa": "https://registry.npmjs.org/appdirsjs",
+      "licens": "MIT"
+    },
+    "argparse": {
+      "källa": "https://registry.npmjs.org/argparse",
+      "licens": "MIT"
+    },
+    "array-includes": {
+      "källa": "https://registry.npmjs.org/array-includes",
+      "licens": "MIT"
+    },
+    "array.prototype.flat": {
+      "källa": "https://registry.npmjs.org/array.prototype.flat",
+      "licens": "MIT"
+    },
+    "ast-types": {
+      "källa": "https://registry.npmjs.org/ast-types",
+      "licens": "MIT"
+    },
+    "astral-regex": {
+      "källa": "https://registry.npmjs.org/astral-regex",
+      "licens": "MIT"
+    },
+    "async-limiter": {
+      "källa": "https://registry.npmjs.org/async-limiter",
+      "licens": "MIT"
+    },
+    "babel-core": {
+      "källa": "https://registry.npmjs.org/babel-core",
+      "licens": "MIT"
+    },
+    "babel-plugin-polyfill-corejs2": {
+      "källa": "https://registry.npmjs.org/babel-plugin-polyfill-corejs2",
+      "licens": "MIT"
+    },
+    "babel-plugin-polyfill-corejs3": {
+      "källa": "https://registry.npmjs.org/babel-plugin-polyfill-corejs3",
+      "licens": "MIT"
+    },
+    "babel-plugin-polyfill-regenerator": {
+      "källa": "https://registry.npmjs.org/babel-plugin-polyfill-regenerator",
+      "licens": "MIT"
+    },
+    "babel-plugin-transform-flow-enums": {
+      "källa": "https://registry.npmjs.org/babel-plugin-transform-flow-enums",
+      "licens": "MIT"
+    },
+    "balanced-match": {
+      "källa": "https://registry.npmjs.org/balanced-match",
+      "licens": "MIT"
+    },
+    "binary-extensions": {
+      "källa": "https://registry.npmjs.org/binary-extensions",
+      "licens": "MIT"
+    },
+    "body-parser": {
+      "källa": "https://registry.npmjs.org/body-parser",
+      "licens": "MIT"
+    },
+    "bpmn-js": {
+      "källa": "https://registry.npmjs.org/bpmn-js",
+      "licens": "SEE LICENSE IN LICENSE"
+    },
+    "brace-expansion": {
+      "källa": "https://registry.npmjs.org/brace-expansion",
+      "licens": "MIT"
+    },
+    "braces": {
+      "källa": "https://registry.npmjs.org/braces",
+      "licens": "MIT"
+    },
+    "browserslist": {
+      "källa": "https://registry.npmjs.org/browserslist",
+      "licens": "MIT"
+    },
+    "buffer": {
+      "källa": "https://registry.npmjs.org/buffer",
+      "licens": "MIT"
+    },
+    "bytes": {
+      "källa": "https://registry.npmjs.org/bytes",
+      "licens": "MIT"
+    },
+    "caller-callsite": {
+      "källa": "https://registry.npmjs.org/caller-callsite",
+      "licens": "MIT"
+    },
+    "caller-path": {
+      "källa": "https://registry.npmjs.org/caller-path",
+      "licens": "MIT"
+    },
+    "callsites": {
+      "källa": "https://registry.npmjs.org/callsites",
+      "licens": "MIT"
+    },
+    "caniuse-lite": {
+      "källa": "https://registry.npmjs.org/caniuse-lite",
+      "licens": "CC-BY-4.0"
+    },
+    "chai": {
+      "källa": "https://registry.npmjs.org/chai",
+      "licens": "MIT"
+    },
+    "chalk": {
+      "källa": "https://registry.npmjs.org/chalk",
+      "licens": "MIT"
+    },
+    "check-error": {
+      "källa": "https://registry.npmjs.org/check-error",
+      "licens": "MIT"
+    },
+    "chrome-launcher": {
+      "källa": "https://registry.npmjs.org/chrome-launcher",
+      "licens": "Apache-2.0"
+    },
+    "chromium-edge-launcher": {
+      "källa": "https://registry.npmjs.org/chromium-edge-launcher",
+      "licens": "Apache-2.0"
+    },
+    "ci-info": {
+      "källa": "https://registry.npmjs.org/ci-info",
+      "licens": "MIT"
+    },
+    "cli-spinners": {
+      "källa": "https://registry.npmjs.org/cli-spinners",
+      "licens": "MIT"
+    },
+    "cliui": {
+      "källa": "https://registry.npmjs.org/cliui",
+      "licens": "ISC"
+    },
+    "clone": {
+      "källa": "https://registry.npmjs.org/clone",
+      "licens": "MIT"
+    },
+    "clone-deep": {
+      "källa": "https://registry.npmjs.org/clone-deep",
+      "licens": "MIT"
+    },
+    "colorette": {
+      "källa": "https://registry.npmjs.org/colorette",
+      "licens": "MIT"
+    },
+    "command-exists": {
+      "källa": "https://registry.npmjs.org/command-exists",
+      "licens": "MIT"
+    },
+    "commander": {
+      "källa": "https://registry.npmjs.org/commander",
+      "licens": "MIT"
+    },
+    "commondir": {
+      "källa": "https://registry.npmjs.org/commondir",
+      "licens": "MIT"
+    },
+    "connect": {
+      "källa": "https://registry.npmjs.org/connect",
+      "licens": "MIT"
+    },
+    "contains-path": {
+      "källa": "https://registry.npmjs.org/contains-path",
+      "licens": "MIT"
+    },
+    "content-disposition": {
+      "källa": "https://registry.npmjs.org/content-disposition",
+      "licens": "MIT"
+    },
+    "content-type": {
+      "källa": "https://registry.npmjs.org/content-type",
+      "licens": "MIT"
+    },
+    "cookie": {
+      "källa": "https://registry.npmjs.org/cookie",
+      "licens": "MIT"
+    },
+    "cookie-parser": {
+      "källa": "https://registry.npmjs.org/cookie-parser",
+      "licens": "MIT"
+    },
+    "core-js-compat": {
+      "källa": "https://registry.npmjs.org/core-js-compat",
+      "licens": "MIT"
+    },
+    "cosmiconfig": {
+      "källa": "https://registry.npmjs.org/cosmiconfig",
+      "licens": "MIT"
+    },
+    "cross-fetch": {
+      "källa": "https://registry.npmjs.org/cross-fetch",
+      "licens": "MIT"
+    },
+    "cross-spawn": {
+      "källa": "https://registry.npmjs.org/cross-spawn",
+      "licens": "MIT"
+    },
+    "debug": {
+      "källa": "https://registry.npmjs.org/debug",
+      "licens": "MIT"
+    },
+    "decamelize": {
+      "källa": "https://registry.npmjs.org/decamelize",
+      "licens": "MIT"
+    },
+    "deep-eql": {
+      "källa": "https://registry.npmjs.org/deep-eql",
+      "licens": "MIT"
+    },
+    "deep-is": {
+      "källa": "https://registry.npmjs.org/deep-is",
+      "licens": "MIT"
+    },
+    "defaults": {
+      "källa": "https://registry.npmjs.org/defaults",
+      "licens": "MIT"
+    },
+    "define-properties": {
+      "källa": "https://registry.npmjs.org/define-properties",
+      "licens": "MIT"
+    },
+    "denodeify": {
+      "källa": "https://registry.npmjs.org/denodeify",
+      "licens": "MIT"
+    },
+    "depd": {
+      "källa": "https://registry.npmjs.org/depd",
+      "licens": "MIT"
+    },
+    "deprecated-react-native-prop-types": {
+      "källa": "https://registry.npmjs.org/deprecated-react-native-prop-types",
+      "licens": "MIT"
+    },
+    "destroy": {
+      "källa": "https://registry.npmjs.org/destroy",
+      "licens": "MIT"
+    },
+    "diff": {
+      "källa": "https://registry.npmjs.org/diff",
+      "licens": "BSD-3-Clause"
+    },
+    "dmn-js": {
+      "källa": "https://registry.npmjs.org/dmn-js",
+      "licens": "SEE LICENSE IN LICENSE"
+    },
+    "dmn-js-boxed-expression": {
+      "källa": "https://registry.npmjs.org/dmn-js-boxed-expression",
+      "licens": "SEE LICENSE IN LICENSE"
+    },
+    "dmn-js-decision-table": {
+      "källa": "https://registry.npmjs.org/dmn-js-decision-table",
+      "licens": "SEE LICENSE IN LICENSE"
+    },
+    "dmn-js-drd": {
+      "källa": "https://registry.npmjs.org/dmn-js-drd",
+      "licens": "SEE LICENSE IN LICENSE"
+    },
+    "dmn-js-literal-expression": {
+      "källa": "https://registry.npmjs.org/dmn-js-literal-expression",
+      "licens": "SEE LICENSE IN LICENSE"
+    },
+    "dmn-js-shared": {
+      "källa": "https://registry.npmjs.org/dmn-js-shared",
+      "licens": "SEE LICENSE IN LICENSE"
+    },
+    "dotenv": {
+      "källa": "https://registry.npmjs.org/dotenv",
+      "licens": "BSD-2-Clause"
+    },
+    "ejs": {
+      "källa": "https://registry.npmjs.org/ejs",
+      "licens": "Apache-2.0"
+    },
+    "electron-to-chromium": {
+      "källa": "https://registry.npmjs.org/electron-to-chromium",
+      "licens": "ISC"
+    },
+    "emoji-regex": {
+      "källa": "https://registry.npmjs.org/emoji-regex",
+      "licens": "MIT"
+    },
+    "envinfo": {
+      "källa": "https://registry.npmjs.org/envinfo",
+      "licens": "MIT"
+    },
+    "error-ex": {
+      "källa": "https://registry.npmjs.org/error-ex",
+      "licens": "MIT"
+    },
+    "error-stack-parser": {
+      "källa": "https://registry.npmjs.org/error-stack-parser",
+      "licens": "MIT"
+    },
+    "errorhandler": {
+      "källa": "https://registry.npmjs.org/errorhandler",
+      "licens": "MIT"
+    },
+    "es-abstract": {
+      "källa": "https://registry.npmjs.org/es-abstract",
+      "licens": "MIT"
+    },
+    "es-to-primitive": {
+      "källa": "https://registry.npmjs.org/es-to-primitive",
+      "licens": "MIT"
+    },
+    "eslint-config-standard": {
+      "källa": "https://registry.npmjs.org/eslint-config-standard",
+      "licens": "MIT"
+    },
+    "eslint-import-resolver-node": {
+      "källa": "https://registry.npmjs.org/eslint-import-resolver-node",
+      "licens": "MIT"
+    },
+    "eslint-module-utils": {
+      "källa": "https://registry.npmjs.org/eslint-module-utils",
+      "licens": "MIT"
+    },
+    "eslint-plugin-es": {
+      "källa": "https://registry.npmjs.org/eslint-plugin-es",
+      "licens": "MIT"
+    },
+    "eslint-plugin-import": {
+      "källa": "https://registry.npmjs.org/eslint-plugin-import",
+      "licens": "MIT"
+    },
+    "eslint-plugin-node": {
+      "källa": "https://registry.npmjs.org/eslint-plugin-node",
+      "licens": "MIT"
+    },
+    "eslint-plugin-promise": {
+      "källa": "https://registry.npmjs.org/eslint-plugin-promise",
+      "licens": "ISC"
+    },
+    "eslint-plugin-standard": {
+      "källa": "https://registry.npmjs.org/eslint-plugin-standard",
+      "licens": "MIT"
+    },
+    "eslint-utils": {
+      "källa": "https://registry.npmjs.org/eslint-utils",
+      "licens": "MIT"
+    },
+    "eslint-visitor-keys": {
+      "källa": "https://registry.npmjs.org/eslint-visitor-keys",
+      "licens": "Apache-2.0"
+    },
+    "esprima": {
+      "källa": "https://registry.npmjs.org/esprima",
+      "licens": "BSD-2-Clause"
+    },
+    "esquery": {
+      "källa": "https://registry.npmjs.org/esquery",
+      "licens": "BSD-3-Clause"
+    },
+    "estraverse": {
+      "källa": "https://registry.npmjs.org/estraverse",
+      "licens": "BSD-2-Clause"
+    },
+    "event-target-shim": {
+      "källa": "https://registry.npmjs.org/event-target-shim",
+      "licens": "MIT"
+    },
+    "express": {
+      "källa": "https://registry.npmjs.org/express",
+      "licens": "MIT"
+    },
+    "express-session": {
+      "källa": "https://registry.npmjs.org/express-session",
+      "licens": "MIT"
+    },
+    "fast-xml-parser": {
+      "källa": "https://registry.npmjs.org/fast-xml-parser",
+      "licens": "MIT"
+    },
+    "fill-range": {
+      "källa": "https://registry.npmjs.org/fill-range",
+      "licens": "MIT"
+    },
+    "finalhandler": {
+      "källa": "https://registry.npmjs.org/finalhandler",
+      "licens": "MIT"
+    },
+    "find-cache-dir": {
+      "källa": "https://registry.npmjs.org/find-cache-dir",
+      "licens": "MIT"
+    },
+    "find-up": {
+      "källa": "https://registry.npmjs.org/find-up",
+      "licens": "MIT"
+    },
+    "flat": {
+      "källa": "https://registry.npmjs.org/flat",
+      "licens": "BSD-3-Clause"
+    },
+    "flow-enums-runtime": {
+      "källa": "https://registry.npmjs.org/flow-enums-runtime",
+      "licens": "MIT"
+    },
+    "flow-parser": {
+      "källa": "https://registry.npmjs.org/flow-parser",
+      "licens": "MIT"
+    },
+    "forwarded": {
+      "källa": "https://registry.npmjs.org/forwarded",
+      "licens": "MIT"
+    },
+    "fsevents": {
+      "källa": "https://registry.npmjs.org/fsevents",
+      "licens": "MIT"
+    },
+    "function-bind": {
+      "källa": "https://registry.npmjs.org/function-bind",
+      "licens": "MIT"
+    },
+    "get-func-name": {
+      "källa": "https://registry.npmjs.org/get-func-name",
+      "licens": "MIT"
+    },
+    "glob": {
+      "källa": "https://registry.npmjs.org/glob",
+      "licens": "ISC"
+    },
+    "glob-parent": {
+      "källa": "https://registry.npmjs.org/glob-parent",
+      "licens": "ISC"
+    },
+    "graceful-fs": {
+      "källa": "https://registry.npmjs.org/graceful-fs",
+      "licens": "ISC"
+    },
+    "has": {
+      "källa": "https://registry.npmjs.org/has",
+      "licens": "MIT"
+    },
+    "has-symbols": {
+      "källa": "https://registry.npmjs.org/has-symbols",
+      "licens": "MIT"
+    },
+    "hermes-estree": {
+      "källa": "https://registry.npmjs.org/hermes-estree",
+      "licens": "MIT"
+    },
+    "hermes-parser": {
+      "källa": "https://registry.npmjs.org/hermes-parser",
+      "licens": "MIT"
+    },
+    "hermes-profile-transformer": {
+      "källa": "https://registry.npmjs.org/hermes-profile-transformer",
+      "licens": "MIT"
+    },
+    "hosted-git-info": {
+      "källa": "https://registry.npmjs.org/hosted-git-info",
+      "licens": "ISC"
+    },
+    "http-errors": {
+      "källa": "https://registry.npmjs.org/http-errors",
+      "licens": "MIT"
+    },
+    "hyphen": {
+      "källa": "https://registry.npmjs.org/hyphen",
+      "licens": "ISC"
+    },
+    "ignore": {
+      "källa": "https://registry.npmjs.org/ignore",
+      "licens": "MIT"
+    },
+    "image-size": {
+      "källa": "https://registry.npmjs.org/image-size",
+      "licens": "MIT"
+    },
+    "import-fresh": {
+      "källa": "https://registry.npmjs.org/import-fresh",
+      "licens": "MIT"
+    },
+    "inherits": {
+      "källa": "https://registry.npmjs.org/inherits",
+      "licens": "ISC"
+    },
+    "invariant": {
+      "källa": "https://registry.npmjs.org/invariant",
+      "licens": "MIT"
+    },
+    "ip": {
+      "källa": "https://registry.npmjs.org/ip",
+      "licens": "MIT"
+    },
+    "ipaddr.js": {
+      "källa": "https://registry.npmjs.org/ipaddr.js",
+      "licens": "MIT"
+    },
+    "is-arrayish": {
+      "källa": "https://registry.npmjs.org/is-arrayish",
+      "licens": "MIT"
+    },
+    "is-buffer": {
+      "källa": "https://registry.npmjs.org/is-buffer",
+      "licens": "MIT"
+    },
+    "is-callable": {
+      "källa": "https://registry.npmjs.org/is-callable",
+      "licens": "MIT"
+    },
+    "is-date-object": {
+      "källa": "https://registry.npmjs.org/is-date-object",
+      "licens": "MIT"
+    },
+    "is-directory": {
+      "källa": "https://registry.npmjs.org/is-directory",
+      "licens": "MIT"
+    },
+    "is-fullwidth-code-point": {
+      "källa": "https://registry.npmjs.org/is-fullwidth-code-point",
+      "licens": "MIT"
+    },
+    "is-glob": {
+      "källa": "https://registry.npmjs.org/is-glob",
+      "licens": "MIT"
+    },
+    "is-interactive": {
+      "källa": "https://registry.npmjs.org/is-interactive",
+      "licens": "MIT"
+    },
+    "is-object": {
+      "källa": "https://registry.npmjs.org/is-object",
+      "licens": "MIT"
+    },
+    "is-plain-object": {
+      "källa": "https://registry.npmjs.org/is-plain-object",
+      "licens": "MIT"
+    },
+    "is-regex": {
+      "källa": "https://registry.npmjs.org/is-regex",
+      "licens": "MIT"
+    },
+    "is-string": {
+      "källa": "https://registry.npmjs.org/is-string",
+      "licens": "MIT"
+    },
+    "is-symbol": {
+      "källa": "https://registry.npmjs.org/is-symbol",
+      "licens": "MIT"
+    },
+    "is-wsl": {
+      "källa": "https://registry.npmjs.org/is-wsl",
+      "licens": "MIT"
+    },
+    "isarray": {
+      "källa": "https://registry.npmjs.org/isarray",
+      "licens": "MIT"
+    },
+    "isobject": {
+      "källa": "https://registry.npmjs.org/isobject",
+      "licens": "MIT"
+    },
+    "its-fine": {
+      "källa": "https://registry.npmjs.org/its-fine",
+      "licens": "MIT"
+    },
+    "jay-peg": {
+      "källa": "https://registry.npmjs.org/jay-peg",
+      "licens": "MIT"
+    },
+    "jiti": {
+      "källa": "https://registry.npmjs.org/jiti",
+      "licens": "MIT"
+    },
+    "joi": {
+      "källa": "https://registry.npmjs.org/joi",
+      "licens": "BSD-3-Clause"
+    },
+    "js-yaml": {
+      "källa": "https://registry.npmjs.org/js-yaml",
+      "licens": "MIT"
+    },
+    "jsc-android": {
+      "källa": "https://registry.npmjs.org/jsc-android",
+      "licens": "BSD-2-Clause"
+    },
+    "jsc-safe-url": {
+      "källa": "https://registry.npmjs.org/jsc-safe-url",
+      "licens": "0BSD"
+    },
+    "jscodeshift": {
+      "källa": "https://registry.npmjs.org/jscodeshift",
+      "licens": "MIT"
+    },
+    "json-parse-better-errors": {
+      "källa": "https://registry.npmjs.org/json-parse-better-errors",
+      "licens": "MIT"
+    },
+    "just-extend": {
+      "källa": "https://registry.npmjs.org/just-extend",
+      "licens": "MIT"
+    },
+    "kind-of": {
+      "källa": "https://registry.npmjs.org/kind-of",
+      "licens": "MIT"
+    },
+    "konva": {
+      "källa": "https://registry.npmjs.org/konva",
+      "licens": "MIT"
+    },
+    "lighthouse-logger": {
+      "källa": "https://registry.npmjs.org/lighthouse-logger",
+      "licens": "Apache-2.0"
+    },
+    "lightningcss-android-arm64": {
+      "källa": "https://registry.npmjs.org/lightningcss-android-arm64",
+      "licens": "MPL-2.0"
+    },
+    "lightningcss-darwin-arm64": {
+      "källa": "https://registry.npmjs.org/lightningcss-darwin-arm64",
+      "licens": "MPL-2.0"
+    },
+    "lightningcss-darwin-x64": {
+      "källa": "https://registry.npmjs.org/lightningcss-darwin-x64",
+      "licens": "MPL-2.0"
+    },
+    "lightningcss-freebsd-x64": {
+      "källa": "https://registry.npmjs.org/lightningcss-freebsd-x64",
+      "licens": "MPL-2.0"
+    },
+    "lightningcss-linux-arm-gnueabihf": {
+      "källa": "https://registry.npmjs.org/lightningcss-linux-arm-gnueabihf",
+      "licens": "MPL-2.0"
+    },
+    "lightningcss-linux-arm64-gnu": {
+      "källa": "https://registry.npmjs.org/lightningcss-linux-arm64-gnu",
+      "licens": "MPL-2.0"
+    },
+    "lightningcss-linux-arm64-musl": {
+      "källa": "https://registry.npmjs.org/lightningcss-linux-arm64-musl",
+      "licens": "MPL-2.0"
+    },
+    "lightningcss-win32-arm64-msvc": {
+      "källa": "https://registry.npmjs.org/lightningcss-win32-arm64-msvc",
+      "licens": "MPL-2.0"
+    },
+    "lightningcss-win32-x64-msvc": {
+      "källa": "https://registry.npmjs.org/lightningcss-win32-x64-msvc",
+      "licens": "MPL-2.0"
+    },
+    "load-json-file": {
+      "källa": "https://registry.npmjs.org/load-json-file",
+      "licens": "MIT"
+    },
+    "locate-path": {
+      "källa": "https://registry.npmjs.org/locate-path",
+      "licens": "MIT"
+    },
+    "lodash": {
+      "källa": "https://registry.npmjs.org/lodash",
+      "licens": "MIT"
+    },
+    "lodash.throttle": {
+      "källa": "https://registry.npmjs.org/lodash.throttle",
+      "licens": "MIT"
+    },
+    "log-symbols": {
+      "källa": "https://registry.npmjs.org/log-symbols",
+      "licens": "MIT"
+    },
+    "logkitty": {
+      "källa": "https://registry.npmjs.org/logkitty",
+      "licens": "MIT"
+    },
+    "make-dir": {
+      "källa": "https://registry.npmjs.org/make-dir",
+      "licens": "MIT"
+    },
+    "marky": {
+      "källa": "https://registry.npmjs.org/marky",
+      "licens": "Apache-2.0"
+    },
+    "memoize-one": {
+      "källa": "https://registry.npmjs.org/memoize-one",
+      "licens": "MIT"
+    },
+    "merge-descriptors": {
+      "källa": "https://registry.npmjs.org/merge-descriptors",
+      "licens": "MIT"
+    },
+    "metro": {
+      "källa": "https://registry.npmjs.org/metro",
+      "licens": "MIT"
+    },
+    "metro-babel-transformer": {
+      "källa": "https://registry.npmjs.org/metro-babel-transformer",
+      "licens": "MIT"
+    },
+    "metro-cache": {
+      "källa": "https://registry.npmjs.org/metro-cache",
+      "licens": "MIT"
+    },
+    "metro-cache-key": {
+      "källa": "https://registry.npmjs.org/metro-cache-key",
+      "licens": "MIT"
+    },
+    "metro-config": {
+      "källa": "https://registry.npmjs.org/metro-config",
+      "licens": "MIT"
+    },
+    "metro-core": {
+      "källa": "https://registry.npmjs.org/metro-core",
+      "licens": "MIT"
+    },
+    "metro-file-map": {
+      "källa": "https://registry.npmjs.org/metro-file-map",
+      "licens": "MIT"
+    },
+    "metro-minify-terser": {
+      "källa": "https://registry.npmjs.org/metro-minify-terser",
+      "licens": "MIT"
+    },
+    "metro-resolver": {
+      "källa": "https://registry.npmjs.org/metro-resolver",
+      "licens": "MIT"
+    },
+    "metro-runtime": {
+      "källa": "https://registry.npmjs.org/metro-runtime",
+      "licens": "MIT"
+    },
+    "metro-source-map": {
+      "källa": "https://registry.npmjs.org/metro-source-map",
+      "licens": "MIT"
+    },
+    "metro-symbolicate": {
+      "källa": "https://registry.npmjs.org/metro-symbolicate",
+      "licens": "MIT"
+    },
+    "metro-transform-plugins": {
+      "källa": "https://registry.npmjs.org/metro-transform-plugins",
+      "licens": "MIT"
+    },
+    "metro-transform-worker": {
+      "källa": "https://registry.npmjs.org/metro-transform-worker",
+      "licens": "MIT"
+    },
+    "mime-db": {
+      "källa": "https://registry.npmjs.org/mime-db",
+      "licens": "MIT"
+    },
+    "mime-types": {
+      "källa": "https://registry.npmjs.org/mime-types",
+      "licens": "MIT"
+    },
+    "minimist": {
+      "källa": "https://registry.npmjs.org/minimist",
+      "licens": "MIT"
+    },
+    "mkdirp": {
+      "källa": "https://registry.npmjs.org/mkdirp",
+      "licens": "MIT"
+    },
+    "mocha": {
+      "källa": "https://registry.npmjs.org/mocha",
+      "licens": "MIT"
+    },
+    "moment": {
+      "källa": "https://registry.npmjs.org/moment",
+      "licens": "MIT"
+    },
+    "ms": {
+      "källa": "https://registry.npmjs.org/ms",
+      "licens": "MIT"
+    },
+    "negotiator": {
+      "källa": "https://registry.npmjs.org/negotiator",
+      "licens": "MIT"
+    },
+    "neo-async": {
+      "källa": "https://registry.npmjs.org/neo-async",
+      "licens": "MIT"
+    },
+    "nocache": {
+      "källa": "https://registry.npmjs.org/nocache",
+      "licens": "MIT"
+    },
+    "node-abort-controller": {
+      "källa": "https://registry.npmjs.org/node-abort-controller",
+      "licens": "MIT"
+    },
+    "node-dir": {
+      "källa": "https://registry.npmjs.org/node-dir",
+      "licens": "MIT"
+    },
+    "node-stream-zip": {
+      "källa": "https://registry.npmjs.org/node-stream-zip",
+      "licens": "MIT"
+    },
+    "normalize-package-data": {
+      "källa": "https://registry.npmjs.org/normalize-package-data",
+      "licens": "BSD-2-Clause"
+    },
+    "nullthrows": {
+      "källa": "https://registry.npmjs.org/nullthrows",
+      "licens": "MIT"
+    },
+    "ob1": {
+      "källa": "https://registry.npmjs.org/ob1",
+      "licens": "MIT"
+    },
+    "object-inspect": {
+      "källa": "https://registry.npmjs.org/object-inspect",
+      "licens": "MIT"
+    },
+    "object.getownpropertydescriptors": {
+      "källa": "https://registry.npmjs.org/object.getownpropertydescriptors",
+      "licens": "MIT"
+    },
+    "object.values": {
+      "källa": "https://registry.npmjs.org/object.values",
+      "licens": "MIT"
+    },
+    "on-finished": {
+      "källa": "https://registry.npmjs.org/on-finished",
+      "licens": "MIT"
+    },
+    "on-headers": {
+      "källa": "https://registry.npmjs.org/on-headers",
+      "licens": "MIT"
+    },
+    "open": {
+      "källa": "https://registry.npmjs.org/open",
+      "licens": "MIT"
+    },
+    "ora": {
+      "källa": "https://registry.npmjs.org/ora",
+      "licens": "MIT"
+    },
+    "p-limit": {
+      "källa": "https://registry.npmjs.org/p-limit",
+      "licens": "MIT"
+    },
+    "p-locate": {
+      "källa": "https://registry.npmjs.org/p-locate",
+      "licens": "MIT"
+    },
+    "p-try": {
+      "källa": "https://registry.npmjs.org/p-try",
+      "licens": "MIT"
+    },
+    "parse-json": {
+      "källa": "https://registry.npmjs.org/parse-json",
+      "licens": "MIT"
+    },
+    "path-exists": {
+      "källa": "https://registry.npmjs.org/path-exists",
+      "licens": "MIT"
+    },
+    "path-parse": {
+      "källa": "https://registry.npmjs.org/path-parse",
+      "licens": "MIT"
+    },
+    "path-to-regexp": {
+      "källa": "https://registry.npmjs.org/path-to-regexp",
+      "licens": "MIT"
+    },
+    "path-type": {
+      "källa": "https://registry.npmjs.org/path-type",
+      "licens": "MIT"
+    },
+    "pathval": {
+      "källa": "https://registry.npmjs.org/pathval",
+      "licens": "MIT"
+    },
+    "picomatch": {
+      "källa": "https://registry.npmjs.org/picomatch",
+      "licens": "MIT"
+    },
+    "pify": {
+      "källa": "https://registry.npmjs.org/pify",
+      "licens": "MIT"
+    },
+    "pkg-dir": {
+      "källa": "https://registry.npmjs.org/pkg-dir",
+      "licens": "MIT"
+    },
+    "pretty-format": {
+      "källa": "https://registry.npmjs.org/pretty-format",
+      "licens": "MIT"
+    },
+    "promise": {
+      "källa": "https://registry.npmjs.org/promise",
+      "licens": "MIT"
+    },
+    "proxy-addr": {
+      "källa": "https://registry.npmjs.org/proxy-addr",
+      "licens": "MIT"
+    },
+    "punycode": {
+      "källa": "https://registry.npmjs.org/punycode",
+      "licens": "MIT"
+    },
+    "qs": {
+      "källa": "https://registry.npmjs.org/qs",
+      "licens": "BSD-3-Clause"
+    },
+    "raw-body": {
+      "källa": "https://registry.npmjs.org/raw-body",
+      "licens": "MIT"
+    },
+    "react-devtools-core": {
+      "källa": "https://registry.npmjs.org/react-devtools-core",
+      "licens": "MIT"
+    },
+    "react-konva": {
+      "källa": "https://registry.npmjs.org/react-konva",
+      "licens": "MIT"
+    },
+    "react-native": {
+      "källa": "https://registry.npmjs.org/react-native",
+      "licens": "MIT"
+    },
+    "react-reconciler": {
+      "källa": "https://registry.npmjs.org/react-reconciler",
+      "licens": "MIT"
+    },
+    "react-refresh": {
+      "källa": "https://registry.npmjs.org/react-refresh",
+      "licens": "MIT"
+    },
+    "react-shallow-renderer": {
+      "källa": "https://registry.npmjs.org/react-shallow-renderer",
+      "licens": "MIT"
+    },
+    "react-use-measure": {
+      "källa": "https://registry.npmjs.org/react-use-measure",
+      "licens": "MIT"
+    },
+    "react-zdog": {
+      "källa": "https://registry.npmjs.org/react-zdog",
+      "licens": "MIT"
+    },
+    "read-pkg": {
+      "källa": "https://registry.npmjs.org/read-pkg",
+      "licens": "MIT"
+    },
+    "read-pkg-up": {
+      "källa": "https://registry.npmjs.org/read-pkg-up",
+      "licens": "MIT"
+    },
+    "readline": {
+      "källa": "https://registry.npmjs.org/readline",
+      "licens": "BSD"
+    },
+    "recast": {
+      "källa": "https://registry.npmjs.org/recast",
+      "licens": "MIT"
+    },
+    "regenerate": {
+      "källa": "https://registry.npmjs.org/regenerate",
+      "licens": "MIT"
+    },
+    "regenerate-unicode-properties": {
+      "källa": "https://registry.npmjs.org/regenerate-unicode-properties",
+      "licens": "MIT"
+    },
+    "regenerator-transform": {
+      "källa": "https://registry.npmjs.org/regenerator-transform",
+      "licens": "MIT"
+    },
+    "regexpp": {
+      "källa": "https://registry.npmjs.org/regexpp",
+      "licens": "MIT"
+    },
+    "regexpu-core": {
+      "källa": "https://registry.npmjs.org/regexpu-core",
+      "licens": "MIT"
+    },
+    "regjsparser": {
+      "källa": "https://registry.npmjs.org/regjsparser",
+      "licens": "BSD-2-Clause"
+    },
+    "require-main-filename": {
+      "källa": "https://registry.npmjs.org/require-main-filename",
+      "licens": "ISC"
+    },
+    "resize-observer-polyfill": {
+      "källa": "https://registry.npmjs.org/resize-observer-polyfill",
+      "licens": "MIT"
+    },
+    "resolve": {
+      "källa": "https://registry.npmjs.org/resolve",
+      "licens": "MIT"
+    },
+    "resolve-from": {
+      "källa": "https://registry.npmjs.org/resolve-from",
+      "licens": "MIT"
+    },
+    "restructure": {
+      "källa": "https://registry.npmjs.org/restructure",
+      "licens": "MIT"
+    },
+    "rimraf": {
+      "källa": "https://registry.npmjs.org/rimraf",
+      "licens": "ISC"
+    },
+    "rxjs": {
+      "källa": "https://registry.npmjs.org/rxjs",
+      "licens": "Apache-2.0"
+    },
+    "safe-buffer": {
+      "källa": "https://registry.npmjs.org/safe-buffer",
+      "licens": "MIT"
+    },
+    "scheduler": {
+      "källa": "https://registry.npmjs.org/scheduler",
+      "licens": "MIT"
+    },
+    "semver": {
+      "källa": "https://registry.npmjs.org/semver",
+      "licens": "ISC"
+    },
+    "send": {
+      "källa": "https://registry.npmjs.org/send",
+      "licens": "MIT"
+    },
+    "serialize-error": {
+      "källa": "https://registry.npmjs.org/serialize-error",
+      "licens": "MIT"
+    },
+    "serve-favicon": {
+      "källa": "https://registry.npmjs.org/serve-favicon",
+      "licens": "MIT"
+    },
+    "serve-static": {
+      "källa": "https://registry.npmjs.org/serve-static",
+      "licens": "MIT"
+    },
+    "setprototypeof": {
+      "källa": "https://registry.npmjs.org/setprototypeof",
+      "licens": "ISC"
+    },
+    "shallow-clone": {
+      "källa": "https://registry.npmjs.org/shallow-clone",
+      "licens": "MIT"
+    },
+    "shell-quote": {
+      "källa": "https://registry.npmjs.org/shell-quote",
+      "licens": "MIT"
+    },
+    "signal-exit": {
+      "källa": "https://registry.npmjs.org/signal-exit",
+      "licens": "ISC"
+    },
+    "sinon": {
+      "källa": "https://registry.npmjs.org/sinon",
+      "licens": "BSD-3-Clause"
+    },
+    "sinon-chai": {
+      "källa": "https://registry.npmjs.org/sinon-chai",
+      "licens": "(BSD-2-Clause OR WTFPL)"
+    },
+    "slice-ansi": {
+      "källa": "https://registry.npmjs.org/slice-ansi",
+      "licens": "MIT"
+    },
+    "source-map-support": {
+      "källa": "https://registry.npmjs.org/source-map-support",
+      "licens": "MIT"
+    },
+    "spdx-correct": {
+      "källa": "https://registry.npmjs.org/spdx-correct",
+      "licens": "Apache-2.0"
+    },
+    "spdx-exceptions": {
+      "källa": "https://registry.npmjs.org/spdx-exceptions",
+      "licens": "CC-BY-3.0"
+    },
+    "spdx-expression-parse": {
+      "källa": "https://registry.npmjs.org/spdx-expression-parse",
+      "licens": "MIT"
+    },
+    "spdx-license-ids": {
+      "källa": "https://registry.npmjs.org/spdx-license-ids",
+      "licens": "CC0-1.0"
+    },
+    "sprintf-js": {
+      "källa": "https://registry.npmjs.org/sprintf-js",
+      "licens": "BSD-3-Clause"
+    },
+    "stackframe": {
+      "källa": "https://registry.npmjs.org/stackframe",
+      "licens": "MIT"
+    },
+    "stacktrace-parser": {
+      "källa": "https://registry.npmjs.org/stacktrace-parser",
+      "licens": "MIT"
+    },
+    "statuses": {
+      "källa": "https://registry.npmjs.org/statuses",
+      "licens": "MIT"
+    },
+    "string-width": {
+      "källa": "https://registry.npmjs.org/string-width",
+      "licens": "MIT"
+    },
+    "string.prototype.trimleft": {
+      "källa": "https://registry.npmjs.org/string.prototype.trimleft",
+      "licens": "MIT"
+    },
+    "string.prototype.trimright": {
+      "källa": "https://registry.npmjs.org/string.prototype.trimright",
+      "licens": "MIT"
+    },
+    "strip-ansi": {
+      "källa": "https://registry.npmjs.org/strip-ansi",
+      "licens": "MIT"
+    },
+    "strnum": {
+      "källa": "https://registry.npmjs.org/strnum",
+      "licens": "MIT"
+    },
+    "sudo-prompt": {
+      "källa": "https://registry.npmjs.org/sudo-prompt",
+      "licens": "MIT"
+    },
+    "supports-color": {
+      "källa": "https://registry.npmjs.org/supports-color",
+      "licens": "MIT"
+    },
+    "suspend-react": {
+      "källa": "https://registry.npmjs.org/suspend-react",
+      "licens": "MIT"
+    },
+    "tailwindcss": {
+      "källa": "https://registry.npmjs.org/tailwindcss",
+      "licens": "MIT"
+    },
+    "temp": {
+      "källa": "https://registry.npmjs.org/temp",
+      "licens": "MIT"
+    },
+    "temp-dir": {
+      "källa": "https://registry.npmjs.org/temp-dir",
+      "licens": "MIT"
+    },
+    "terser": {
+      "källa": "https://registry.npmjs.org/terser",
+      "licens": "BSD-2-Clause"
+    },
+    "three": {
+      "källa": "https://registry.npmjs.org/three",
+      "licens": "MIT"
+    },
+    "throat": {
+      "källa": "https://registry.npmjs.org/throat",
+      "licens": "MIT"
+    },
+    "through2": {
+      "källa": "https://registry.npmjs.org/through2",
+      "licens": "MIT"
+    },
+    "toidentifier": {
+      "källa": "https://registry.npmjs.org/toidentifier",
+      "licens": "MIT"
+    },
+    "tslib": {
+      "källa": "https://registry.npmjs.org/tslib",
+      "licens": "0BSD"
+    },
+    "tv4": {
+      "källa": "https://registry.npmjs.org/tv4",
+      "licens": "Public Domain OR MIT"
+    },
+    "type-fest": {
+      "källa": "https://registry.npmjs.org/type-fest",
+      "licens": "(MIT OR CC0-1.0)"
+    },
+    "undici-types": {
+      "källa": "https://registry.npmjs.org/undici-types",
+      "licens": "MIT"
+    },
+    "unicode-canonical-property-names-ecmascript": {
+      "källa": "https://registry.npmjs.org/unicode-canonical-property-names-ecmascript",
+      "licens": "MIT"
+    },
+    "unicode-match-property-ecmascript": {
+      "källa": "https://registry.npmjs.org/unicode-match-property-ecmascript",
+      "licens": "MIT"
+    },
+    "unicode-match-property-value-ecmascript": {
+      "källa": "https://registry.npmjs.org/unicode-match-property-value-ecmascript",
+      "licens": "MIT"
+    },
+    "unicode-property-aliases-ecmascript": {
+      "källa": "https://registry.npmjs.org/unicode-property-aliases-ecmascript",
+      "licens": "MIT"
+    },
+    "update-browserslist-db": {
+      "källa": "https://registry.npmjs.org/update-browserslist-db",
+      "licens": "MIT"
+    },
+    "uri-js": {
+      "källa": "https://registry.npmjs.org/uri-js",
+      "licens": "BSD-2-Clause"
+    },
+    "v8-compile-cache": {
+      "källa": "https://registry.npmjs.org/v8-compile-cache",
+      "licens": "MIT"
+    },
+    "validate-npm-package-license": {
+      "källa": "https://registry.npmjs.org/validate-npm-package-license",
+      "licens": "Apache-2.0"
+    },
+    "vlq": {
+      "källa": "https://registry.npmjs.org/vlq",
+      "licens": "MIT"
+    },
+    "wcwidth": {
+      "källa": "https://registry.npmjs.org/wcwidth",
+      "licens": "MIT"
+    },
+    "whatwg-fetch": {
+      "källa": "https://registry.npmjs.org/whatwg-fetch",
+      "licens": "MIT"
+    },
+    "which-module": {
+      "källa": "https://registry.npmjs.org/which-module",
+      "licens": "ISC"
+    },
+    "word-wrap": {
+      "källa": "https://registry.npmjs.org/word-wrap",
+      "licens": "MIT"
+    },
+    "write-file-atomic": {
+      "källa": "https://registry.npmjs.org/write-file-atomic",
+      "licens": "ISC"
+    },
+    "ws": {
+      "källa": "https://registry.npmjs.org/ws",
+      "licens": "MIT"
+    },
+    "xml-crypto": {
+      "källa": "https://registry.npmjs.org/xml-crypto",
+      "licens": "MIT"
+    },
+    "xpath": {
+      "källa": "https://registry.npmjs.org/xpath",
+      "licens": "MIT"
+    },
+    "y18n": {
+      "källa": "https://registry.npmjs.org/y18n",
+      "licens": "ISC"
+    },
+    "yargs": {
+      "källa": "https://registry.npmjs.org/yargs",
+      "licens": "MIT"
+    },
+    "yargs-parser": {
+      "källa": "https://registry.npmjs.org/yargs-parser",
+      "licens": "ISC"
+    },
+    "yoga-layout": {
+      "källa": "https://registry.npmjs.org/yoga-layout",
+      "licens": "MIT"
+    },
+    "zdog": {
+      "källa": "https://registry.npmjs.org/zdog",
+      "licens": "MIT"
+    },
+    "zustand": {
+      "källa": "https://registry.npmjs.org/zustand",
+      "licens": "MIT"
+    }
+  }
 }

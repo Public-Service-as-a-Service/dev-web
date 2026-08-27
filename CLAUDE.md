@@ -164,6 +164,12 @@ ge en degraderad SBOM: en delvis installation gör tyst om licenser till
 `NOASSERTION`, vilket hade commitat en diff som inte motsvarar någon verklig
 beroendeändring. Grenen behåller då sin förra SBOM.
 
+De tre handskrivna sidorna i `HANDWRITTEN` beskriver lösningar snarare än enskilda
+applikationer och har ingen post i `apps-data.json` — men alla tre pekar på samma repo,
+`web-app-draken-public`. Det står i `scripts/sbom-extra.json`, som ger det en SBOM-sida
+(`tjanster/draken-sbom.html`) utan kort på startsidan. Länken till den är **handlagd** i
+de tre sidorna; generatorn rör dem inte.
+
 **Licensutfallet är plattformsberoende — jaga inte den diffen.** Bara de
 plattformsbinärer som faktiskt installeras får licens, och installeraren väljer
 efter värdplattformen. En körning på macOS ger licens åt `@img/sharp-darwin-arm64`

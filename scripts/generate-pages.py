@@ -17,6 +17,10 @@ import re
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
 DATA = os.path.join(ROOT, "scripts", "apps-data.json")
+# Repos that need an SBOM but have no generated service page -- the handwritten
+# solution pages describe a solution rather than one application, so they have no
+# apps-data.json entry, but the code behind them still deserves a bill of materials.
+EXTRA = os.path.join(ROOT, "scripts", "sbom-extra.json")
 OUT = os.path.join(ROOT, "tjanster")
 
 HANDWRITTEN = {
@@ -562,6 +566,8 @@ def build_cards(apps):
 def main():
     with open(DATA, encoding="utf-8") as f:
         apps = json.load(f)
+    with open(EXTRA, encoding="utf-8") as f:
+        extras = json.load(f)["repon"]
     os.makedirs(OUT, exist_ok=True)
     missing_sbom = []
     for app in apps:
@@ -581,6 +587,15 @@ def main():
     print(f"wrote {len(apps)} pages ({len(apps) - len(missing_sbom)} SBOM pages)")
     if missing_sbom:
         print("no SBOM (page skipped):", ", ".join(missing_sbom))
+
+    # SBOM-only entries: a bill-of-materials page, no service page and no card.
+    for extra in extras:
+        if not has_sbom(extra):
+            print("no SBOM (extra skipped):", extra["slug"])
+            continue
+        with open(os.path.join(OUT, f"{extra['slug']}-sbom.html"), "w", encoding="utf-8") as f:
+            f.write(sbom_page(extra))
+        print(f"wrote SBOM page for {extra['slug']} (no service page)")
 
     index_path = os.path.join(ROOT, "index.html")
     with open(index_path, encoding="utf-8") as f:

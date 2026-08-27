@@ -42,9 +42,13 @@ jobs:
         env:
           ONLY: ${{ inputs.only }}
         run: |
-          apps=$(jq -c --arg only "$ONLY" \
-            '[.[] | {slug, repo}] | if $only == "" then . else map(select(.slug == $only)) end' \
-            scripts/apps-data.json)
+          # sbom-extra.json holds repos that need a bill of materials but have no
+          # generated service page -- the handwritten solution pages have no
+          # apps-data.json entry, but the code behind them is still catalogued.
+          apps=$(jq -c -s --arg only "$ONLY" \
+            '[(.[0][] | {slug, repo}), (.[1].repon[] | {slug, repo})]
+             | if $only == "" then . else map(select(.slug == $only)) end' \
+            scripts/apps-data.json scripts/sbom-extra.json)
           if [ "$(echo "$apps" | jq 'length')" -eq 0 ]; then
             echo "::error::No app matched '$ONLY'."
             exit 1
