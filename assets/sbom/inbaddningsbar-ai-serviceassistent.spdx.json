@@ -423,7 +423,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40emnapi%2Fcore; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@emnapi/core",
       "primaryPackagePurpose": "LIBRARY",
@@ -442,7 +443,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40emnapi%2Fruntime; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@emnapi/runtime",
       "primaryPackagePurpose": "LIBRARY",
@@ -461,7 +463,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40emnapi%2Fwasi-threads; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@emnapi/wasi-threads",
       "primaryPackagePurpose": "LIBRARY",
@@ -1050,7 +1053,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40napi-rs%2Fwasm-runtime; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@napi-rs/wasm-runtime",
       "primaryPackagePurpose": "LIBRARY",
@@ -1487,7 +1491,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40rolldown%2Fbinding-android-arm64; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@rolldown/binding-android-arm64",
       "primaryPackagePurpose": "LIBRARY",
@@ -1506,7 +1511,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40rolldown%2Fbinding-darwin-arm64; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@rolldown/binding-darwin-arm64",
       "primaryPackagePurpose": "LIBRARY",
@@ -1525,7 +1531,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40rolldown%2Fbinding-darwin-x64; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@rolldown/binding-darwin-x64",
       "primaryPackagePurpose": "LIBRARY",
@@ -1544,7 +1551,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40rolldown%2Fbinding-freebsd-x64; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@rolldown/binding-freebsd-x64",
       "primaryPackagePurpose": "LIBRARY",
@@ -1563,7 +1571,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40rolldown%2Fbinding-linux-arm-gnueabihf; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@rolldown/binding-linux-arm-gnueabihf",
       "primaryPackagePurpose": "LIBRARY",
@@ -1582,7 +1591,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40rolldown%2Fbinding-linux-arm64-gnu; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@rolldown/binding-linux-arm64-gnu",
       "primaryPackagePurpose": "LIBRARY",
@@ -1601,7 +1611,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40rolldown%2Fbinding-linux-arm64-musl; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@rolldown/binding-linux-arm64-musl",
       "primaryPackagePurpose": "LIBRARY",
@@ -1620,7 +1631,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40rolldown%2Fbinding-linux-ppc64-gnu; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@rolldown/binding-linux-ppc64-gnu",
       "primaryPackagePurpose": "LIBRARY",
@@ -1639,7 +1651,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40rolldown%2Fbinding-linux-s390x-gnu; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@rolldown/binding-linux-s390x-gnu",
       "primaryPackagePurpose": "LIBRARY",
@@ -1696,7 +1709,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40rolldown%2Fbinding-openharmony-arm64; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@rolldown/binding-openharmony-arm64",
       "primaryPackagePurpose": "LIBRARY",
@@ -1715,7 +1729,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40rolldown%2Fbinding-wasm32-wasi; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@rolldown/binding-wasm32-wasi",
       "primaryPackagePurpose": "LIBRARY",
@@ -1734,7 +1749,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40rolldown%2Fbinding-win32-arm64-msvc; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@rolldown/binding-win32-arm64-msvc",
       "primaryPackagePurpose": "LIBRARY",
@@ -1753,7 +1769,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40rolldown%2Fbinding-win32-x64-msvc; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@rolldown/binding-win32-x64-msvc",
       "primaryPackagePurpose": "LIBRARY",
@@ -2703,7 +2720,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40tybys%2Fwasm-util; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@tybys/wasm-util",
       "primaryPackagePurpose": "LIBRARY",
@@ -5610,7 +5628,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/fsevents; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "fsevents",
       "primaryPackagePurpose": "LIBRARY",
@@ -6560,7 +6579,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/lightningcss-android-arm64; se scripts/license-overrides.json.",
+      "licenseConcluded": "MPL-2.0",
       "licenseDeclared": "NOASSERTION",
       "name": "lightningcss-android-arm64",
       "primaryPackagePurpose": "LIBRARY",
@@ -6579,7 +6599,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/lightningcss-darwin-arm64; se scripts/license-overrides.json.",
+      "licenseConcluded": "MPL-2.0",
       "licenseDeclared": "NOASSERTION",
       "name": "lightningcss-darwin-arm64",
       "primaryPackagePurpose": "LIBRARY",
@@ -6598,7 +6619,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/lightningcss-darwin-x64; se scripts/license-overrides.json.",
+      "licenseConcluded": "MPL-2.0",
       "licenseDeclared": "NOASSERTION",
       "name": "lightningcss-darwin-x64",
       "primaryPackagePurpose": "LIBRARY",
@@ -6617,7 +6639,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/lightningcss-freebsd-x64; se scripts/license-overrides.json.",
+      "licenseConcluded": "MPL-2.0",
       "licenseDeclared": "NOASSERTION",
       "name": "lightningcss-freebsd-x64",
       "primaryPackagePurpose": "LIBRARY",
@@ -6636,7 +6659,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/lightningcss-linux-arm-gnueabihf; se scripts/license-overrides.json.",
+      "licenseConcluded": "MPL-2.0",
       "licenseDeclared": "NOASSERTION",
       "name": "lightningcss-linux-arm-gnueabihf",
       "primaryPackagePurpose": "LIBRARY",
@@ -6655,7 +6679,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/lightningcss-linux-arm64-gnu; se scripts/license-overrides.json.",
+      "licenseConcluded": "MPL-2.0",
       "licenseDeclared": "NOASSERTION",
       "name": "lightningcss-linux-arm64-gnu",
       "primaryPackagePurpose": "LIBRARY",
@@ -6674,7 +6699,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/lightningcss-linux-arm64-musl; se scripts/license-overrides.json.",
+      "licenseConcluded": "MPL-2.0",
       "licenseDeclared": "NOASSERTION",
       "name": "lightningcss-linux-arm64-musl",
       "primaryPackagePurpose": "LIBRARY",
@@ -6731,7 +6757,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/lightningcss-win32-arm64-msvc; se scripts/license-overrides.json.",
+      "licenseConcluded": "MPL-2.0",
       "licenseDeclared": "NOASSERTION",
       "name": "lightningcss-win32-arm64-msvc",
       "primaryPackagePurpose": "LIBRARY",
@@ -6750,7 +6777,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/lightningcss-win32-x64-msvc; se scripts/license-overrides.json.",
+      "licenseConcluded": "MPL-2.0",
       "licenseDeclared": "NOASSERTION",
       "name": "lightningcss-win32-x64-msvc",
       "primaryPackagePurpose": "LIBRARY",

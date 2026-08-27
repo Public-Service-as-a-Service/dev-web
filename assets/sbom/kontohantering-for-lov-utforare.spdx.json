@@ -1734,7 +1734,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40emnapi%2Fruntime; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@emnapi/runtime",
       "primaryPackagePurpose": "LIBRARY",
@@ -2285,7 +2286,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40img%2Fsharp-darwin-arm64; se scripts/license-overrides.json.",
+      "licenseConcluded": "Apache-2.0",
       "licenseDeclared": "NOASSERTION",
       "name": "@img/sharp-darwin-arm64",
       "primaryPackagePurpose": "LIBRARY",
@@ -2304,7 +2306,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40img%2Fsharp-darwin-x64; se scripts/license-overrides.json.",
+      "licenseConcluded": "Apache-2.0",
       "licenseDeclared": "NOASSERTION",
       "name": "@img/sharp-darwin-x64",
       "primaryPackagePurpose": "LIBRARY",
@@ -2323,7 +2326,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40img%2Fsharp-libvips-darwin-arm64; se scripts/license-overrides.json.",
+      "licenseConcluded": "LGPL-3.0-or-later",
       "licenseDeclared": "NOASSERTION",
       "name": "@img/sharp-libvips-darwin-arm64",
       "primaryPackagePurpose": "LIBRARY",
@@ -2342,7 +2346,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40img%2Fsharp-libvips-darwin-x64; se scripts/license-overrides.json.",
+      "licenseConcluded": "LGPL-3.0-or-later",
       "licenseDeclared": "NOASSERTION",
       "name": "@img/sharp-libvips-darwin-x64",
       "primaryPackagePurpose": "LIBRARY",
@@ -2361,7 +2366,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40img%2Fsharp-libvips-linux-arm; se scripts/license-overrides.json.",
+      "licenseConcluded": "LGPL-3.0-or-later",
       "licenseDeclared": "NOASSERTION",
       "name": "@img/sharp-libvips-linux-arm",
       "primaryPackagePurpose": "LIBRARY",
@@ -2380,7 +2386,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40img%2Fsharp-libvips-linux-arm64; se scripts/license-overrides.json.",
+      "licenseConcluded": "LGPL-3.0-or-later",
       "licenseDeclared": "NOASSERTION",
       "name": "@img/sharp-libvips-linux-arm64",
       "primaryPackagePurpose": "LIBRARY",
@@ -2399,7 +2406,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40img%2Fsharp-libvips-linux-s390x; se scripts/license-overrides.json.",
+      "licenseConcluded": "LGPL-3.0-or-later",
       "licenseDeclared": "NOASSERTION",
       "name": "@img/sharp-libvips-linux-s390x",
       "primaryPackagePurpose": "LIBRARY",
@@ -2437,7 +2445,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40img%2Fsharp-libvips-linuxmusl-arm64; se scripts/license-overrides.json.",
+      "licenseConcluded": "LGPL-3.0-or-later",
       "licenseDeclared": "NOASSERTION",
       "name": "@img/sharp-libvips-linuxmusl-arm64",
       "primaryPackagePurpose": "LIBRARY",
@@ -2475,7 +2484,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40img%2Fsharp-linux-arm; se scripts/license-overrides.json.",
+      "licenseConcluded": "Apache-2.0",
       "licenseDeclared": "NOASSERTION",
       "name": "@img/sharp-linux-arm",
       "primaryPackagePurpose": "LIBRARY",
@@ -2494,7 +2504,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40img%2Fsharp-linux-arm64; se scripts/license-overrides.json.",
+      "licenseConcluded": "Apache-2.0",
       "licenseDeclared": "NOASSERTION",
       "name": "@img/sharp-linux-arm64",
       "primaryPackagePurpose": "LIBRARY",
@@ -2513,7 +2524,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40img%2Fsharp-linux-s390x; se scripts/license-overrides.json.",
+      "licenseConcluded": "Apache-2.0",
       "licenseDeclared": "NOASSERTION",
       "name": "@img/sharp-linux-s390x",
       "primaryPackagePurpose": "LIBRARY",
@@ -2551,7 +2563,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40img%2Fsharp-linuxmusl-arm64; se scripts/license-overrides.json.",
+      "licenseConcluded": "Apache-2.0",
       "licenseDeclared": "NOASSERTION",
       "name": "@img/sharp-linuxmusl-arm64",
       "primaryPackagePurpose": "LIBRARY",
@@ -2589,7 +2602,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40img%2Fsharp-wasm32; se scripts/license-overrides.json.",
+      "licenseConcluded": "Apache-2.0 AND LGPL-3.0-or-later AND MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@img/sharp-wasm32",
       "primaryPackagePurpose": "LIBRARY",
@@ -2608,7 +2622,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40img%2Fsharp-win32-ia32; se scripts/license-overrides.json.",
+      "licenseConcluded": "Apache-2.0 AND LGPL-3.0-or-later",
       "licenseDeclared": "NOASSERTION",
       "name": "@img/sharp-win32-ia32",
       "primaryPackagePurpose": "LIBRARY",
@@ -2627,7 +2642,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40img%2Fsharp-win32-x64; se scripts/license-overrides.json.",
+      "licenseConcluded": "Apache-2.0 AND LGPL-3.0-or-later",
       "licenseDeclared": "NOASSERTION",
       "name": "@img/sharp-win32-x64",
       "primaryPackagePurpose": "LIBRARY",
@@ -3653,7 +3669,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40next%2Fswc-darwin-arm64; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@next/swc-darwin-arm64",
       "primaryPackagePurpose": "LIBRARY",
@@ -3672,7 +3689,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40next%2Fswc-darwin-x64; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@next/swc-darwin-x64",
       "primaryPackagePurpose": "LIBRARY",
@@ -3691,7 +3709,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40next%2Fswc-linux-arm64-gnu; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@next/swc-linux-arm64-gnu",
       "primaryPackagePurpose": "LIBRARY",
@@ -3710,7 +3729,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40next%2Fswc-linux-arm64-musl; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@next/swc-linux-arm64-musl",
       "primaryPackagePurpose": "LIBRARY",
@@ -3767,7 +3787,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40next%2Fswc-win32-arm64-msvc; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@next/swc-win32-arm64-msvc",
       "primaryPackagePurpose": "LIBRARY",
@@ -3786,7 +3807,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40next%2Fswc-win32-ia32-msvc; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@next/swc-win32-ia32-msvc",
       "primaryPackagePurpose": "LIBRARY",
@@ -3805,7 +3827,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40next%2Fswc-win32-x64-msvc; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@next/swc-win32-x64-msvc",
       "primaryPackagePurpose": "LIBRARY",
@@ -5192,7 +5215,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40swc%2Fcore-darwin-arm64; se scripts/license-overrides.json.",
+      "licenseConcluded": "Apache-2.0 AND MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@swc/core-darwin-arm64",
       "primaryPackagePurpose": "LIBRARY",
@@ -5211,7 +5235,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40swc%2Fcore-darwin-x64; se scripts/license-overrides.json.",
+      "licenseConcluded": "Apache-2.0 AND MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@swc/core-darwin-x64",
       "primaryPackagePurpose": "LIBRARY",
@@ -5230,7 +5255,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40swc%2Fcore-linux-arm-gnueabihf; se scripts/license-overrides.json.",
+      "licenseConcluded": "Apache-2.0",
       "licenseDeclared": "NOASSERTION",
       "name": "@swc/core-linux-arm-gnueabihf",
       "primaryPackagePurpose": "LIBRARY",
@@ -5249,7 +5275,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40swc%2Fcore-linux-arm64-gnu; se scripts/license-overrides.json.",
+      "licenseConcluded": "Apache-2.0 AND MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@swc/core-linux-arm64-gnu",
       "primaryPackagePurpose": "LIBRARY",
@@ -5268,7 +5295,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40swc%2Fcore-linux-arm64-musl; se scripts/license-overrides.json.",
+      "licenseConcluded": "Apache-2.0 AND MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@swc/core-linux-arm64-musl",
       "primaryPackagePurpose": "LIBRARY",
@@ -5325,7 +5353,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40swc%2Fcore-win32-arm64-msvc; se scripts/license-overrides.json.",
+      "licenseConcluded": "Apache-2.0 AND MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@swc/core-win32-arm64-msvc",
       "primaryPackagePurpose": "LIBRARY",
@@ -5344,7 +5373,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40swc%2Fcore-win32-ia32-msvc; se scripts/license-overrides.json.",
+      "licenseConcluded": "Apache-2.0 AND MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@swc/core-win32-ia32-msvc",
       "primaryPackagePurpose": "LIBRARY",
@@ -5363,7 +5393,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40swc%2Fcore-win32-x64-msvc; se scripts/license-overrides.json.",
+      "licenseConcluded": "Apache-2.0 AND MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@swc/core-win32-x64-msvc",
       "primaryPackagePurpose": "LIBRARY",
@@ -16268,7 +16299,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/fsevents; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "fsevents",
       "primaryPackagePurpose": "LIBRARY",
@@ -16287,7 +16319,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/fsevents; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "fsevents",
       "primaryPackagePurpose": "LIBRARY",

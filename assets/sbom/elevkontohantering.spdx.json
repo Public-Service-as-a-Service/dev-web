@@ -239,7 +239,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fcode-frame; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/code-frame",
       "primaryPackagePurpose": "LIBRARY",
@@ -296,7 +297,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fcompat-data; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/compat-data",
       "primaryPackagePurpose": "LIBRARY",
@@ -353,7 +355,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fcore; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/core",
       "primaryPackagePurpose": "LIBRARY",
@@ -410,7 +413,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fgenerator; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/generator",
       "primaryPackagePurpose": "LIBRARY",
@@ -467,7 +471,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fhelper-annotate-as-pure; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/helper-annotate-as-pure",
       "primaryPackagePurpose": "LIBRARY",
@@ -486,7 +491,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fhelper-builder-binary-assignment-operator-visitor; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/helper-builder-binary-assignment-operator-visitor",
       "primaryPackagePurpose": "LIBRARY",
@@ -563,7 +569,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fhelper-create-class-features-plugin; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/helper-create-class-features-plugin",
       "primaryPackagePurpose": "LIBRARY",
@@ -582,7 +589,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fhelper-create-regexp-features-plugin; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/helper-create-regexp-features-plugin",
       "primaryPackagePurpose": "LIBRARY",
@@ -601,7 +609,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fhelper-define-polyfill-provider; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/helper-define-polyfill-provider",
       "primaryPackagePurpose": "LIBRARY",
@@ -737,7 +746,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fhelper-member-expression-to-functions; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/helper-member-expression-to-functions",
       "primaryPackagePurpose": "LIBRARY",
@@ -756,7 +766,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fhelper-module-imports; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/helper-module-imports",
       "primaryPackagePurpose": "LIBRARY",
@@ -813,7 +824,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fhelper-module-transforms; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/helper-module-transforms",
       "primaryPackagePurpose": "LIBRARY",
@@ -870,7 +882,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fhelper-optimise-call-expression; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/helper-optimise-call-expression",
       "primaryPackagePurpose": "LIBRARY",
@@ -889,7 +902,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fhelper-plugin-utils; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/helper-plugin-utils",
       "primaryPackagePurpose": "LIBRARY",
@@ -946,7 +960,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fhelper-remap-async-to-generator; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/helper-remap-async-to-generator",
       "primaryPackagePurpose": "LIBRARY",
@@ -965,7 +980,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fhelper-replace-supers; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/helper-replace-supers",
       "primaryPackagePurpose": "LIBRARY",
@@ -984,7 +1000,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fhelper-simple-access; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/helper-simple-access",
       "primaryPackagePurpose": "LIBRARY",
@@ -1022,7 +1039,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fhelper-skip-transparent-expression-wrappers; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/helper-skip-transparent-expression-wrappers",
       "primaryPackagePurpose": "LIBRARY",
@@ -1041,7 +1059,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fhelper-split-export-declaration; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/helper-split-export-declaration",
       "primaryPackagePurpose": "LIBRARY",
@@ -1079,7 +1098,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fhelper-string-parser; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/helper-string-parser",
       "primaryPackagePurpose": "LIBRARY",
@@ -1136,7 +1156,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fhelper-validator-identifier; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/helper-validator-identifier",
       "primaryPackagePurpose": "LIBRARY",
@@ -1251,7 +1272,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fhelper-wrap-function; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/helper-wrap-function",
       "primaryPackagePurpose": "LIBRARY",
@@ -1270,7 +1292,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fhelpers; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/helpers",
       "primaryPackagePurpose": "LIBRARY",
@@ -1327,7 +1350,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fhighlight; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/highlight",
       "primaryPackagePurpose": "LIBRARY",
@@ -1365,7 +1389,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fparser; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/parser",
       "primaryPackagePurpose": "LIBRARY",
@@ -1422,7 +1447,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fplugin-bugfix-safari-id-destructuring-collision-in-function-expression; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/plugin-bugfix-safari-id-destructuring-collision-in-function-expression",
       "primaryPackagePurpose": "LIBRARY",
@@ -1441,7 +1467,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fplugin-bugfix-v8-spread-parameters-in-optional-chaining; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/plugin-bugfix-v8-spread-parameters-in-optional-chaining",
       "primaryPackagePurpose": "LIBRARY",
@@ -1460,7 +1487,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fplugin-bugfix-v8-static-class-fields-redefine-readonly; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/plugin-bugfix-v8-static-class-fields-redefine-readonly",
       "primaryPackagePurpose": "LIBRARY",
@@ -1479,7 +1507,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fplugin-proposal-async-generator-functions; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/plugin-proposal-async-generator-functions",
       "primaryPackagePurpose": "LIBRARY",
@@ -1498,7 +1527,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fplugin-proposal-class-properties; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/plugin-proposal-class-properties",
       "primaryPackagePurpose": "LIBRARY",
@@ -1517,7 +1547,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fplugin-proposal-export-default-from; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/plugin-proposal-export-default-from",
       "primaryPackagePurpose": "LIBRARY",
@@ -1555,7 +1586,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fplugin-proposal-nullish-coalescing-operator; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/plugin-proposal-nullish-coalescing-operator",
       "primaryPackagePurpose": "LIBRARY",
@@ -1574,7 +1606,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fplugin-proposal-numeric-separator; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/plugin-proposal-numeric-separator",
       "primaryPackagePurpose": "LIBRARY",
@@ -1593,7 +1626,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fplugin-proposal-object-rest-spread; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/plugin-proposal-object-rest-spread",
       "primaryPackagePurpose": "LIBRARY",
@@ -1612,7 +1646,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fplugin-proposal-optional-catch-binding; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/plugin-proposal-optional-catch-binding",
       "primaryPackagePurpose": "LIBRARY",
@@ -1631,7 +1666,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fplugin-proposal-optional-chaining; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/plugin-proposal-optional-chaining",
       "primaryPackagePurpose": "LIBRARY",
@@ -1650,7 +1686,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fplugin-proposal-private-property-in-object; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/plugin-proposal-private-property-in-object",
       "primaryPackagePurpose": "LIBRARY",
@@ -1878,7 +1915,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fplugin-syntax-dynamic-import; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/plugin-syntax-dynamic-import",
       "primaryPackagePurpose": "LIBRARY",
@@ -1897,7 +1935,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fplugin-syntax-export-default-from; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/plugin-syntax-export-default-from",
       "primaryPackagePurpose": "LIBRARY",
@@ -1955,7 +1994,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fplugin-syntax-flow; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/plugin-syntax-flow",
       "primaryPackagePurpose": "LIBRARY",
@@ -1974,7 +2014,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fplugin-syntax-import-assertions; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/plugin-syntax-import-assertions",
       "primaryPackagePurpose": "LIBRARY",
@@ -1993,7 +2034,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fplugin-syntax-import-attributes; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/plugin-syntax-import-attributes",
       "primaryPackagePurpose": "LIBRARY",
@@ -2145,7 +2187,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fplugin-syntax-jsx; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/plugin-syntax-jsx",
       "primaryPackagePurpose": "LIBRARY",
@@ -2639,7 +2682,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fplugin-syntax-typescript; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/plugin-syntax-typescript",
       "primaryPackagePurpose": "LIBRARY",
@@ -2696,7 +2740,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fplugin-syntax-unicode-sets-regex; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/plugin-syntax-unicode-sets-regex",
       "primaryPackagePurpose": "LIBRARY",
@@ -2715,7 +2760,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fplugin-transform-arrow-functions; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/plugin-transform-arrow-functions",
       "primaryPackagePurpose": "LIBRARY",
@@ -2734,7 +2780,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fplugin-transform-async-generator-functions; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/plugin-transform-async-generator-functions",
       "primaryPackagePurpose": "LIBRARY",
@@ -2753,7 +2800,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fplugin-transform-async-to-generator; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/plugin-transform-async-to-generator",
       "primaryPackagePurpose": "LIBRARY",
@@ -2772,7 +2820,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fplugin-transform-block-scoped-functions; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/plugin-transform-block-scoped-functions",
       "primaryPackagePurpose": "LIBRARY",
@@ -2791,7 +2840,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fplugin-transform-block-scoping; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/plugin-transform-block-scoping",
       "primaryPackagePurpose": "LIBRARY",
@@ -2810,7 +2860,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fplugin-transform-class-properties; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/plugin-transform-class-properties",
       "primaryPackagePurpose": "LIBRARY",
@@ -2829,7 +2880,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fplugin-transform-class-static-block; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/plugin-transform-class-static-block",
       "primaryPackagePurpose": "LIBRARY",
@@ -2848,7 +2900,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fplugin-transform-classes; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/plugin-transform-classes",
       "primaryPackagePurpose": "LIBRARY",
@@ -2867,7 +2920,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fplugin-transform-computed-properties; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/plugin-transform-computed-properties",
       "primaryPackagePurpose": "LIBRARY",
@@ -2886,7 +2940,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fplugin-transform-destructuring; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/plugin-transform-destructuring",
       "primaryPackagePurpose": "LIBRARY",
@@ -2905,7 +2960,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fplugin-transform-dotall-regex; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/plugin-transform-dotall-regex",
       "primaryPackagePurpose": "LIBRARY",
@@ -2924,7 +2980,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fplugin-transform-duplicate-keys; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/plugin-transform-duplicate-keys",
       "primaryPackagePurpose": "LIBRARY",
@@ -2943,7 +3000,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fplugin-transform-dynamic-import; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/plugin-transform-dynamic-import",
       "primaryPackagePurpose": "LIBRARY",
@@ -2962,7 +3020,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fplugin-transform-exponentiation-operator; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/plugin-transform-exponentiation-operator",
       "primaryPackagePurpose": "LIBRARY",
@@ -2981,7 +3040,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fplugin-transform-export-namespace-from; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/plugin-transform-export-namespace-from",
       "primaryPackagePurpose": "LIBRARY",
@@ -3000,7 +3060,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fplugin-transform-flow-strip-types; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/plugin-transform-flow-strip-types",
       "primaryPackagePurpose": "LIBRARY",
@@ -3019,7 +3080,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fplugin-transform-for-of; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/plugin-transform-for-of",
       "primaryPackagePurpose": "LIBRARY",
@@ -3038,7 +3100,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fplugin-transform-function-name; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/plugin-transform-function-name",
       "primaryPackagePurpose": "LIBRARY",
@@ -3057,7 +3120,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fplugin-transform-json-strings; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/plugin-transform-json-strings",
       "primaryPackagePurpose": "LIBRARY",
@@ -3076,7 +3140,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fplugin-transform-literals; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/plugin-transform-literals",
       "primaryPackagePurpose": "LIBRARY",
@@ -3095,7 +3160,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fplugin-transform-logical-assignment-operators; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/plugin-transform-logical-assignment-operators",
       "primaryPackagePurpose": "LIBRARY",
@@ -3114,7 +3180,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fplugin-transform-member-expression-literals; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/plugin-transform-member-expression-literals",
       "primaryPackagePurpose": "LIBRARY",
@@ -3133,7 +3200,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fplugin-transform-modules-amd; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/plugin-transform-modules-amd",
       "primaryPackagePurpose": "LIBRARY",
@@ -3152,7 +3220,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fplugin-transform-modules-commonjs; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/plugin-transform-modules-commonjs",
       "primaryPackagePurpose": "LIBRARY",
@@ -3190,7 +3259,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fplugin-transform-modules-systemjs; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/plugin-transform-modules-systemjs",
       "primaryPackagePurpose": "LIBRARY",
@@ -3209,7 +3279,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fplugin-transform-modules-umd; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/plugin-transform-modules-umd",
       "primaryPackagePurpose": "LIBRARY",
@@ -3228,7 +3299,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fplugin-transform-named-capturing-groups-regex; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/plugin-transform-named-capturing-groups-regex",
       "primaryPackagePurpose": "LIBRARY",
@@ -3247,7 +3319,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fplugin-transform-new-target; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/plugin-transform-new-target",
       "primaryPackagePurpose": "LIBRARY",
@@ -3266,7 +3339,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fplugin-transform-nullish-coalescing-operator; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/plugin-transform-nullish-coalescing-operator",
       "primaryPackagePurpose": "LIBRARY",
@@ -3285,7 +3359,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fplugin-transform-numeric-separator; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/plugin-transform-numeric-separator",
       "primaryPackagePurpose": "LIBRARY",
@@ -3304,7 +3379,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fplugin-transform-object-rest-spread; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/plugin-transform-object-rest-spread",
       "primaryPackagePurpose": "LIBRARY",
@@ -3323,7 +3399,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fplugin-transform-object-super; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/plugin-transform-object-super",
       "primaryPackagePurpose": "LIBRARY",
@@ -3342,7 +3419,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fplugin-transform-optional-catch-binding; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/plugin-transform-optional-catch-binding",
       "primaryPackagePurpose": "LIBRARY",
@@ -3361,7 +3439,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fplugin-transform-optional-chaining; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/plugin-transform-optional-chaining",
       "primaryPackagePurpose": "LIBRARY",
@@ -3380,7 +3459,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fplugin-transform-parameters; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/plugin-transform-parameters",
       "primaryPackagePurpose": "LIBRARY",
@@ -3399,7 +3479,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fplugin-transform-private-methods; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/plugin-transform-private-methods",
       "primaryPackagePurpose": "LIBRARY",
@@ -3418,7 +3499,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fplugin-transform-private-property-in-object; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/plugin-transform-private-property-in-object",
       "primaryPackagePurpose": "LIBRARY",
@@ -3437,7 +3519,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fplugin-transform-property-literals; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/plugin-transform-property-literals",
       "primaryPackagePurpose": "LIBRARY",
@@ -3456,7 +3539,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fplugin-transform-react-display-name; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/plugin-transform-react-display-name",
       "primaryPackagePurpose": "LIBRARY",
@@ -3475,7 +3559,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fplugin-transform-react-jsx; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/plugin-transform-react-jsx",
       "primaryPackagePurpose": "LIBRARY",
@@ -3494,7 +3579,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fplugin-transform-react-jsx-self; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/plugin-transform-react-jsx-self",
       "primaryPackagePurpose": "LIBRARY",
@@ -3513,7 +3599,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fplugin-transform-react-jsx-source; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/plugin-transform-react-jsx-source",
       "primaryPackagePurpose": "LIBRARY",
@@ -3532,7 +3619,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fplugin-transform-regenerator; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/plugin-transform-regenerator",
       "primaryPackagePurpose": "LIBRARY",
@@ -3551,7 +3639,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fplugin-transform-reserved-words; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/plugin-transform-reserved-words",
       "primaryPackagePurpose": "LIBRARY",
@@ -3570,7 +3659,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fplugin-transform-runtime; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/plugin-transform-runtime",
       "primaryPackagePurpose": "LIBRARY",
@@ -3589,7 +3679,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fplugin-transform-shorthand-properties; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/plugin-transform-shorthand-properties",
       "primaryPackagePurpose": "LIBRARY",
@@ -3608,7 +3699,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fplugin-transform-spread; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/plugin-transform-spread",
       "primaryPackagePurpose": "LIBRARY",
@@ -3627,7 +3719,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fplugin-transform-sticky-regex; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/plugin-transform-sticky-regex",
       "primaryPackagePurpose": "LIBRARY",
@@ -3646,7 +3739,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fplugin-transform-template-literals; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/plugin-transform-template-literals",
       "primaryPackagePurpose": "LIBRARY",
@@ -3665,7 +3759,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fplugin-transform-typeof-symbol; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/plugin-transform-typeof-symbol",
       "primaryPackagePurpose": "LIBRARY",
@@ -3684,7 +3779,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fplugin-transform-typescript; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/plugin-transform-typescript",
       "primaryPackagePurpose": "LIBRARY",
@@ -3703,7 +3799,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fplugin-transform-unicode-escapes; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/plugin-transform-unicode-escapes",
       "primaryPackagePurpose": "LIBRARY",
@@ -3722,7 +3819,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fplugin-transform-unicode-property-regex; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/plugin-transform-unicode-property-regex",
       "primaryPackagePurpose": "LIBRARY",
@@ -3741,7 +3839,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fplugin-transform-unicode-regex; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/plugin-transform-unicode-regex",
       "primaryPackagePurpose": "LIBRARY",
@@ -3760,7 +3859,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fplugin-transform-unicode-sets-regex; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/plugin-transform-unicode-sets-regex",
       "primaryPackagePurpose": "LIBRARY",
@@ -3779,7 +3879,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fpreset-env; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/preset-env",
       "primaryPackagePurpose": "LIBRARY",
@@ -3798,7 +3899,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fpreset-flow; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/preset-flow",
       "primaryPackagePurpose": "LIBRARY",
@@ -3817,7 +3919,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fpreset-modules; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/preset-modules",
       "primaryPackagePurpose": "LIBRARY",
@@ -3836,7 +3939,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fpreset-typescript; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/preset-typescript",
       "primaryPackagePurpose": "LIBRARY",
@@ -3855,7 +3959,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fregister; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/register",
       "primaryPackagePurpose": "LIBRARY",
@@ -3874,7 +3979,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fregjsgen; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/regjsgen",
       "primaryPackagePurpose": "LIBRARY",
@@ -3893,7 +3999,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Fruntime; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/runtime",
       "primaryPackagePurpose": "LIBRARY",
@@ -3950,7 +4057,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Ftemplate; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/template",
       "primaryPackagePurpose": "LIBRARY",
@@ -4007,7 +4115,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Ftraverse; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/traverse",
       "primaryPackagePurpose": "LIBRARY",
@@ -4064,7 +4173,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40babel%2Ftypes; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@babel/types",
       "primaryPackagePurpose": "LIBRARY",
@@ -4463,7 +4573,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40emnapi%2Fruntime; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@emnapi/runtime",
       "primaryPackagePurpose": "LIBRARY",
@@ -5242,7 +5353,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40hapi%2Fhoek; se scripts/license-overrides.json.",
+      "licenseConcluded": "BSD-3-Clause",
       "licenseDeclared": "NOASSERTION",
       "name": "@hapi/hoek",
       "primaryPackagePurpose": "LIBRARY",
@@ -5261,7 +5373,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40hapi%2Ftopo; se scripts/license-overrides.json.",
+      "licenseConcluded": "BSD-3-Clause",
       "licenseDeclared": "NOASSERTION",
       "name": "@hapi/topo",
       "primaryPackagePurpose": "LIBRARY",
@@ -5489,7 +5602,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40img%2Fsharp-darwin-arm64; se scripts/license-overrides.json.",
+      "licenseConcluded": "Apache-2.0",
       "licenseDeclared": "NOASSERTION",
       "name": "@img/sharp-darwin-arm64",
       "primaryPackagePurpose": "LIBRARY",
@@ -5508,7 +5622,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40img%2Fsharp-darwin-x64; se scripts/license-overrides.json.",
+      "licenseConcluded": "Apache-2.0",
       "licenseDeclared": "NOASSERTION",
       "name": "@img/sharp-darwin-x64",
       "primaryPackagePurpose": "LIBRARY",
@@ -5527,7 +5642,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40img%2Fsharp-libvips-darwin-arm64; se scripts/license-overrides.json.",
+      "licenseConcluded": "LGPL-3.0-or-later",
       "licenseDeclared": "NOASSERTION",
       "name": "@img/sharp-libvips-darwin-arm64",
       "primaryPackagePurpose": "LIBRARY",
@@ -5546,7 +5662,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40img%2Fsharp-libvips-darwin-x64; se scripts/license-overrides.json.",
+      "licenseConcluded": "LGPL-3.0-or-later",
       "licenseDeclared": "NOASSERTION",
       "name": "@img/sharp-libvips-darwin-x64",
       "primaryPackagePurpose": "LIBRARY",
@@ -5565,7 +5682,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40img%2Fsharp-libvips-linux-arm; se scripts/license-overrides.json.",
+      "licenseConcluded": "LGPL-3.0-or-later",
       "licenseDeclared": "NOASSERTION",
       "name": "@img/sharp-libvips-linux-arm",
       "primaryPackagePurpose": "LIBRARY",
@@ -5584,7 +5702,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40img%2Fsharp-libvips-linux-arm64; se scripts/license-overrides.json.",
+      "licenseConcluded": "LGPL-3.0-or-later",
       "licenseDeclared": "NOASSERTION",
       "name": "@img/sharp-libvips-linux-arm64",
       "primaryPackagePurpose": "LIBRARY",
@@ -5603,7 +5722,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40img%2Fsharp-libvips-linux-s390x; se scripts/license-overrides.json.",
+      "licenseConcluded": "LGPL-3.0-or-later",
       "licenseDeclared": "NOASSERTION",
       "name": "@img/sharp-libvips-linux-s390x",
       "primaryPackagePurpose": "LIBRARY",
@@ -5641,7 +5761,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40img%2Fsharp-libvips-linuxmusl-arm64; se scripts/license-overrides.json.",
+      "licenseConcluded": "LGPL-3.0-or-later",
       "licenseDeclared": "NOASSERTION",
       "name": "@img/sharp-libvips-linuxmusl-arm64",
       "primaryPackagePurpose": "LIBRARY",
@@ -5679,7 +5800,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40img%2Fsharp-linux-arm; se scripts/license-overrides.json.",
+      "licenseConcluded": "Apache-2.0",
       "licenseDeclared": "NOASSERTION",
       "name": "@img/sharp-linux-arm",
       "primaryPackagePurpose": "LIBRARY",
@@ -5698,7 +5820,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40img%2Fsharp-linux-arm64; se scripts/license-overrides.json.",
+      "licenseConcluded": "Apache-2.0",
       "licenseDeclared": "NOASSERTION",
       "name": "@img/sharp-linux-arm64",
       "primaryPackagePurpose": "LIBRARY",
@@ -5717,7 +5840,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40img%2Fsharp-linux-s390x; se scripts/license-overrides.json.",
+      "licenseConcluded": "Apache-2.0",
       "licenseDeclared": "NOASSERTION",
       "name": "@img/sharp-linux-s390x",
       "primaryPackagePurpose": "LIBRARY",
@@ -5755,7 +5879,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40img%2Fsharp-linuxmusl-arm64; se scripts/license-overrides.json.",
+      "licenseConcluded": "Apache-2.0",
       "licenseDeclared": "NOASSERTION",
       "name": "@img/sharp-linuxmusl-arm64",
       "primaryPackagePurpose": "LIBRARY",
@@ -5793,7 +5918,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40img%2Fsharp-wasm32; se scripts/license-overrides.json.",
+      "licenseConcluded": "Apache-2.0 AND LGPL-3.0-or-later AND MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@img/sharp-wasm32",
       "primaryPackagePurpose": "LIBRARY",
@@ -5812,7 +5938,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40img%2Fsharp-win32-ia32; se scripts/license-overrides.json.",
+      "licenseConcluded": "Apache-2.0 AND LGPL-3.0-or-later",
       "licenseDeclared": "NOASSERTION",
       "name": "@img/sharp-win32-ia32",
       "primaryPackagePurpose": "LIBRARY",
@@ -5831,7 +5958,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40img%2Fsharp-win32-x64; se scripts/license-overrides.json.",
+      "licenseConcluded": "Apache-2.0 AND LGPL-3.0-or-later",
       "licenseDeclared": "NOASSERTION",
       "name": "@img/sharp-win32-x64",
       "primaryPackagePurpose": "LIBRARY",
@@ -5888,7 +6016,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40isaacs%2Fttlcache; se scripts/license-overrides.json.",
+      "licenseConcluded": "ISC",
       "licenseDeclared": "NOASSERTION",
       "name": "@isaacs/ttlcache",
       "primaryPackagePurpose": "LIBRARY",
@@ -6135,7 +6264,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40jest%2Fcreate-cache-key-function; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@jest/create-cache-key-function",
       "primaryPackagePurpose": "LIBRARY",
@@ -6781,7 +6911,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40jest%2Ftypes; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@jest/types",
       "primaryPackagePurpose": "LIBRARY",
@@ -7066,7 +7197,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40jridgewell%2Fsource-map; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@jridgewell/source-map",
       "primaryPackagePurpose": "LIBRARY",
@@ -7142,7 +7274,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40jridgewell%2Ftrace-mapping; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@jridgewell/trace-mapping",
       "primaryPackagePurpose": "LIBRARY",
@@ -7446,7 +7579,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40next%2Fswc-darwin-arm64; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@next/swc-darwin-arm64",
       "primaryPackagePurpose": "LIBRARY",
@@ -7465,7 +7599,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40next%2Fswc-darwin-arm64; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@next/swc-darwin-arm64",
       "primaryPackagePurpose": "LIBRARY",
@@ -7484,7 +7619,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40next%2Fswc-darwin-x64; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@next/swc-darwin-x64",
       "primaryPackagePurpose": "LIBRARY",
@@ -7503,7 +7639,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40next%2Fswc-darwin-x64; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@next/swc-darwin-x64",
       "primaryPackagePurpose": "LIBRARY",
@@ -7522,7 +7659,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40next%2Fswc-linux-arm64-gnu; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@next/swc-linux-arm64-gnu",
       "primaryPackagePurpose": "LIBRARY",
@@ -7541,7 +7679,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40next%2Fswc-linux-arm64-gnu; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@next/swc-linux-arm64-gnu",
       "primaryPackagePurpose": "LIBRARY",
@@ -7560,7 +7699,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40next%2Fswc-linux-arm64-musl; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@next/swc-linux-arm64-musl",
       "primaryPackagePurpose": "LIBRARY",
@@ -7579,7 +7719,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40next%2Fswc-linux-arm64-musl; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@next/swc-linux-arm64-musl",
       "primaryPackagePurpose": "LIBRARY",
@@ -7598,7 +7739,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40next%2Fswc-linux-x64-gnu; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@next/swc-linux-x64-gnu",
       "primaryPackagePurpose": "LIBRARY",
@@ -7636,7 +7778,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40next%2Fswc-linux-x64-musl; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@next/swc-linux-x64-musl",
       "primaryPackagePurpose": "LIBRARY",
@@ -7674,7 +7817,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40next%2Fswc-win32-arm64-msvc; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@next/swc-win32-arm64-msvc",
       "primaryPackagePurpose": "LIBRARY",
@@ -7693,7 +7837,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40next%2Fswc-win32-arm64-msvc; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@next/swc-win32-arm64-msvc",
       "primaryPackagePurpose": "LIBRARY",
@@ -7712,7 +7857,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40next%2Fswc-win32-ia32-msvc; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@next/swc-win32-ia32-msvc",
       "primaryPackagePurpose": "LIBRARY",
@@ -7731,7 +7877,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40next%2Fswc-win32-ia32-msvc; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@next/swc-win32-ia32-msvc",
       "primaryPackagePurpose": "LIBRARY",
@@ -7769,7 +7916,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40next%2Fswc-win32-x64-msvc; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@next/swc-win32-x64-msvc",
       "primaryPackagePurpose": "LIBRARY",
@@ -8073,7 +8221,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40parcel%2Fwatcher-android-arm64; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@parcel/watcher-android-arm64",
       "primaryPackagePurpose": "LIBRARY",
@@ -8092,7 +8241,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40parcel%2Fwatcher-darwin-arm64; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@parcel/watcher-darwin-arm64",
       "primaryPackagePurpose": "LIBRARY",
@@ -8111,7 +8261,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40parcel%2Fwatcher-darwin-x64; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@parcel/watcher-darwin-x64",
       "primaryPackagePurpose": "LIBRARY",
@@ -8130,7 +8281,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40parcel%2Fwatcher-freebsd-x64; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@parcel/watcher-freebsd-x64",
       "primaryPackagePurpose": "LIBRARY",
@@ -8149,7 +8301,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40parcel%2Fwatcher-linux-arm-glibc; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@parcel/watcher-linux-arm-glibc",
       "primaryPackagePurpose": "LIBRARY",
@@ -8168,7 +8321,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40parcel%2Fwatcher-linux-arm-musl; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@parcel/watcher-linux-arm-musl",
       "primaryPackagePurpose": "LIBRARY",
@@ -8187,7 +8341,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40parcel%2Fwatcher-linux-arm64-glibc; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@parcel/watcher-linux-arm64-glibc",
       "primaryPackagePurpose": "LIBRARY",
@@ -8206,7 +8361,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40parcel%2Fwatcher-linux-arm64-musl; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@parcel/watcher-linux-arm64-musl",
       "primaryPackagePurpose": "LIBRARY",
@@ -8263,7 +8419,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40parcel%2Fwatcher-win32-arm64; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@parcel/watcher-win32-arm64",
       "primaryPackagePurpose": "LIBRARY",
@@ -8282,7 +8439,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40parcel%2Fwatcher-win32-ia32; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@parcel/watcher-win32-ia32",
       "primaryPackagePurpose": "LIBRARY",
@@ -8301,7 +8459,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40parcel%2Fwatcher-win32-x64; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@parcel/watcher-win32-x64",
       "primaryPackagePurpose": "LIBRARY",
@@ -8700,7 +8859,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40react-native-community%2Fcli; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@react-native-community/cli",
       "primaryPackagePurpose": "LIBRARY",
@@ -8719,7 +8879,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40react-native-community%2Fcli-clean; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@react-native-community/cli-clean",
       "primaryPackagePurpose": "LIBRARY",
@@ -8738,7 +8899,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40react-native-community%2Fcli-config; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@react-native-community/cli-config",
       "primaryPackagePurpose": "LIBRARY",
@@ -8757,7 +8919,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40react-native-community%2Fcli-debugger-ui; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@react-native-community/cli-debugger-ui",
       "primaryPackagePurpose": "LIBRARY",
@@ -8776,7 +8939,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40react-native-community%2Fcli-doctor; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@react-native-community/cli-doctor",
       "primaryPackagePurpose": "LIBRARY",
@@ -8795,7 +8959,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40react-native-community%2Fcli-hermes; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@react-native-community/cli-hermes",
       "primaryPackagePurpose": "LIBRARY",
@@ -8814,7 +8979,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40react-native-community%2Fcli-platform-android; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@react-native-community/cli-platform-android",
       "primaryPackagePurpose": "LIBRARY",
@@ -8833,7 +8999,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40react-native-community%2Fcli-platform-ios; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@react-native-community/cli-platform-ios",
       "primaryPackagePurpose": "LIBRARY",
@@ -8852,7 +9019,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40react-native-community%2Fcli-plugin-metro; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@react-native-community/cli-plugin-metro",
       "primaryPackagePurpose": "LIBRARY",
@@ -8871,7 +9039,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40react-native-community%2Fcli-server-api; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@react-native-community/cli-server-api",
       "primaryPackagePurpose": "LIBRARY",
@@ -8890,7 +9059,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40react-native-community%2Fcli-tools; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@react-native-community/cli-tools",
       "primaryPackagePurpose": "LIBRARY",
@@ -8909,7 +9079,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40react-native-community%2Fcli-types; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@react-native-community/cli-types",
       "primaryPackagePurpose": "LIBRARY",
@@ -8928,7 +9099,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40react-native%2Fassets-registry; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@react-native/assets-registry",
       "primaryPackagePurpose": "LIBRARY",
@@ -8947,7 +9119,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40react-native%2Fbabel-plugin-codegen; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@react-native/babel-plugin-codegen",
       "primaryPackagePurpose": "LIBRARY",
@@ -8966,7 +9139,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40react-native%2Fbabel-preset; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@react-native/babel-preset",
       "primaryPackagePurpose": "LIBRARY",
@@ -8985,7 +9159,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40react-native%2Fcodegen; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@react-native/codegen",
       "primaryPackagePurpose": "LIBRARY",
@@ -9004,7 +9179,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40react-native%2Fcommunity-cli-plugin; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@react-native/community-cli-plugin",
       "primaryPackagePurpose": "LIBRARY",
@@ -9023,7 +9199,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40react-native%2Fdebugger-frontend; se scripts/license-overrides.json.",
+      "licenseConcluded": "BSD-3-Clause",
       "licenseDeclared": "NOASSERTION",
       "name": "@react-native/debugger-frontend",
       "primaryPackagePurpose": "LIBRARY",
@@ -9042,7 +9219,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40react-native%2Fdev-middleware; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@react-native/dev-middleware",
       "primaryPackagePurpose": "LIBRARY",
@@ -9061,7 +9239,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40react-native%2Fgradle-plugin; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@react-native/gradle-plugin",
       "primaryPackagePurpose": "LIBRARY",
@@ -9080,7 +9259,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40react-native%2Fjs-polyfills; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@react-native/js-polyfills",
       "primaryPackagePurpose": "LIBRARY",
@@ -9099,7 +9279,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40react-native%2Fmetro-babel-transformer; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@react-native/metro-babel-transformer",
       "primaryPackagePurpose": "LIBRARY",
@@ -9118,7 +9299,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40react-native%2Fnormalize-colors; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@react-native/normalize-colors",
       "primaryPackagePurpose": "LIBRARY",
@@ -9137,7 +9319,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40react-native%2Fvirtualized-lists; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@react-native/virtualized-lists",
       "primaryPackagePurpose": "LIBRARY",
@@ -9156,7 +9339,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40react-pdf%2Ffns; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@react-pdf/fns",
       "primaryPackagePurpose": "LIBRARY",
@@ -9194,7 +9378,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40react-pdf%2Ffont; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@react-pdf/font",
       "primaryPackagePurpose": "LIBRARY",
@@ -9232,7 +9417,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40react-pdf%2Fimage; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@react-pdf/image",
       "primaryPackagePurpose": "LIBRARY",
@@ -9270,7 +9456,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40react-pdf%2Flayout; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@react-pdf/layout",
       "primaryPackagePurpose": "LIBRARY",
@@ -9308,7 +9495,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40react-pdf%2Fpdfkit; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@react-pdf/pdfkit",
       "primaryPackagePurpose": "LIBRARY",
@@ -9346,7 +9534,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40react-pdf%2Fpng-js; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@react-pdf/png-js",
       "primaryPackagePurpose": "LIBRARY",
@@ -9384,7 +9573,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40react-pdf%2Fprimitives; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@react-pdf/primitives",
       "primaryPackagePurpose": "LIBRARY",
@@ -9441,7 +9631,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40react-pdf%2Frender; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@react-pdf/render",
       "primaryPackagePurpose": "LIBRARY",
@@ -9479,7 +9670,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40react-pdf%2Frenderer; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@react-pdf/renderer",
       "primaryPackagePurpose": "LIBRARY",
@@ -9517,7 +9709,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40react-pdf%2Fstylesheet; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@react-pdf/stylesheet",
       "primaryPackagePurpose": "LIBRARY",
@@ -9555,7 +9748,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40react-pdf%2Ftextkit; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@react-pdf/textkit",
       "primaryPackagePurpose": "LIBRARY",
@@ -9593,7 +9787,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40react-pdf%2Ftypes; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@react-pdf/types",
       "primaryPackagePurpose": "LIBRARY",
@@ -9992,7 +10187,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40react-three%2Ffiber; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@react-three/fiber",
       "primaryPackagePurpose": "LIBRARY",
@@ -10068,7 +10264,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40sideway%2Faddress; se scripts/license-overrides.json.",
+      "licenseConcluded": "BSD-3-Clause",
       "licenseDeclared": "NOASSERTION",
       "name": "@sideway/address",
       "primaryPackagePurpose": "LIBRARY",
@@ -10087,7 +10284,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40sideway%2Fformula; se scripts/license-overrides.json.",
+      "licenseConcluded": "BSD-3-Clause",
       "licenseDeclared": "NOASSERTION",
       "name": "@sideway/formula",
       "primaryPackagePurpose": "LIBRARY",
@@ -10106,7 +10304,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40sideway%2Fpinpoint; se scripts/license-overrides.json.",
+      "licenseConcluded": "BSD-3-Clause",
       "licenseDeclared": "NOASSERTION",
       "name": "@sideway/pinpoint",
       "primaryPackagePurpose": "LIBRARY",
@@ -11778,7 +11977,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40swc%2Fcore-darwin-arm64; se scripts/license-overrides.json.",
+      "licenseConcluded": "Apache-2.0 AND MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@swc/core-darwin-arm64",
       "primaryPackagePurpose": "LIBRARY",
@@ -11797,7 +11997,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40swc%2Fcore-darwin-x64; se scripts/license-overrides.json.",
+      "licenseConcluded": "Apache-2.0 AND MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@swc/core-darwin-x64",
       "primaryPackagePurpose": "LIBRARY",
@@ -11816,7 +12017,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40swc%2Fcore-linux-arm-gnueabihf; se scripts/license-overrides.json.",
+      "licenseConcluded": "Apache-2.0",
       "licenseDeclared": "NOASSERTION",
       "name": "@swc/core-linux-arm-gnueabihf",
       "primaryPackagePurpose": "LIBRARY",
@@ -11835,7 +12037,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40swc%2Fcore-linux-arm64-gnu; se scripts/license-overrides.json.",
+      "licenseConcluded": "Apache-2.0 AND MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@swc/core-linux-arm64-gnu",
       "primaryPackagePurpose": "LIBRARY",
@@ -11854,7 +12057,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40swc%2Fcore-linux-arm64-musl; se scripts/license-overrides.json.",
+      "licenseConcluded": "Apache-2.0 AND MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@swc/core-linux-arm64-musl",
       "primaryPackagePurpose": "LIBRARY",
@@ -11911,7 +12115,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40swc%2Fcore-win32-arm64-msvc; se scripts/license-overrides.json.",
+      "licenseConcluded": "Apache-2.0 AND MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@swc/core-win32-arm64-msvc",
       "primaryPackagePurpose": "LIBRARY",
@@ -11930,7 +12135,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40swc%2Fcore-win32-ia32-msvc; se scripts/license-overrides.json.",
+      "licenseConcluded": "Apache-2.0 AND MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@swc/core-win32-ia32-msvc",
       "primaryPackagePurpose": "LIBRARY",
@@ -11949,7 +12155,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40swc%2Fcore-win32-x64-msvc; se scripts/license-overrides.json.",
+      "licenseConcluded": "Apache-2.0 AND MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@swc/core-win32-x64-msvc",
       "primaryPackagePurpose": "LIBRARY",
@@ -12025,7 +12232,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40swc%2Fhelpers; se scripts/license-overrides.json.",
+      "licenseConcluded": "Apache-2.0",
       "licenseDeclared": "NOASSERTION",
       "name": "@swc/helpers",
       "primaryPackagePurpose": "LIBRARY",
@@ -13697,7 +13905,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40types%2Flodash; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@types/lodash",
       "primaryPackagePurpose": "LIBRARY",
@@ -14191,7 +14400,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40types%2Freact-dom; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@types/react-dom",
       "primaryPackagePurpose": "LIBRARY",
@@ -14248,7 +14458,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40types%2Freact-reconciler; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@types/react-reconciler",
       "primaryPackagePurpose": "LIBRARY",
@@ -14267,7 +14478,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40types%2Freact-reconciler; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@types/react-reconciler",
       "primaryPackagePurpose": "LIBRARY",
@@ -14780,7 +14992,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40types%2Fwebxr; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@types/webxr",
       "primaryPackagePurpose": "LIBRARY",
@@ -14856,7 +15069,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/%40types%2Fyargs; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "@types/yargs",
       "primaryPackagePurpose": "LIBRARY",
@@ -15806,7 +16020,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/abort-controller; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "abort-controller",
       "primaryPackagePurpose": "LIBRARY",
@@ -16340,7 +16555,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/anser; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "anser",
       "primaryPackagePurpose": "LIBRARY",
@@ -16473,7 +16689,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/ansi-fragments; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "ansi-fragments",
       "primaryPackagePurpose": "LIBRARY",
@@ -16492,7 +16709,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/ansi-regex; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "ansi-regex",
       "primaryPackagePurpose": "LIBRARY",
@@ -16892,7 +17110,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/appdirsjs; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "appdirsjs",
       "primaryPackagePurpose": "LIBRARY",
@@ -17729,7 +17948,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/ast-types; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "ast-types",
       "primaryPackagePurpose": "LIBRARY",
@@ -17786,7 +18006,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/astral-regex; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "astral-regex",
       "primaryPackagePurpose": "LIBRARY",
@@ -17900,7 +18121,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/async-limiter; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "async-limiter",
       "primaryPackagePurpose": "LIBRARY",
@@ -18318,7 +18540,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/babel-core; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "babel-core",
       "primaryPackagePurpose": "LIBRARY",
@@ -18546,7 +18769,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/babel-plugin-polyfill-corejs2; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "babel-plugin-polyfill-corejs2",
       "primaryPackagePurpose": "LIBRARY",
@@ -18565,7 +18789,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/babel-plugin-polyfill-corejs3; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "babel-plugin-polyfill-corejs3",
       "primaryPackagePurpose": "LIBRARY",
@@ -18584,7 +18809,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/babel-plugin-polyfill-regenerator; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "babel-plugin-polyfill-regenerator",
       "primaryPackagePurpose": "LIBRARY",
@@ -18603,7 +18829,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/babel-plugin-transform-flow-enums; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "babel-plugin-transform-flow-enums",
       "primaryPackagePurpose": "LIBRARY",
@@ -19505,7 +19732,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/browserslist; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "browserslist",
       "primaryPackagePurpose": "LIBRARY",
@@ -19714,7 +19942,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/buffer; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "buffer",
       "primaryPackagePurpose": "LIBRARY",
@@ -20172,7 +20401,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/caller-callsite; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "caller-callsite",
       "primaryPackagePurpose": "LIBRARY",
@@ -20191,7 +20421,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/caller-path; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "caller-path",
       "primaryPackagePurpose": "LIBRARY",
@@ -20210,7 +20441,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/callsites; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "callsites",
       "primaryPackagePurpose": "LIBRARY",
@@ -20438,7 +20670,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/caniuse-lite; se scripts/license-overrides.json.",
+      "licenseConcluded": "CC-BY-4.0",
       "licenseDeclared": "NOASSERTION",
       "name": "caniuse-lite",
       "primaryPackagePurpose": "LIBRARY",
@@ -20952,7 +21185,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/chrome-launcher; se scripts/license-overrides.json.",
+      "licenseConcluded": "Apache-2.0",
       "licenseDeclared": "NOASSERTION",
       "name": "chrome-launcher",
       "primaryPackagePurpose": "LIBRARY",
@@ -20971,7 +21205,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/chromium-edge-launcher; se scripts/license-overrides.json.",
+      "licenseConcluded": "Apache-2.0",
       "licenseDeclared": "NOASSERTION",
       "name": "chromium-edge-launcher",
       "primaryPackagePurpose": "LIBRARY",
@@ -20990,7 +21225,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/ci-info; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "ci-info",
       "primaryPackagePurpose": "LIBRARY",
@@ -21351,7 +21587,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/cli-spinners; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "cli-spinners",
       "primaryPackagePurpose": "LIBRARY",
@@ -21503,7 +21740,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/cliui; se scripts/license-overrides.json.",
+      "licenseConcluded": "ISC",
       "licenseDeclared": "NOASSERTION",
       "name": "cliui",
       "primaryPackagePurpose": "LIBRARY",
@@ -21579,7 +21817,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/clone; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "clone",
       "primaryPackagePurpose": "LIBRARY",
@@ -21636,7 +21875,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/clone-deep; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "clone-deep",
       "primaryPackagePurpose": "LIBRARY",
@@ -22189,7 +22429,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/colorette; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "colorette",
       "primaryPackagePurpose": "LIBRARY",
@@ -22341,7 +22582,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/command-exists; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "command-exists",
       "primaryPackagePurpose": "LIBRARY",
@@ -22379,7 +22621,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/commander; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "commander",
       "primaryPackagePurpose": "LIBRARY",
@@ -22608,7 +22851,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/commondir; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "commondir",
       "primaryPackagePurpose": "LIBRARY",
@@ -22819,7 +23063,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/connect; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "connect",
       "primaryPackagePurpose": "LIBRARY",
@@ -23275,7 +23520,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/core-js-compat; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "core-js-compat",
       "primaryPackagePurpose": "LIBRARY",
@@ -23389,7 +23635,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/cosmiconfig; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "cosmiconfig",
       "primaryPackagePurpose": "LIBRARY",
@@ -23560,7 +23807,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/cross-fetch; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "cross-fetch",
       "primaryPackagePurpose": "LIBRARY",
@@ -24434,7 +24682,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/decamelize; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "decamelize",
       "primaryPackagePurpose": "LIBRARY",
@@ -24738,7 +24987,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/defaults; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "defaults",
       "primaryPackagePurpose": "LIBRARY",
@@ -24966,7 +25216,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/denodeify; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "denodeify",
       "primaryPackagePurpose": "LIBRARY",
@@ -25043,7 +25294,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/deprecated-react-native-prop-types; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "deprecated-react-native-prop-types",
       "primaryPackagePurpose": "LIBRARY",
@@ -25957,7 +26209,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/electron-to-chromium; se scripts/license-overrides.json.",
+      "licenseConcluded": "ISC",
       "licenseDeclared": "NOASSERTION",
       "name": "electron-to-chromium",
       "primaryPackagePurpose": "LIBRARY",
@@ -26071,7 +26324,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/emoji-regex; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "emoji-regex",
       "primaryPackagePurpose": "LIBRARY",
@@ -26547,7 +26801,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/envinfo; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "envinfo",
       "primaryPackagePurpose": "LIBRARY",
@@ -26642,7 +26897,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/error-stack-parser; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "error-stack-parser",
       "primaryPackagePurpose": "LIBRARY",
@@ -26661,7 +26917,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/errorhandler; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "errorhandler",
       "primaryPackagePurpose": "LIBRARY",
@@ -28392,7 +28649,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/event-target-shim; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "event-target-shim",
       "primaryPackagePurpose": "LIBRARY",
@@ -29380,7 +29638,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/fast-xml-parser; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "fast-xml-parser",
       "primaryPackagePurpose": "LIBRARY",
@@ -29836,7 +30095,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/finalhandler; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "finalhandler",
       "primaryPackagePurpose": "LIBRARY",
@@ -29874,7 +30134,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/find-cache-dir; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "find-cache-dir",
       "primaryPackagePurpose": "LIBRARY",
@@ -29931,7 +30192,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/find-up; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "find-up",
       "primaryPackagePurpose": "LIBRARY",
@@ -30216,7 +30478,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/flow-enums-runtime; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "flow-enums-runtime",
       "primaryPackagePurpose": "LIBRARY",
@@ -30235,7 +30498,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/flow-parser; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "flow-parser",
       "primaryPackagePurpose": "LIBRARY",
@@ -30863,7 +31127,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/fsevents; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "fsevents",
       "primaryPackagePurpose": "LIBRARY",
@@ -30882,7 +31147,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/fsevents; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "fsevents",
       "primaryPackagePurpose": "LIBRARY",
@@ -30901,7 +31167,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/fsevents; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "fsevents",
       "primaryPackagePurpose": "LIBRARY",
@@ -32935,7 +33202,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/hermes-estree; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "hermes-estree",
       "primaryPackagePurpose": "LIBRARY",
@@ -32954,7 +33222,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/hermes-estree; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "hermes-estree",
       "primaryPackagePurpose": "LIBRARY",
@@ -32973,7 +33242,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/hermes-parser; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "hermes-parser",
       "primaryPackagePurpose": "LIBRARY",
@@ -32992,7 +33262,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/hermes-parser; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "hermes-parser",
       "primaryPackagePurpose": "LIBRARY",
@@ -33011,7 +33282,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/hermes-profile-transformer; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "hermes-profile-transformer",
       "primaryPackagePurpose": "LIBRARY",
@@ -33753,7 +34025,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/hyphen; se scripts/license-overrides.json.",
+      "licenseConcluded": "ISC",
       "licenseDeclared": "NOASSERTION",
       "name": "hyphen",
       "primaryPackagePurpose": "LIBRARY",
@@ -34038,7 +34311,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/image-size; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "image-size",
       "primaryPackagePurpose": "LIBRARY",
@@ -34095,7 +34369,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/import-fresh; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "import-fresh",
       "primaryPackagePurpose": "LIBRARY",
@@ -34589,7 +34864,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/invariant; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "invariant",
       "primaryPackagePurpose": "LIBRARY",
@@ -34608,7 +34884,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/ip; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "ip",
       "primaryPackagePurpose": "LIBRARY",
@@ -35197,7 +35474,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/is-directory; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "is-directory",
       "primaryPackagePurpose": "LIBRARY",
@@ -35311,7 +35589,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/is-fullwidth-code-point; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "is-fullwidth-code-point",
       "primaryPackagePurpose": "LIBRARY",
@@ -35596,7 +35875,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/is-interactive; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "is-interactive",
       "primaryPackagePurpose": "LIBRARY",
@@ -35862,7 +36142,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/is-plain-object; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "is-plain-object",
       "primaryPackagePurpose": "LIBRARY",
@@ -36432,7 +36713,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/is-wsl; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "is-wsl",
       "primaryPackagePurpose": "LIBRARY",
@@ -36585,7 +36867,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/isobject; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "isobject",
       "primaryPackagePurpose": "LIBRARY",
@@ -36984,7 +37267,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/its-fine; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "its-fine",
       "primaryPackagePurpose": "LIBRARY",
@@ -37060,7 +37344,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/jay-peg; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "jay-peg",
       "primaryPackagePurpose": "LIBRARY",
@@ -38618,7 +38903,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/jiti; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "jiti",
       "primaryPackagePurpose": "LIBRARY",
@@ -38675,7 +38961,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/joi; se scripts/license-overrides.json.",
+      "licenseConcluded": "BSD-3-Clause",
       "licenseDeclared": "NOASSERTION",
       "name": "joi",
       "primaryPackagePurpose": "LIBRARY",
@@ -38960,7 +39247,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/jsc-android; se scripts/license-overrides.json.",
+      "licenseConcluded": "BSD-2-Clause",
       "licenseDeclared": "NOASSERTION",
       "name": "jsc-android",
       "primaryPackagePurpose": "LIBRARY",
@@ -38979,7 +39267,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/jsc-safe-url; se scripts/license-overrides.json.",
+      "licenseConcluded": "0BSD",
       "licenseDeclared": "NOASSERTION",
       "name": "jsc-safe-url",
       "primaryPackagePurpose": "LIBRARY",
@@ -38998,7 +39287,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/jscodeshift; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "jscodeshift",
       "primaryPackagePurpose": "LIBRARY",
@@ -39169,7 +39459,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/json-parse-better-errors; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "json-parse-better-errors",
       "primaryPackagePurpose": "LIBRARY",
@@ -39873,7 +40164,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/kind-of; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "kind-of",
       "primaryPackagePurpose": "LIBRARY",
@@ -40025,7 +40317,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/konva; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "konva",
       "primaryPackagePurpose": "LIBRARY",
@@ -40348,7 +40641,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/lighthouse-logger; se scripts/license-overrides.json.",
+      "licenseConcluded": "Apache-2.0",
       "licenseDeclared": "NOASSERTION",
       "name": "lighthouse-logger",
       "primaryPackagePurpose": "LIBRARY",
@@ -40576,7 +40870,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/locate-path; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "locate-path",
       "primaryPackagePurpose": "LIBRARY",
@@ -41146,7 +41441,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/lodash.throttle; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "lodash.throttle",
       "primaryPackagePurpose": "LIBRARY",
@@ -41279,7 +41575,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/logkitty; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "logkitty",
       "primaryPackagePurpose": "LIBRARY",
@@ -41640,7 +41937,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/make-dir; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "make-dir",
       "primaryPackagePurpose": "LIBRARY",
@@ -41830,7 +42128,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/marky; se scripts/license-overrides.json.",
+      "licenseConcluded": "Apache-2.0",
       "licenseDeclared": "NOASSERTION",
       "name": "marky",
       "primaryPackagePurpose": "LIBRARY",
@@ -41906,7 +42205,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/memoize-one; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "memoize-one",
       "primaryPackagePurpose": "LIBRARY",
@@ -42096,7 +42396,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/metro; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "metro",
       "primaryPackagePurpose": "LIBRARY",
@@ -42115,7 +42416,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/metro-babel-transformer; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "metro-babel-transformer",
       "primaryPackagePurpose": "LIBRARY",
@@ -42134,7 +42436,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/metro-cache; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "metro-cache",
       "primaryPackagePurpose": "LIBRARY",
@@ -42153,7 +42456,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/metro-cache-key; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "metro-cache-key",
       "primaryPackagePurpose": "LIBRARY",
@@ -42172,7 +42476,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/metro-config; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "metro-config",
       "primaryPackagePurpose": "LIBRARY",
@@ -42191,7 +42496,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/metro-core; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "metro-core",
       "primaryPackagePurpose": "LIBRARY",
@@ -42210,7 +42516,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/metro-file-map; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "metro-file-map",
       "primaryPackagePurpose": "LIBRARY",
@@ -42229,7 +42536,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/metro-minify-terser; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "metro-minify-terser",
       "primaryPackagePurpose": "LIBRARY",
@@ -42248,7 +42556,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/metro-resolver; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "metro-resolver",
       "primaryPackagePurpose": "LIBRARY",
@@ -42267,7 +42576,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/metro-runtime; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "metro-runtime",
       "primaryPackagePurpose": "LIBRARY",
@@ -42286,7 +42596,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/metro-source-map; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "metro-source-map",
       "primaryPackagePurpose": "LIBRARY",
@@ -42305,7 +42616,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/metro-symbolicate; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "metro-symbolicate",
       "primaryPackagePurpose": "LIBRARY",
@@ -42324,7 +42636,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/metro-transform-plugins; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "metro-transform-plugins",
       "primaryPackagePurpose": "LIBRARY",
@@ -42343,7 +42656,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/metro-transform-worker; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "metro-transform-worker",
       "primaryPackagePurpose": "LIBRARY",
@@ -43868,7 +44182,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/neo-async; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "neo-async",
       "primaryPackagePurpose": "LIBRARY",
@@ -43944,7 +44259,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/nocache; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "nocache",
       "primaryPackagePurpose": "LIBRARY",
@@ -43982,7 +44298,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/node-abort-controller; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "node-abort-controller",
       "primaryPackagePurpose": "LIBRARY",
@@ -44096,7 +44413,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/node-dir; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "node-dir",
       "primaryPackagePurpose": "LIBRARY",
@@ -44345,7 +44663,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/node-stream-zip; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "node-stream-zip",
       "primaryPackagePurpose": "LIBRARY",
@@ -44725,7 +45044,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/nullthrows; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "nullthrows",
       "primaryPackagePurpose": "LIBRARY",
@@ -44877,7 +45197,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/ob1; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "ob1",
       "primaryPackagePurpose": "LIBRARY",
@@ -45621,7 +45942,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/open; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "open",
       "primaryPackagePurpose": "LIBRARY",
@@ -45640,7 +45962,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/open; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "open",
       "primaryPackagePurpose": "LIBRARY",
@@ -45849,7 +46172,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/ora; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "ora",
       "primaryPackagePurpose": "LIBRARY",
@@ -46077,7 +46401,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/p-locate; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "p-locate",
       "primaryPackagePurpose": "LIBRARY",
@@ -46476,7 +46801,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/parse-json; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "parse-json",
       "primaryPackagePurpose": "LIBRARY",
@@ -46705,7 +47031,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/path-exists; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "path-exists",
       "primaryPackagePurpose": "LIBRARY",
@@ -47465,7 +47792,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/pify; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "pify",
       "primaryPackagePurpose": "LIBRARY",
@@ -47560,7 +47888,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/pkg-dir; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "pkg-dir",
       "primaryPackagePurpose": "LIBRARY",
@@ -48320,7 +48649,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/pretty-format; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "pretty-format",
       "primaryPackagePurpose": "LIBRARY",
@@ -48492,7 +48822,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/promise; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "promise",
       "primaryPackagePurpose": "LIBRARY",
@@ -49481,7 +49812,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/react-devtools-core; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "react-devtools-core",
       "primaryPackagePurpose": "LIBRARY",
@@ -49690,7 +50022,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/react-konva; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "react-konva",
       "primaryPackagePurpose": "LIBRARY",
@@ -49709,7 +50042,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/react-native; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "react-native",
       "primaryPackagePurpose": "LIBRARY",
@@ -49728,7 +50062,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/react-reconciler; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "react-reconciler",
       "primaryPackagePurpose": "LIBRARY",
@@ -49747,7 +50082,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/react-reconciler; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "react-reconciler",
       "primaryPackagePurpose": "LIBRARY",
@@ -49766,7 +50102,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/react-refresh; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "react-refresh",
       "primaryPackagePurpose": "LIBRARY",
@@ -49785,7 +50122,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/react-shallow-renderer; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "react-shallow-renderer",
       "primaryPackagePurpose": "LIBRARY",
@@ -49842,7 +50180,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/react-use-measure; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "react-use-measure",
       "primaryPackagePurpose": "LIBRARY",
@@ -49861,7 +50200,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/react-zdog; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "react-zdog",
       "primaryPackagePurpose": "LIBRARY",
@@ -50109,7 +50449,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/readline; se scripts/license-overrides.json.",
+      "licenseConcluded": "BSD",
       "licenseDeclared": "NOASSERTION",
       "name": "readline",
       "primaryPackagePurpose": "LIBRARY",
@@ -50128,7 +50469,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/recast; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "recast",
       "primaryPackagePurpose": "LIBRARY",
@@ -50242,7 +50584,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/regenerate; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "regenerate",
       "primaryPackagePurpose": "LIBRARY",
@@ -50261,7 +50604,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/regenerate-unicode-properties; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "regenerate-unicode-properties",
       "primaryPackagePurpose": "LIBRARY",
@@ -50375,7 +50719,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/regenerator-transform; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "regenerator-transform",
       "primaryPackagePurpose": "LIBRARY",
@@ -50432,7 +50777,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/regexpu-core; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "regexpu-core",
       "primaryPackagePurpose": "LIBRARY",
@@ -50451,7 +50797,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/regjsparser; se scripts/license-overrides.json.",
+      "licenseConcluded": "BSD-2-Clause",
       "licenseDeclared": "NOASSERTION",
       "name": "regjsparser",
       "primaryPackagePurpose": "LIBRARY",
@@ -50622,7 +50969,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/require-main-filename; se scripts/license-overrides.json.",
+      "licenseConcluded": "ISC",
       "licenseDeclared": "NOASSERTION",
       "name": "require-main-filename",
       "primaryPackagePurpose": "LIBRARY",
@@ -50679,7 +51027,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/resize-observer-polyfill; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "resize-observer-polyfill",
       "primaryPackagePurpose": "LIBRARY",
@@ -50888,7 +51237,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/resolve-from; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "resolve-from",
       "primaryPackagePurpose": "LIBRARY",
@@ -51173,7 +51523,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/restructure; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "restructure",
       "primaryPackagePurpose": "LIBRARY",
@@ -51382,7 +51733,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/rimraf; se scripts/license-overrides.json.",
+      "licenseConcluded": "ISC",
       "licenseDeclared": "NOASSERTION",
       "name": "rimraf",
       "primaryPackagePurpose": "LIBRARY",
@@ -51914,7 +52266,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/scheduler; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "scheduler",
       "primaryPackagePurpose": "LIBRARY",
@@ -51933,7 +52286,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/scheduler; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "scheduler",
       "primaryPackagePurpose": "LIBRARY",
@@ -51990,7 +52344,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/scheduler; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "scheduler",
       "primaryPackagePurpose": "LIBRARY",
@@ -52028,7 +52383,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/semver; se scripts/license-overrides.json.",
+      "licenseConcluded": "ISC",
       "licenseDeclared": "NOASSERTION",
       "name": "semver",
       "primaryPackagePurpose": "LIBRARY",
@@ -52161,7 +52517,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/semver; se scripts/license-overrides.json.",
+      "licenseConcluded": "ISC",
       "licenseDeclared": "NOASSERTION",
       "name": "semver",
       "primaryPackagePurpose": "LIBRARY",
@@ -52295,7 +52652,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/serialize-error; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "serialize-error",
       "primaryPackagePurpose": "LIBRARY",
@@ -52507,7 +52865,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/shallow-clone; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "shallow-clone",
       "primaryPackagePurpose": "LIBRARY",
@@ -52716,7 +53075,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/shell-quote; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "shell-quote",
       "primaryPackagePurpose": "LIBRARY",
@@ -53286,7 +53646,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/slice-ansi; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "slice-ansi",
       "primaryPackagePurpose": "LIBRARY",
@@ -53724,7 +54085,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/source-map-support; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "source-map-support",
       "primaryPackagePurpose": "LIBRARY",
@@ -53990,7 +54352,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/stackframe; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "stackframe",
       "primaryPackagePurpose": "LIBRARY",
@@ -54009,7 +54372,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/stacktrace-parser; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "stacktrace-parser",
       "primaryPackagePurpose": "LIBRARY",
@@ -54640,7 +55004,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/strip-ansi; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "strip-ansi",
       "primaryPackagePurpose": "LIBRARY",
@@ -55134,7 +55499,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/strnum; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "strnum",
       "primaryPackagePurpose": "LIBRARY",
@@ -55286,7 +55652,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/sudo-prompt; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "sudo-prompt",
       "primaryPackagePurpose": "LIBRARY",
@@ -55553,7 +55920,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/suspend-react; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "suspend-react",
       "primaryPackagePurpose": "LIBRARY",
@@ -55838,7 +56206,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/tailwindcss; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "tailwindcss",
       "primaryPackagePurpose": "LIBRARY",
@@ -55971,7 +56340,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/temp; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "temp",
       "primaryPackagePurpose": "LIBRARY",
@@ -55990,7 +56360,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/temp-dir; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "temp-dir",
       "primaryPackagePurpose": "LIBRARY",
@@ -56028,7 +56399,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/terser; se scripts/license-overrides.json.",
+      "licenseConcluded": "BSD-2-Clause",
       "licenseDeclared": "NOASSERTION",
       "name": "terser",
       "primaryPackagePurpose": "LIBRARY",
@@ -56294,7 +56666,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/three; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "three",
       "primaryPackagePurpose": "LIBRARY",
@@ -56313,7 +56686,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/throat; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "throat",
       "primaryPackagePurpose": "LIBRARY",
@@ -56408,7 +56782,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/through2; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "through2",
       "primaryPackagePurpose": "LIBRARY",
@@ -57854,7 +58229,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/type-fest; se scripts/license-overrides.json.",
+      "licenseConcluded": "(MIT OR CC0-1.0)",
       "licenseDeclared": "NOASSERTION",
       "name": "type-fest",
       "primaryPackagePurpose": "LIBRARY",
@@ -58272,7 +58648,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/unicode-canonical-property-names-ecmascript; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "unicode-canonical-property-names-ecmascript",
       "primaryPackagePurpose": "LIBRARY",
@@ -58291,7 +58668,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/unicode-match-property-ecmascript; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "unicode-match-property-ecmascript",
       "primaryPackagePurpose": "LIBRARY",
@@ -58310,7 +58688,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/unicode-match-property-value-ecmascript; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "unicode-match-property-value-ecmascript",
       "primaryPackagePurpose": "LIBRARY",
@@ -58367,7 +58746,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/unicode-property-aliases-ecmascript; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "unicode-property-aliases-ecmascript",
       "primaryPackagePurpose": "LIBRARY",
@@ -58711,7 +59091,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/update-browserslist-db; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "update-browserslist-db",
       "primaryPackagePurpose": "LIBRARY",
@@ -59283,7 +59664,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/vlq; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "vlq",
       "primaryPackagePurpose": "LIBRARY",
@@ -59397,7 +59779,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/wcwidth; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "wcwidth",
       "primaryPackagePurpose": "LIBRARY",
@@ -59578,7 +59961,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/whatwg-fetch; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "whatwg-fetch",
       "primaryPackagePurpose": "LIBRARY",
@@ -59864,7 +60248,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/which-module; se scripts/license-overrides.json.",
+      "licenseConcluded": "ISC",
       "licenseDeclared": "NOASSERTION",
       "name": "which-module",
       "primaryPackagePurpose": "LIBRARY",
@@ -60263,7 +60648,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/write-file-atomic; se scripts/license-overrides.json.",
+      "licenseConcluded": "ISC",
       "licenseDeclared": "NOASSERTION",
       "name": "write-file-atomic",
       "primaryPackagePurpose": "LIBRARY",
@@ -60358,7 +60744,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/ws; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "ws",
       "primaryPackagePurpose": "LIBRARY",
@@ -60720,7 +61107,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/y18n; se scripts/license-overrides.json.",
+      "licenseConcluded": "ISC",
       "licenseDeclared": "NOASSERTION",
       "name": "y18n",
       "primaryPackagePurpose": "LIBRARY",
@@ -61081,7 +61469,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/yargs; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "yargs",
       "primaryPackagePurpose": "LIBRARY",
@@ -61157,7 +61546,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/yargs-parser; se scripts/license-overrides.json.",
+      "licenseConcluded": "ISC",
       "licenseDeclared": "NOASSERTION",
       "name": "yargs-parser",
       "primaryPackagePurpose": "LIBRARY",
@@ -61366,7 +61756,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/yoga-layout; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "yoga-layout",
       "primaryPackagePurpose": "LIBRARY",
@@ -61461,7 +61852,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/zdog; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "zdog",
       "primaryPackagePurpose": "LIBRARY",
@@ -61499,7 +61891,8 @@
         }
       ],
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
+      "licenseComments": "Fastställd manuellt mot https://registry.npmjs.org/zustand; se scripts/license-overrides.json.",
+      "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
       "name": "zustand",
       "primaryPackagePurpose": "LIBRARY",
