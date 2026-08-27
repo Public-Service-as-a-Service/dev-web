@@ -12,6 +12,7 @@ Run from anywhere: python3 scripts/generate-pages.py
 import html
 import json
 import os
+from collections import Counter
 import re
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
@@ -142,6 +143,58 @@ def tech_list(app):
     return "\n        ".join(items)
 
 
+def sbom_path(app):
+    return os.path.join(ROOT, "assets", "sbom", f"{app['slug']}.spdx.json")
+
+
+def has_sbom(app):
+    return os.path.exists(sbom_path(app))
+
+
+def load_sbom(app):
+    """Return (components, licence counts, provenance) from the SPDX document.
+
+    Components are the packages carrying a package-manager purl; the two
+    remaining packages describe the scanned repository itself.
+    """
+    with open(sbom_path(app), encoding="utf-8") as f:
+        doc = json.load(f)
+    components = []
+    for pkg in doc.get("packages", []):
+        if not pkg.get("externalRefs"):
+            continue
+        # licenseConcluded first: normalize-sbom.py records manually verified
+        # licences there (see scripts/license-overrides.json), while
+        # licenseDeclared honestly keeps what the package metadata itself says.
+        licens = next(
+            (v for v in (pkg.get("licenseConcluded"), pkg.get("licenseDeclared"))
+             if v and v not in ("NOASSERTION", "NONE")),
+            "Ej angiven",
+        )
+        components.append({
+            "namn": pkg.get("name", ""),
+            "version": pkg.get("versionInfo", ""),
+            "licens": licens,
+        })
+    # Multi-module repositories (api-service-operaton has 12 poms) list the same
+    # dependency once per module -- 6895 entries for 331 distinct components. The
+    # SPDX document keeps them all, since the relationships reference them, but the
+    # page shows each component once.
+    unique = {(c["namn"], c["version"], c["licens"]): c for c in components}
+    components = sorted(unique.values(), key=lambda c: (c["namn"].lower(), c["version"]))
+    licenser = Counter(c["licens"] for c in components)
+    provenans = {
+        "namn": doc.get("name", ""),
+        "created": doc.get("creationInfo", {}).get("created", ""),
+        "spdx": doc.get("spdxVersion", ""),
+        "verktyg": next(
+            (c[len("Tool: "):] for c in doc.get("creationInfo", {}).get("creators", [])
+             if c.startswith("Tool: ")),
+            "",
+        ),
+    }
+    return components, licenser, provenans
+
 def page(app):
     slug = app["slug"]
     namn = app["namn"]
@@ -182,6 +235,24 @@ def page(app):
       </p>"""
     konf = app.get("konfiguration") or []
     konf_html = "\n".join(f"        <li>{e(k)}</li>" for k in konf) or "        <li>Se källkodens miljöfilsexempel.</li>"
+
+    sbom_fact_link = ""
+    sbom_section = ""
+    if has_sbom(app):
+        komponenter, licenser, _ = load_sbom(app)
+        sbom_fact_link = f"""          <p class="fact-box-link">
+            <a href="{app['slug']}-sbom.html">Programvaruförteckning (SBOM)</a>
+          </p>
+"""
+        sbom_section = f"""      <h3>Programvaruförteckning</h3>
+      <p>
+        Applikationen bygger på {len(komponenter)} tredjepartskomponenter fördelade på
+        {len(licenser)} olika licenser. Förteckningen omfattar hela beroendeträdet, alltså
+        även byggkedjan och inte bara det som levereras till webbläsaren.
+        Se <a href="{app['slug']}-sbom.html">programvaruförteckningen</a> för hela listan.
+      </p>
+
+"""
 
     return f"""<!doctype html>
 <html lang="sv">
@@ -236,7 +307,7 @@ def page(app):
             <li>Status: <strong>{e(STATUS_LABEL.get(app.get('status'), 'Aktiv'))}</strong></li>
             <li>Inloggning: <strong>{e(app.get('auth') or '–')}</strong></li>
           </ul>
-          <p class="fact-box-link">
+{sbom_fact_link}          <p class="fact-box-link">
             <a href="{repo_url}" rel="external">Källkod på GitHub</a>
           </p>
         </aside>
@@ -276,7 +347,7 @@ def page(app):
 {konf_html}
       </ul>{notes_html}
 
-      <h3>Källkod</h3>
+{sbom_section}      <h3>Källkod</h3>
       <p>
         Källkoden är öppen och finns hos
         <a href="{repo_url}" rel="external">Sundsvalls kommun på GitHub</a>.
@@ -294,6 +365,158 @@ def page(app):
 </html>
 """
 
+
+def sbom_page(app):
+    slug = app["slug"]
+    namn = app["namn"]
+    repo_url = f"https://github.com/Sundsvallskommun/{app['repo']}"
+    komponenter, licenser, prov = load_sbom(app)
+
+    licens_rader = "\n".join(
+        f"            <tr><td>{e(licens)}</td><td>{antal}</td></tr>"
+        for licens, antal in sorted(licenser.items(), key=lambda x: (-x[1], x[0].lower()))
+    )
+    komponent_rader = "\n".join(
+        f'            <tr><td>{e(k["namn"])}</td><td>{e(k["version"])}</td><td>{e(k["licens"])}</td></tr>'
+        for k in komponenter
+    )
+    datum = prov["created"][:10]
+
+    return f"""<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{e(namn)} – Programvaruförteckning (SBOM) – Webbkatalogen</title>
+  <meta name="description" content="Programvaruförteckning (SBOM) i SPDX-format för {e(namn)}: tredjepartskomponenter med version och licens.">
+  <link rel="stylesheet" href="../assets/styles.css">
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+  <link rel="apple-touch-icon" href="../assets/favicon-180.png">
+</head>
+<body>
+
+{header(1)}
+
+<main>
+
+  <section class="page-hero page-hero-slim">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Brödsmulor">
+        <a href="../index.html">Start</a> <span aria-hidden="true">/</span>
+        <a href="../index.html#tjanster">Webbapplikationer</a> <span aria-hidden="true">/</span>
+        <a href="{slug}.html">{e(namn)}</a> <span aria-hidden="true">/</span>
+        <span aria-current="page">SBOM</span>
+      </nav>
+      <span class="app-tag app-tag-light">{e(app['kategori'])}</span>
+      <h1>{e(namn)} – programvaruförteckning</h1>
+      <p class="hero-lead">
+        Samtliga tredjepartskomponenter som ingår i applikationens bygge, med version och
+        licens. Förteckningen är maskinellt härledd ur källkodens beroendeträd och
+        publiceras i SPDX-format.
+      </p>
+      <div class="hero-actions">
+        <a class="button button-primary" href="../assets/sbom/{slug}.spdx.json" download>Ladda ner SPDX (JSON)</a>
+        <a class="button button-secondary" href="{slug}.html">Tillbaka till {e(namn)}</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-slim" id="om-forteckningen">
+    <div class="container">
+      <h2>Om förteckningen</h2>
+      <ul>
+        <li>Antal komponenter: <strong>{len(komponenter)}</strong></li>
+        <li>Antal unika licenser: <strong>{len(licenser)}</strong></li>
+        <li>Källa: <strong>{e(prov['namn'])}</strong> (<a href="{repo_url}" rel="external">källkod på GitHub</a>)</li>
+        <li>Avser källkod från: <strong>{e(datum)}</strong></li>
+        <li>Format: <strong>{e(prov['spdx'])}</strong>, genererad med <strong>{e(prov['verktyg'])}</strong></li>
+      </ul>
+      <p>
+        Förteckningen uppdateras automatiskt och beskriver beroendena i
+        applikationens huvudgren vid angivet datum. Den omfattar hela beroendeträdet,
+        alltså även byggkedjan – vilka API:er applikationen anropar framgår av
+        <a href="{slug}.html#teknisk-dokumentation">den tekniska dokumentationen</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="licenser">
+    <div class="container">
+      <h2>Licenser</h2>
+      <p class="section-intro">
+        Fördelning av deklarerade licenser bland komponenterna.
+      </p>
+      <div class="table-wrap">
+        <table>
+          <caption class="sr-only">Licensfördelning för {e(namn)}</caption>
+          <thead>
+            <tr><th scope="col">Licens</th><th scope="col">Antal komponenter</th></tr>
+          </thead>
+          <tbody>
+{licens_rader}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="komponenter">
+    <div class="container">
+      <h2>Komponenter</h2>
+      <p class="section-intro">
+        Samtliga {len(komponenter)} komponenter, inklusive transitiva beroenden.
+      </p>
+      <p class="sbom-filter" hidden>
+        <label for="sbom-filter">Filtrera listan</label>
+        <input type="search" id="sbom-filter" placeholder="Sök på komponent eller licens" autocomplete="off">
+        <span id="sbom-count" aria-live="polite"></span>
+      </p>
+      <div class="table-wrap">
+        <table id="sbom-table">
+          <caption class="sr-only">Tredjepartskomponenter i {e(namn)}</caption>
+          <thead>
+            <tr><th scope="col">Komponent</th><th scope="col">Version</th><th scope="col">Licens</th></tr>
+          </thead>
+          <tbody>
+{komponent_rader}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+{footer()}
+
+<script>
+  // Progressive enhancement: the table is fully rendered server-side and stays
+  // usable without JavaScript.
+  (function () {{
+    var input = document.getElementById('sbom-filter');
+    var count = document.getElementById('sbom-count');
+    var rows = Array.prototype.slice.call(
+      document.querySelectorAll('#sbom-table tbody tr')
+    );
+    if (!input || !rows.length) return;
+    document.querySelector('.sbom-filter').hidden = false;
+    input.addEventListener('input', function () {{
+      var q = input.value.trim().toLowerCase();
+      var shown = 0;
+      rows.forEach(function (row) {{
+        var match = !q || row.textContent.toLowerCase().indexOf(q) !== -1;
+        row.hidden = !match;
+        if (match) shown++;
+      }});
+      count.textContent = q ? shown + ' av ' + rows.length : '';
+    }});
+  }})();
+</script>
+
+</body>
+</html>
+"""
 
 def teaser_card(href, kategori, namn, text, status_html=""):
     return f"""        <a class="teaser-card" href="{href}">
@@ -340,13 +563,24 @@ def main():
     with open(DATA, encoding="utf-8") as f:
         apps = json.load(f)
     os.makedirs(OUT, exist_ok=True)
+    missing_sbom = []
     for app in apps:
         fname = f"{app['slug']}.html"
         if fname in HANDWRITTEN:
             raise SystemExit(f"slug collides with handwritten page: {fname}")
         with open(os.path.join(OUT, fname), "w", encoding="utf-8") as f:
             f.write(page(app))
-    print(f"wrote {len(apps)} pages")
+        if has_sbom(app):
+            sbom_name = f"{app['slug']}-sbom.html"
+            if sbom_name in HANDWRITTEN:
+                raise SystemExit(f"sbom slug collides with handwritten page: {sbom_name}")
+            with open(os.path.join(OUT, sbom_name), "w", encoding="utf-8") as f:
+                f.write(sbom_page(app))
+        else:
+            missing_sbom.append(app["slug"])
+    print(f"wrote {len(apps)} pages ({len(apps) - len(missing_sbom)} SBOM pages)")
+    if missing_sbom:
+        print("no SBOM (page skipped):", ", ".join(missing_sbom))
 
     index_path = os.path.join(ROOT, "index.html")
     with open(index_path, encoding="utf-8") as f:

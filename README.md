@@ -58,3 +58,10 @@ Kort version: skapa en sida under `tjanster/` med verksamhetsnära beskrivning
 `scripts/generate-diagrams.py`, och lägg till ett kort i `index.html`. Interna
 projektnamn används inte i katalogen; applikationerna presenteras under sina
 verksamhetsnamn.
+
+## Programvaruförteckningar (SBOM)
+
+Varje applikation har en programvaruförteckning i SPDX-format:
+`tjanster/<slug>-sbom.html` med komponenter, versioner och licenssammanfattning,
+och `assets/sbom/<slug>.spdx.json` för maskinell läsning. De underhålls av
+`.github/workflows/refresh-sbom.yml` och ska inte redigeras för hand.
