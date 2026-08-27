@@ -189,6 +189,18 @@ installeras och därför saknar `package.json`. Varje modern frontend har några
 dussin; en varning per paket hade blivit ~1500 per körning, och en
 varningsström ingen läser är samma sak som ingen varning.
 
+**60-dagarsregeln.** GitHub stänger av schemalagda workflows i publika repon efter
+60 dagar utan aktivitet i repot. Workflowet commitar bara när ett beroende faktiskt
+ändrats, så ett par genuint tysta månader hade gett noll aktivitet och schemat hade
+tystnat utan att någon märkte det. `keepalive`-jobbet återaktiverar därför workflowet
+via API:et vid varje körning, oavsett om något ändrats.
+
+GitHub dokumenterar varken vad som räknas som "repository activity" eller att
+återaktivering nollställer räknaren — det är den bästa tillgängliga åtgärden, inte en
+garanti. Jobbet loggar därför workflowets `state` före och efter, så att utfallet går
+att se. Att commita sig levande vore alternativet, men keepalive-verktygen har gått
+ifrån dummy-commits till just API-anropet.
+
 ## Arkitekturritningen
 
 En SVG per applikation i `assets/diagrams/<samma slug>.svg`, genererad med
