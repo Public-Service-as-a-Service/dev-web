@@ -168,8 +168,15 @@ jobs:
         # instead would change every identifier and churn the whole file.
         working-directory: src
         run: |
+          # --include-dev-deps: Trivy excludes devDependencies from npm/yarn
+          # lockfiles by default, which would leave the entire build chain out of
+          # the report -- and the build chain is a real attack surface, so it is
+          # exactly what a supply-chain document should cover. It also *improves*
+          # licence coverage (91% -> 96% measured on pratomaten): build tooling is
+          # well-licensed npm metadata, whereas what remains unlicensed is mostly
+          # platform binaries that were never installed.
           trivy fs --format spdx-json --scanners license --quiet --offline-scan \
-            --output "$GITHUB_WORKSPACE/raw.spdx.json" .
+            --include-dev-deps --output "$GITHUB_WORKSPACE/raw.spdx.json" .
 
       - name: Normalise
         run: |

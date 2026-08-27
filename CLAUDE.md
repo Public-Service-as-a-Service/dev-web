@@ -143,6 +143,12 @@ Fyra saker är avgörande om workflowet någon gång skrivs om:
   Installationen måste ske i varje delprojekt: 24 av de 29 katalogförda repon som
   finns lokalt saknar `package.json` i roten och är upplagda som `frontend/` +
   `backend/` (+ `admin/`), i snitt 2,1 lockfiler per repo.
+- **`--include-dev-deps` vid scanning.** Trivy utesluter `devDependencies` ur
+  npm/yarn-lockfiler som standard, vilket hade lämnat hela byggkedjan utanför
+  rapporten. Byggkedjan är en verklig attackyta och därmed precis vad ett
+  leveranskedjedokument ska täcka. Flaggan *höjer* dessutom licenstäckningen
+  (uppmätt 91 % → 96 %): byggverktygen har välmärkt paketmetadata, medan det som
+  ändå saknar licens mest är plattformsbinärer som aldrig installerats.
 - **`--ignore-scripts` vid installation.** Annars kör CI postinstall-skript från
   36 repons hela transitiva beroendeträd. Licenserna ligger i paketmetadatan, så
   inget skript behöver köras för att samla in dem, och att köra dem vore att
