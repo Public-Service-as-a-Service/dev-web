@@ -117,6 +117,57 @@ generatorn producerar och handskrivna sidor ska följa:
    - **Källkod** – länk till repot på GitHub (länktext utan projektnamn).
 5. **Sidfot** – samma `site-footer` som övriga sidor.
 
+## Programvaruförteckningen (SBOM)
+
+`tjanster/<slug>-sbom.html` genereras av samma skript ur
+`assets/sbom/<slug>.spdx.json` och listar applikationens tredjepartskomponenter
+med version och licens, plus en licenssammanfattning. Filterfältet är
+progressive enhancement – tabellen renderas i sin helhet utan JavaScript.
+
+**Skriv aldrig SBOM-filerna för hand och regenerera dem inte som en del av det
+vanliga arbetsflödet.** Till skillnad från sidorna och ritningarna, som är rena
+funktioner av `apps-data.json`, är en SBOM en funktion av 36 externa repon som
+Dependabot uppdaterar löpande. De underhålls av
+`.github/workflows/refresh-sbom.yml`, som varje vecka checkar ut varje
+källkodsrepo, installerar beroendena, kör Trivy och commitar det som ändrats.
+Workflowet publicerar också till GitHub Pages i ett eget steg: en push gjord med
+`GITHUB_TOKEN` startar inga nya workflows, så `deploy-pages.yml` plockar *inte*
+upp den commiten.
+
+Fyra saker är avgörande om workflowet någon gång skrivs om:
+
+- **Beroendena måste installeras, per delprojekt.** En npm-lockfil bär ingen
+  licensinformation alls – Trivy läser licensen ur
+  `node_modules/<paket>/package.json`. Utan installation blir komponentlistan
+  komplett men 100 % av licenserna `NOASSERTION`; med installation cirka 90 %.
+  Installationen måste ske i varje delprojekt: 24 av de 29 katalogförda repon som
+  finns lokalt saknar `package.json` i roten och är upplagda som `frontend/` +
+  `backend/` (+ `admin/`), i snitt 2,1 lockfiler per repo.
+- **`--ignore-scripts` vid installation.** Annars kör CI postinstall-skript från
+  36 repons hela transitiva beroendeträd. Licenserna ligger i paketmetadatan, så
+  inget skript behöver köras för att samla in dem, och att köra dem vore att
+  införa precis den exponering katalogen finns till för att dokumentera.
+- **Scanningen måste ske inifrån utcheckningen med `trivy fs … .`** Trivy
+  härleder varje pakets `SPDXID` ur ett PkgID som innehåller scan-sökvägen, så
+  `trivy fs src` byter identitet på samtliga paket vid varje körning.
+- **Trivy-versionen är pinnad**, av samma skäl. En uppgradering ska vara en egen,
+  granskad ändring.
+
+En misslyckad installation fäller avsiktligt den matrisgrenen i stället för att
+ge en degraderad SBOM: en delvis installation gör tyst om licenser till
+`NOASSERTION`, vilket hade commitat en diff som inte motsvarar någon verklig
+beroendeändring. Grenen behåller då sin förra SBOM.
+
+`scripts/normalize-sbom.py` låser de fält som annars varierar mellan körningar
+(namnrymd och tidsstämpel) till den scannade committen, tar bort Trivys
+verktygsinterna annoteringar och skriver in härkomsten i dokumentet.
+Kvarvarande licensluckor rapporteras som **en** grupperad varning per app –
+merparten är plattformsbinärer (`@esbuild/*`, `@rollup/*`, `@next/swc-*` …),
+alltså `optionalDependencies` för andra plattformar än runnerns som aldrig
+installeras och därför saknar `package.json`. Varje modern frontend har några
+dussin; en varning per paket hade blivit ~1500 per körning, och en
+varningsström ingen läser är samma sak som ingen varning.
+
 ## Arkitekturritningen
 
 En SVG per applikation i `assets/diagrams/<samma slug>.svg`, genererad med

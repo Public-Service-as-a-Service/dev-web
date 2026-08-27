@@ -1,0 +1,4 @@
+{
+  "beskrivning": "Manuellt fastställda licenser för komponenter där Trivy inte kan härleda någon ur paketmetadatan. npm-lockfiler bär ingen licensinformation alls — licensen läses ur node_modules/<paket>/package.json, så paket vars metadata saknar fältet blir kvar utan licens. Används av normalize-sbom.py, som ENDAST fyller i licenseConcluded när scanningen gav NOASSERTION/NONE — en licens Trivy själv hittat skrivs aldrig över. licenseDeclared lämnas orörd.",
+  "komponenter": {}
+}
