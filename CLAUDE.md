@@ -158,6 +158,15 @@ ge en degraderad SBOM: en delvis installation gör tyst om licenser till
 `NOASSERTION`, vilket hade commitat en diff som inte motsvarar någon verklig
 beroendeändring. Grenen behåller då sin förra SBOM.
 
+**Licensutfallet är plattformsberoende — jaga inte den diffen.** Bara de
+plattformsbinärer som faktiskt installeras får licens, och installeraren väljer
+efter värdplattformen. En körning på macOS ger licens åt `@img/sharp-darwin-arm64`
+men inte åt `@img/sharp-linux-x64`; på CI:s ubuntu-runner är det tvärtom. Uppmätt
+skillnad mellan macOS och Linux för pratomaten: 19 paket. Inom CI är utfallet
+deterministiskt eftersom runnern alltid är ubuntu — men en lokal regenerering på
+en Mac kommer aldrig att matcha det incheckade byte för byte. CI är sanningskällan;
+committa inte en lokalt regenererad SBOM.
+
 `scripts/normalize-sbom.py` låser de fält som annars varierar mellan körningar
 (namnrymd och tidsstämpel) till den scannade committen, tar bort Trivys
 verktygsinterna annoteringar och skriver in härkomsten i dokumentet.
