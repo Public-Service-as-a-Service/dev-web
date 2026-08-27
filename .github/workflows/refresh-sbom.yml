@@ -75,7 +75,9 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v6
         with:
-          node-version: "22"
+          # 24 covers the repositories that pin an engine range; the engine checks
+          # are relaxed below anyway, since this job only reads package metadata.
+          node-version: "24"
 
       - name: Install dependencies
         # Licences are the reason this step exists. An npm lockfile carries no
@@ -108,16 +110,36 @@ jobs:
           fi
           echo "Found ${#locks[@]} lockfile(s)."
           corepack enable || true
+          # One install per directory. A directory carrying both yarn.lock and
+          # package-lock.json is a repo that migrated to yarn and left the old
+          # lockfile behind: installing both means running `npm ci` against a
+          # package-lock nobody maintains, which fails on the first drift.
+          # yarn.lock wins where both exist.
+          declare -A seen=()
           for lock in "${locks[@]}"; do
             dir=$(dirname "$lock")
             file=$(basename "$lock")
+            if [ -n "${seen[$dir]:-}" ]; then
+              echo "Skipping $dir/$file -- already installed with ${seen[$dir]}."
+              continue
+            fi
+            if [ "$file" = "package-lock.json" ] && [ -f "$dir/yarn.lock" ]; then
+              echo "Skipping $dir/package-lock.json -- yarn.lock present."
+              continue
+            fi
+            seen[$dir]=$file
             echo "::group::install $dir ($file)"
             ok=0
             for attempt in 1 2 3; do
               case "$file" in
-                yarn.lock)         (cd "$dir" && yarn install --frozen-lockfile --ignore-scripts) && ok=1 ;;
-                package-lock.json) (cd "$dir" && npm ci --ignore-scripts) && ok=1 ;;
-                pnpm-lock.yaml)    (cd "$dir" && pnpm install --frozen-lockfile --ignore-scripts) && ok=1 ;;
+                # --ignore-engines / --engine-strict=false: several repos pin an
+                # exact Node major, and nothing is being built here -- the licences
+                # are read out of package.json metadata, so an engine mismatch has
+                # no bearing on the result. Failing on it would drop a repo from the
+                # catalogue over a version pin that does not affect the answer.
+                yarn.lock)         (cd "$dir" && yarn install --frozen-lockfile --ignore-scripts --ignore-engines) && ok=1 ;;
+                package-lock.json) (cd "$dir" && npm ci --ignore-scripts --engine-strict=false) && ok=1 ;;
+                pnpm-lock.yaml)    (cd "$dir" && pnpm install --frozen-lockfile --ignore-scripts --config.engine-strict=false) && ok=1 ;;
               esac
               [ "$ok" -eq 1 ] && break
               echo "::warning::install failed in $dir (attempt ${attempt}/3)."
