@@ -6,11 +6,36 @@ nedan – det är så de befintliga sidorna är framtagna.
 
 ## Vad katalogen är
 
-En statisk webbplats (ren HTML/CSS, inget byggsteg) som beskriver de
-webbapplikationer Sundsvalls kommun publicerar som öppen källkod på
+En statisk webbplats – en React-applikation som byggs med Vite – som beskriver
+de webbapplikationer Sundsvalls kommun publicerar som öppen källkod på
 [github.com/Sundsvallskommun](https://github.com/Sundsvallskommun) – repon som
 börjar med `web-app`. Publiceras till GitHub Pages via
-`.github/workflows/deploy-pages.yml` vid push till `main`.
+`.github/workflows/deploy-pages.yml` vid push till `main` (arbetsflödet kör
+`npm ci && npm run build` och publicerar `dist/`).
+
+## Designsystem – obligatoriskt
+
+Webbplatsen följer [Sundsvalls kommuns designsystem](https://ui.sundsvall.dev/)
+(dokumentation för AI-verktyg: <https://ui.sundsvall.dev/llms-full.txt>).
+
+- **Importera komponenter från `@sk-web-gui/react`**: `Button`, `Card`, `Link`,
+  `Label`, `Table`, `Breadcrumb`, `Header`, `Footer`, `Logo`, `GuiProvider`
+  med flera. Bygg inte egna varianter av komponenter som designsystemet redan
+  har.
+- **Alla designtokens kommer från `@sk-web-gui/core`**, inkopplat som
+  Tailwind-preset i `tailwind.config.js`. Använd tokenklasser som
+  `bg-vattjom-background-200`, `text-dark-secondary`, `border-divider`,
+  `font-header`, `text-lead`, `max-w-content`, `rounded-cards` samt
+  avståndsskalan (`p-24`, `gap-16`, `py-40` …).
+- **Hårdkoda aldrig hex-värden eller CSS-variabler.** Inga `#`-färger, inga
+  `var(--…)` och ingen egen CSS utöver Tailwind-direktiven i `src/index.css` –
+  allt utseende ska komma från paketen via komponenter och tokenklasser.
+- `vattjom` (blå) är webbplatsens primärtema. Typsnitt: Raleway för rubriker
+  via `font-header` (läses in från paketet `@fontsource/raleway`), Arial för
+  brödtext (temats standard).
+- **Knapptexter ska vara verb i imperativ** ("Utforska applikationerna",
+  "Ladda ner SPDX (JSON)") och **länktexter beskriva målet** ("Läs mer om
+  Mina sidor" – aldrig bara "Läs mer").
 
 ## Grundprinciper
 
@@ -69,15 +94,23 @@ Citizen, Employee, LegalEntity, Party, ActiveDirectory.
    ingress, beskrivning, målgrupp, funktioner, apis, integrationer, auth,
    teknik, konfiguration, anteckningar) och kör
    `python3 scripts/generate-pages.py` följt av
-   `python3 scripts/generate-diagrams.py`. Sidan, arkitekturritningen och
-   startsidans kort (mellan `APP-CARDS`-markörerna i `index.html`) genereras
-   då automatiskt med rätt struktur. Fyll fälten enligt tabellen ovan –
-   uppgifterna ska vara härledda ur källkodsrepot.
+   `python3 scripts/generate-diagrams.py`. Generatorn skriver **sidskal**
+   under `tjanster/` – head-metadata plus sidans data inbäddad som JSON i
+   `<script id="page-data">` – och innehållet renderas av
+   `src/pages/AppPage.tsx` respektive `src/pages/SbomPage.tsx` med
+   designsystemet. Startsidans kort behöver inte genereras:
+   `src/pages/IndexPage.tsx` importerar `apps-data.json` direkt (de tre
+   handskrivna sidornas kort ligger i `HAND_CARDS` där). Fyll fälten enligt
+   tabellen ovan – uppgifterna ska vara härledda ur källkodsrepot. Ändras
+   sidornas struktur eller utseende görs det i React-komponenterna; ändras
+   datat körs generatorn om.
 2. **Handskrivet.** De tre ärendehanteringssidorna
-   (`generisk-arendehantering`, `myndighetsutovning-*`) är handskrivna och
-   rörs inte av generatorn; deras diagram definieras direkt i
-   `scripts/generate-diagrams.py`. Använd det här sättet bara när en sida
-   behöver avvika från standardstrukturen.
+   (`generisk-arendehantering`, `myndighetsutovning-*`) är handskrivna
+   React-sidor i `src/pages/handskrivna/` (deras incheckade sidskal under
+   `tjanster/` rörs inte av generatorn); deras diagram definieras direkt i
+   `scripts/generate-diagrams.py`. De återanvänder samma layoutkomponent
+   (`src/components/AppArticle.tsx`) som de genererade sidorna. Använd det
+   här sättet bara när en sida behöver avvika från standardstrukturen.
 
 ## Tjänstesidans struktur
 
@@ -85,29 +118,31 @@ Sidan heter `tjanster/<slug>.html` (slug utan å/ä/ö, med bindestreck,
 härledd ur tjänstens namn – inte ur repots kodnamn). Strukturen, som
 generatorn producerar och handskrivna sidor ska följa:
 
-1. **Sidhuvud** – samma `site-header` som övriga sidor (länkar med `../`).
-2. **`page-hero`** – brödsmulor (Start / Webbapplikationer / sidnamn),
-   `app-tag app-tag-light` med kategori ("Ärendehantering" eller
-   "Myndighetsutövning"), `h1` med tjänstens namn, `hero-lead` med en menings
+Strukturen definieras av `src/components/AppArticle.tsx`:
+
+1. **Sidhuvud** – `SiteHeader` (designsystemets `Header` med kommunlogotypen).
+2. **`PageHero`** – brödsmulor (Start / Webbapplikationer / sidnamn,
+   designsystemets `Breadcrumb`), `Label` med kategori ("Ärendehantering"
+   eller "Myndighetsutövning"), `h1` med tjänstens namn och en menings
    sammanfattning.
 3. **"Om applikationen"** – 2–4 stycken verksamhetsnära text: vilket behov
    tjänsten löser, vem som använder den, vilken nytta den ger. Inga tekniska
    utvecklingsdetaljer här. Därefter en punktlista: antingen "Verksamheter som
    använder applikationen" (generiska tjänster) eller "Det här stödjer
-   applikationen" (funktionsöversikt). I sidokolumnen en `fact-box`
-   ("Snabbfakta") med målgrupp, typ och en `fact-box-link` till källkoden –
+   applikationen" (funktionsöversikt). I sidokolumnen en `FactBox`
+   ("Snabbfakta") med målgrupp, typ och länk till källkoden –
    länktext utan projektnamn, t.ex. "Källkod på GitHub".
-4. **"Teknisk dokumentation"** (`section-alt`, id `teknisk-dokumentation`) med
+4. **"Teknisk dokumentation"** (id `teknisk-dokumentation`) med
    underrubrikerna, i denna ordning:
-   - **Arkitektur** – först en `figure.diagram` med arkitekturritningen (se
-     nedan) och figcaption "Lösningsarkitektur, härledd ur källkodens
+   - **Arkitektur** – först en `DiagramFigure` med arkitekturritningen (se
+     nedan) och bildtext "Lösningsarkitektur, härledd ur källkodens
      konfiguration …", därefter prosa om frontend/backend, API-plattform
      (WSO2) och SAML-inloggning, samt hur instansen förhåller sig till delad
      kodbas.
    - **Teknikstack** – punktlista: körmiljö, frontend-ramverk,
      pakethantering, testverktyg.
-   - **API-beroenden** – tabell (API, Version, Användning) i `table-wrap`.
-     Versionerna ska ordagrant komma från `api-config.ts`. Sortera med
+   - **API-beroenden** – tabell (API, Version, Användning, designsystemets
+     `Table`). Versionerna ska ordagrant komma från `api-config.ts`. Sortera med
      kärn-API:et först, sedan verksamhets-API:er, sist master-data.
      Notera avvikelser i användningskolumnen (t.ex. "e-post används inte").
    - **Konfiguration och driftsättning** – punktlista utifrån
@@ -115,14 +150,15 @@ generatorn producerar och handskrivna sidor ska följa:
      WSO2-uppgifter (`CLIENT_KEY`/`CLIENT_SECRET`), SAML-variabler,
      funktionsflaggor, utvecklings-/produktionsläge.
    - **Källkod** – länk till repot på GitHub (länktext utan projektnamn).
-5. **Sidfot** – samma `site-footer` som övriga sidor.
+5. **Sidfot** – `SiteFooter` (designsystemets `Footer`).
 
 ## Programvaruförteckningen (SBOM)
 
 `tjanster/<slug>-sbom.html` genereras av samma skript ur
-`assets/sbom/<slug>.spdx.json` och listar applikationens tredjepartskomponenter
-med version och licens, plus en licenssammanfattning. Filterfältet är
-progressive enhancement – tabellen renderas i sin helhet utan JavaScript.
+`assets/sbom/<slug>.spdx.json` – komponentlistan bäddas in i sidskalet som
+JSON – och renderas av `src/pages/SbomPage.tsx`: applikationens
+tredjepartskomponenter med version och licens, en licenssammanfattning och
+ett filterfält.
 
 **Skriv aldrig SBOM-filerna för hand och regenerera dem inte som en del av det
 vanliga arbetsflödet.** Till skillnad från sidorna och ritningarna, som är rena
@@ -230,14 +266,13 @@ exakt med sidans API-tabell – båda kommer från samma källor i repot.
 
 ## Övrigt att uppdatera
 
-- **`index.html`** – korten mellan `<!-- BEGIN:APP-CARDS -->` och
-  `<!-- END:APP-CARDS -->` genereras av `scripts/generate-pages.py`
-  (grupperade per kategori, sorterade på namn, med statusetikett för
-  verktyg); redigera aldrig det blocket för hand.
 - **`README.md`** – uppdatera vid behov beskrivningen av innehållet.
-- **Verifiera lokalt** innan push: rendera sidorna med headless Chromium och
+- **Verifiera lokalt** innan push: kör `npx tsc --noEmit` och `npm run build`,
+  servera `dist/` (`npm run preview`, kom ihåg `cp -r assets dist/assets` om du
+  byggt utan npm-skriptet) och rendera sidorna med headless Chromium –
   kontrollera layout, diagram och att inget projektnamn syns i löptext
-  (`grep -i <projektnamn> *.html tjanster/*.html` ska bara träffa URL:er).
+  (`grep -ri <projektnamn> src/ tjanster/` ska bara träffa URL:er och
+  filnamn).
 
 ## Arbetsflöde
 

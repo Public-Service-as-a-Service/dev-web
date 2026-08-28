@@ -12,17 +12,26 @@ utvecklingsdetaljer.
 Varje webbapplikation presenteras på en egen sida med en verksamhetsnära
 beskrivning följt av teknisk dokumentation (härledd från GitHub) på samma sida.
 
+Webbplatsen är byggd med [Sundsvalls kommuns designsystem](https://ui.sundsvall.dev/):
+komponenter importeras från `@sk-web-gui/react` och alla designtokens (färger,
+typografi, avstånd) kommer från `@sk-web-gui/core` via dess Tailwind-preset.
+Inga hex-värden eller CSS-variabler hårdkodas i projektet.
+
 ## Innehåll
 
-- `index.html` – förstasidan med information om katalogen och en översikt över
-  applikationerna, grupperad per kategori.
-- `tjanster/*.html` – en sida per webbapplikation (ett 40-tal), med
-  beskrivning och teknisk dokumentation. Tre sidor är handskrivna
-  (`generisk-arendehantering`, `myndighetsutovning-*`); övriga genereras från
-  `scripts/apps-data.json` med `scripts/generate-pages.py`.
+- `index.html` / `src/pages/IndexPage.tsx` – förstasidan med information om
+  katalogen och en översikt över applikationerna, grupperad per kategori
+  (korten renderas ur `scripts/apps-data.json`).
+- `tjanster/*.html` – ett sidskal per webbapplikation (ett 40-tal) med sidans
+  data inbäddad som JSON; innehållet renderas av React-komponenterna i
+  `src/pages/`. Tre sidor är handskrivna React-sidor
+  (`generisk-arendehantering`, `myndighetsutovning-*`, i
+  `src/pages/handskrivna/`); övriga genereras från `scripts/apps-data.json`
+  med `scripts/generate-pages.py`.
 - `scripts/apps-data.json` – fakta om varje applikation, härledd ur respektive
   källkodsrepo.
-- `assets/styles.css` – webbplatsens utseende.
+- `src/components/` – delade byggblock (sidhuvud, sidfot, hero, kort med mera)
+  ovanpå designsystemets komponenter.
 - `assets/diagrams/*.svg` – arkitekturritningar, genererade med
   `scripts/generate-diagrams.py`.
 - `CLAUDE.md` – AI-instruktion som i detalj beskriver hur en tjänst
@@ -30,9 +39,19 @@ beskrivning följt av teknisk dokumentation (härledd från GitHub) på samma si
 - `.github/workflows/deploy-pages.yml` – arbetsflöde som publicerar webbplatsen
   till GitHub Pages.
 
+## Utveckla och bygga
+
+Webbplatsen är en React-applikation som byggs med Vite till statiska filer:
+
+```sh
+npm install   # installera beroenden
+npm run dev   # utvecklingsserver med omedelbar omladdning
+npm run build # bygg produktionsversionen till dist/
+```
+
 ## Publicering
 
-Webbplatsen är statisk och kräver inget byggsteg. Den publiceras automatiskt via
+Webbplatsen byggs med `npm run build` och publiceras automatiskt via
 GitHub Pages när ändringar pushas till `main`-grenen.
 
 Engångsinställning: under **Settings → Pages** i repot, välj **GitHub Actions**
@@ -40,8 +59,8 @@ som källa ("Source"). Därefter publiceras sidan på
 `https://<organisation>.github.io/web-catalogue/` vid varje push till `main`
 (eller manuellt via *Run workflow*).
 
-Webbplatsen kan även driftsättas som container: `Dockerfile` bygger en
-nginx-avbildning som serverar sidan på port 80 (används för deploy via
+Webbplatsen kan även driftsättas som container: `Dockerfile` bygger webbplatsen
+i ett Node-steg och serverar `dist/` med nginx på port 80 (används för deploy via
 Dokploy – byggtyp Dockerfile, containerport 80, källan klonad över HTTPS
 eftersom repot är publikt, med webhook som triggar deploy vid push till
 `main`).
