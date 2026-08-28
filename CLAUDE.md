@@ -47,14 +47,17 @@ Webbplatsen följer [Sundsvalls kommuns designsystem](https://ui.sundsvall.dev/)
 
 1. **Verksamhetsnamn, inte projektnamn.** Interna projekt-/kodnamn (t.ex.
    "Draken") används aldrig i katalogen. Applikationer presenteras under sina
-   verksamhetsvända namn ("Generisk ärendehantering",
-   "Myndighetsutövning – parkeringstillstånd").
-2. **En sida per webbapplikation.** En generisk/konfigurerbar lösning som delas
-   av flera verksamheter är EN applikation och får EN sida (verksamheterna
-   listas på sidan). Myndighetsutövande applikationer får varsin egen sida,
-   även när de delar kodbas. Tumregel för uppdelning: instanser som bygger på
-   samma kärn-API och enbart skiljer sig genom konfiguration hör till samma
-   sida; olika kärn-API eller olika myndighetsprocess ⇒ egen sida.
+   verksamhetsvända namn ("Ärendehantering och myndighetsutövning",
+   "Mina sidor").
+2. **En sida per källkodsförråd.** Varje `web-app`-repo får EN post i
+   `scripts/apps-data.json` och därmed EN sida, även när repot bygger flera
+   webbappar. **Bygger repot flera webbar är fältet `webbar` obligatoriskt**:
+   det ska räkna upp varje webb och de processer den implementerar (se
+   "Webbappar och processer per webb" nedan), så att sidan synliggör vad de
+   olika webbarna gör. Exempel: `web-app-draken-public` bygger den generiska
+   ärendehanteringen och de två myndighetsutövningswebbarna (mark och
+   exploatering respektive parkeringstillstånd) och dokumenteras på sidan
+   "Ärendehantering och myndighetsutövning".
 3. **Koden är sanningskällan, inte README.** README-filer kan vara inaktuella.
    Härled alltid teknisk fakta (API:er, versioner, funktioner) ur
    källkodsrepots konfiguration och kod. Verifierade avvikelser från README har
@@ -87,38 +90,55 @@ specifika API:er (MEX: Contract, Estateinfo, Billing*, Company; PT:
 PartyAssets, JsonSchema, Messaging). Gemensamma master-data-API:er för alla:
 Citizen, Employee, LegalEntity, Party, ActiveDirectory.
 
-## Två sätt att skapa tjänstesidor
+## Webbappar och processer per webb
 
-1. **Datadrivet (standard).** Lägg till ett objekt i `scripts/apps-data.json`
-   med de fält som redan finns där (repo, namn, slug, kategori, status,
-   ingress, beskrivning, målgrupp, funktioner, apis, integrationer, auth,
-   teknik, konfiguration, anteckningar) och kör
-   `python3 scripts/generate-pages.py` följt av
-   `python3 scripts/generate-diagrams.py`. Generatorn skriver **sidskal**
-   under `tjanster/` – head-metadata plus sidans data inbäddad som JSON i
-   `<script id="page-data">` – och innehållet renderas av
-   `src/pages/AppPage.tsx` respektive `src/pages/SbomPage.tsx` med
-   designsystemet. Startsidans kort behöver inte genereras:
-   `src/pages/IndexPage.tsx` importerar `apps-data.json` direkt (de tre
-   handskrivna sidornas kort ligger i `HAND_CARDS` där). Fyll fälten enligt
-   tabellen ovan – uppgifterna ska vara härledda ur källkodsrepot. Ändras
-   sidornas struktur eller utseende görs det i React-komponenterna; ändras
-   datat körs generatorn om.
-2. **Handskrivet.** De tre ärendehanteringssidorna
-   (`generisk-arendehantering`, `myndighetsutovning-*`) är handskrivna
-   React-sidor i `src/pages/handskrivna/` (deras incheckade sidskal under
-   `tjanster/` rörs inte av generatorn); deras diagram definieras direkt i
-   `scripts/generate-diagrams.py`. De återanvänder samma layoutkomponent
-   (`src/components/AppArticle.tsx`) som de genererade sidorna. Använd det
-   här sättet bara när en sida behöver avvika från standardstrukturen.
+För repon som bygger flera webbappar (t.ex. `web-app-draken-public`, där
+instans styrs av konfiguration och funktionsflaggor i stället för separata
+kodgrenar) fylls fältet `webbar` i posten:
+
+```json
+"webbar": [
+  { "namn": "Generisk ärendehantering",
+    "beskrivning": "den konfigurerbara grunden, i drift hos nio verksamheter",
+    "processer": ["Kontaktcenterärenden för invånare – Kontakt Sundsvall och Kontakt Ånge", "…"] }
+]
+```
+
+- **`namn`** är webbens verksamhetsvända namn, **`processer`** räknar upp de
+  verksamhetsprocesser webben implementerar – härledda ur källkoden
+  (instansernas miljöfiler, funktionsflaggor, byggkonfiguration och
+  API-användning), inte ur README.
+- Sidan renderar detta som sektionen "Webbappar och deras processer", och
+  Snabbfakta visar antalet webbar. **Håll listan aktuell**: när en ny
+  verksamhet eller webb tillkommer i repot, eller en process flyttar mellan
+  webbar, uppdateras `webbar` i samma veva som övriga fält och sidorna
+  genereras om.
+- API-tabellens användningskolumn ska ange vilken webb eller process som
+  använder API:et när det inte används av alla (t.ex. "Avtal i mark- och
+  exploateringsärenden").
+
+## Så skapas tjänstesidor
+
+**Datadrivet (enda sättet).** Lägg till ett objekt i `scripts/apps-data.json`
+med de fält som redan finns där (repo, namn, slug, kategori, status,
+ingress, beskrivning, målgrupp, funktioner, webbar, apis, integrationer,
+auth, teknik, konfiguration, anteckningar) och kör
+`python3 scripts/generate-pages.py` följt av
+`python3 scripts/generate-diagrams.py`. Generatorn skriver **sidskal**
+under `tjanster/` – head-metadata plus sidans data inbäddad som JSON i
+`<script id="page-data">` – och innehållet renderas av
+`src/pages/AppPage.tsx` respektive `src/pages/SbomPage.tsx` med
+designsystemet. Startsidans kort behöver inte genereras:
+`src/pages/IndexPage.tsx` importerar `apps-data.json` direkt. Fyll fälten
+enligt tabellen ovan – uppgifterna ska vara härledda ur källkodsrepot.
+Ändras sidornas struktur eller utseende görs det i React-komponenterna;
+ändras datat körs generatorn om. Det finns inga handskrivna sidor.
 
 ## Tjänstesidans struktur
 
 Sidan heter `tjanster/<slug>.html` (slug utan å/ä/ö, med bindestreck,
-härledd ur tjänstens namn – inte ur repots kodnamn). Strukturen, som
-generatorn producerar och handskrivna sidor ska följa:
-
-Strukturen definieras av `src/components/AppArticle.tsx`:
+härledd ur tjänstens namn – inte ur repots kodnamn). Strukturen definieras
+av `src/components/AppArticle.tsx`:
 
 1. **Sidhuvud** – `SiteHeader` (designsystemets `Header` med kommunlogotypen).
 2. **`PageHero`** – brödsmulor (Start / Webbapplikationer / sidnamn,
@@ -127,11 +147,12 @@ Strukturen definieras av `src/components/AppArticle.tsx`:
    sammanfattning.
 3. **"Om applikationen"** – 2–4 stycken verksamhetsnära text: vilket behov
    tjänsten löser, vem som använder den, vilken nytta den ger. Inga tekniska
-   utvecklingsdetaljer här. Därefter en punktlista: antingen "Verksamheter som
-   använder applikationen" (generiska tjänster) eller "Det här stödjer
-   applikationen" (funktionsöversikt). I sidokolumnen en `FactBox`
-   ("Snabbfakta") med målgrupp, typ och länk till källkoden –
-   länktext utan projektnamn, t.ex. "Källkod på GitHub".
+   utvecklingsdetaljer här. Därefter punktlistan "Det här stödjer
+   applikationen" (funktionsöversikt) och, för repon med flera webbar,
+   sektionen "Webbappar och deras processer" (renderad ur fältet `webbar`).
+   I sidokolumnen en `FactBox` ("Snabbfakta") med målgrupp, typ, antal
+   webbar när det är fler än en, samt länk till källkoden – länktext utan
+   projektnamn, t.ex. "Källkod på GitHub".
 4. **"Teknisk dokumentation"** (id `teknisk-dokumentation`) med
    underrubrikerna, i denna ordning:
    - **Arkitektur** – först en `DiagramFigure` med arkitekturritningen (se
@@ -200,11 +221,9 @@ ge en degraderad SBOM: en delvis installation gör tyst om licenser till
 `NOASSERTION`, vilket hade commitat en diff som inte motsvarar någon verklig
 beroendeändring. Grenen behåller då sin förra SBOM.
 
-De tre handskrivna sidorna i `HANDWRITTEN` beskriver lösningar snarare än enskilda
-applikationer och har ingen post i `apps-data.json` — men alla tre pekar på samma repo,
-`web-app-draken-public`. Det står i `scripts/sbom-extra.json`, som ger det en SBOM-sida
-(`tjanster/draken-sbom.html`) utan kort på startsidan. Länken till den är **handlagd** i
-de tre sidorna; generatorn rör dem inte.
+`scripts/sbom-extra.json` finns kvar för repon som skulle behöva en
+programvaruförteckning utan egen tjänstesida; listan är för närvarande tom –
+alla repon med SBOM har en egen sida i katalogen.
 
 **Licensutfallet är plattformsberoende — jaga inte den diffen.** Bara de
 plattformsbinärer som faktiskt installeras får licens, och installeraren väljer

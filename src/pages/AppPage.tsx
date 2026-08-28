@@ -92,7 +92,15 @@ export function AppPage({ data }: { data: AppPageData }) {
           <strong>{f.titel}</strong> – {f.text}
         </>
       ))}
+      webbar={app.webbar ?? undefined}
       factItems={[
+        ...(app.webbar?.length
+          ? [
+              <>
+                Bygger <strong>{app.webbar.length} webbappar</strong> ur samma kodbas
+              </>,
+            ]
+          : []),
         <>
           Målgrupp: <strong>{app.malgrupp ?? '–'}</strong>
         </>,

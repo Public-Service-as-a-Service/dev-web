@@ -2,7 +2,7 @@ import { Label, Table } from '@sk-web-gui/react';
 import React from 'react';
 import { DiagramFigure, FactBox, PageHero, PageSection, TwoColumns } from './blocks';
 import { SubpageChrome } from './SubpageChrome';
-import type { AppApi } from '../types';
+import type { AppApi, AppWebb } from '../types';
 
 export interface AppArticleProps {
   titel: string;
@@ -13,6 +13,7 @@ export interface AppArticleProps {
   funktionerTitel: string;
   funktioner: React.ReactNode[];
   efterord?: React.ReactNode;
+  webbar?: AppWebb[];
   factItems: React.ReactNode[];
   factLinks: { label: string; href: string }[];
   diagramSlug: string;
@@ -27,7 +28,7 @@ export interface AppArticleProps {
   kallkod: React.ReactNode;
 }
 
-/** Gemensam sidlayout för applikationssidorna – genererade som handskrivna. */
+/** Gemensam sidlayout för applikationssidorna. */
 export function AppArticle(props: AppArticleProps) {
   return (
     <SubpageChrome>
@@ -64,6 +65,28 @@ export function AppArticle(props: AppArticleProps) {
             ))}
           </ul>
           {props.efterord && <p>{props.efterord}</p>}
+          {props.webbar && props.webbar.length > 0 && (
+            <>
+              <h3 className="font-header">Webbappar och deras processer</h3>
+              <p>
+                Ur samma källkodsförråd byggs flera webbappar. Här är webbarna och de processer
+                var och en implementerar:
+              </p>
+              <ul className="flex flex-col gap-16 pl-20 list-disc">
+                {props.webbar.map((webb) => (
+                  <li key={webb.namn}>
+                    <strong>{webb.namn}</strong>
+                    {webb.beskrivning && <> – {webb.beskrivning}</>}
+                    <ul className="mt-8 flex flex-col gap-4 pl-20 list-[circle]">
+                      {webb.processer.map((process) => (
+                        <li key={process}>{process}</li>
+                      ))}
+                    </ul>
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
         </TwoColumns>
       </PageSection>
 

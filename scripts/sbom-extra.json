@@ -1,11 +1,4 @@
 {
-  "beskrivning": "Repon som behöver en programvaruförteckning men saknar genererad tjänstesida. De handskrivna lösningssidorna i HANDWRITTEN beskriver lösningar snarare än enskilda applikationer, och har därför ingen post i apps-data.json - men koden bakom dem förtjänar en förteckning ändå. Posterna här får en SBOM-sida (tjanster/<slug>-sbom.html) utan att synas som kort på startsidan. Länken läggs för hand i den handskrivna sidan.",
-  "repon": [
-    {
-      "slug": "draken",
-      "repo": "web-app-draken-public",
-      "namn": "Draken",
-      "kategori": "Ärendehantering"
-    }
-  ]
+  "beskrivning": "Repon som behöver en programvaruförteckning men saknar tjänstesida i katalogen. Posterna här får en SBOM-sida (tjanster/<slug>-sbom.html) utan att synas som kort på startsidan. Listan är för närvarande tom - alla repon med SBOM har en egen tjänstesida.",
+  "repon": []
 }

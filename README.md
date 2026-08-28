@@ -24,10 +24,10 @@ Inga hex-värden eller CSS-variabler hårdkodas i projektet.
   (korten renderas ur `scripts/apps-data.json`).
 - `tjanster/*.html` – ett sidskal per webbapplikation (ett 40-tal) med sidans
   data inbäddad som JSON; innehållet renderas av React-komponenterna i
-  `src/pages/`. Tre sidor är handskrivna React-sidor
-  (`generisk-arendehantering`, `myndighetsutovning-*`, i
-  `src/pages/handskrivna/`); övriga genereras från `scripts/apps-data.json`
-  med `scripts/generate-pages.py`.
+  `src/pages/`. Samtliga genereras från `scripts/apps-data.json` med
+  `scripts/generate-pages.py`. Ett repo som bygger flera webbappar (som
+  `web-app-draken-public`) får en gemensam sida som synliggör vilka processer
+  varje webb implementerar (fältet `webbar` i datafilen).
 - `scripts/apps-data.json` – fakta om varje applikation, härledd ur respektive
   källkodsrepo.
 - `src/components/` – delade byggblock (sidhuvud, sidfot, hero, kort med mera)

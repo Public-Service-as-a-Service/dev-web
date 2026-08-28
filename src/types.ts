@@ -9,6 +9,12 @@ export interface AppApi {
   usage?: string | null;
 }
 
+export interface AppWebb {
+  namn: string;
+  beskrivning?: string;
+  processer: string[];
+}
+
 export interface AppTeknik {
   frontend?: string | null;
   backend?: string | null;
@@ -25,6 +31,7 @@ export interface AppData {
   beskrivning?: string[];
   malgrupp?: string;
   funktioner?: AppFunktion[];
+  webbar?: AppWebb[] | null;
   apis?: AppApi[] | null;
   integrationer?: string[] | null;
   auth?: string | null;

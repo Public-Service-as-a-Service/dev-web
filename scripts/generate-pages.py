@@ -1,11 +1,8 @@
 #!/usr/bin/env python3
 """Generate the page shells under tjanster/ from scripts/apps-data.json.
 
-The three original case-management pages (generisk-arendehantering,
-myndighetsutovning-*) are hand-written React pages and NOT touched by this
-script; their committed shells reference their own entries in src/entries/.
-Everything else in tjanster/ is generated from the data file, which holds
-facts derived from each source repository (see CLAUDE.md for the method).
+Everything in tjanster/ is generated from the data file, which holds facts
+derived from each source repository (see CLAUDE.md for the method).
 
 Each generated shell carries the page's title and metadata plus the page data
 embedded as JSON; the content is rendered by the React entries in src/entries/
@@ -23,17 +20,10 @@ from collections import Counter
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
 DATA = os.path.join(ROOT, "scripts", "apps-data.json")
-# Repos that need an SBOM but have no generated service page -- the handwritten
-# solution pages describe a solution rather than one application, so they have no
-# apps-data.json entry, but the code behind them still deserves a bill of materials.
+# Repos that need an SBOM but have no service page in the catalogue; currently
+# empty -- every repo with an SBOM has its own service page.
 EXTRA = os.path.join(ROOT, "scripts", "sbom-extra.json")
 OUT = os.path.join(ROOT, "tjanster")
-
-HANDWRITTEN = {
-    "generisk-arendehantering.html",
-    "myndighetsutovning-mark-och-exploatering.html",
-    "myndighetsutovning-parkeringstillstand.html",
-}
 
 
 def sbom_path(app):
@@ -154,16 +144,10 @@ def main():
     os.makedirs(OUT, exist_ok=True)
     missing_sbom = []
     for app in apps:
-        fname = f"{app['slug']}.html"
-        if fname in HANDWRITTEN:
-            raise SystemExit(f"slug collides with handwritten page: {fname}")
-        with open(os.path.join(OUT, fname), "w", encoding="utf-8") as f:
+        with open(os.path.join(OUT, f"{app['slug']}.html"), "w", encoding="utf-8") as f:
             f.write(app_shell(app))
         if has_sbom(app):
-            sbom_name = f"{app['slug']}-sbom.html"
-            if sbom_name in HANDWRITTEN:
-                raise SystemExit(f"sbom slug collides with handwritten page: {sbom_name}")
-            with open(os.path.join(OUT, sbom_name), "w", encoding="utf-8") as f:
+            with open(os.path.join(OUT, f"{app['slug']}-sbom.html"), "w", encoding="utf-8") as f:
                 f.write(sbom_shell(app))
         else:
             missing_sbom.append(app["slug"])

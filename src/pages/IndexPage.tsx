@@ -27,28 +27,6 @@ interface CardData {
   status?: string;
 }
 
-// De tre handskrivna lösningssidorna har inga poster i apps-data.json.
-const HAND_CARDS: CardData[] = [
-  {
-    kategori: 'Ärendehantering',
-    namn: 'Generisk ärendehantering',
-    href: 'tjanster/generisk-arendehantering.html',
-    text: 'En konfigurerbar tjänst för att ta emot, handlägga och avsluta ärenden och förfrågningar. Används av ett flertal verksamheter – från kontaktcenter till löne- och rekryteringsfunktioner.',
-  },
-  {
-    kategori: 'Myndighetsutövning',
-    namn: 'Myndighetsutövning – mark och exploatering',
-    href: 'tjanster/myndighetsutovning-mark-och-exploatering.html',
-    text: 'Stöd för handläggning av mark- och exploateringsärenden: arrenden, markförsäljning, avtal och fakturering – med koppling till fastighetsinformation.',
-  },
-  {
-    kategori: 'Myndighetsutövning',
-    namn: 'Myndighetsutövning – parkeringstillstånd',
-    href: 'tjanster/myndighetsutovning-parkeringstillstand.html',
-    text: 'Digital handläggning av parkeringstillstånd för rörelsehindrade – från ansökan och utredning till beslut och utfärdat tillstånd.',
-  },
-];
-
 const menu = [
   { label: 'Om katalogen', href: '#om-katalogen' },
   { label: 'Webbapplikationer', href: '#tjanster' },
@@ -86,9 +64,6 @@ function AppCard({ card }: { card: CardData }) {
 
 export function IndexPage() {
   const byCategory = new Map<string, CardData[]>();
-  for (const card of HAND_CARDS) {
-    byCategory.set(card.kategori, [...(byCategory.get(card.kategori) ?? []), card]);
-  }
   for (const app of apps) {
     const card: CardData = {
       kategori: app.kategori,
@@ -167,9 +142,9 @@ export function IndexPage() {
           <h2 className="font-header">Webbapplikationer i katalogen</h2>
           <p className="text-lead">
             Katalogen omfattar de öppna webbapplikationer som körs i drift, grupperade per
-            område. De tre ärendehanteringsapplikationerna bygger på en gemensam öppen kodbas;
-            övriga applikationer har var sitt källkodsförråd. Välj en applikation för att läsa
-            mer.
+            område – en sida per källkodsförråd. Bygger ett förråd flera webbappar presenteras
+            de på en gemensam sida som visar vilka processer varje webb implementerar. Välj en
+            applikation för att läsa mer.
           </p>
           {CATEGORY_ORDER.filter((cat) => byCategory.has(cat)).map((cat) => (
             <section key={cat} aria-label={cat}>

@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """Generate per-application architecture SVG diagrams for the web catalogue.
 
-Data is derived from the web-app-draken-public repository:
-backend/src/config/api-config.ts (API versions), backend/src/utils/validateEnv.ts,
-backend/src/controllers + services (API usage), frontend/.env.*-example (feature flags).
-Run from anywhere: output is written to assets/diagrams/ in the repo root.
+One diagram per entry in scripts/apps-data.json; the data is derived from each
+source repository (API config, environment validation, controllers/services and
+feature flags). Run from anywhere: output is written to assets/diagrams/ in the
+repo root.
 """
 
 import os
@@ -179,76 +179,7 @@ def diagram(filename, title, core, domain_apis, master_apis, notes,
         f.write(svg)
     print(path, f"({int(y)}px)")
 
-MASTER_COMMON = [
-    ("Citizen", "3.0", "uppgifter om invånare"),
-    ("Employee", "2.0", "uppgifter om medarbetare"),
-    ("LegalEntity", "2.0", "organisationer och företag"),
-    ("Party", "2.1", "id-översättning av parter"),
-    ("ActiveDirectory", "2.0", "användare och behörigheter"),
-]
-
-diagram(
-    "generisk-arendehantering.svg",
-    "Generisk ärendehantering",
-    ("SupportManagement", "14.9", "ärendehantering (kärna)"),
-    [
-        ("CaseData", "13.0", "eskalering till myndighetsärende"),
-        ("CaseStatus", "4.3", "statusinformation"),
-        ("Relations", "1.1", "kopplingar mellan ärenden"),
-        ("Templating", "2.1", "mallar och PDF"),
-        ("BillingPreprocessor", "4.5", "fakturering (vissa verksamheter)"),
-        ("Estateinfo", "2.2", "fastighetsinformation"),
-    ],
-    MASTER_COMMON,
-    [
-        "Meddelanden till invånare och medarbetare skickas via SupportManagement-API:ets kommunikationsfunktioner.",
-        "Fakturering används av verksamheter som Lön och pension samt Rekrytering och bemanning (styrs med funktionsflaggor).",
-        "Vilka funktioner som är aktiva styrs per verksamhetsinstans genom konfiguration, inte genom separat kod.",
-    ],
-)
-
-diagram(
-    "myndighetsutovning-mark-och-exploatering.svg",
-    "Myndighetsutövning mark och exploatering",
-    ("CaseData", "13.0", "ärendehantering (kärna)"),
-    [
-        ("Contract", "9.0", "arrende- och köpeavtal"),
-        ("Estateinfo", "2.2", "fastighetsinformation"),
-        ("Messaging", "7.10", "meddelanden till parter"),
-        ("BillingPreprocessor", "4.5", "faktureringsunderlag"),
-        ("BillingDataCollector", "2.1", "insamling av faktureringsdata"),
-        ("CaseStatus", "4.3", "statusinformation"),
-        ("Relations", "1.1", "kopplingar mellan ärenden"),
-        ("Templating", "2.1", "mallar och PDF"),
-        ("Company", "1.0", "företagsuppslag"),
-    ],
-    MASTER_COMMON,
-    [
-        "Beslut och meddelanden skickas via Messaging-API:et (e-post, sms och digital brevlåda).",
-        "Avtal upprättas i Contract-API:et och faktureringsunderlag skapas som en del av handläggningen.",
-    ],
-)
-
-diagram(
-    "myndighetsutovning-parkeringstillstand.svg",
-    "Myndighetsutövning parkeringstillstånd",
-    ("CaseData", "13.0", "ärendehantering (kärna)"),
-    [
-        ("PartyAssets", "6.5", "register över utfärdade tillstånd"),
-        ("JsonSchema", "1.0", "validering av ansökningsuppgifter"),
-        ("Messaging", "7.10", "meddelanden till sökande"),
-        ("CaseStatus", "4.3", "statusinformation"),
-        ("Relations", "1.1", "kopplingar mellan ärenden"),
-        ("Templating", "2.1", "mallar och PDF"),
-    ],
-    MASTER_COMMON,
-    [
-        "Beslut skickas via Messaging-API:et som sms och digital brevlåda; e-postutskick används inte för parkeringstillstånd.",
-        "Utfärdade tillstånd registreras i PartyAssets och kopplas till person via Party-API:et.",
-    ],
-)
-
-# --- Data-driven diagrams for all other applications (scripts/apps-data.json) ---
+# --- Data-driven diagrams for all applications (scripts/apps-data.json) ---
 
 MASTER_NAMES = {"citizen", "employee", "legalentity", "party", "activedirectory"}
 

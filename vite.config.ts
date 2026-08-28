@@ -4,8 +4,7 @@ import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 
 // Alla sidor under tjanster/ är egna ingångar: sidskalen genereras av
-// scripts/generate-pages.py (de tre handskrivna sidornas skal är incheckade)
-// och renderas av React-ingångarna i src/entries/.
+// scripts/generate-pages.py och renderas av React-ingångarna i src/entries/.
 const servicePages = Object.fromEntries(
   readdirSync(resolve(__dirname, 'tjanster'))
     .filter((f) => f.endsWith('.html'))
