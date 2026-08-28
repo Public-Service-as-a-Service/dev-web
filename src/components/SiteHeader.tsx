@@ -9,7 +9,6 @@ export interface MenuItem {
 export function SiteHeader({ menu }: { menu: MenuItem[] }) {
   return (
     <Header
-      wrapperClasses="sticky top-0 z-10"
       logo={
         <Link
           href="index.html"
