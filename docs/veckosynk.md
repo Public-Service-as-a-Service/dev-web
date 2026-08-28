@@ -20,18 +20,19 @@ den här filen.
 1. Läs `CLAUDE.md` i repots rot – den styr hur katalogen underhålls och hur
    teknisk fakta härleds ur ett `web-app`-repo.
 2. Utgå från `scripts/apps-data.json`; fältet `repo` pekar på källkodsrepot
-   under `github.com/Sundsvallskommun`. De tre handskrivna sidorna
-   (`generisk-arendehantering`, `myndighetsutovning-*`) har ingen post där
-   men delar repot i `scripts/sbom-extra.json`.
+   under `github.com/Sundsvallskommun`. Varje repo har exakt en post – även
+   repon som bygger flera webbappar (t.ex. `web-app-draken-public`, sidan
+   "Ärendehantering och myndighetsutövning"), vilkas webbar beskrivs i
+   postens `webbar`-fält.
 3. **Nya applikationer.** Lista organisationens repon som börjar med
    `web-app` och som varken finns i datafilen eller i `sbom-extra.json`.
    Klona kandidaterna grunt och bedöm om de är i skarp drift (releaser/
    taggar, aktiv historik, produktionsfärdig konfiguration – prototyper ska
-   inte in i katalogen). Kom ihåg uppdelningsregeln i `CLAUDE.md`: ett nytt
-   repo är inte automatiskt en ny sida, och en ny instans i ett redan
-   katalogfört repo (ny `frontend/.env.<instans>-example`) kan vara en ny
-   sida (myndighetsutövning) eller bara en ny rad i en befintlig sidas
-   verksamhetslista (generisk lösning). Lägg bara till applikationer där
+   inte in i katalogen). Kom ihåg regeln i `CLAUDE.md`: en sida per
+   källkodsförråd. En ny instans eller webb i ett redan katalogfört repo
+   (t.ex. en ny `frontend/.env.<instans>-example` eller ett nytt byggmål) är
+   aldrig en ny sida utan en uppdatering av den befintliga postens
+   `webbar`-fält eller verksamhetslista. Lägg bara till applikationer där
    bedömningen är säker; lista osäkra kandidater i PR-beskrivningen i
    stället för att gissa – granskaren avgör.
 4. **Avvecklade applikationer.** Poster vars källkodsrepo är arkiverat eller
@@ -46,9 +47,15 @@ den här filen.
    `backend/src/config/api-config.ts` mot `apis`-fältet, instanserna i
    `frontend/.env.<instans>-example` mot verksamhetslistan, funktionsflaggor
    (`NEXT_PUBLIC_USE_*`) mot funktionslistan, teknikstack ur `package.json`.
-   Uppdatera posten när något skiljer. Rör en ändring de handskrivna
-   sidorna: uppdatera sidan för hand enligt strukturen i `CLAUDE.md` och
-   diagrammet via dess `diagram(...)`-anrop i `scripts/generate-diagrams.py`.
+   Uppdatera posten när något skiljer.
+   **Var särskilt noga med repon som bygger flera webbappar:** postens
+   `webbar`-fält ska hela tiden synliggöra vilka webbar repot bygger och
+   vilka processer var och en implementerar, härledda ur källkoden
+   (instansernas miljöfiler, funktionsflaggor, byggkonfiguration och
+   API-användning). Tillkommer en webb, en verksamhet eller en process –
+   eller flyttar en process mellan webbar – uppdateras `webbar` i samma
+   veva, och API-tabellens användningskolumn ska ange vilken webb eller
+   process som använder API:et när det inte används av alla.
 6. Kör `python3 scripts/generate-pages.py` följt av
    `python3 scripts/generate-diagrams.py` och verifiera sidorna lokalt med
    headless Chromium enligt `CLAUDE.md`. Skriv aldrig SBOM-filer för hand
