@@ -22,15 +22,14 @@ const menu = [
 
 const footerLinks = [
   { label: 'utveckling.sundsvall.se', href: 'https://utveckling.sundsvall.se/', external: true },
-  { label: 'Utvecklarwikin', href: 'https://sundsvall.atlassian.net/wiki/home', external: true },
   {
     label: 'API-katalogen',
-    href: 'https://public-service-as-a-service.github.io/api-catalogue/index.html',
+    href: 'https://api-katalog.sundsvall.dev/index.html',
     external: true,
   },
   {
     label: 'Webbkatalogen',
-    href: 'https://public-service-as-a-service.github.io/web-catalogue/index.html',
+    href: 'https://web-katalog.sundsvall.dev/index.html',
     external: true,
   },
   {
@@ -99,13 +98,6 @@ const fordjupning = [
     text: 'Kommunens webbplats om den digitala utvecklingen: målbild och strategi, den digitala infrastrukturens delar samt metoder och riktlinjer – inklusive API-strategin och krav vid upphandling.',
   },
   {
-    tag: 'Dokumentation',
-    title: 'Utvecklarwikin',
-    href: 'https://sundsvall.atlassian.net/wiki/home',
-    more: 'Besök wikin',
-    text: 'Fördjupad dokumentation av målarkitekturen och API-infrastrukturen för dig som utvecklar på eller integrerar mot plattformen.',
-  },
-  {
     tag: 'Samverkan',
     title: 'Kommuna',
     href: 'https://kommuna.se/',
@@ -115,14 +107,14 @@ const fordjupning = [
   {
     tag: 'Katalog',
     title: 'API-katalogen',
-    href: 'https://public-service-as-a-service.github.io/api-catalogue/index.html',
+    href: 'https://api-katalog.sundsvall.dev/index.html',
     more: 'Utforska katalogen',
     text: 'De API:er som körs i produktion på kommunens API-plattform, med beskrivningar, arkitekturritningar och interaktiv dokumentation.',
   },
   {
     tag: 'Katalog',
     title: 'Webbkatalogen',
-    href: 'https://public-service-as-a-service.github.io/web-catalogue/index.html',
+    href: 'https://web-katalog.sundsvall.dev/index.html',
     more: 'Utforska katalogen',
     text: 'De webbapplikationer kommunen publicerar som öppen källkod – vad varje tjänst gör, vem den är till för och hur den är uppbyggd.',
   },
@@ -375,13 +367,6 @@ export function StartPage() {
                 {item.text}
               </TeaserCard>
             ))}
-          </div>
-          <div className="mt-32 rounded-cards border-1 border-divider bg-background-content p-24" role="note">
-            <p className="m-0">
-              Målarkitekturen är ett levande styrdokument som utvecklas i takt med verksamhetens
-              behov och omvärldens förutsättningar. Den här sidan beskriver riktningen på hög nivå
-              – detaljerna finns i utvecklingsdokumentationen.
-            </p>
           </div>
         </PageSection>
       </main>

@@ -14,12 +14,12 @@ const footerLinks = [
   { label: 'Målarkitekturen', href: 'index.html' },
   {
     label: 'API-katalogen',
-    href: 'https://public-service-as-a-service.github.io/api-catalogue/index.html',
+    href: 'https://api-katalog.sundsvall.dev/index.html',
     external: true,
   },
   {
     label: 'Webbkatalogen',
-    href: 'https://public-service-as-a-service.github.io/web-catalogue/index.html',
+    href: 'https://web-katalog.sundsvall.dev/index.html',
     external: true,
   },
   { label: 'utveckling.sundsvall.se', href: 'https://utveckling.sundsvall.se/', external: true },
@@ -102,11 +102,11 @@ export function EkosystemetPage() {
                 links={[
                   {
                     label: 'API-katalogen',
-                    href: 'https://public-service-as-a-service.github.io/api-catalogue/index.html',
+                    href: 'https://api-katalog.sundsvall.dev/index.html',
                   },
                   {
                     label: 'Webbkatalogen',
-                    href: 'https://public-service-as-a-service.github.io/web-catalogue/index.html',
+                    href: 'https://web-katalog.sundsvall.dev/index.html',
                   },
                 ]}
               />
@@ -161,14 +161,14 @@ export function EkosystemetPage() {
           <p>
             Webbapplikationerna och deras API-anrop kommer från{' '}
             <Link
-              href="https://public-service-as-a-service.github.io/web-catalogue/index.html"
+              href="https://web-katalog.sundsvall.dev/index.html"
               external
             >
               webbkatalogen
             </Link>{' '}
             och API:erna med sina inbördes beroenden från{' '}
             <Link
-              href="https://public-service-as-a-service.github.io/api-catalogue/index.html"
+              href="https://api-katalog.sundsvall.dev/index.html"
               external
             >
               API-katalogen
