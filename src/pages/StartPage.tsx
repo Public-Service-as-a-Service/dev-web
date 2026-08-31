@@ -368,13 +368,6 @@ export function StartPage() {
               </TeaserCard>
             ))}
           </div>
-          <div className="mt-32 rounded-cards border-1 border-divider bg-background-content p-24" role="note">
-            <p className="m-0">
-              Målarkitekturen är ett levande styrdokument som utvecklas i takt med verksamhetens
-              behov och omvärldens förutsättningar. Den här sidan beskriver riktningen på hög nivå
-              – detaljerna finns i utvecklingsdokumentationen.
-            </p>
-          </div>
         </PageSection>
       </main>
       <SiteFooter
