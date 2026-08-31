@@ -870,16 +870,16 @@
   },
   {
     "repo": "web-app-business-center",
-    "namn": "Mina sidor för företag hos kommunen",
-    "kategori": "Företagstjänster",
+    "namn": "Mina sidor för privatpersoner och företag hos kommunen",
+    "kategori": "Mina sidor",
     "status": "aktiv",
-    "ingress": "Mina sidor där företag och företrädare ser och följer sina ärenden hos Sundsvalls kommun samt tar del av beslut, dokument och fakturor.",
+    "ingress": "Mina sidor där privatpersoner och företag ser och följer sina ärenden hos Sundsvalls kommun samt tar del av beslut, dokument och fakturor.",
     "beskrivning": [
-      "Tjänsten ger företag en samlad bild av sina kontakter med kommunen. Efter inloggning väljer användaren vilken organisation den företräder och får sedan en översikt över pågående och avslutade ärenden, nyheter samt genvägar till självservice.",
+      "Tjänsten ger privatpersoner och företag en samlad bild av sina kontakter med kommunen. Efter inloggning används privatläget, eller så väljer användaren vilken organisation den företräder, och får sedan en översikt över pågående och avslutade ärenden, nyheter samt genvägar till självservice.",
       "Under respektive flik kan användaren se ärendestatus, ta del av beslut och tillhörande dokument, se fakturor från kommunen och hantera sina profiluppgifter och kontaktvägar. Fullmaktshantering gör att ombud kan agera för organisationens räkning.",
-      "Gränssnittet är byggt för både privatpersoner och företag ('Mina Sidor Privat/Företag') med ett läge per målgrupp, och beskrivs som en tjänst som utökas löpande med ny funktionalitet."
+      "Gränssnittet har ett läge per målgrupp (”Mina Sidor Privat/Företag”) och beskrivs som en tjänst som utökas löpande med ny funktionalitet."
     ],
-    "malgrupp": "företag, företagsföreträdare och ombud i Sundsvall",
+    "malgrupp": "privatpersoner samt företag, företagsföreträdare och ombud i Sundsvall",
     "funktioner": [
       {
         "titel": "Ärendeöversikt",
@@ -887,11 +887,11 @@
       },
       {
         "titel": "Beslut och dokument",
-        "text": "Tillgång till beslut och handlingar kopplade till organisationens ärenden."
+        "text": "Tillgång till beslut och handlingar kopplade till användarens eller organisationens ärenden."
       },
       {
         "titel": "Fakturor",
-        "text": "Samlad vy över organisationens fakturor från kommunen."
+        "text": "Samlad vy över användarens eller organisationens fakturor från kommunen."
       },
       {
         "titel": "Val av organisation",
@@ -998,16 +998,16 @@
   },
   {
     "repo": "web-app-mina-sidor-bolag",
-    "namn": "Mina sidor för företagskunder hos kommunala bolag",
-    "kategori": "Företagstjänster",
+    "namn": "Mina sidor för privat- och företagskunder hos kommunala bolag",
+    "kategori": "Mina sidor",
     "status": "aktiv",
-    "ingress": "Självserviceportal där företag som är kunder hos de kommunala bolagen ser sina avtal, fakturor, förbrukning och driftinformation samt sköter fullmakter och medgivanden.",
+    "ingress": "Självserviceportal där privatpersoner och företag som är kunder hos de kommunala bolagen ser sina avtal, fakturor, förbrukning och driftinformation samt sköter fullmakter och medgivanden.",
     "beskrivning": [
-      "Tjänsten är en samlad ingång för företagskunder hos Sundsvalls kommunala bolag. Efter inloggning väljer användaren vilken organisation den vill företräda och får sedan en översikt över aktuell energiförbrukning och produktion, avtal, fakturor, driftstörningar och händelser kopplade till kundförhållandet.",
-      "Företrädare kan hantera medgivanden och fullmakter, se statistik över förbrukning samt använda självservicefunktioner. Vissa åtgärder bekräftas med BankID-signering. En inbyggd AI-assistent kan svara på frågor om avtal, fakturor och statistik.",
+      "Tjänsten är en samlad ingång för privat- och företagskunder hos Sundsvalls kommunala bolag. Efter inloggning landar användaren i privatläget och kan i stället välja att företräda en organisation, och får sedan en översikt över aktuell energiförbrukning och produktion, avtal, fakturor, driftstörningar och händelser kopplade till kundförhållandet.",
+      "Både privatkunder och företagsföreträdare kan hantera medgivanden och fullmakter, se statistik över förbrukning samt använda självservicefunktioner. Vissa åtgärder bekräftas med BankID-signering. En inbyggd AI-assistent kan svara på frågor om avtal, fakturor och statistik.",
       "Portalen har även ett administrationsläge där behörig personal kan agera i en kunds ställe för att ge support."
     ],
-    "malgrupp": "företagskunder och ombud hos kommunala bolag, samt kundtjänstpersonal",
+    "malgrupp": "privat- och företagskunder samt ombud hos kommunala bolag, samt kundtjänstpersonal",
     "funktioner": [
       {
         "titel": "Översikt och förbrukning",
@@ -1023,7 +1023,7 @@
       },
       {
         "titel": "Fullmakter och medgivanden",
-        "text": "Hantering av vem som får företräda organisationen, med BankID-signering."
+        "text": "Hantering av vem som får företräda kunden eller organisationen, med BankID-signering."
       },
       {
         "titel": "AI-assistent",
@@ -1136,6 +1136,7 @@
       "Kommun-ID (MUNICIPALITY_ID=2281)"
     ],
     "anteckningar": [
+      "Portalen har ett privatläge och ett företagsläge med samma sektioner (representing-lägena PRIVATE/BUSINESS i koden); inloggningen landar i privatläget och företrädare växlar via organisationsvalet.",
       "Administrationsläget låter behörig personal växla till en kunds vy (impersonation) för supportändamål.",
       "BankID-signering sker via CGI:s GRP-tjänst med QR-kodsstöd.",
       "AI-assistenten är kopplad till kommunens Eneo-plattform via SelfServiceAI-API:t."

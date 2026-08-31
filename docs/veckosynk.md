@@ -56,6 +56,17 @@ den här filen.
    eller flyttar en process mellan webbar – uppdateras `webbar` i samma
    veva, och API-tabellens användningskolumn ska ange vilken webb eller
    process som använder API:et när det inte används av alla.
+   **Även verksamhetsbeskrivningen ingår i jämförelsen.** Har källrepots
+   README eller självbeskrivning ändrats sedan posten skrevs, eller stämmer
+   postens bild av tjänsten inte längre, omprövas namn, ingress, målgrupp
+   och beskrivning. README är aldrig ensam sanningskälla: verifiera varje
+   ändrad uppgift i koden innan posten ändras (t.ex. representing-lägen,
+   rutter och funktionsflaggor när målgruppen påstås ha breddats – så
+   missades i augusti 2026 att `web-app-mina-sidor-bolag` och
+   `web-app-business-center` sedan länge betjänade även privatpersoner).
+   En README-uppgift utan kodtäckning flaggas i PR-beskrivningen i stället
+   för att skrivas in. Sluggen behålls vid namnbyte – sidans URL är
+   publicerad och ska vara stabil.
 6. Kör `python3 scripts/generate-pages.py` följt av
    `python3 scripts/generate-diagrams.py` och verifiera sidorna lokalt med
    headless Chromium enligt `CLAUDE.md`. Skriv aldrig SBOM-filer för hand
