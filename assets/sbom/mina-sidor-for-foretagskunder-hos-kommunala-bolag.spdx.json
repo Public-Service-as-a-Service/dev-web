@@ -1,17 +1,17 @@
 {
   "SPDXID": "SPDXRef-DOCUMENT",
   "creationInfo": {
-    "comment": "Genererad ur web-app-mina-sidor-bolag commit 2c44ac5941c7fc0fea6d65422f6ecb22c8f066f8 (2026-08-27T09:40:01Z) med trivy-0.74.0. Underhålls av .github/workflows/refresh-sbom.yml i web-catalogue.",
-    "created": "2026-08-27T09:40:01Z",
+    "comment": "Genererad ur web-app-mina-sidor-bolag commit 067bb3e608e6ab9d99369b219cb755f83a9df299 (2026-08-28T06:46:09Z) med trivy-0.74.0. Underhålls av .github/workflows/refresh-sbom.yml i web-catalogue.",
+    "created": "2026-08-28T06:46:09Z",
     "creators": [
       "Organization: aquasecurity",
       "Tool: trivy-0.74.0"
     ]
   },
   "dataLicense": "CC0-1.0",
-  "documentNamespace": "https://web-katalog.sundsvall.dev/sbom/mina-sidor-for-foretagskunder-hos-kommunala-bolag/2c44ac5941c7fc0fea6d65422f6ecb22c8f066f8",
+  "documentNamespace": "https://web-katalog.sundsvall.dev/sbom/mina-sidor-for-foretagskunder-hos-kommunala-bolag/067bb3e608e6ab9d99369b219cb755f83a9df299",
   "hasExtractedLicensingInfos": [],
-  "name": "web-app-mina-sidor-bolag@2c44ac5",
+  "name": "web-app-mina-sidor-bolag@067bb3e",
   "packages": [
     {
       "SPDXID": "SPDXRef-Package-4e23bd16f917af38",

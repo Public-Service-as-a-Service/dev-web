@@ -1,17 +1,17 @@
 {
   "SPDXID": "SPDXRef-DOCUMENT",
   "creationInfo": {
-    "comment": "Genererad ur web-app-starter commit 110c2cc7903874c54228e9ded2a3e8258245d8fd (2026-08-27T07:17:49Z) med trivy-0.74.0. Underhålls av .github/workflows/refresh-sbom.yml i web-catalogue.",
-    "created": "2026-08-27T07:17:49Z",
+    "comment": "Genererad ur web-app-starter commit eafa5ea2e59a8839072278abdf6a82eb0ae2b326 (2026-08-28T06:56:24Z) med trivy-0.74.0. Underhålls av .github/workflows/refresh-sbom.yml i web-catalogue.",
+    "created": "2026-08-28T06:56:24Z",
     "creators": [
       "Organization: aquasecurity",
       "Tool: trivy-0.74.0"
     ]
   },
   "dataLicense": "CC0-1.0",
-  "documentNamespace": "https://web-katalog.sundsvall.dev/sbom/startmall-for-webbapplikationer/110c2cc7903874c54228e9ded2a3e8258245d8fd",
+  "documentNamespace": "https://web-katalog.sundsvall.dev/sbom/startmall-for-webbapplikationer/eafa5ea2e59a8839072278abdf6a82eb0ae2b326",
   "hasExtractedLicensingInfos": [],
-  "name": "web-app-starter@110c2cc",
+  "name": "web-app-starter@eafa5ea",
   "packages": [
     {
       "SPDXID": "SPDXRef-Package-ca24df07d4648e8f",
