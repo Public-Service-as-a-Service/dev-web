@@ -14,6 +14,7 @@ const menu = [
 const footerLinks = [
   { label: 'Målarkitekturen', href: 'https://arkitektur.sundsvall.dev/index.html', external: true },
   { label: 'Kommuna', href: 'https://kommuna.se/index.html', external: true },
+  { label: 'Eneo', href: 'https://eneo.ai/', external: true },
   { label: 'Webbkatalogen', href: 'https://web-katalog.sundsvall.dev/index.html', external: true },
   { label: 'API-katalogen', href: 'https://api-katalog.sundsvall.dev/index.html', external: true },
   { label: 'sundsvall.se', href: 'https://sundsvall.se', external: true },
@@ -93,6 +94,11 @@ const strategiskaOmraden = [
     title: 'Data som en strategisk resurs',
     text: 'Data behöver hanteras som en gemensam resurs som kan återanvändas, analyseras och ligga till grund för beslut – i stället för att låsas in i enskilda system.',
   },
+  {
+    tag: 'AI',
+    title: 'AI som stöd för alla, på demokratisk grund',
+    text: 'Generativ AI får inte bli en teknik för några få – den ska vara ett stöd för oss alla. Därför bygger vi AI-förmågan på öppenhet och egen kontroll: vi vet var data behandlas, vilka modeller som används och hur svaren kommer till. Det är förutsättningen för att kunna använda AI brett i välfärden med bibehållen insyn, tillit och självbestämmande.',
+  },
 ];
 
 const fordjupning = [
@@ -109,6 +115,13 @@ const fordjupning = [
     href: 'https://kommuna.se/index.html',
     more: 'Läs mer om Kommuna',
     text: 'Plattform för delade AI- och digitala tjänster mellan kommuner, där tjänster som utvecklats i en kommun görs tillgängliga för andra. En konkret form för det kollektiva lärande vi tror på.',
+  },
+  {
+    tag: 'AI',
+    title: 'Eneo',
+    href: 'https://eneo.ai/',
+    more: 'Läs mer om Eneo',
+    text: 'Den öppna AI-plattformen för offentlig sektor, som Sundsvalls kommun och Ånge kommun utvecklat tillsammans. Generativ AI med svensk datasuveränitet: öppen källkod, drift i egen infrastruktur och lösningar som delas mellan offentliga aktörer.',
   },
   {
     tag: 'Katalog',
@@ -256,10 +269,10 @@ export function StartPage() {
           <h2 className="font-header">Fördjupning</h2>
           <p className="text-lead">
             Strategin omsätts i verkstad. Här kan du fördjupa dig i hur utvecklingen ser ut i
-            praktiken: arkitekturen vi bygger mot, samverkan med andra kommuner och de öppna
-            katalogerna över vad vi har byggt.
+            praktiken: arkitekturen vi bygger mot, plattformen vi bygger AI på, samverkan med
+            andra kommuner och de öppna katalogerna över vad vi har byggt.
           </p>
-          <div className="mt-32 grid gap-24 md:grid-cols-2">
+          <div className="mt-32 grid gap-24 md:grid-cols-2 xl:grid-cols-3">
             {fordjupning.map((item) => (
               <TeaserCard
                 key={item.title}

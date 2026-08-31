@@ -79,7 +79,9 @@ Innehållet är framtaget ur bland annat:
 
 - Förstasidan på [utveckling.sundsvall.se](https://utveckling.sundsvall.se/)
   samt [Målbild och strategi](https://utveckling.sundsvall.se/malbild-och-strategi)
+  och [AI](https://utveckling.sundsvall.se/ai)
 - [Målarkitekturen](https://arkitektur.sundsvall.dev/index.html)
 - [kommuna.se](https://kommuna.se/index.html)
+- [eneo.ai](https://eneo.ai/)
 - [Webbkatalogen](https://web-katalog.sundsvall.dev/index.html)
   och [API-katalogen](https://api-katalog.sundsvall.dev/index.html)
