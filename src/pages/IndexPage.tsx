@@ -11,7 +11,7 @@ const CATEGORY_ORDER = [
   'Ärendehantering',
   'Myndighetsutövning',
   'Invånartjänster',
-  'Företagstjänster',
+  'Mina sidor',
   'Medarbetartjänster',
   'Utbildning',
   'AI-tjänster',

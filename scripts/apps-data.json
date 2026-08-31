@@ -871,7 +871,7 @@
   {
     "repo": "web-app-business-center",
     "namn": "Mina sidor för privatpersoner och företag hos kommunen",
-    "kategori": "Företagstjänster",
+    "kategori": "Mina sidor",
     "status": "aktiv",
     "ingress": "Mina sidor där privatpersoner och företag ser och följer sina ärenden hos Sundsvalls kommun samt tar del av beslut, dokument och fakturor.",
     "beskrivning": [
@@ -999,7 +999,7 @@
   {
     "repo": "web-app-mina-sidor-bolag",
     "namn": "Mina sidor för privat- och företagskunder hos kommunala bolag",
-    "kategori": "Företagstjänster",
+    "kategori": "Mina sidor",
     "status": "aktiv",
     "ingress": "Självserviceportal där privatpersoner och företag som är kunder hos de kommunala bolagen ser sina avtal, fakturor, förbrukning och driftinformation samt sköter fullmakter och medgivanden.",
     "beskrivning": [
