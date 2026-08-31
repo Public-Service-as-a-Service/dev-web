@@ -100,8 +100,7 @@ Innehållet är framtaget ur bland annat:
   med undersidor (digitala kanaler, API-infrastruktur, koncerngemensamma
   komponenter, metakatalogen, datalager, generellt processtöd, paketerade
   lösningar) på utveckling.sundsvall.se
-- [Målarkitektur-sidan i kommunens utvecklarwiki](https://sundsvall.atlassian.net/wiki/spaces/SKA/pages/1117323272)
 - [kommuna.se](https://kommuna.se/)
-- [API-katalogen](https://public-service-as-a-service.github.io/api-catalogue/index.html)
-  och [Webbkatalogen](https://public-service-as-a-service.github.io/web-catalogue/index.html)
+- [API-katalogen](https://api-katalog.sundsvall.dev/index.html)
+  och [Webbkatalogen](https://web-katalog.sundsvall.dev/index.html)
 - [Sundsvalls kommun på GitHub](https://github.com/Sundsvallskommun)
