@@ -8,6 +8,7 @@ export default {
   content: [
     './index.html',
     './ekosystemet.html',
+    './design-principer.html',
     './src/**/*.{ts,tsx}',
     './node_modules/@sk-web-gui/*/dist/**/*.js',
   ],

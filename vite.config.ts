@@ -12,6 +12,7 @@ export default defineConfig({
       input: {
         index: resolve(__dirname, 'index.html'),
         ekosystemet: resolve(__dirname, 'ekosystemet.html'),
+        'design-principer': resolve(__dirname, 'design-principer.html'),
       },
     },
   },
