@@ -22,10 +22,11 @@ svenska.
 - `ekosystemet.html` / `src/pages/EkosystemetPage.tsx` – fristående undersida
   (länkas inte från startsidan) som visar hela ekosystemet i en bild: alla
   webbappar, alla API:er de anropar och API:ernas inbördes integrationer.
-- `design-principer.html` / `src/pages/DesignPrinciperPage.tsx` – fristående
-  undersida (länkas inte från startsidan) som beskriver designprinciperna –
-  medborgarcentrering, överförbarhet och styrning – samt arkitekturens
-  blueprint lager för lager, med exempel ur kommunens egna komponenter.
+- `design-principer.html` / `src/pages/DesignPrinciperPage.tsx` – undersida
+  som beskriver designprinciperna – medborgarcentrering, överförbarhet och
+  styrning – samt arkitekturens blueprint lager för lager, med exempel ur
+  kommunens egna komponenter. Länkas från startsidans huvudmeny och från
+  avsnittet Riktlinjer och principer.
 - `src/components/` – delade byggblock (sidhuvud, sidfot, hero, kort med mera)
   ovanpå designsystemets komponenter.
 - `public/assets/diagrams/malarkitektur.svg` – översiktsritningen av

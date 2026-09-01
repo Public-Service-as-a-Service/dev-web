@@ -404,16 +404,6 @@ export function DesignPrinciperPage() {
             principerna och våra komponenter är gjord här, i denna beskrivning, och är inte en del
             av avhandlingens material.
           </p>
-          <div
-            className="mt-32 rounded-cards border-1 border-divider bg-background-100 p-24"
-            role="note"
-          >
-            <p className="m-0">
-              Detta är en fristående sida som kompletterar målarkitekturens beskrivning. Den länkas
-              inte från startsidan och kan komma att ändras när principerna prövas i fler
-              projekt.
-            </p>
-          </div>
         </PageSection>
       </main>
       <SiteFooter
