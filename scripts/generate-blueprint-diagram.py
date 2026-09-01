@@ -192,7 +192,7 @@ def build_blueprint():
     y += 30
 
     # --- Users -------------------------------------------------------------
-    person(parts, MAIN_CX, y, "Invånare och företagare")
+    person(parts, MAIN_CX, y, "Invånare, företagare och medarbetare")
     users_bottom = y + 54
     y = users_bottom + 22
 
@@ -210,9 +210,6 @@ def build_blueprint():
         "DP1. Tillgång", "DP2. Aktualitet", "DP3. Vägledning",
         "DP4. Transparens", "DP5. Personalisering",
     ])
-    ann = annotation(parts, y + 96, "Överförbarhet", [
-        "DP1. Överförbarhet i stort", "- DP3. Öppen källkod",
-    ], note="när det är möjligt", cursor=ann)
     touch_bottom = y + touch_h
     y = touch_bottom + 34
 
@@ -225,9 +222,15 @@ def build_blueprint():
         "till alla 75 API:er i API-katalogen.",
     ]):
         parts.append(f'<text x="{MAIN_X + 4}" y="{y + 34 + i * 15}" font-size="10.5" fill="{INK_SOFT}">{esc(line)}</text>')
-    ann = annotation(parts, y + 6, "Överförbarhet", ["DP2. Interoperabilitet"],
-                     note="alla API:er enligt OpenAPI", cursor=ann)
     y = gw_bottom + 34
+
+    # One callout for the whole transferability family, sitting midway between
+    # the gateway it describes and the services beneath it.
+    merged = ["DP1. Överförbarhet i stort", "DP2. Interoperabilitet", "DP3. Öppen källkod"]
+    merged_h = 30 + len(merged) * 16 + 20
+    ann = annotation(parts, (gw_bottom + y) / 2 - merged_h / 2, "Överförbarhet", merged,
+                     note="öppna API:er enligt OpenAPI, öppen källkod när det är möjligt",
+                     cursor=ann)
 
     # --- Layer 3: end-user facing services ---------------------------------
     parts.append(arrow(MAIN_CX, gw_bottom + 4, MAIN_CX, y, color=GREEN_EDGE))
@@ -237,9 +240,6 @@ def build_blueprint():
                 ("Invoices", None), ("PartyAssets", None)], y + 36, 168, 46,
         GREEN_FILL, GREEN_EDGE, gap=12, title_size=12)
     parts.append(f'<text x="{MAIN_CX}" y="{y + 100}" text-anchor="middle" font-size="11" fill="{INK_SOFT}">sätter samman flera komponenter till det en kanal behöver — utan egen verksamhetslogik</text>')
-    ann = annotation(parts, y - 4, "Överförbarhet", [
-        "DP1. Överförbarhet i stort", "- DP3. Öppen källkod",
-    ], note="när det är möjligt", cursor=ann)
     svc_bottom = y + svc_h
     y = svc_bottom + 30
 
