@@ -16,6 +16,7 @@ const menu = [
   { label: 'Arkitekturen', href: '#arkitekturen' },
   { label: 'Egenutveckling', href: '#egenutveckling' },
   { label: 'Riktlinjer', href: '#riktlinjer' },
+  { label: 'Designprinciper', href: 'design-principer.html' },
   { label: 'Fördjupning', href: '#fordjupning' },
   { label: 'GitHub', href: 'https://github.com/Sundsvallskommun', external: true },
 ];
@@ -346,6 +347,17 @@ export function StartPage() {
                 {item.text}
               </TeaserCard>
             ))}
+          </div>
+          <p className="mt-40 mb-0">
+            Under riktlinjerna ligger ett antal designprinciper hämtade ur forskning om
+            socio-teknisk skuld i kommunal sektor. De handlar om medborgarcentrering,
+            överförbarhet och styrning, och de sammanfattas i en arkitekturblueprint som visar
+            hur principerna blir arkitektur, lager för lager.
+          </p>
+          <div className="mt-24">
+            <ButtonLink as="a" href="design-principer.html" variant="secondary" color="vattjom">
+              Läs designprinciperna
+            </ButtonLink>
           </div>
         </PageSection>
 
