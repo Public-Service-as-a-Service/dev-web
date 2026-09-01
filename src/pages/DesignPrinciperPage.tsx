@@ -93,39 +93,6 @@ const overforbarhet = [
   },
 ];
 
-const ossGrunder = [
-  {
-    tag: 'DP4',
-    title: 'Beroendehantering',
-    original: 'Appropriate Dependency Management',
-    text: 'Alla beroenden deklareras uttryckligen med etablerad pakethantering. Dolda eller hemsnickrade beroenden skapar inlåsning även i öppen källkod – synliga beroenden gör att fler kan bygga vidare.',
-  },
-  {
-    tag: 'DP5',
-    title: 'Öppen utvecklingsmiljö',
-    original: 'A Dedicated Development Environment',
-    text: 'Utvecklingsmiljön ska bygga på beprövade verktyg, fungera i flera utvecklingsverktyg och beskrivas i en komplett uppsättningsguide. Ingen ska behöva en viss leverantörs verktygslåda för att kunna bidra.',
-  },
-  {
-    tag: 'DP6',
-    title: 'Dokumentation och riktlinjer',
-    original: 'Proper Documentation and Guidelines',
-    text: 'Arkitekturbeskrivningar, bidragsriktlinjer och introduktionsguider hålls aktuella. Utan dem låses kunskapen in hos dem som redan kan systemet, och projektet blir beroende av enskilda personer eller leverantörer.',
-  },
-  {
-    tag: 'DP7',
-    title: 'Automatiserade tester',
-    original: 'Automated Testing',
-    text: 'Enhets- och integrationstester körs automatiskt, med hög täckningsgrad och öppet delade resultat. Då kan vem som helst som är kunnig nog verifiera en ändring, utan att gå via den ursprungliga leverantören.',
-  },
-  {
-    tag: 'DP8',
-    title: 'Kodkvalitetsanalys',
-    original: 'Code-Quality Analysis',
-    text: 'Statisk kodanalys körs systematiskt och resultaten publiceras öppet. Gemensamma, synliga kvalitetsmått gör att också nya och mindre leverantörer kan visa att de håller måttet.',
-  },
-];
-
 const styrning = [
   {
     tag: 'DP1',
@@ -186,7 +153,7 @@ export function DesignPrinciperPage() {
         <Hero
           kicker="Sundsvalls kommun"
           title="Designprinciper"
-          lead="Målarkitekturen beskriver vad vi bygger. Designprinciperna beskriver varför – och vad som händer om vi låter bli. De kommer ur forskning om socio-teknisk skuld i kommunal sektor och är samlade i tre familjer: medborgarcentrering, överförbarhet och styrning. Tillsammans med arkitekturens blueprint visar de hur en kommun tar sig från inlåst arv till öppna, återanvändbara komponenter."
+          lead="Målarkitekturen beskriver vad vi bygger. Designprinciperna beskriver hur och varför. De kommer ur forskning om socio-teknisk skuld i kommunal sektor och är samlade i tre familjer: medborgarcentrering, överförbarhet och styrning. Tillsammans med arkitekturens blueprint visar de hur en kommun tar sig från inlåst arv till öppna, återanvändbara komponenter."
           actions={
             <>
               <ButtonLink as="a" href="#blueprint" variant="primary" color="vattjom">
@@ -207,7 +174,7 @@ export function DesignPrinciperPage() {
                 title="Snabbfakta"
                 items={[
                   <>
-                    <strong>18 designprinciper</strong> i tre familjer
+                    <strong>13 designprinciper</strong> i tre familjer
                   </>,
                   <>
                     Framtagna genom <strong>designforskning</strong> i skarpa kommunprojekt
@@ -279,14 +246,6 @@ export function DesignPrinciperPage() {
             fragmentering och det leverantörsberoende som upphandling annars lätt förstärker.
           </p>
           <PrincipleGrid items={overforbarhet} />
-
-          <h3 className="font-header mt-40">Tekniska grunder för öppen källkod</h3>
-          <p>
-            De fem följande principerna är underprinciper till öppen källkod (DP3). De handlar om
-            det praktiska hantverket som avgör om ett öppet projekt faktiskt går att bidra till –
-            eller bara ser öppet ut. Utan dem uppstår ny inlåsning, mitt i det öppna.
-          </p>
-          <PrincipleGrid items={ossGrunder} />
 
           <h3 className="font-header mt-40">Styrning</h3>
           <p>
@@ -428,9 +387,10 @@ export function DesignPrinciperPage() {
               Citizen-Centred Digital Public Services
             </em>{' '}
             (Institutionen för tillämpad informationsteknologi, Göteborgs universitet, 2025).
-            Principerna återges här i sammanfattad form på svenska; den fullständiga
-            specifikationen, med implementerare, kontext, mekanismer och motivering för varje
-            princip, finns i avhandlingens bilaga 4.{' '}
+            Principerna återges här i urval och i sammanfattad form på svenska – de mest
+            detaljerade underprinciperna om hantverket i projekt med öppen källkod är utelämnade.
+            Den fullständiga specifikationen, med implementerare, kontext, mekanismer och
+            motivering för varje princip, finns i avhandlingens bilaga 4.{' '}
             <Link href="https://hdl.handle.net/2077/90120" external>
               Läs avhandlingen i GUPEA
             </Link>
