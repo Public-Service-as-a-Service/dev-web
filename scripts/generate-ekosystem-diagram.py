@@ -6,7 +6,7 @@ web catalogue, every API in the API catalogue, the APIs each web calls,
 and how the APIs integrate with each other (e.g. Party calling Citizen
 and LegalEntity). The drawing style (palette, boxes, bands, legend)
 follows scripts/generate-diagram.py so the site keeps one visual
-language. Run from anywhere: output is written to assets/diagrams/.
+language. Run from anywhere: output is written to public/assets/diagrams/.
 
 The data below is a snapshot (2026-08-27) extracted from the catalogues:
 
@@ -35,7 +35,7 @@ reduce edge crossings. Arrows point from caller to callee.
 import os
 from collections import defaultdict
 
-OUT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "assets", "diagrams")
+OUT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "public", "assets", "diagrams")
 
 # Palette aligned with the site's stylesheet (same as generate-diagram.py)
 INK = "#1c2b33"

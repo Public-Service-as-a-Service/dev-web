@@ -22,6 +22,10 @@ svenska.
 - `ekosystemet.html` / `src/pages/EkosystemetPage.tsx` – fristående undersida
   (länkas inte från startsidan) som visar hela ekosystemet i en bild: alla
   webbappar, alla API:er de anropar och API:ernas inbördes integrationer.
+- `design-principer.html` / `src/pages/DesignPrinciperPage.tsx` – fristående
+  undersida (länkas inte från startsidan) som beskriver designprinciperna –
+  medborgarcentrering, överförbarhet och styrning – samt arkitekturens
+  blueprint lager för lager, med exempel ur kommunens egna komponenter.
 - `src/components/` – delade byggblock (sidhuvud, sidfot, hero, kort med mera)
   ovanpå designsystemets komponenter.
 - `public/assets/diagrams/malarkitektur.svg` – översiktsritningen av
@@ -30,6 +34,8 @@ svenska.
   för egenutveckling.
 - `public/assets/diagrams/ekosystemet.svg` – helhetsritningen över ekosystemet
   med samtliga anropsrelationer.
+- `public/assets/diagrams/design-principer.svg` – ritningen över arkitekturens
+  blueprint med designprinciperna utsatta per lager.
 - `scripts/generate-diagram.py` – genererar de två översiktsritningarna i samma
   diagramstil som katalogernas arkitekturritningar. Rita aldrig för hand –
   ändra i skriptet och generera om.
@@ -40,6 +46,8 @@ svenska.
   [web-catalogue](https://github.com/Public-Service-as-a-Service/web-catalogue)).
   Layouten beräknas ur beroendegrafen; uppdatera datalitteralerna i skriptet
   från katalogerna och generera om.
+- `scripts/generate-blueprint-diagram.py` – genererar blueprintritningen på
+  sidan om designprinciperna, i samma diagramstil som övriga ritningar.
 - `.github/workflows/deploy-pages.yml` – arbetsflöde som bygger webbplatsen och
   publicerar den till GitHub Pages.
 
@@ -80,12 +88,13 @@ GitHub Pages-publiceringen.
 
 ## Uppdatera innehållet
 
-Texterna redigeras i `src/pages/StartPage.tsx` respektive
-`src/pages/EkosystemetPage.tsx`.
+Texterna redigeras i `src/pages/StartPage.tsx`, `src/pages/EkosystemetPage.tsx`
+respektive `src/pages/DesignPrinciperPage.tsx`.
 Översiktsdiagrammen ändras i `scripts/generate-diagram.py` följt av
 `python3 scripts/generate-diagram.py`; helhetsritningen på ekosystemsidan
-ändras i `scripts/generate-ekosystem-diagram.py` följt av
-`python3 scripts/generate-ekosystem-diagram.py`.
+ändras i `scripts/generate-ekosystem-diagram.py` och blueprintritningen i
+`scripts/generate-blueprint-diagram.py`, båda följt av `python3` på skriptet.
+Alla skript skriver till `public/assets/diagrams/`.
 Verifiera lokalt innan push: bygg webbplatsen, rendera sidorna med headless
 Chromium och kontrollera layout och att diagrammen läses in korrekt.
 
@@ -104,3 +113,7 @@ Innehållet är framtaget ur bland annat:
 - [API-katalogen](https://api-katalog.sundsvall.dev/index.html)
   och [Webbkatalogen](https://web-katalog.sundsvall.dev/index.html)
 - [Sundsvalls kommun på GitHub](https://github.com/Sundsvallskommun)
+- Per Persson, *Managing Socio-Technical Debt: Causes and Design-Science
+  Solutions for Citizen-Centred Digital Public Services* (Göteborgs
+  universitet, 2025), <https://hdl.handle.net/2077/90120> – källa till
+  designprinciperna och arkitekturblueprinten på sidan om designprinciper.
