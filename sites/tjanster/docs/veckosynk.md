@@ -1,11 +1,13 @@
 # Schemalagd veckosynk av webbkatalogen
 
-Katalogen hålls i synk med produktionen av ett schemalagt Claude-jobb – en
-*Routine* i Claude Code på webben – som varje **måndag 07:00 UTC** (09:00
-svensk sommartid, 08:00 vintertid) startar en färsk session i katalogens
-utvecklingsmiljö. Tidpunkten är vald med flit: den ligger *efter* den
+Katalogen är sektionen `tjanster/` i webbplatsen **dev-web**
+(`Public-Service-as-a-Service/dev-web`) och hålls i synk med produktionen av ett
+schemalagt Claude-jobb – en *Routine* i Claude Code på webben – som varje
+**måndag 07:00 UTC** (09:00 svensk sommartid, 08:00 vintertid) startar en färsk
+session mot det repot. Tidpunkten är vald med flit: den ligger *efter* den
 ordinarie SBOM-körningen (`.github/workflows/refresh-sbom.yml`, måndagar
-06:00 UTC), så att veckans SBOM:er redan är färska när katalogsynken börjar.
+05:00 UTC) och efter API-katalogens synk (06:00 UTC), så att veckans SBOM:er är
+färska och de två synkarna inte trängs i samma repo.
 
 Routinen är knuten till ett konto på claude.ai och syns/pausas/ändras under
 **Routines** i Claude Code på webben (eller genom att be Claude lista och
@@ -17,15 +19,18 @@ den här filen.
 
 ## Steg 1 – synka katalogen mot källkodsrepona
 
-1. Läs `CLAUDE.md` i repots rot – den styr hur katalogen underhålls och hur
-   teknisk fakta härleds ur ett `web-app`-repo.
-2. Utgå från `scripts/apps-data.json`; fältet `repo` pekar på källkodsrepot
+1. Läs `CLAUDE.md` i repots rot (webbplatsens gemensamma regler) och därefter
+   `sites/tjanster/CLAUDE.md` – den senare styr hur katalogen underhålls och
+   hur teknisk fakta härleds ur ett `web-app`-repo.
+2. Utgå från `sites/tjanster/scripts/apps-data.json`; fältet `repo` pekar på
+   källkodsrepot
    under `github.com/Sundsvallskommun`. Varje repo har exakt en post – även
    repon som bygger flera webbappar (t.ex. `web-app-draken-public`, sidan
    "Ärendehantering och myndighetsutövning"), vilkas webbar beskrivs i
    postens `webbar`-fält.
 3. **Nya applikationer.** Lista organisationens repon som börjar med
-   `web-app` och som varken finns i datafilen eller i `sbom-extra.json`.
+   `web-app` och som varken finns i datafilen eller i
+   `sites/tjanster/scripts/sbom-extra.json`.
    Klona kandidaterna grunt och bedöm om de är i skarp drift (releaser/
    taggar, aktiv historik, produktionsfärdig konfiguration – prototyper ska
    inte in i katalogen). Kom ihåg regeln i `CLAUDE.md`: en sida per
@@ -38,12 +43,13 @@ den här filen.
 4. **Avvecklade applikationer.** Poster vars källkodsrepo är arkiverat eller
    borttaget behandlas som avvecklade: ta bort posten ur `apps-data.json`
    tillsammans med de genererade filerna (`tjanster/<slug>.html`,
-   `tjanster/<slug>-sbom.html`, `assets/diagrams/<slug>.svg`,
-   `assets/sbom/<slug>.spdx.json`). Är repot kvar men applikationen
+   `tjanster/<slug>-sbom.html`, `public/tjanster/assets/diagrams/<slug>.svg`,
+   `public/tjanster/assets/sbom/<slug>.spdx.json`). Är repot kvar men
+   applikationen
    misstänks vara ur drift av andra skäl: flagga i PR-beskrivningen i
    stället för att ta bort.
 5. **Ändrade applikationer.** Klona varje kvarvarande repo grunt och jämför
-   med posten enligt tabellen i `CLAUDE.md`: API-listan och versionerna i
+   med posten enligt tabellen i `sites/tjanster/CLAUDE.md`: API-listan och versionerna i
    `backend/src/config/api-config.ts` mot `apis`-fältet, instanserna i
    `frontend/.env.<instans>-example` mot verksamhetslistan, funktionsflaggor
    (`NEXT_PUBLIC_USE_*`) mot funktionslistan, teknikstack ur `package.json`.
@@ -67,10 +73,13 @@ den här filen.
    En README-uppgift utan kodtäckning flaggas i PR-beskrivningen i stället
    för att skrivas in. Sluggen behålls vid namnbyte – sidans URL är
    publicerad och ska vara stabil.
-6. Kör `python3 scripts/generate-pages.py` följt av
-   `python3 scripts/generate-diagrams.py` och verifiera sidorna lokalt med
-   headless Chromium enligt `CLAUDE.md`. Skriv aldrig SBOM-filer för hand
-   och committa aldrig lokalt regenererade SBOM:er (se `CLAUDE.md`).
+6. Kör `python3 sites/tjanster/scripts/generate-pages.py` följt av
+   `python3 sites/tjanster/scripts/generate-diagrams.py` från repots rot. Bygg
+   sedan hela webbplatsen med `npm run build` och verifiera sidorna lokalt med
+   headless Chromium enligt `CLAUDE.md` – bygget omfattar alla sektioner, så
+   ett fel i katalogen stoppar hela webbplatsen. Skriv aldrig SBOM-filer för
+   hand och committa aldrig lokalt regenererade SBOM:er (se
+   `sites/tjanster/CLAUDE.md`).
 7. **Inget skiljer?** Avsluta utan PR och utan brus.
 8. Annars: committa på en arbetsgren (`claude/veckosynk-<datum>`), pusha och
    skapa PR mot `main` med en sammanfattning uppdelad i *nya*, *borttagna*
@@ -86,11 +95,12 @@ Programvaruförteckningarna underhålls uteslutande av
 `main`, eftersom workflowets matris läser `apps-data.json` från `main`:
 
 - **Nya applikationer:** starta `refresh-sbom.yml` manuellt
-  (workflow_dispatch) med input `only=<slug>`, en körning per ny applikation,
-  så att förteckningen kommer på plats direkt i stället för vid nästa
-  veckokörning.
+  (workflow_dispatch) med inputen `only=<slug>` och `sektion=tjanster`, en
+  körning per ny applikation, så att förteckningen kommer på plats direkt i
+  stället för vid nästa veckokörning. `sektion` hoppar över API-katalogens
+  matris, som annars körs i onödan.
 - **Ändrade applikationer:** täcks normalt redan av samma morgons ordinarie
-  körning (06:00 UTC). Starta workflowet för en slug bara om källrepots
+  körning (05:00 UTC). Starta workflowet för en slug bara om källrepots
   beroenden ändrats efter den körningen.
 - **Borttagna applikationer:** deras SBOM-filer togs redan bort i steg 1;
   workflowet rör dem inte.
@@ -102,4 +112,5 @@ kommentarerna i workflowfilen.
 
 Sessionen bokar egna avstämningar (ca en timme) tills PR:en är mergad eller
 stängd och eventuella SBOM-körningar är klara, och avslutar därefter. Merge
-till `main` deployar webbplatsen via Dokploy som vanligt.
+till `main` deployar hela webbplatsen via Dokploy som vanligt – GitHub Pages
+används inte.
