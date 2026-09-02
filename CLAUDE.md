@@ -38,9 +38,10 @@ public/               delade ikoner och sektionernas diagram
 
 ## Avgränsning – obligatorisk
 
-- Webbplatsen är en **ingång, inte en textsamling**. Fokus ligger på
+- **Startsidan är en ingång, inte en textsamling.** Fokus ligger på
   **målarkitekturen, webbkatalogen och API-katalogen** – i den ordningen. De
-  ligger överst och ska tydligt framgå som det viktiga här.
+  ligger överst och ska tydligt framgå som det viktiga här. Sakinnehållet hör
+  hemma i sektionerna, inte på startsidan.
 - Skriv inte tillbaka strategitexterna om omställning, digital mognad,
   förhållningssätt och strategiska områden – de överlappar med innehåll i
   andra kanaler.

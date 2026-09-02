@@ -1,50 +1,65 @@
 # Utveckling
 
-En webbplats som beskriver Sundsvalls kommuns digitala utveckling: varför vi
-ställer om, hur vi ökar vår omställningsförmåga genom digital mognad, vilka
-förhållningssätt utvecklingen vilar på och vilka strategiska områden vi behöver
-lyckas inom.
+En öppen beskrivning av Sundsvalls kommuns digitala miljö: **riktningen vi
+bygger mot** och **det som faktiskt körs i produktion**. Webbplatsen samlar tre
+delar som tidigare låg på var sin domän:
 
-Webbplatsen är på sikt tänkt att ersätta
-[utveckling.sundsvall.se](https://utveckling.sundsvall.se/). I det här första
-läget beskriver den innehållet på den nuvarande förstasidan och länkar vidare
-till de öppna webbplatser som visar utvecklingen i praktiken.
+- **Målarkitekturen** – riktning, långsiktigt mål och väsentliga vägval för
+  kommunkoncernens digitala miljö, samt riktlinjerna och designprinciperna som
+  styr utvecklingen.
+- **Webbkatalogen** – de webbapplikationer kommunen publicerar som öppen
+  källkod: vad varje tjänst gör, vem den är till för och hur den är uppbyggd.
+- **API-katalogen** – de API:er som körs i produktion på kommunens
+  API-plattform, med beskrivningar, arkitekturritningar, interaktiv
+  dokumentation och programvaruförteckningar.
 
-Innehållet hålls medvetet på en övergripande nivå – riktning, förhållningssätt
-och strategiska områden, inte arbetssätt eller teknikval. Beskrivningar av
-utvecklarnära arbetssätt hör hemma i utvecklarportalen och upprepas inte här.
+Startsidan är ingången till de tre och länkar vidare till närliggande
+initiativ. Innehållet riktar sig till alla som vill förstå eller granska
+kommunens digitala miljö – kollegor, leverantörer, andra kommuner och
+invånare – inte bara till utvecklare. Utvecklarnära arbetssätt som golden
+paths, DevOps och leveransgrindar hör hemma i utvecklarportalen och upprepas
+inte här.
+
+Katalogerna hålls aktuella automatiskt: programvaruförteckningarna uppdateras
+varje vecka av ett arbetsflöde, och två schemalagda Claude-jobb stämmer av
+katalogernas innehåll mot källkodsrepona (se `sites/api/docs/veckosynk.md` och
+`sites/tjanster/docs/veckosynk.md`).
 
 Webbplatsen är byggd med [Sundsvalls kommuns designsystem](https://ui.sundsvall.dev/):
 komponenter importeras från `@sk-web-gui/react` och alla designtokens (färger,
 typografi, avstånd) kommer från `@sk-web-gui/core` via dess Tailwind-preset.
 Inga hex-värden eller CSS-variabler hårdkodas i projektet. Allt innehåll är på
-svenska. Den grafiska profilen är densamma som på
-[arkitektur.sundsvall.dev](https://arkitektur.sundsvall.dev/index.html).
+svenska.
 
 ## Innehåll
 
-Webbplatsen är ett monorepo: en startsida och en sektion per delwebbplats, som
-byggs till en enda uppsättning statiska filer och publiceras som en container.
+Repot är ett monorepo: en startsida och en sektion per delwebbplats, som byggs
+till en enda uppsättning statiska filer och publiceras som en container.
 
-- `index.html` / `sites/start/StartPage.tsx` – startsidan, ingången till
-  målarkitekturen och katalogerna.
-- `arkitektur/*.html` / `sites/arkitektur/` – sektionen Målarkitekturen med
-  undersidorna Ekosystemet och Designprinciper, samt diagramgeneratorerna. Se
-  `sites/arkitektur/README.md`.
-- `tjanster/*.html` / `sites/tjanster/` – sektionen Webbkatalogen: startsida,
-  37 genererade tjänstesidor med lika många programvaruförteckningar, data och
-  generatorer. Se `sites/tjanster/README.md`.
-- `api/*.html` / `sites/api/` – sektionen API-katalogen: startsida, 75 API-sidor
-  med Swagger UI och programvaruförteckningar, data och generatorer. Se
-  `sites/api/README.md`.
+| Sektion | Adress | Källa |
+| --- | --- | --- |
+| Startsidan | `/` | `index.html`, `sites/start/` |
+| Målarkitekturen | `/arkitektur/` | `arkitektur/*.html`, `sites/arkitektur/` |
+| Webbkatalogen | `/tjanster/` | `tjanster/*.html`, `sites/tjanster/` |
+| API-katalogen | `/api/` | `api/*.html`, `sites/api/` |
+
+- `arkitektur/` – målarkitekturen med undersidorna Ekosystemet och
+  Designprinciper, samt diagramgeneratorerna. Se `sites/arkitektur/README.md`.
+- `tjanster/` – webbkatalogens startsida och 37 genererade tjänstesidor med
+  lika många programvaruförteckningar. Se `sites/tjanster/README.md`.
+- `api/` – API-katalogens startsida och 75 API-sidor med Swagger UI och
+  programvaruförteckningar. Se `sites/api/README.md`.
 - `packages/chrome/` – paketet `@sundsvall/chrome` med sidhuvud, sidfot,
   appskal, byggblock och webbplatsens gemensamma navigation. Sektionerna har
   inga egna kopior av chromet.
-- `public/assets/` – delade ikoner. `public/arkitektur/assets/diagrams/`
-  och `public/tjanster/assets/` – sektionernas genererade ritningar och
-  programvaruförteckningar.
+- `public/assets/` – delade ikoner. `public/SEKTION/assets/` – sektionernas
+  genererade ritningar, OpenAPI-specar och programvaruförteckningar.
 - `.github/workflows/refresh-sbom.yml` – arbetsflöde som varje vecka uppdaterar
-  katalogernas programvaruförteckningar från källkodsrepona.
+  båda katalogernas programvaruförteckningar från källkodsrepona.
+
+Sidskalen (`*.html`) bär webbadressen och plockas upp automatiskt av
+`vite.config.ts`; React-koden ligger under `sites/`. Katalogernas sidskal
+**genereras** ur sektionernas datafiler och redigeras aldrig för hand.
 
 ## Utveckla och bygga
 
@@ -55,6 +70,9 @@ npm install   # installera beroenden
 npm run dev   # utvecklingsserver med omedelbar omladdning
 npm run build # bygg produktionsversionen till dist/
 ```
+
+Bygget omfattar alla sektioner – knappt 300 sidor – så ett fel i en sektion
+stoppar hela webbplatsen.
 
 Designsystemet:
 
@@ -70,11 +88,11 @@ Designsystemet:
 
 ## Publicering
 
-Containern är den kanoniska publiceringen: `Dockerfile` bygger webbplatsen i ett
+Containern är den enda publiceringen: `Dockerfile` bygger webbplatsen i ett
 Node-steg och serverar `dist/` med nginx på port 80 (`nginx.conf` sätter
 cache-huvuden). En webhook i repot anropar Dokploy vid varje push till `main`.
+GitHub Pages används inte.
 
-Webbplatsen publiceras **bara** som container – GitHub Pages används inte.
 Bygget använder relativa sökvägar (`base: './'`), så samma artefakt kan serveras
 från rot såväl som från en underkatalog vid lokal förhandsgranskning.
 
@@ -83,20 +101,27 @@ gamla domänerna beskrivs i [`docs/publicering.md`](docs/publicering.md).
 
 ## Uppdatera innehållet
 
-Texterna redigeras i `sites/start/StartPage.tsx`. Menyn, sidfotens länkar och
-korten i respektive avsnitt ligger som datalitteraler överst i samma fil.
-Verifiera lokalt innan push: bygg webbplatsen, rendera sidan med headless
-Chromium och kontrollera layout i både desktop- och mobilbredd.
+- **Startsidan:** texterna redigeras i `sites/start/StartPage.tsx`. Korten
+  ligger som datalitteraler överst i filen.
+- **Målarkitekturen:** texterna i `sites/arkitektur/pages/`, diagrammen via
+  generatorerna i `sites/arkitektur/scripts/`.
+- **Katalogerna:** aldrig i sidorna, utan i datafilerna
+  `sites/tjanster/scripts/apps-data.json` respektive
+  `sites/api/scripts/apis-data.json`, följt av en körning av sektionens
+  `generate-pages.py` och `generate-diagrams.py`. Programvaruförteckningarna
+  skrivs aldrig för hand – de underhålls av arbetsflödet.
+- **Meny och sidfot:** i `packages/chrome/src/navigation.ts`, en gång för hela
+  webbplatsen.
+
+Verifiera lokalt innan push: bygg webbplatsen, rendera startsidan och minst en
+sida per sektion med headless Chromium i både desktop- och mobilbredd, och
+kontrollera att länkarna mellan sektionerna pekar rätt.
 
 ## Underlag
 
-Innehållet är framtaget ur bland annat:
-
-- Förstasidan på [utveckling.sundsvall.se](https://utveckling.sundsvall.se/)
-  samt [Målbild och strategi](https://utveckling.sundsvall.se/malbild-och-strategi)
-  och [AI](https://utveckling.sundsvall.se/ai)
-- [Målarkitekturen](https://arkitektur.sundsvall.dev/index.html)
-- [kommuna.se](https://kommuna.se/index.html)
-- [eneo.ai](https://eneo.ai/)
-- [Webbkatalogen](https://web-katalog.sundsvall.dev/index.html)
-  och [API-katalogen](https://api-katalog.sundsvall.dev/index.html)
+Katalogernas innehåll härleds ur källkoden i kommunens öppna repon på
+[github.com/Sundsvallskommun](https://github.com/Sundsvallskommun). Startsidans
+och målarkitekturens texter bygger på kommunens egen dokumentation av
+målarkitekturen, samt på [kommuna.se](https://kommuna.se/index.html) och
+[eneo.ai](https://eneo.ai/) för de initiativ som beskrivs under vidare läsning.
+Designprinciperna kommer ur en doktorsavhandling som anges på sin egen sida.
