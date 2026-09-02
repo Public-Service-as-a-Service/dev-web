@@ -4,6 +4,7 @@ import { SiteFooter } from '../components/SiteFooter';
 import { SiteHeader } from '../components/SiteHeader';
 
 const menu = [
+  { label: 'Målarkitekturen', href: 'index.html' },
   { label: 'Hela kartan', href: '#kartan' },
   { label: 'Så läser du bilden', href: '#lasa-bilden' },
   { label: 'Underlag', href: '#underlag' },
@@ -36,6 +37,7 @@ export function EkosystemetPage() {
       <SiteHeader menu={menu} />
       <main>
         <Hero
+          back={{ label: 'Tillbaka till målarkitekturen', href: 'index.html' }}
           kicker="Sundsvalls kommun"
           title="Ekosystemet"
           lead="Målarkitekturens översiktsbilder är medvetet abstrakta. Den här sidan visar i stället helheten som den faktiskt ser ut: alla webbapplikationer i webbkatalogen, alla API:er i API-katalogen, vilka API:er varje webb anropar och hur API:erna integrerar med varandra. Bilden är stor och tät – det är poängen. Så här ser ett ekosystem av väl avgränsade komponenter ut i verkligheten."

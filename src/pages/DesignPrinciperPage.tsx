@@ -12,6 +12,7 @@ import { SiteFooter } from '../components/SiteFooter';
 import { SiteHeader } from '../components/SiteHeader';
 
 const menu = [
+  { label: 'Målarkitekturen', href: 'index.html' },
   { label: 'Om principerna', href: '#om-principerna' },
   { label: 'Principerna', href: '#principerna' },
   { label: 'Blueprint', href: '#blueprint' },
@@ -151,6 +152,7 @@ export function DesignPrinciperPage() {
       <SiteHeader menu={menu} />
       <main>
         <Hero
+          back={{ label: 'Tillbaka till målarkitekturen', href: 'index.html' }}
           kicker="Sundsvalls kommun"
           title="Designprinciper"
           lead="Målarkitekturen beskriver vad vi bygger. Designprinciperna beskriver hur och varför. De kommer ur forskning om socio-teknisk skuld i kommunal sektor och är samlade i tre familjer: medborgarcentrering, överförbarhet och styrning. Tillsammans med arkitekturens blueprint visar de hur en kommun tar sig från inlåst arv till öppna, återanvändbara komponenter."
