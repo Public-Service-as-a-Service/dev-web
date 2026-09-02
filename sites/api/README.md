@@ -49,8 +49,6 @@ Inga hex-värden eller CSS-variabler hårdkodas i projektet.
   dokumenteras i katalogen.
 - `sites/api/scripts/normalize-sbom.py` – gör Trivys SPDX-utdata reproducerbar så att en
   oförändrad beroendelista inte ger någon diff.
-- `.github/workflows/deploy-pages.yml` – arbetsflöde som publicerar webbplatsen
-  till GitHub Pages.
 - `.github/workflows/refresh-sbom.yml` (gemensamt för båda katalogerna) – arbetsflöde som varje vecka uppdaterar
   programvaruförteckningarna från källkodsrepona.
 
@@ -66,19 +64,9 @@ npm run build # bygg produktionsversionen till dist/
 
 ## Publicering
 
-Webbplatsen byggs med `npm run build` och publiceras automatiskt via
-GitHub Pages när ändringar pushas till `main`-grenen.
+Publiceringen sköts från repots rot: containern byggs och deployas av
+Dokploy vid varje push till `main`. Se `docs/publicering.md`.
 
-Engångsinställning: under **Settings → Pages** i repot, välj **GitHub Actions**
-som källa ("Source"). Därefter publiceras sidan på
-`https://<organisation>.github.io/api-catalogue/` vid varje push till `main`
-(eller manuellt via *Run workflow*).
-
-Webbplatsen kan även driftsättas som container: `Dockerfile` bygger webbplatsen
-i ett Node-steg och serverar `dist/` med nginx på port 80 (används för deploy via
-Dokploy – byggtyp Dockerfile, containerport 80, källan klonad över HTTPS
-eftersom repot är publikt, med webhook som triggar deploy vid push till
-`main`).
 
 ## Lägga till fler API:er
 

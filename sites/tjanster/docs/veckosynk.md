@@ -102,4 +102,4 @@ kommentarerna i workflowfilen.
 
 Sessionen bokar egna avstämningar (ca en timme) tills PR:en är mergad eller
 stängd och eventuella SBOM-körningar är klara, och avslutar därefter. Merge
-till `main` publicerar katalogen via GitHub Pages som vanligt.
+till `main` deployar webbplatsen via Dokploy som vanligt.

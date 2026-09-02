@@ -16,8 +16,8 @@ börjar med `api-service` – men katalogen kan även omfatta API:er vars lösni
 inte publiceras som öppen källkod; att källkoden är öppen är sekundärt. Utöver
 beskrivningssidorna exponeras varje API:s OpenAPI-specifikation interaktivt via
 Swagger UI, och varje API:s programvaruförteckning (SBOM) i SPDX-format.
-Publiceras till GitHub Pages via `.github/workflows/deploy-pages.yml` vid push
-till `main` (arbetsflödet kör `npm ci && npm run build` och publicerar `dist/`).
+Publiceras som en del av webbplatsen: containern byggs och deployas av Dokploy
+vid varje push till `main`.
 
 ## Designsystem – obligatoriskt
 
@@ -160,10 +160,10 @@ vanliga arbetsflödet.** Till skillnad från sidorna och ritningarna, som är re
 funktioner av `apis-data.json`, är en SBOM en funktion av 75 externa repon som
 Dependabot uppdaterar löpande. De underhålls därför av
 `.github/workflows/refresh-sbom.yml` (gemensamt för båda katalogerna), som varje vecka checkar ut varje
-källkodsrepo, kör Trivy och commitar det som ändrats. Workflowet publicerar
-också till GitHub Pages i ett eget steg: en push som gjorts med `GITHUB_TOKEN`
-startar inga nya workflows, så `deploy-pages.yml` plockar *inte* upp den
-commiten.
+källkodsrepo, kör Trivy och commitar det som ändrats. Deployn sköts av Dokploy:
+en push som gjorts med `GITHUB_TOKEN` startar inga nya workflows, men repots
+GitHub-webhook går fram, och workflowet anropar dessutom Dokploy när
+`DOKPLOY_WEBHOOK_URL` är satt.
 
 Tre saker är avgörande om workflowet någon gång skrivs om:
 
@@ -269,4 +269,4 @@ API-sidan (beroendetabellen och "Noterbart ur källkoden").
 ## Arbetsflöde
 
 Utveckla på en arbetsgren, committa och pusha, skapa PR mot `main` och merga
-efter godkännande. Merge till `main` publicerar automatiskt via GitHub Pages.
+efter godkännande. Merge till `main` deployar automatiskt containern via Dokploy.

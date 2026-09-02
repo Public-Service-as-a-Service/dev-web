@@ -43,8 +43,8 @@ byggs till en enda uppsättning statiska filer och publiceras som en container.
 - `public/assets/` – delade ikoner. `public/arkitektur/assets/diagrams/`
   och `public/tjanster/assets/` – sektionernas genererade ritningar och
   programvaruförteckningar.
-- `.github/workflows/deploy-pages.yml` – arbetsflöde som bygger webbplatsen och
-  publicerar den till GitHub Pages.
+- `.github/workflows/refresh-sbom.yml` – arbetsflöde som varje vecka uppdaterar
+  katalogernas programvaruförteckningar från källkodsrepona.
 
 ## Utveckla och bygga
 
@@ -74,10 +74,9 @@ Containern är den kanoniska publiceringen: `Dockerfile` bygger webbplatsen i et
 Node-steg och serverar `dist/` med nginx på port 80 (`nginx.conf` sätter
 cache-huvuden). En webhook i repot anropar Dokploy vid varje push till `main`.
 
-GitHub Pages ligger kvar som förhandsvisning på
-`https://<organisation>.github.io/dev-web/` via
-`.github/workflows/deploy-pages.yml`. Bygget använder relativa sökvägar
-(`base: './'`), så samma artefakt fungerar både på rot och i en underkatalog.
+Webbplatsen publiceras **bara** som container – GitHub Pages används inte.
+Bygget använder relativa sökvägar (`base: './'`), så samma artefakt kan serveras
+från rot såväl som från en underkatalog vid lokal förhandsgranskning.
 
 Domänbytet till `ekosystemet.sundsvall.dev` och omdirigeringarna från de fyra
 gamla domänerna beskrivs i [`docs/publicering.md`](docs/publicering.md).

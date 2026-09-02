@@ -9,9 +9,8 @@ nedan – det är så de befintliga sidorna är framtagna.
 En statisk webbplats – en React-applikation som byggs med Vite – som beskriver
 de webbapplikationer Sundsvalls kommun publicerar som öppen källkod på
 [github.com/Sundsvallskommun](https://github.com/Sundsvallskommun) – repon som
-börjar med `web-app`. Publiceras till GitHub Pages via
-`.github/workflows/deploy-pages.yml` vid push till `main` (arbetsflödet kör
-`npm ci && npm run build` och publicerar `dist/`).
+börjar med `web-app`. Publiceras som en del av webbplatsen: containern byggs och deployas av
+Dokploy vid varje push till `main`.
 
 ## Designsystem – obligatoriskt
 
@@ -185,11 +184,11 @@ ett filterfält.
 vanliga arbetsflödet.** Till skillnad från sidorna och ritningarna, som är rena
 funktioner av `apps-data.json`, är en SBOM en funktion av 36 externa repon som
 Dependabot uppdaterar löpande. De underhålls av
-`.github/workflows/refresh-sbom-tjanster.yml`, som varje vecka checkar ut varje
-källkodsrepo, installerar beroendena, kör Trivy och commitar det som ändrats.
-Workflowet publicerar också till GitHub Pages i ett eget steg: en push gjord med
-`GITHUB_TOKEN` startar inga nya workflows, så `deploy-pages.yml` plockar *inte*
-upp den commiten.
+`.github/workflows/refresh-sbom.yml` (gemensamt för båda katalogerna), som varje
+vecka checkar ut varje källkodsrepo, installerar beroendena, kör Trivy och
+commitar det som ändrats. Deployn sköts av Dokploy: en push gjord med
+`GITHUB_TOKEN` startar inga nya workflows, men repots GitHub-webhook går fram,
+och workflowet anropar dessutom Dokploy när `DOKPLOY_WEBHOOK_URL` är satt.
 
 Fyra saker är avgörande om workflowet någon gång skrivs om:
 
@@ -296,6 +295,6 @@ exakt med sidans API-tabell – båda kommer från samma källor i repot.
 ## Arbetsflöde
 
 Utveckla på en arbetsgren, committa och pusha, skapa PR mot `main` och merga
-efter godkännande. Merge till `main` publicerar automatiskt via GitHub Pages.
+efter godkännande. Merge till `main` deployar automatiskt containern via Dokploy.
 Obs: `main` skyddas av squash-merge – starta om arbetsgrenen från senaste
 `origin/main` efter varje mergad PR innan nytt arbete pushas.

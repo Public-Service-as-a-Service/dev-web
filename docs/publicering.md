@@ -5,19 +5,19 @@ uppsättning statiska filer och publiceras som **en** container. Det här
 dokumentet beskriver hur den publiceras och hur de fyra gamla domänerna pekas om
 till den nya.
 
-## Kanonisk publicering
+## Publicering
 
-**Containern är kanonisk.** `Dockerfile` bygger webbplatsen i ett Node-steg och
-serverar `dist/` med nginx på port 80 (`nginx.conf` sätter cache-huvuden).
-Dokploy bygger om och deployar vid varje push till `main` via repots webhook –
-även för commits som SBOM-arbetsflödet gör med `GITHUB_TOKEN`, eftersom en
-GitHub-webhook till skillnad från ett arbetsflöde triggas av alla pushar.
+**Containern är den enda publiceringen.** `Dockerfile` bygger webbplatsen i ett
+Node-steg och serverar `dist/` med nginx på port 80 (`nginx.conf` sätter
+cache-huvuden). Dokploy bygger om och deployar vid varje push till `main` via
+repots webhook – även för commits som SBOM-arbetsflödet gör med `GITHUB_TOKEN`,
+eftersom en GitHub-webhook till skillnad från ett arbetsflöde triggas av alla
+pushar. Arbetsflödet anropar dessutom Dokploy direkt när hemligheten
+`DOKPLOY_WEBHOOK_URL` är satt i repot.
 
-GitHub Pages-publiceringen (`.github/workflows/deploy-pages.yml`) ligger kvar
-som förhandsvisning på `https://<organisation>.github.io/dev-web/`. Bygget
-använder `base: './'`, alltså relativa sökvägar, så samma artefakt fungerar både
-på rot och i en underkatalog. Byt inte till `base: '/'` utan att först ta bort
-Pages-publiceringen.
+GitHub Pages används inte för den här webbplatsen. Bygget behåller ändå
+relativa sökvägar (`base: './'`), så att `dist/` går att förhandsgranska från
+valfri katalog.
 
 ## Adresser efter hopslagningen
 
