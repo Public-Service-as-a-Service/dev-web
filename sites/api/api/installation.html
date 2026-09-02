@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Installation – API-katalogen</title>
+  <meta name="description" content="Uppslag av anläggningar (installationer) hos kommunens leverantörsbolag – till exempel el- och fjärrvärmeanläggningar – ur kommunens datalager.">
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+  <link rel="apple-touch-icon" href="../assets/favicon-180.png">
+</head>
+<body>
+  <script type="application/json" id="page-data">{"api":{"repo":"api-service-installation","namn":"Installation","slug":"installation","kategori":"Parts- och kunddata","status":null,"apiVersion":"2.0","ingress":"Uppslag av anläggningar (installationer) hos kommunens leverantörsbolag – till exempel el- och fjärrvärmeanläggningar – ur kommunens datalager.","beskrivning":["Installation ger kommunens applikationer ett enkelt sätt att hämta detaljerad information om anläggningar hos leverantörsbolagen inom kommunkoncernen, till exempel elanläggningar. Uppgifterna hämtas ur kommunens datalager via tjänsten DataWarehouseReader och omfattar bland annat anläggnings-id, adressuppgifter och metadata per anläggning.","API:et består av en sökresurs där resultatet kan filtreras på kategori (till exempel ELECTRICITY), anläggnings-id, om anläggningen är installerad eller inte samt ändringsdatum, med paginerat svar. Tjänsten lagrar ingenting själv utan är ett tunt, läsande fasad-API framför datalagret."],"malgrupp":"Kommunens applikationer och verksamhetssystem","funktioner":[{"titel":"Sök anläggningar","text":"Hämtar detaljinformation om anläggningar ur datalagret med paginerat svar."},{"titel":"Filtrering på kategori","text":"Resultatet kan avgränsas till en viss typ av anläggning, till exempel el."},{"titel":"Filtrering på anläggnings-id och status","text":"Sökningen kan avgränsas till en specifik anläggning och till installerade eller ej installerade anläggningar."},{"titel":"Ändringsdatum","text":"Med dateFrom hämtas bara anläggningar som ändrats efter ett visst datum."}],"beroenden":[{"name":"DataWarehouseReader","version":"3.5","usage":"Hämtar anläggningsdetaljer ur kommunens datalager; alla sökparametrar skickas vidare dit."}],"integrationer":[],"databas":null,"teknik":{"sprak":"Java 25","ramverk":"Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.8), byggd med Maven","ovrigt":"Resilience4j-circuit breaker mot DataWarehouseReader"},"konfiguration":["application.yml med URL, token-URL och OAuth2-klientuppgifter för DataWarehouseReader","Timeout-inställningar för anropen mot DataWarehouseReader","municipalityId loggas i MDC för spårbarhet","Anrop görs per kommun – municipalityId ingår i alla API-vägar"],"anteckningar":["Tjänsten är ett renodlat fasad-API: tjänstelagret består av en enda metod som översätter sökparametrarna och skickar frågan vidare till DataWarehouseReader – verifierat i InstallationService.","Ingen egen databas – all data hämtas vid varje anrop ur datalagret.","README beskriver tjänsten som uppslag av \"uninstalled installations\", men API:et kan filtrera på både installerade och ej installerade anläggningar via parametern installed – koden är sanningskällan."]},"hasSpec":true,"hasSbom":true,"sbom":{"komponenter":223,"licenser":11}}</script>
+  <div id="root"></div>
+  <script type="module" src="/src/entries/api.tsx"></script>
+</body>
+</html>
