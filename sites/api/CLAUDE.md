@@ -34,7 +34,7 @@ Webbplatsen följer [Sundsvalls kommuns designsystem](https://ui.sundsvall.dev/)
   `font-header`, `text-lead`, `max-w-content`, `rounded-cards` samt
   avståndsskalan (`p-24`, `gap-16`, `py-40` …).
 - **Hårdkoda aldrig hex-värden eller CSS-variabler.** Inga `#`-färger, inga
-  `var(--…)` och ingen egen CSS utöver Tailwind-direktiven i `src/index.css` –
+  `var(--…)` och ingen egen CSS utöver Tailwind-direktiven i `packages/chrome/src/index.css` –
   allt utseende ska komma från paketen via komponenter och tokenklasser.
 - `vattjom` (blå) är webbplatsens primärtema. Typsnitt: Raleway för rubriker
   via `font-header` (läses in från paketet `@fontsource/raleway`), Arial för
@@ -48,7 +48,7 @@ Webbplatsen följer [Sundsvalls kommuns designsystem](https://ui.sundsvall.dev/)
 1. **Endast API:er i skarp produktion.** Katalogen listar de API:er, och de
    versioner, som körs i produktion vid ögonblicket. Avvecklade API:er och
    prototyper ska inte finnas i katalogen – när ett API tas ur drift tas dess
-   post bort ur `scripts/apis-data.json` tillsammans med de genererade filerna
+   post bort ur `sites/api/scripts/apis-data.json` tillsammans med de genererade filerna
    (API-sidan, Swagger UI-sidan, OpenAPI-specifikationen och diagrammet),
    varefter generatorskripten körs om.
 2. **API-plattformens namn, inte reponamn.** API:er presenteras under det namn
@@ -74,7 +74,7 @@ Klona repot (grunt räcker: `git clone --depth 1 …`) och undersök:
 | Fakta | Källa i repot |
 | --- | --- |
 | API-namn och version | `info.title` och `info.version` i OpenAPI-specifikationen samt `<version>` i `pom.xml`. |
-| OpenAPI-specifikation | `src/integration-test/resources/openapi.yml` (dept44-standard: specen checkas in och verifieras mot den genererade i integrationstesterna). Kopieras till `assets/openapi/<slug>.yml`. |
+| OpenAPI-specifikation | `src/integration-test/resources/openapi.yml` (dept44-standard: specen checkas in och verifieras mot den genererade i integrationstesterna). Kopieras till `public/api/assets/openapi/<slug>.yml`. |
 | Beroende mikrotjänster och versioner | `src/main/resources/integrations/*.yml` – en klientspecifikation per beroende tjänst, med version i filnamn/innehåll. Paketen under `src/main/java/**/integration/` bekräftar vilka som faktiskt används i koden. |
 | Externa integrationer | Integrationspaket som inte är kommun-API:er (t.ex. `slack`) samt beroenden i `pom.xml` (t.ex. `slack-api-client`). |
 | Teknikstack | `pom.xml`: förälder `dept44-service-parent` ⇒ Spring Boot via kommunens tjänsteplattform dept44 (ange versionen); Java-version ur pom/README. |
@@ -88,24 +88,24 @@ API-vägarna.
 
 ## Så skapas API-sidor
 
-**Datadrivet (enda sättet).** Lägg till ett objekt i `scripts/apis-data.json`
+**Datadrivet (enda sättet).** Lägg till ett objekt i `sites/api/scripts/apis-data.json`
 med de fält som redan finns där (repo, namn, slug, kategori, status,
 apiVersion, ingress, beskrivning, malgrupp, funktioner, beroenden,
 integrationer, databas, teknik, konfiguration, anteckningar), kopiera
-OpenAPI-specifikationen till `assets/openapi/<slug>.yml` och kör
-`python3 scripts/generate-pages.py` följt av
-`python3 scripts/generate-diagrams.py`. Generatorn skriver **sidskal** under
+OpenAPI-specifikationen till `public/api/assets/openapi/<slug>.yml` och kör
+`python3 sites/api/scripts/generate-pages.py` följt av
+`python3 sites/api/scripts/generate-diagrams.py`. Generatorn skriver **sidskal** under
 `api/` – head-metadata plus sidans data inbäddad som JSON i
 `<script id="page-data">` – och innehållet renderas av React-komponenterna i
-`src/pages/` (`ApiPage.tsx`, `SwaggerPage.tsx`, `SbomPage.tsx`) med
+`sites/api/pages/` (`ApiPage.tsx`, `SwaggerPage.tsx`, `SbomPage.tsx`) med
 designsystemet. Startsidans kort behöver inte genereras:
-`src/pages/IndexPage.tsx` importerar `apis-data.json` direkt. Fyll fälten
+`sites/api/pages/IndexPage.tsx` importerar `apis-data.json` direkt. Fyll fälten
 enligt tabellen ovan – uppgifterna ska vara härledda ur källkodsrepot. Ändras
 sidornas struktur eller utseende görs det i React-komponenterna; ändras datat
 körs generatorn om.
 
 SBOM-sidan ingår inte i det här steget: den skapas först när
-`refresh-sbom.yml` har lagt en `assets/sbom/<slug>.spdx.json` på plats. Ett nytt
+`refresh-sbom.yml` har lagt en `public/api/assets/sbom/<slug>.spdx.json` på plats. Ett nytt
 API får alltså sin programvaruförteckning vid nästa schemalagda körning, eller
 direkt om du kör workflowet manuellt.
 
@@ -113,7 +113,7 @@ direkt om du kör workflowet manuellt.
 
 Strukturen, som generatorn producerar:
 
-Strukturen definieras av `src/pages/ApiPage.tsx`:
+Strukturen definieras av `sites/api/pages/ApiPage.tsx`:
 
 1. **Sidhuvud** – `SiteHeader` (designsystemets `Header` med kommunlogotypen).
 2. **`PageHero`** – brödsmulor (Start / API:er / sidnamn, designsystemets
@@ -140,8 +140,8 @@ Strukturen definieras av `src/pages/ApiPage.tsx`:
 ## Swagger UI-sidan
 
 `api/<slug>-swagger.html` genereras av samma skript och renderas av
-`src/pages/SwaggerPage.tsx`. Den använder samma sidhuvud/sidfot som övriga
-sidor och renderar specifikationen från `assets/openapi/<slug>.yml` med
+`sites/api/pages/SwaggerPage.tsx`. Den använder samma sidhuvud/sidfot som övriga
+sidor och renderar specifikationen från `public/api/assets/openapi/<slug>.yml` med
 Swagger UI från npm-paketet `swagger-ui-dist` (`BaseLayout`, inga externa
 CDN-beroenden). "Try it out" är avstängt, och serverlistan och
 Authorize-knappen döljs via en Swagger UI-plugin, eftersom specens server-URL
@@ -150,8 +150,8 @@ Authorize-knappen döljs via en Swagger UI-plugin, eftersom specens server-URL
 ## Programvaruförteckningen (SBOM)
 
 `api/<slug>-sbom.html` genereras av samma skript ur
-`assets/sbom/<slug>.spdx.json` – komponentlistan bäddas in i sidskalet som
-JSON – och renderas av `src/pages/SbomPage.tsx`: tjänstens
+`public/api/assets/sbom/<slug>.spdx.json` – komponentlistan bäddas in i sidskalet som
+JSON – och renderas av `sites/api/pages/SbomPage.tsx`: tjänstens
 tredjepartskomponenter med version och licens, en licenssammanfattning och ett
 filterfält.
 
@@ -159,7 +159,7 @@ filterfält.
 vanliga arbetsflödet.** Till skillnad från sidorna och ritningarna, som är rena
 funktioner av `apis-data.json`, är en SBOM en funktion av 75 externa repon som
 Dependabot uppdaterar löpande. De underhålls därför av
-`.github/workflows/refresh-sbom.yml`, som varje vecka checkar ut varje
+`.github/workflows/refresh-sbom.yml` (gemensamt för båda katalogerna), som varje vecka checkar ut varje
 källkodsrepo, kör Trivy och commitar det som ändrats. Workflowet publicerar
 också till GitHub Pages i ett eget steg: en push som gjorts med `GITHUB_TOKEN`
 startar inga nya workflows, så `deploy-pages.yml` plockar *inte* upp den
@@ -180,7 +180,7 @@ Tre saker är avgörande om workflowet någon gång skrivs om:
 - **Trivy-versionen är pinnad** i workflowet, av samma skäl. En uppgradering ska
   vara en egen, granskad ändring.
 
-`scripts/normalize-sbom.py` låser de fält som annars varierar mellan körningar
+`sites/api/scripts/normalize-sbom.py` låser de fält som annars varierar mellan körningar
 (dokumentets namnrymd och tidsstämpeln) till den scannade committen, tar bort
 Trivys verktygsinterna annoteringar och skriver in härkomsten i dokumentet. Utan
 det skulle varje veckokörning producera en commit även när inget beroende
@@ -195,7 +195,7 @@ inte bryter determinismen:
    beroende hos systermoduler (utan licens, eftersom reaktormoduler aldrig
    installeras i `~/.m2`). När alla licensierade poster för samma
    (namn, version) är överens fylls de tomma i från dem.
-2. **`scripts/license-overrides.json`** – manuellt verifierade licenser för
+2. **`sites/api/scripts/license-overrides.json`** – manuellt verifierade licenser för
    komponenter Trivy inte klarar (t.ex. `io.kubernetes:client-java`, vars
    föräldra-pom inte nås offline). Fyller **endast** i `licenseConcluded` när
    scanningen gav `NOASSERTION`/`NONE`; en licens Trivy själv hittat skrivs
@@ -227,8 +227,8 @@ ifrån dummy-commits till just API-anropet.
 
 ## Arkitekturritningen
 
-En SVG per API i `assets/diagrams/<samma slug>.svg`, genererad ur
-`scripts/apis-data.json` med `scripts/generate-diagrams.py`. Rita aldrig för
+En SVG per API i `public/api/assets/diagrams/<samma slug>.svg`, genererad ur
+`sites/api/scripts/apis-data.json` med `sites/api/scripts/generate-diagrams.py`. Rita aldrig för
 hand – generatorn håller stil och layout konsekvent.
 
 Ritningens lager, uppifrån och ned:
@@ -253,7 +253,7 @@ som i systerkatalogen web-catalogue, så att etiketter aldrig hamnar utanför
 lådan eller krockar med grannlådans text; hela texten behålls som `<title>` och
 visas när muspekaren vilar över etiketten. Noteringarna under diagrammet
 radbryts i stället på ordgränser. Korta därför inte av fälten i
-`scripts/apis-data.json` för hand för att de ska "få plats" – skriv dem
+`sites/api/scripts/apis-data.json` för hand för att de ska "få plats" – skriv dem
 fullständiga och låt generatorn sköta avkortningen. Fulltexten finns alltid på
 API-sidan (beroendetabellen och "Noterbart ur källkoden").
 

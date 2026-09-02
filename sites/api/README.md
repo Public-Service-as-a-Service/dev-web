@@ -24,34 +24,34 @@ Inga hex-värden eller CSS-variabler hårdkodas i projektet.
 
 ## Innehåll
 
-- `index.html` / `src/pages/IndexPage.tsx` – förstasidan med information om
+- `index.html` / `sites/api/pages/IndexPage.tsx` – förstasidan med information om
   katalogen och en översikt över API:erna, grupperad per kategori (korten
-  renderas ur `scripts/apis-data.json`).
+  renderas ur `sites/api/scripts/apis-data.json`).
 - `api/<slug>.html` – ett sidskal per API (ett 70-tal) med sidans data inbäddad
-  som JSON. Genereras från `scripts/apis-data.json` med
-  `scripts/generate-pages.py`; innehållet renderas av `src/pages/ApiPage.tsx`.
+  som JSON. Genereras från `sites/api/scripts/apis-data.json` med
+  `sites/api/scripts/generate-pages.py`; innehållet renderas av `sites/api/pages/ApiPage.tsx`.
 - `api/<slug>-swagger.html` – Swagger UI-sida per API som renderar
   OpenAPI-specifikationen interaktivt (Swagger UI kommer från npm-paketet
   `swagger-ui-dist`).
-- `assets/openapi/<slug>.yml` – API:ets OpenAPI-specifikation, hämtad ur
+- `public/api/assets/openapi/<slug>.yml` – API:ets OpenAPI-specifikation, hämtad ur
   källkodsrepots incheckade spec.
 - `api/<slug>-sbom.html` – programvaruförteckning per API: tredjepartskomponenter
   med version och licens, plus en licenssammanfattning.
-- `assets/sbom/<slug>.spdx.json` – förteckningen i SPDX-format, maskinellt
+- `public/api/assets/sbom/<slug>.spdx.json` – förteckningen i SPDX-format, maskinellt
   härledd ur källkodsrepots beroendeträd.
-- `scripts/apis-data.json` – fakta om varje API, härledd ur respektive
+- `sites/api/scripts/apis-data.json` – fakta om varje API, härledd ur respektive
   källkodsrepo.
-- `src/components/` – delade byggblock (sidhuvud, sidfot, hero, kort med mera)
+- `sites/api/components/` – delade byggblock (sidhuvud, sidfot, hero, kort med mera)
   ovanpå designsystemets komponenter.
-- `assets/diagrams/*.svg` – arkitekturritningar, genererade med
-  `scripts/generate-diagrams.py`.
+- `public/api/assets/diagrams/*.svg` – arkitekturritningar, genererade med
+  `sites/api/scripts/generate-diagrams.py`.
 - `CLAUDE.md` – AI-instruktion som i detalj beskriver hur ett API
   dokumenteras i katalogen.
-- `scripts/normalize-sbom.py` – gör Trivys SPDX-utdata reproducerbar så att en
+- `sites/api/scripts/normalize-sbom.py` – gör Trivys SPDX-utdata reproducerbar så att en
   oförändrad beroendelista inte ger någon diff.
 - `.github/workflows/deploy-pages.yml` – arbetsflöde som publicerar webbplatsen
   till GitHub Pages.
-- `.github/workflows/refresh-sbom.yml` – arbetsflöde som varje vecka uppdaterar
+- `.github/workflows/refresh-sbom.yml` (gemensamt för båda katalogerna) – arbetsflöde som varje vecka uppdaterar
   programvaruförteckningarna från källkodsrepona.
 
 ## Utveckla och bygga
@@ -88,7 +88,7 @@ incheckade specifikation, beroende tjänster ur integrationsklienterna), hur
 API-sidan struktureras och hur arkitekturritningen genereras.
 
 Kort version: kopiera API:ets OpenAPI-specifikation till
-`assets/openapi/<slug>.yml`, lägg till ett objekt i `scripts/apis-data.json`
-och kör `python3 scripts/generate-pages.py` följt av
-`python3 scripts/generate-diagrams.py`. Sidorna, Swagger UI-sidan,
+`public/api/assets/openapi/<slug>.yml`, lägg till ett objekt i `sites/api/scripts/apis-data.json`
+och kör `python3 sites/api/scripts/generate-pages.py` följt av
+`python3 sites/api/scripts/generate-diagrams.py`. Sidorna, Swagger UI-sidan,
 arkitekturritningen och startsidans kort genereras då automatiskt.

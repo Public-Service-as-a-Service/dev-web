@@ -18,8 +18,6 @@ export const SITE_NAME = 'Utveckling';
 // '../' för en sida inne i en sektion. Relativa länkar gör att bygget fungerar
 // både i containern (på rot) och på GitHub Pages (i en underkatalog).
 //
-// API-katalogen ligger ännu på en egen domän och är därför extern. När den
-// flyttas in blir den `${prefix}api/index.html`.
 export type Section = 'arkitektur' | 'tjanster' | 'api';
 
 export function sectionLinks(prefix = './', current?: Section): NavLink[] {
@@ -36,8 +34,7 @@ export function sectionLinks(prefix = './', current?: Section): NavLink[] {
     },
     {
       label: 'API-katalogen',
-      href: 'https://api-katalog.sundsvall.dev/index.html',
-      external: true,
+      href: `${prefix}api/index.html`,
       current: current === 'api',
     },
   ];

@@ -10,10 +10,12 @@ container.
 index.html            startsidan            →  /
 arkitektur/*.html     målarkitekturen       →  /arkitektur/
 tjanster/*.html       webbkatalogen         →  /tjanster/
+api/*.html            API-katalogen         →  /api/
 packages/chrome/      delad sidchrome (@sundsvall/chrome)
 sites/start/          startsidans React-kod
 sites/arkitektur/     sektionens React-kod, sidor och diagramgeneratorer
 sites/tjanster/       webbkatalogens React-kod, data och generatorer
+sites/api/            API-katalogens React-kod, data och generatorer
 public/               delade ikoner och sektionernas diagram
 ```
 
@@ -27,11 +29,12 @@ public/               delade ikoner och sektionernas diagram
   annan sektions webbadress för hand.
 - Sidskalen (`*.html`) bär webbadressen; de plockas upp automatiskt av
   `vite.config.ts`. React-koden ligger under `sites/`.
-- API-katalogen är ännu en egen webbplats och länkas som en extern länk tills
-  den flyttas in.
-- Sidskalen under `tjanster/` **genereras** – ändra i
-  `sites/tjanster/scripts/apps-data.json` och kör om generatorn, redigera dem
-  aldrig för hand.
+- Sidskalen under `tjanster/` och `api/` **genereras** – ändra i
+  `sites/tjanster/scripts/apps-data.json` respektive
+  `sites/api/scripts/apis-data.json` och kör om generatorn, redigera dem aldrig
+  för hand.
+- Programvaruförteckningarna uppdateras av `.github/workflows/refresh-sbom.yml`,
+  ett arbetsflöde för båda katalogerna: en körning ger en commit och en deploy.
 
 ## Avgränsning – obligatorisk
 

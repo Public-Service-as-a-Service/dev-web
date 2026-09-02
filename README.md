@@ -34,6 +34,9 @@ byggs till en enda uppsättning statiska filer och publiceras som en container.
 - `tjanster/*.html` / `sites/tjanster/` – sektionen Webbkatalogen: startsida,
   37 genererade tjänstesidor med lika många programvaruförteckningar, data och
   generatorer. Se `sites/tjanster/README.md`.
+- `api/*.html` / `sites/api/` – sektionen API-katalogen: startsida, 75 API-sidor
+  med Swagger UI och programvaruförteckningar, data och generatorer. Se
+  `sites/api/README.md`.
 - `packages/chrome/` – paketet `@sundsvall/chrome` med sidhuvud, sidfot,
   appskal, byggblock och webbplatsens gemensamma navigation. Sektionerna har
   inga egna kopior av chromet.

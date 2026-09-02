@@ -28,6 +28,7 @@ export default defineConfig({
         index: resolve(__dirname, 'index.html'),
         ...sectionPages('arkitektur'),
         ...sectionPages('tjanster'),
+        ...sectionPages('api'),
       },
     },
   },

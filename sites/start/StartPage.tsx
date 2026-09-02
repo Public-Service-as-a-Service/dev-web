@@ -28,7 +28,7 @@ const huvudingangar = [
   {
     tag: 'Katalog',
     title: 'API-katalogen',
-    href: 'https://api-katalog.sundsvall.dev/index.html',
+    href: './api/index.html',
     more: 'Utforska API-katalogen',
     text: 'De API:er som körs i produktion på kommunens API-plattform, med beskrivningar, arkitekturritningar och interaktiv dokumentation.',
   },

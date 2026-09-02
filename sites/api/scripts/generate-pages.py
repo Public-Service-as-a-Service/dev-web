@@ -2,7 +2,7 @@
 """Generate the page shells under api/ from scripts/apis-data.json.
 
 Each shell carries the page's title and metadata plus the page data embedded as
-JSON; the content is rendered by the React entries in src/entries/ using
+JSON; the content is rendered by the React entries in sites/api/entries/ using
 Sundsvall's design system (@sk-web-gui/react + @sk-web-gui/core). The data file
 holds facts derived from each api-service source repository (see CLAUDE.md for
 the method). The start page needs no generation step: src/pages/IndexPage.tsx
@@ -16,17 +16,19 @@ import json
 import os
 from collections import Counter
 
-ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
-DATA = os.path.join(ROOT, "scripts", "apis-data.json")
+# Repots rot: sites/api/scripts -> tre nivåer upp.
+ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "..")
+SECTION = os.path.join(ROOT, "sites", "api")
+DATA = os.path.join(SECTION, "scripts", "apis-data.json")
 OUT = os.path.join(ROOT, "api")
 
 
 def has_spec(api):
-    return os.path.exists(os.path.join(ROOT, "assets", "openapi", f"{api['slug']}.yml"))
+    return os.path.exists(os.path.join(ROOT, "public", "api", "assets", "openapi", f"{api['slug']}.yml"))
 
 
 def sbom_path(api):
-    return os.path.join(ROOT, "assets", "sbom", f"{api['slug']}.spdx.json")
+    return os.path.join(ROOT, "public", "api", "assets", "sbom", f"{api['slug']}.spdx.json")
 
 
 def has_sbom(api):
@@ -96,7 +98,7 @@ def shell(title, description, entry, data):
 <body>
   <script type="application/json" id="page-data">{payload}</script>
   <div id="root"></div>
-  <script type="module" src="/src/entries/{entry}.tsx"></script>
+  <script type="module" src="/sites/api/entries/{entry}.tsx"></script>
 </body>
 </html>
 """

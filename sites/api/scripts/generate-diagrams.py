@@ -4,13 +4,15 @@
 Data comes from scripts/apis-data.json, with facts derived from each
 api-service source repository (dependency versions from the integration
 client specifications, behaviour from the service layer code).
-Run from anywhere: output is written to assets/diagrams/ in the repo root.
+Run from anywhere: output is written to public/api/assets/diagrams/ in the repo root.
 """
 
 import json
 import os
 
-OUT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "assets", "diagrams")
+OUT_DIR = os.path.join(
+    os.path.dirname(os.path.abspath(__file__)), "..", "..", "..", "public", "api", "assets", "diagrams"
+)
 DATA = os.path.join(os.path.dirname(os.path.abspath(__file__)), "apis-data.json")
 
 # Palette aligned with the site's stylesheet
