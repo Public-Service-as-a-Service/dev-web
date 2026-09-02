@@ -91,7 +91,7 @@ def normalise(doc, slug, repo, sha, short_sha, date):
     creation["created"] = date
     creation["comment"] = (
         f"Genererad ur {repo} commit {sha} ({date}) med {trivy_version(doc)}. "
-        "Underhålls av .github/workflows/refresh-sbom.yml i api-catalogue."
+        "Underhålls av .github/workflows/refresh-sbom.yml i dev-web."
     )
 
     # Trivy stamps every package with the scan root ("git+."), which is not a valid

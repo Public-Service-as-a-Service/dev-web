@@ -3,8 +3,7 @@
 Den här filen beskriver hur en AI-assistent (eller människa) lägger till och
 underhåller dokumentation av ett API i katalogen. Följ arbetssättet nedan –
 det är så de befintliga sidorna är framtagna. Katalogen delar utseende och
-struktur med systerkatalogen
-[web-catalogue](https://github.com/Public-Service-as-a-Service/web-catalogue).
+struktur med webbkatalogen i sektionen `tjanster/`.
 
 ## Vad katalogen är
 
@@ -249,7 +248,7 @@ med sidans beroendetabell – båda kommer från samma fält i datafilen.
 
 All text mäts innan den ritas (`text_width` i generatorn, med teckenbredder för
 Helvetica/Arial). Text som är bredare än sin låda kortas av med ellips, precis
-som i systerkatalogen web-catalogue, så att etiketter aldrig hamnar utanför
+som i webbkatalogen, så att etiketter aldrig hamnar utanför
 lådan eller krockar med grannlådans text; hela texten behålls som `<title>` och
 visas när muspekaren vilar över etiketten. Noteringarna under diagrammet
 radbryts i stället på ordgränser. Korta därför inte av fälten i

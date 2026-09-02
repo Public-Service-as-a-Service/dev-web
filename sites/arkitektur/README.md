@@ -41,10 +41,8 @@ svenska.
   diagramstil som katalogernas arkitekturritningar. Rita aldrig för hand –
   ändra i skriptet och generera om.
 - `sites/arkitektur/scripts/generate-ekosystem-diagram.py` – genererar helhetsritningen ur en
-  ögonblicksbild av katalogernas data (`apis-data.json` och `apps-data.json` i
-  [api-catalogue](https://github.com/Public-Service-as-a-Service/api-catalogue)
-  respektive
-  [web-catalogue](https://github.com/Public-Service-as-a-Service/web-catalogue)).
+  ögonblicksbild av katalogernas data (`sites/api/scripts/apis-data.json` och
+  `sites/tjanster/scripts/apps-data.json` i det här repot).
   Layouten beräknas ur beroendegrafen; uppdatera datalitteralerna i skriptet
   från katalogerna och generera om.
 - `sites/arkitektur/scripts/generate-blueprint-diagram.py` – genererar blueprintritningen på
@@ -80,8 +78,8 @@ Innehållet är framtaget ur bland annat:
   komponenter, metakatalogen, datalager, generellt processtöd, paketerade
   lösningar) på utveckling.sundsvall.se
 - [kommuna.se](https://kommuna.se/)
-- [API-katalogen](https://api-katalog.sundsvall.dev/index.html)
-  och [Webbkatalogen](https://web-katalog.sundsvall.dev/index.html)
+- API-katalogen och webbkatalogen, sektionerna `api/` och `tjanster/` i det
+  här repot
 - [Sundsvalls kommun på GitHub](https://github.com/Sundsvallskommun)
 - Per Persson, *Managing Socio-Technical Debt: Causes and Design-Science
   Solutions for Citizen-Centred Digital Public Services* (Göteborgs

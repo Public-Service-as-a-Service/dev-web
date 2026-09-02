@@ -55,9 +55,8 @@ public/               delade ikoner och sektionernas diagram
 ## Designsystem – obligatoriskt
 
 Webbplatsen följer [Sundsvalls kommuns designsystem](https://ui.sundsvall.dev/)
-(dokumentation för AI-verktyg: <https://ui.sundsvall.dev/llms-full.txt>) och har
-samma grafiska profil som
-[arkitektur.sundsvall.dev](https://arkitektur.sundsvall.dev/index.html).
+(dokumentation för AI-verktyg: <https://ui.sundsvall.dev/llms-full.txt>). Alla
+sektioner delar utseende genom `@sundsvall/chrome`.
 
 - **Importera komponenter från `@sk-web-gui/react`**: `Button`, `Card`, `Link`,
   `Label`, `Header`, `Footer`, `Logo`, `GuiProvider` med flera. Bygg inte egna

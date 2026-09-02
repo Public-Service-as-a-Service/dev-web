@@ -10,12 +10,12 @@ language. Run from anywhere: output is written to public/arkitektur/assets/diagr
 
 The data below is a snapshot (2026-08-27) extracted from the catalogues:
 
-- WEBS:  web-catalogue  scripts/apps-data.json  (fields namn/kategori/apis)
+- WEBS:  sites/tjanster/scripts/apps-data.json  (fields namn/kategori/apis)
          plus the three catalogue pages that are not in apps-data.json
          (generisk-arendehantering, myndighetsutovning-mark-och-exploatering,
          myndighetsutovning-parkeringstillstand — API lists from their
          "API-beroenden" tables).
-- APIS:  api-catalogue  scripts/apis-data.json  (fields namn/kategori/beroenden)
+- APIS:  sites/api/scripts/apis-data.json  (fields namn/kategori/beroenden)
 
 Dependency names are normalised to the catalogue names (Contract ->
 Contracts, Relation -> Relations, PostPortalService -> Postportalservice,

@@ -44,7 +44,8 @@ respektive `/api/<slug>.html` med sina `-sbom`- och `-swagger`-sidor.
    förhandsvisning och i produktion.
 4. **Verifiera** enligt checklistan längst ned.
 5. **Arkivera** `target-architecture`, `web-catalogue` och `api-catalogue` på
-   GitHub med en README som pekar hit.
+   GitHub med en README som pekar hit. *(Gjort – de tre repona är arkiverade
+   och deras README:er pekar hit.)*
 
 ## Omdirigeringar
 
