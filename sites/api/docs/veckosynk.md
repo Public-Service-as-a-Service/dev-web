@@ -1,11 +1,14 @@
 # Schemalagd veckosynk av API-katalogen
 
-Katalogen hålls i synk med produktionen av ett schemalagt Claude-jobb – en
-*Routine* i Claude Code på webben – som varje **måndag 06:00 UTC** (08:00
-svensk sommartid, 07:00 vintertid) startar en färsk session i katalogens
-utvecklingsmiljö. Tidpunkten är vald med flit: den ligger *efter* den
+Katalogen är sektionen `api/` i webbplatsen **dev-web**
+(`Public-Service-as-a-Service/dev-web`) och hålls i synk med produktionen av ett
+schemalagt Claude-jobb – en *Routine* i Claude Code på webben – som varje
+**måndag 06:00 UTC** (08:00 svensk sommartid, 07:00 vintertid) startar en färsk
+session mot det repot. Tidpunkten är vald med flit: den ligger *efter* den
 ordinarie SBOM-körningen (`.github/workflows/refresh-sbom.yml`, måndagar
 05:00 UTC), så att veckans SBOM:er redan är färska när katalogsynken börjar.
+Samma workflow bär numera båda katalogerna, och webbkatalogens synk kör en
+timme senare.
 
 Routinen är knuten till ett konto på claude.ai och syns/pausas/ändras under
 **Routines** i Claude Code på webben (eller genom att be Claude lista och
@@ -17,10 +20,11 @@ den här filen.
 
 ## Steg 1 – synka katalogen mot källkodsrepona
 
-1. Läs `CLAUDE.md` i repots rot – den styr hur katalogen underhålls och hur
+1. Läs `CLAUDE.md` i repots rot (webbplatsens gemensamma regler) och därefter
+   `sites/api/CLAUDE.md` – den senare styr hur katalogen underhålls och hur
    teknisk fakta härleds ur ett `api-service`-repo.
-2. Utgå från `scripts/apis-data.json`; fältet `repo` pekar på källkodsrepot
-   under `github.com/Sundsvallskommun`.
+2. Utgå från `sites/api/scripts/apis-data.json`; fältet `repo` pekar på
+   källkodsrepot under `github.com/Sundsvallskommun`.
 3. **Nya API:er.** Lista organisationens repon som börjar med `api-service-`
    och som saknas i datafilen. Klona kandidaterna grunt och bedöm om de är i
    skarp produktion (incheckad OpenAPI-specifikation, releaser/taggar,
@@ -31,16 +35,18 @@ den här filen.
    borttaget behandlas som avvecklade: ta bort posten ur `apis-data.json`
    tillsammans med de genererade filerna (`api/<slug>.html`,
    `api/<slug>-swagger.html`, `api/<slug>-sbom.html`,
-   `assets/openapi/<slug>.yml`, `assets/diagrams/<slug>.svg`,
-   `assets/sbom/<slug>.spdx.json`). Är repot kvar men API:et misstänks vara
-   ur drift av andra skäl: flagga i PR-beskrivningen i stället för att ta
-   bort.
+   `public/api/assets/openapi/<slug>.yml`,
+   `public/api/assets/diagrams/<slug>.svg`,
+   `public/api/assets/sbom/<slug>.spdx.json`). Är repot kvar men API:et
+   misstänks vara ur drift av andra skäl: flagga i PR-beskrivningen i stället
+   för att ta bort.
 5. **Ändrade API:er.** Klona varje kvarvarande repo grunt och jämför med
    posten: `info.version` i OpenAPI-specifikationen mot `apiVersion`,
    integrationsklienterna under `src/main/resources/integrations/` mot
    beroendetabellen, databas, teknikstack och särdrag enligt tabellen i
-   `CLAUDE.md`. Uppdatera posten och kopiera in den nya specifikationen till
-   `assets/openapi/<slug>.yml` när den ändrats.
+   `sites/api/CLAUDE.md`. Uppdatera posten och kopiera in den nya
+   specifikationen till `public/api/assets/openapi/<slug>.yml` när den
+   ändrats.
    **Även verksamhetsbeskrivningen ingår i jämförelsen.** Har källrepots
    README eller specens `info.description` ändrats sedan posten skrevs,
    eller stämmer postens bild av API:et inte längre, omprövas ingress,
@@ -50,9 +56,11 @@ den här filen.
    på det här sättet att två tjänster sedan länge betjänade även
    privatpersoner. En README-uppgift utan kodtäckning flaggas i
    PR-beskrivningen i stället för att skrivas in.
-6. Kör `python3 scripts/generate-pages.py` följt av
-   `python3 scripts/generate-diagrams.py` och verifiera sidorna lokalt med
-   headless Chromium enligt `CLAUDE.md`.
+6. Kör `python3 sites/api/scripts/generate-pages.py` följt av
+   `python3 sites/api/scripts/generate-diagrams.py` från repots rot. Bygg
+   sedan hela webbplatsen med `npm run build` och verifiera sidorna lokalt med
+   headless Chromium enligt `CLAUDE.md` – bygget omfattar alla sektioner, så
+   ett fel i katalogen stoppar hela webbplatsen.
 7. **Inget skiljer?** Avsluta utan PR och utan brus.
 8. Annars: committa på en arbetsgren (`claude/veckosynk-<datum>`), pusha och
    skapa PR mot `main` med en sammanfattning uppdelad i *nya*, *borttagna*
@@ -67,8 +75,9 @@ Programvaruförteckningarna underhålls uteslutande av
 `main`, eftersom workflowets matris läser `apis-data.json` från `main`:
 
 - **Nya API:er:** starta `refresh-sbom.yml` manuellt (workflow_dispatch) med
-  input `only=<slug>`, en körning per nytt API, så att förteckningen kommer
-  på plats direkt i stället för vid nästa veckokörning.
+  inputen `only=<slug>` och `sektion=api`, en körning per nytt API, så att
+  förteckningen kommer på plats direkt i stället för vid nästa veckokörning.
+  `sektion` hoppar över webbkatalogens matris, som annars körs i onödan.
 - **Ändrade API:er:** täcks normalt redan av samma morgons ordinarie körning
   (05:00 UTC). Starta workflowet för en slug bara om källrepots beroenden
   ändrats efter den körningen.
@@ -82,4 +91,5 @@ kommentarerna i workflowfilen.
 
 Sessionen bokar egna avstämningar (ca en timme) tills PR:en är mergad eller
 stängd och eventuella SBOM-körningar är klara, och avslutar därefter. Merge
-till `main` deployar webbplatsen via Dokploy som vanligt.
+till `main` deployar hela webbplatsen via Dokploy som vanligt – GitHub Pages
+används inte.
