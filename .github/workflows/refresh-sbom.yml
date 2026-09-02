@@ -10,9 +10,10 @@ name: Refresh SBOMs
 # keepalive, och en körning ger därmed en deploy av hela webbplatsen i stället
 # för två som kan hamna i kö efter varandra.
 #
-# Obs: en push med GITHUB_TOKEN startar inga andra workflows, så
-# deploy-pages.yml plockar inte upp commiten. Publiceringsjobbet nedan deployar
-# därför till Pages explicit.
+# Publicering sköts av Dokploy, som bygger om vid varje push till main. En push
+# med GITHUB_TOKEN startar inga andra workflows, men repots GitHub-webhook går
+# fram – commit-jobbet anropar dessutom Dokploy explicit när hemligheten
+# DOKPLOY_WEBHOOK_URL är satt.
 
 on:
   schedule:
@@ -333,8 +334,6 @@ jobs:
     # the previously committed SBOM is left untouched rather than deleted.
     if: always()
     runs-on: ubuntu-latest
-    outputs:
-      changed: ${{ steps.commit.outputs.changed }}
     steps:
       - name: Checkout
         uses: actions/checkout@v7
@@ -389,58 +388,17 @@ jobs:
           echo "::error::Could not push after 3 attempts."
           exit 1
 
-  publish:
-    name: Publish to GitHub Pages
-    needs: commit
-    # always() is required, not cosmetic: GitHub skips a job when anything in its
-    # needs-chain failed, and the sbom jobs are large matrices with fail-fast off.
-    # Without it, a single unscannable repository silently blocks publication of
-    # all the others.
-    if: always() && needs.commit.outputs.changed == 'true'
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    # Same concurrency group as deploy-pages.yml so the two never race.
-    concurrency:
-      group: pages
-      cancel-in-progress: false
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v7
-        with:
-          # Must be the branch tip, not github.sha: the commit job pushed a new
-          # commit during this run, and the default checkout would deploy the tree
-          # as it looked when the run started -- silently publishing stale content.
-          ref: main
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: npm
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build site
-        run: npm run build
-
-      - name: Setup Pages
-        uses: actions/configure-pages@v6
-
-      - name: Upload site
-        uses: actions/upload-pages-artifact@v5
-        with:
-          path: dist
-
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v5
+      - name: Notifiera Dokploy
+        if: steps.commit.outputs.changed == 'true'
+        env:
+          DOKPLOY_WEBHOOK_URL: ${{ secrets.DOKPLOY_WEBHOOK_URL }}
+        run: |
+          if [ -z "$DOKPLOY_WEBHOOK_URL" ]; then
+            echo "::notice::DOKPLOY_WEBHOOK_URL saknas – deployn förlitar sig på repots GitHub-webhook."
+            exit 0
+          fi
+          curl -fsS -X POST "$DOKPLOY_WEBHOOK_URL" -o /dev/null
+          echo "Dokploy notifierad."
 
   keepalive:
     name: Reset inactivity timer

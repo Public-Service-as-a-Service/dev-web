@@ -36,8 +36,6 @@ Inga hex-värden eller CSS-variabler hårdkodas i projektet.
   `sites/tjanster/scripts/generate-diagrams.py`.
 - `CLAUDE.md` – AI-instruktion som i detalj beskriver hur en tjänst
   dokumenteras i katalogen.
-- `.github/workflows/deploy-pages.yml` – arbetsflöde som publicerar webbplatsen
-  till GitHub Pages.
 
 ## Utveckla och bygga
 
@@ -51,19 +49,9 @@ npm run build # bygg produktionsversionen till dist/
 
 ## Publicering
 
-Webbplatsen byggs med `npm run build` och publiceras automatiskt via
-GitHub Pages när ändringar pushas till `main`-grenen.
+Publiceringen sköts från repots rot: containern byggs och deployas av
+Dokploy vid varje push till `main`. Se `docs/publicering.md`.
 
-Engångsinställning: under **Settings → Pages** i repot, välj **GitHub Actions**
-som källa ("Source"). Därefter publiceras sidan på
-`https://<organisation>.github.io/web-catalogue/` vid varje push till `main`
-(eller manuellt via *Run workflow*).
-
-Webbplatsen kan även driftsättas som container: `Dockerfile` bygger webbplatsen
-i ett Node-steg och serverar `dist/` med nginx på port 80 (används för deploy via
-Dokploy – byggtyp Dockerfile, containerport 80, källan klonad över HTTPS
-eftersom repot är publikt, med webhook som triggar deploy vid push till
-`main`).
 
 ## Lägga till fler applikationer
 
@@ -83,4 +71,4 @@ verksamhetsnamn.
 Varje applikation har en programvaruförteckning i SPDX-format:
 `tjanster/<slug>-sbom.html` med komponenter, versioner och licenssammanfattning,
 och `public/tjanster/assets/sbom/<slug>.spdx.json` för maskinell läsning. De underhålls av
-`.github/workflows/refresh-sbom-tjanster.yml` och ska inte redigeras för hand.
+`.github/workflows/refresh-sbom.yml` och ska inte redigeras för hand.
