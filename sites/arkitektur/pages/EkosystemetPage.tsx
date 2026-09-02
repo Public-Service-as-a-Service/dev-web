@@ -1,40 +1,29 @@
 import { Link } from '@sk-web-gui/react';
-import { ButtonLink, DiagramFigure, FactBox, Hero, PageSection, TwoColumns } from '../components/blocks';
-import { SiteFooter } from '../components/SiteFooter';
-import { SiteHeader } from '../components/SiteHeader';
+import {
+  ButtonLink,
+  DiagramFigure,
+  FactBox,
+  Hero,
+  PageSection,
+  SiteFooter,
+  SiteHeader,
+  TwoColumns,
+  footerLinks,
+  sectionLinks,
+} from '@sundsvall/chrome';
 
 const menu = [
-  { label: 'Målarkitekturen', href: 'index.html' },
+  ...sectionLinks('../', 'arkitektur'),
   { label: 'Hela kartan', href: '#kartan' },
   { label: 'Så läser du bilden', href: '#lasa-bilden' },
   { label: 'Underlag', href: '#underlag' },
-  { label: 'GitHub', href: 'https://github.com/Sundsvallskommun', external: true },
 ];
 
-const footerLinks = [
-  { label: 'Målarkitekturen', href: 'index.html' },
-  {
-    label: 'API-katalogen',
-    href: 'https://api-katalog.sundsvall.dev/index.html',
-    external: true,
-  },
-  {
-    label: 'Webbkatalogen',
-    href: 'https://web-katalog.sundsvall.dev/index.html',
-    external: true,
-  },
-  { label: 'utveckling.sundsvall.se', href: 'https://utveckling.sundsvall.se/', external: true },
-  {
-    label: 'Sundsvalls kommun på GitHub',
-    href: 'https://github.com/Sundsvallskommun',
-    external: true,
-  },
-];
 
 export function EkosystemetPage() {
   return (
     <>
-      <SiteHeader menu={menu} />
+      <SiteHeader menu={menu} prefix="../" />
       <main>
         <Hero
           back={{ label: 'Tillbaka till målarkitekturen', href: 'index.html' }}
@@ -198,11 +187,7 @@ export function EkosystemetPage() {
           </div>
         </PageSection>
       </main>
-      <SiteFooter
-        title="Ekosystemet"
-        description="Hela ekosystemet i en bild: alla webbapplikationer, alla API:er och samtliga anropsrelationer mellan dem – genererad ur webb- och API-katalogernas dokumentation."
-        links={footerLinks}
-      />
+      <SiteFooter links={footerLinks('../')} />
     </>
   );
 }

@@ -23,12 +23,19 @@ svenska. Den grafiska profilen är densamma som på
 
 ## Innehåll
 
-- `index.html` / `src/pages/StartPage.tsx` – hela webbplatsen: omställningen,
-  digital mognad (digital förmåga och digitalt arv), förhållningssätten, de
-  strategiska områdena samt fördjupningslänkarna.
-- `src/components/` – delade byggblock (sidhuvud, sidfot, hero, kort med mera)
-  ovanpå designsystemets komponenter.
-- `public/assets/` – ikoner för webbplatsen.
+Webbplatsen är ett monorepo: en startsida och en sektion per delwebbplats, som
+byggs till en enda uppsättning statiska filer och publiceras som en container.
+
+- `index.html` / `sites/start/StartPage.tsx` – startsidan, ingången till
+  målarkitekturen och katalogerna.
+- `arkitektur/*.html` / `sites/arkitektur/` – sektionen Målarkitekturen med
+  undersidorna Ekosystemet och Designprinciper, samt diagramgeneratorerna. Se
+  `sites/arkitektur/README.md`.
+- `packages/chrome/` – paketet `@sundsvall/chrome` med sidhuvud, sidfot,
+  appskal, byggblock och webbplatsens gemensamma navigation. Sektionerna har
+  inga egna kopior av chromet.
+- `public/assets/` – delade ikoner. `public/arkitektur/assets/diagrams/` –
+  sektionens genererade ritningar.
 - `.github/workflows/deploy-pages.yml` – arbetsflöde som bygger webbplatsen och
   publicerar den till GitHub Pages.
 

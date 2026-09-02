@@ -5,40 +5,22 @@ import {
   FactBox,
   Hero,
   PageSection,
+  SiteFooter,
+  SiteHeader,
   TeaserCard,
   TwoColumns,
-} from '../components/blocks';
-import { SiteFooter } from '../components/SiteFooter';
-import { SiteHeader } from '../components/SiteHeader';
+  footerLinks,
+  sectionLinks,
+} from '@sundsvall/chrome';
 
 const menu = [
-  { label: 'Målarkitekturen', href: 'index.html' },
-  { label: 'Om principerna', href: '#om-principerna' },
+  ...sectionLinks('../', 'arkitektur'),
   { label: 'Principerna', href: '#principerna' },
   { label: 'Blueprint', href: '#blueprint' },
   { label: 'Lager för lager', href: '#lager' },
   { label: 'Källa', href: '#kalla' },
 ];
 
-const footerLinks = [
-  { label: 'Målarkitekturen', href: 'index.html' },
-  {
-    label: 'API-katalogen',
-    href: 'https://api-katalog.sundsvall.dev/index.html',
-    external: true,
-  },
-  {
-    label: 'Webbkatalogen',
-    href: 'https://web-katalog.sundsvall.dev/index.html',
-    external: true,
-  },
-  { label: 'utveckling.sundsvall.se', href: 'https://utveckling.sundsvall.se/', external: true },
-  {
-    label: 'Sundsvalls kommun på GitHub',
-    href: 'https://github.com/Sundsvallskommun',
-    external: true,
-  },
-];
 
 const medborgarcentrering = [
   {
@@ -149,7 +131,7 @@ function PrincipleGrid({
 export function DesignPrinciperPage() {
   return (
     <>
-      <SiteHeader menu={menu} />
+      <SiteHeader menu={menu} prefix="../" />
       <main>
         <Hero
           back={{ label: 'Tillbaka till målarkitekturen', href: 'index.html' }}
@@ -408,11 +390,7 @@ export function DesignPrinciperPage() {
           </p>
         </PageSection>
       </main>
-      <SiteFooter
-        title="Designprinciper"
-        description="Designprinciperna bakom målarkitekturen – medborgarcentrering, överförbarhet och styrning – samt arkitekturens blueprint lager för lager, med exempel ur kommunens egna komponenter."
-        links={footerLinks}
-      />
+      <SiteFooter links={footerLinks('../')} />
     </>
   );
 }

@@ -6,6 +6,8 @@ export interface NavLink {
   label: string;
   href: string;
   external?: boolean;
+  /** Sätts på den sektion besökaren befinner sig i. */
+  current?: boolean;
 }
 
 // Namnet i sidhuvudets logotyp. Samma på alla sidor: sektionerna är delar av
@@ -19,18 +21,26 @@ export const SITE_NAME = 'Utveckling';
 // Webb- och API-katalogen ligger ännu på egna domäner och är därför externa.
 // När de flyttas in blir de `${prefix}tjanster/index.html` respektive
 // `${prefix}api/index.html`.
-export function sectionLinks(prefix = './'): NavLink[] {
+export type Section = 'arkitektur' | 'tjanster' | 'api';
+
+export function sectionLinks(prefix = './', current?: Section): NavLink[] {
   return [
-    { label: 'Målarkitekturen', href: `${prefix}arkitektur/index.html` },
+    {
+      label: 'Målarkitekturen',
+      href: `${prefix}arkitektur/index.html`,
+      current: current === 'arkitektur',
+    },
     {
       label: 'Webbkatalogen',
       href: 'https://web-katalog.sundsvall.dev/index.html',
       external: true,
+      current: current === 'tjanster',
     },
     {
       label: 'API-katalogen',
       href: 'https://api-katalog.sundsvall.dev/index.html',
       external: true,
+      current: current === 'api',
     },
   ];
 }
@@ -38,6 +48,11 @@ export function sectionLinks(prefix = './'): NavLink[] {
 export function footerLinks(prefix = './'): NavLink[] {
   return [
     ...sectionLinks(prefix),
+    {
+      label: 'Sundsvalls kommun på GitHub',
+      href: 'https://github.com/Sundsvallskommun',
+      external: true,
+    },
     { label: 'Kommuna', href: 'https://kommuna.se/index.html', external: true },
     { label: 'Eneo', href: 'https://eneo.ai/', external: true },
     { label: 'sundsvall.se', href: 'https://sundsvall.se', external: true },

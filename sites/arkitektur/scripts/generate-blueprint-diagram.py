@@ -14,7 +14,7 @@ The design principles (DPs) are attached as annotations beside the layer
 they govern, exactly as in the source figure. The drawing style (palette,
 box/arrow helpers, legend) follows scripts/generate-diagram.py so the
 site keeps one visual language. Run from anywhere: output is written to
-public/assets/diagrams/.
+public/arkitektur/assets/diagrams/.
 
 The component examples come from the API catalogue and web catalogue
 snapshots used by scripts/generate-ekosystem-diagram.py. Never draw this
@@ -23,7 +23,9 @@ by hand — change the script and run it again.
 
 import os
 
-OUT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "public", "assets", "diagrams")
+OUT_DIR = os.path.join(
+    os.path.dirname(os.path.abspath(__file__)), "..", "..", "..", "public", "arkitektur", "assets", "diagrams"
+)
 
 # Palette aligned with the site's stylesheet (same as generate-diagram.py)
 INK = "#1c2b33"

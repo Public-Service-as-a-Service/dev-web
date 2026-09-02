@@ -16,3 +16,4 @@ export {
   TwoColumns,
 } from './blocks';
 export { SITE_NAME, footerLinks, sectionLinks } from './navigation';
+export type { NavLink, Section } from './navigation';

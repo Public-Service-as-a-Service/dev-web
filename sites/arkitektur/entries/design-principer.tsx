@@ -1,12 +1,12 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import { AppShell } from './components/AppShell';
-import { EkosystemetPage } from './pages/EkosystemetPage';
+import { AppShell } from '@sundsvall/chrome';
+import { DesignPrinciperPage } from '../pages/DesignPrinciperPage';
 
 createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <AppShell>
-      <EkosystemetPage />
+      <DesignPrinciperPage />
     </AppShell>
   </React.StrictMode>,
 );

@@ -11,17 +11,17 @@ export interface MenuItem {
 
 export function SiteHeader({
   menu,
-  homeHref = './index.html',
+  prefix = './',
 }: {
   menu: MenuItem[];
-  /** Relativ sökväg till webbplatsens startsida. */
-  homeHref?: string;
+  /** Relativ sökväg till webbplatsens rot – samma prefix som sectionLinks(). */
+  prefix?: string;
 }) {
   return (
     <Header
       logo={
         <Link
-          href={homeHref}
+          href={`${prefix}index.html`}
           className="no-underline"
           aria-label={`${SITE_NAME} Sundsvalls kommun. Gå till startsidan.`}
         >

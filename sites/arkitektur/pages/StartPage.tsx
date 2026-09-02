@@ -5,42 +5,22 @@ import {
   FactBox,
   Hero,
   PageSection,
+  SiteFooter,
+  SiteHeader,
   TeaserCard,
   TwoColumns,
-} from '../components/blocks';
-import { SiteFooter } from '../components/SiteFooter';
-import { SiteHeader } from '../components/SiteHeader';
+  footerLinks,
+  sectionLinks,
+} from '@sundsvall/chrome';
 
 const menu = [
-  { label: 'Om målarkitekturen', href: '#om-malarkitekturen' },
+  ...sectionLinks('../', 'arkitektur'),
   { label: 'Arkitekturen', href: '#arkitekturen' },
-  { label: 'Egenutveckling', href: '#egenutveckling' },
   { label: 'Riktlinjer', href: '#riktlinjer' },
   { label: 'Designprinciper', href: 'design-principer.html' },
   { label: 'Fördjupning', href: '#fordjupning' },
-  { label: 'GitHub', href: 'https://github.com/Sundsvallskommun', external: true },
 ];
 
-const footerLinks = [
-  { label: 'utveckling.sundsvall.se', href: 'https://utveckling.sundsvall.se/', external: true },
-  {
-    label: 'API-katalogen',
-    href: 'https://api-katalog.sundsvall.dev/index.html',
-    external: true,
-  },
-  {
-    label: 'Webbkatalogen',
-    href: 'https://web-katalog.sundsvall.dev/index.html',
-    external: true,
-  },
-  {
-    label: 'Sundsvalls kommun på GitHub',
-    href: 'https://github.com/Sundsvallskommun',
-    external: true,
-  },
-  { label: 'kommuna.se', href: 'https://kommuna.se/', external: true },
-  { label: 'sundsvall.se', href: 'https://sundsvall.se', external: true },
-];
 
 const riktlinjer = [
   {
@@ -131,7 +111,7 @@ const fordjupning = [
 export function StartPage() {
   return (
     <>
-      <SiteHeader menu={menu} />
+      <SiteHeader menu={menu} prefix="../" />
       <main>
         <Hero
           kicker="Sundsvalls kommun"
@@ -385,11 +365,7 @@ export function StartPage() {
           </div>
         </PageSection>
       </main>
-      <SiteFooter
-        title="Målarkitekturen"
-        description="En översiktlig beskrivning av Sundsvalls kommuns målarkitektur och de riktlinjer som styr kommunens digitala utveckling."
-        links={footerLinks}
-      />
+      <SiteFooter links={footerLinks('../')} />
     </>
   );
 }

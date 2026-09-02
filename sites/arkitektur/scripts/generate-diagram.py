@@ -12,7 +12,9 @@ to assets/diagrams/ in the repo root.
 
 import os
 
-OUT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "public", "assets", "diagrams")
+OUT_DIR = os.path.join(
+    os.path.dirname(os.path.abspath(__file__)), "..", "..", "..", "public", "arkitektur", "assets", "diagrams"
+)
 
 # Palette aligned with the site's stylesheet
 INK = "#1c2b33"
