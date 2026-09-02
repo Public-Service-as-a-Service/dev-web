@@ -1,0 +1,340 @@
+name: Refresh SBOMs
+
+# Regenerates every application's software bill of materials from the source
+# repositories and commits the result. The catalogue's own generators are pure
+# functions of apps-data.json and can be run by hand, but an SBOM tracks 36
+# external repos that Dependabot bumps continuously -- it has to be scheduled.
+#
+# Note: a push made with GITHUB_TOKEN does NOT trigger other workflows, so
+# deploy-pages.yml will not pick this commit up. The publish job below therefore
+# deploys to Pages explicitly.
+
+on:
+  schedule:
+    # 06:00 UTC on Mondays, an hour after the API catalogue's refresh.
+    - cron: "0 6 * * 1"
+  workflow_dispatch:
+    inputs:
+      only:
+        description: "Kör bara för denna slug (t.ex. pratomaten). Tomt = alla appar."
+        required: false
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh-sbom
+  cancel-in-progress: false
+
+jobs:
+  matrix:
+    name: Build matrix
+    runs-on: ubuntu-latest
+    outputs:
+      apps: ${{ steps.build.outputs.apps }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Read apps-data.json
+        id: build
+        env:
+          ONLY: ${{ inputs.only }}
+        run: |
+          # sbom-extra.json holds repos that need a bill of materials but have no
+          # generated service page -- the handwritten solution pages have no
+          # apps-data.json entry, but the code behind them is still catalogued.
+          apps=$(jq -c -s --arg only "$ONLY" \
+            '[(.[0][] | {slug, repo}), (.[1].repon[] | {slug, repo})]
+             | if $only == "" then . else map(select(.slug == $only)) end' \
+            scripts/apps-data.json scripts/sbom-extra.json)
+          if [ "$(echo "$apps" | jq 'length')" -eq 0 ]; then
+            echo "::error::No app matched '$ONLY'."
+            exit 1
+          fi
+          echo "apps=$apps" >> "$GITHUB_OUTPUT"
+          echo "$apps" | jq -r 'length | "\(.) apps in the matrix"'
+
+  sbom:
+    name: SBOM ${{ matrix.app.slug }}
+    needs: matrix
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      max-parallel: 10
+      matrix:
+        app: ${{ fromJson(needs.matrix.outputs.apps) }}
+    steps:
+      - name: Checkout catalogue
+        uses: actions/checkout@v7
+
+      - name: Checkout ${{ matrix.app.repo }}
+        uses: actions/checkout@v7
+        with:
+          repository: Sundsvallskommun/${{ matrix.app.repo }}
+          path: src
+          fetch-depth: 1
+
+      - name: Set up Node
+        uses: actions/setup-node@v6
+        with:
+          # 24 covers the repositories that pin an engine range; the engine checks
+          # are relaxed below anyway, since this job only reads package metadata.
+          node-version: "24"
+
+      - name: Install dependencies
+        # Licences are the reason this step exists. An npm lockfile carries no
+        # licence information at all -- Trivy reads it from
+        # node_modules/<pkg>/package.json -- so without installing, the component
+        # list is complete but 100% of licences come back NOASSERTION.
+        #
+        # Installed per sub-project, not once at the root: 24 of the 29 catalogued
+        # repositories that exist locally have no root package.json at all and are
+        # laid out as frontend/ + backend/ (+ admin/), roughly 2.1 lockfiles each.
+        #
+        # --ignore-scripts is deliberate: this would otherwise execute postinstall
+        # scripts from the full transitive dependency tree of 36 repositories. The
+        # licences live in package.json metadata, so no script needs to run to
+        # collect them, and running them would mean introducing the exact exposure
+        # this catalogue exists to document.
+        #
+        # A failed install is fatal for this leg rather than degraded-but-green: a
+        # partial install silently turns licences into NOASSERTION, which would
+        # commit a diff that is not a real dependency change. Failing keeps the
+        # previously committed SBOM instead.
+        working-directory: src
+        run: |
+          mapfile -t locks < <(find . -maxdepth 3 \
+            \( -name yarn.lock -o -name package-lock.json -o -name pnpm-lock.yaml \) \
+            -not -path "*/node_modules/*" -not -path "*/.yarn/*" | sort)
+          if [ ${#locks[@]} -eq 0 ]; then
+            echo "::error::No lockfile found in ${{ matrix.app.repo }}."
+            exit 1
+          fi
+          echo "Found ${#locks[@]} lockfile(s)."
+          corepack enable || true
+          # One install per directory. A directory carrying both yarn.lock and
+          # package-lock.json is a repo that migrated to yarn and left the old
+          # lockfile behind: installing both means running `npm ci` against a
+          # package-lock nobody maintains, which fails on the first drift.
+          # yarn.lock wins where both exist.
+          declare -A seen=()
+          for lock in "${locks[@]}"; do
+            dir=$(dirname "$lock")
+            file=$(basename "$lock")
+            if [ -n "${seen[$dir]:-}" ]; then
+              echo "Skipping $dir/$file -- already installed with ${seen[$dir]}."
+              continue
+            fi
+            if [ "$file" = "package-lock.json" ] && [ -f "$dir/yarn.lock" ]; then
+              echo "Skipping $dir/package-lock.json -- yarn.lock present."
+              continue
+            fi
+            seen[$dir]=$file
+            echo "::group::install $dir ($file)"
+            ok=0
+            for attempt in 1 2 3; do
+              case "$file" in
+                # --ignore-engines / --engine-strict=false: several repos pin an
+                # exact Node major, and nothing is being built here -- the licences
+                # are read out of package.json metadata, so an engine mismatch has
+                # no bearing on the result. Failing on it would drop a repo from the
+                # catalogue over a version pin that does not affect the answer.
+                yarn.lock)         (cd "$dir" && yarn install --frozen-lockfile --ignore-scripts --ignore-engines) && ok=1 ;;
+                package-lock.json) (cd "$dir" && npm ci --ignore-scripts --engine-strict=false) && ok=1 ;;
+                pnpm-lock.yaml)    (cd "$dir" && pnpm install --frozen-lockfile --ignore-scripts --config.engine-strict=false) && ok=1 ;;
+              esac
+              [ "$ok" -eq 1 ] && break
+              echo "::warning::install failed in $dir (attempt ${attempt}/3)."
+              if [ "$attempt" -lt 3 ]; then
+                sleep $((attempt * 30))
+              fi
+            done
+            echo "::endgroup::"
+            if [ "$ok" -ne 1 ]; then
+              echo "::error::Could not install $dir after 3 attempts."
+              exit 1
+            fi
+          done
+
+      - name: Install Trivy
+        # Pinned deliberately: a Trivy upgrade can change the document contents and
+        # would rewrite every SBOM at once. Bumping it should be its own reviewable
+        # change, not a silent side effect of a scheduled run.
+        uses: aquasecurity/setup-trivy@v0.3.1
+        with:
+          version: v0.74.0
+
+      - name: Generate SPDX SBOM
+        # MUST run from inside the checkout and scan "." -- Trivy derives every
+        # package SPDXID from a PkgID containing the scan path, so scanning "src"
+        # instead would change every identifier and churn the whole file.
+        working-directory: src
+        run: |
+          # --include-dev-deps: Trivy excludes devDependencies from npm/yarn
+          # lockfiles by default, which would leave the entire build chain out of
+          # the report -- and the build chain is a real attack surface, so it is
+          # exactly what a supply-chain document should cover. It also *improves*
+          # licence coverage (91% -> 96% measured on pratomaten): build tooling is
+          # well-licensed npm metadata, whereas what remains unlicensed is mostly
+          # platform binaries that were never installed.
+          trivy fs --format spdx-json --scanners license --quiet --offline-scan \
+            --include-dev-deps --output "$GITHUB_WORKSPACE/raw.spdx.json" .
+
+      - name: Normalise
+        run: |
+          mkdir -p assets/sbom
+          python3 scripts/normalize-sbom.py \
+            --input raw.spdx.json \
+            --output "assets/sbom/${{ matrix.app.slug }}.spdx.json" \
+            --slug "${{ matrix.app.slug }}" \
+            --repo "${{ matrix.app.repo }}" \
+            --source src
+
+      - name: Upload
+        uses: actions/upload-artifact@v7
+        with:
+          name: sbom-${{ matrix.app.slug }}
+          path: assets/sbom/${{ matrix.app.slug }}.spdx.json
+          if-no-files-found: error
+
+  commit:
+    name: Commit refreshed SBOMs
+    needs: sbom
+    # Runs even if some apps failed to scan: their artifact is simply absent and
+    # the previously committed SBOM is left untouched rather than deleted.
+    if: always()
+    runs-on: ubuntu-latest
+    outputs:
+      changed: ${{ steps.commit.outputs.changed }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Download SBOMs
+        uses: actions/download-artifact@v8
+        with:
+          pattern: sbom-*
+          path: assets/sbom
+          merge-multiple: true
+
+      - name: Regenerate pages
+        # Only generate-pages.py is affected; the architecture diagrams are a pure
+        # function of apps-data.json and are unrelated to the SBOMs.
+        run: python3 scripts/generate-pages.py
+
+      - name: Commit if changed
+        id: commit
+        run: |
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "No SBOM changes - nothing to commit."
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/sbom tjanster
+          git commit -m "Uppdatera programvaruförteckningar (SBOM)"
+          # main can move between this job's checkout and its push, which rejects
+          # the push as non-fast-forward and loses the whole refresh. Rebase and
+          # retry rather than failing the run.
+          for attempt in 1 2 3; do
+            if git push; then
+              echo "Pushed refreshed SBOMs."
+              exit 0
+            fi
+            echo "Push rejected (attempt $attempt); rebasing onto the latest main."
+            git pull --rebase origin main
+          done
+          echo "::error::Could not push after 3 attempts."
+          exit 1
+
+  publish:
+    name: Publish to GitHub Pages
+    needs: commit
+    # always() is required, not cosmetic: GitHub skips a job when anything in its
+    # needs-chain failed, and the sbom job is a 36-leg matrix with fail-fast off.
+    # Without it, a single unscannable repository silently blocks publication of
+    # all the others.
+    if: always() && needs.commit.outputs.changed == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    # Same concurrency group as deploy-pages.yml so the two never race.
+    concurrency:
+      group: pages
+      cancel-in-progress: false
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          # Must be the branch tip, not github.sha: the commit job pushed a new
+          # commit during this run, and the default checkout would deploy the tree
+          # as it looked when the run started -- silently publishing stale content.
+          ref: main
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build site
+        run: npm run build
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v6
+
+      - name: Upload site
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: dist
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
+
+  keepalive:
+    name: Reset inactivity timer
+    # Runs on every scheduled execution, whether or not anything changed. That is
+    # the whole point: GitHub disables a scheduled workflow in a public repository
+    # after 60 days without repository activity, and this workflow only commits
+    # when a dependency actually changed -- a genuinely quiet couple of months
+    # would produce no activity at all and the schedule would stop silently.
+    #
+    # Re-enabling the workflow through the API is what the keepalive tooling
+    # settled on after moving away from dummy commits (keepalive-workflow v1 -> v2,
+    # gh-workflow-immortality), and it avoids polluting the history. Note that
+    # GitHub documents neither what counts as "repository activity" nor that
+    # enabling resets the counter -- this is the best available mitigation, not a
+    # guarantee. The state check below makes the outcome observable either way.
+    needs: sbom
+    if: always()
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write
+    steps:
+      - name: Re-enable this workflow
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          before=$(gh api "repos/$REPO/actions/workflows/refresh-sbom.yml" --jq '.state')
+          echo "state before: $before"
+          if [ "$before" = "disabled_inactivity" ]; then
+            echo "::warning::The schedule had been disabled for inactivity and is being re-enabled."
+          fi
+          gh api -X PUT "repos/$REPO/actions/workflows/refresh-sbom.yml/enable"
+          after=$(gh api "repos/$REPO/actions/workflows/refresh-sbom.yml" --jq '.state')
+          echo "state after: $after"
+          [ "$after" = "active" ] || { echo "::error::Workflow is $after, expected active."; exit 1; }

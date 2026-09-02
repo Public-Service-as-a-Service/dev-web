@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Test-IdP med användaradministration – Webbkatalogen</title>
+  <meta name="description" content="Ett utvecklingsverktyg som simulerar kommunens SAML-inloggning och låter utvecklare administrera testanvändare och deras attribut i ett eget gränssnitt.">
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+  <link rel="apple-touch-icon" href="../assets/favicon-180.png">
+</head>
+<body>
+  <script type="application/json" id="page-data">{"app":{"repo":"web-app-fake-idp-admin","namn":"Test-IdP med användaradministration","kategori":"Utvecklingsverktyg","status":"verktyg","ingress":"Ett utvecklingsverktyg som simulerar kommunens SAML-inloggning och låter utvecklare administrera testanvändare och deras attribut i ett eget gränssnitt.","beskrivning":["Det här är ett internt utvecklingsverktyg som fungerar som en låtsas-identitetsleverantör (IdP) för SAML-inloggning. Under utveckling och test kan kommunens webbappar logga in mot den i stället för den riktiga inloggningstjänsten, vilket gör det enkelt att testa olika användare och behörigheter utan att röra produktionsmiljön.","Till skillnad från den enklare test-IdP:n som funnits tidigare har verktyget ett administrationsgränssnitt där testanvändare, deras attribut och inställningar hanteras och sparas i en lokal databas. Verktyget är avsett att på sikt ersätta den fristående test-IdP:n.","Verktyget är inte en tjänst för invånare eller verksamhet utan enbart ett stöd i systemutveckling."],"malgrupp":"Utvecklare","funktioner":[{"titel":"Simulerad SAML-inloggning","text":"Agerar identitetsleverantör så att appar kan testa inloggningsflöden lokalt."},{"titel":"Administration av testanvändare","text":"Skapa, redigera och ta bort testanvändare med attribut via ett webbgränssnitt."},{"titel":"Lagring i databas","text":"Testanvändare och inställningar sparas beständigt i en lokal databas."},{"titel":"Både SP och IdP","text":"Backenden agerar både SAML Service Provider och test-IdP, med metadata och svarsbyggare."}],"apis":[{"name":"SimulatorServer","version":"2.0","usage":"Hälsokontroll/simulering i utvecklingsmiljö."}],"integrationer":["SAML (SP och IdP)"],"auth":"SAML (SSO) för admingränssnittet; verktyget är självt en test-IdP","teknik":{"frontend":"Next.js 16, React (separata frontend- och admin-appar, byggda på sk-web-gui webbappsmall)","backend":"Node.js/Express med TypeScript, Prisma ORM mot SQLite","tester":"Jest, Cypress"},"konfiguration":["Miljöfiler: frontend/.env, backend/.env.development.local och .env.test.local","Egna IdP-nycklar och metadata (SAML_IDP_ENTITY_ID, SAML_IDP_PRIVATE_KEY, SAML_SP_AUDIENCE m.fl.)","SAML_IDP_ENUMERATE_USERS för att lista testanvändare på inloggningssidan","Databas initieras med Prisma (generate/migrate/seed)","Docker Compose-filer, inklusive variant med extern proxy (nginx)"],"anteckningar":["Avsett att ersätta det fristående verktyget web-app-fake-sso-idp enligt README.","Datamodellen innehåller User, Attribute och UserSettings i SQLite via Prisma.","Repot är nystartat (första sammanslagna ändringen juli 2026) och bygger på kommunens webbappstartmall."],"slug":"test-idp-med-anvandaradministration"},"hasSbom":true,"sbom":{"komponenter":1464,"licenser":22}}</script>
+  <div id="root"></div>
+  <script type="module" src="/src/entries/app.tsx"></script>
+</body>
+</html>

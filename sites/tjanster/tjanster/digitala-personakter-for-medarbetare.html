@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Digitala personakter för medarbetare – Webbkatalogen</title>
+  <meta name="description" content="Intern tjänst där medarbetare kan se sin egen personakt, chefer kan se sina medarbetares akter och behörig personal kan söka fram personakter.">
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+  <link rel="apple-touch-icon" href="../assets/favicon-180.png">
+</head>
+<body>
+  <script type="application/json" id="page-data">{"app":{"repo":"web-app-new-personal-files","namn":"Digitala personakter för medarbetare","kategori":"Medarbetartjänster","status":"aktiv","ingress":"Intern tjänst där medarbetare kan se sin egen personakt, chefer kan se sina medarbetares akter och behörig personal kan söka fram personakter.","beskrivning":["Tjänsten samlar medarbetarnas personakter digitalt. En inloggad medarbetare kan öppna sin egen personakt, medan chefer ser en lista över sina medarbetare och kan öppna deras akter. Behörig personal kan dessutom söka fram en personakt genom att ange fullständigt personnummer.","Dokumenten i akterna hämtas från kommunens centrala dokumenttjänst, och organisationstillhörighet och anställningsuppgifter hämtas från kommunens personal- och organisationsdata.","Tjänsten är under uppbyggnad och namnet antyder att den ersätter en tidigare lösning för personakter."],"malgrupp":"medarbetare, chefer och HR-personal inom kommunen","funktioner":[{"titel":"Min personakt","text":"Medarbetare ser dokumenten i sin egen personakt."},{"titel":"Mina medarbetare","text":"Chefer ser sina medarbetare och kan öppna deras personakter."},{"titel":"Sök personakt","text":"Behörig personal söker fram akter via fullständigt personnummer."},{"titel":"Central dokumentlagring","text":"Handlingarna hämtas från kommunens gemensamma dokumenttjänst."}],"apis":[{"name":"Document","version":"3.0","usage":"Hämtar dokumenten i personakterna."},{"name":"Employee","version":"2.0","usage":"Anställnings- och medarbetaruppgifter, bl.a. chefers medarbetarlistor."},{"name":"Citizen","version":"3.0","usage":"Personuppgifter via personnummer."},{"name":"FoundationObjects (FO)","version":"1.0","usage":"Organisations- och grunddata."},{"name":"Party","version":"2.2","usage":"Översättning mellan personnummer och part-ID."},{"name":"SimulatorServer","version":"2.0","usage":"Simulerings-API för test och utveckling."}],"integrationer":["SAML IdP"],"auth":"SAML (SSO)","teknik":{"frontend":"Next.js 16, React 19, i18next","backend":"Node.js, Express 4, TypeScript","tester":"Jest (enhetstester), Cypress (e2e)"},"konfiguration":["Miljöfiler: frontend/.env-example och backend/.env.example.local","CLIENT_KEY och CLIENT_SECRET mot kommunens API-plattform (WSO2)","SAML-inställningar med IdP-adress och certifikat"],"anteckningar":["Repot är byggt på kommunens startmall och innehåller fortfarande exempelsidor från mallen, vilket tyder på tidig utvecklingsfas.","Namnet 'new-personal-files' indikerar att tjänsten ersätter en äldre personaktslösning.","Behörighet styrs via SAML-grupper; användare utan rätt grupp nekas åtkomst."],"slug":"digitala-personakter-for-medarbetare"},"hasSbom":true,"sbom":{"komponenter":1690,"licenser":23}}</script>
+  <div id="root"></div>
+  <script type="module" src="/src/entries/app.tsx"></script>
+</body>
+</html>
