@@ -1,16 +1,5 @@
-import { Button, Card, Label } from '@sk-web-gui/react';
+import { Card, Label } from '@sk-web-gui/react';
 import React from 'react';
-
-// Button är polymorf (as="a") men den exporterade typen tappar ankar-attributen.
-export const ButtonLink = Button as unknown as React.FC<
-  {
-    as: 'a';
-    variant?: 'link' | 'primary' | 'secondary' | 'tertiary' | 'ghost';
-    color?: 'vattjom' | 'gronsta' | 'bjornstigen' | 'juniskar' | 'primary';
-    size?: 'sm' | 'md' | 'lg';
-    children?: React.ReactNode;
-  } & React.AnchorHTMLAttributes<HTMLAnchorElement>
->;
 
 export function PageSection({
   id,
@@ -53,83 +42,43 @@ export function Hero({
 
 export function TeaserCard({
   tag,
+  tagColor = 'vattjom',
   title,
   href,
   more,
+  color = 'mono',
   children,
 }: {
   tag: string;
+  tagColor?: string;
   title: string;
   href?: string;
   more?: string;
+  color?: 'mono' | 'vattjom';
   children: React.ReactNode;
 }) {
   const body = (
     <Card.Body>
       <div className="pt-8">
-        <Label inverted color="vattjom">
+        <Label inverted color={tagColor}>
           {tag}
         </Label>
       </div>
       <h3 className="font-header text-h4-sm md:text-h4-md xl:text-h4-lg text-dark-primary mt-12 mb-0">
         {title}
       </h3>
-      <p className="mt-8 mb-0">{children}</p>
+      <p className="mt-8 mb-0 text-dark-primary">{children}</p>
       {more && <p className="mt-12 mb-0 font-bold text-vattjom-text-primary">{more} →</p>}
     </Card.Body>
   );
+  const invert = color !== 'mono';
   return href ? (
-    <Card color="mono" useHoverEffect href={href}>
+    <Card color={color} invert={invert} useHoverEffect href={href}>
       {body}
     </Card>
   ) : (
-    <Card color="mono">{body}</Card>
-  );
-}
-
-export function FactBox({
-  title,
-  items,
-  links,
-}: {
-  title: string;
-  items: React.ReactNode[];
-  links?: { label: string; href: string }[];
-}) {
-  return (
-    <Card color="vattjom" invert aria-label={title} role="complementary">
-      <Card.Body>
-        <h3 className="font-header text-h4-sm md:text-h4-md xl:text-h4-lg mt-8 mb-0">{title}</h3>
-        <ul className="mt-12 mb-0 flex list-disc flex-col gap-8 pl-20">
-          {items.map((item, index) => (
-            <li key={index}>{item}</li>
-          ))}
-        </ul>
-        {links && (
-          <p className="mt-16 mb-0 flex flex-col gap-4">
-            {links.map((link) => (
-              <a key={link.href} href={link.href} className="font-bold text-vattjom-text-primary">
-                {link.label} →
-              </a>
-            ))}
-          </p>
-        )}
-      </Card.Body>
+    <Card color={color} invert={invert}>
+      {body}
     </Card>
-  );
-}
-
-export function TwoColumns({
-  children,
-  aside,
-}: {
-  children: React.ReactNode;
-  aside: React.ReactNode;
-}) {
-  return (
-    <div className="grid items-start gap-32 lg:grid-cols-3">
-      <div className="lg:col-span-2">{children}</div>
-      <div>{aside}</div>
-    </div>
   );
 }

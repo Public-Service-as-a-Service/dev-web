@@ -1,20 +1,22 @@
 # CLAUDE.md
 
-Webbplats som beskriver Sundsvalls kommuns digitala utveckling och på sikt ska
-ersätta [utveckling.sundsvall.se](https://utveckling.sundsvall.se/). Byggd som
-en statisk React-webbplats med Vite; en sida (`index.html`) med ingång under
-`src/`.
+Ingångssida till Sundsvalls kommuns digitala miljö. Byggd som en statisk
+React-webbplats med Vite; en sida (`index.html`) med ingång under `src/`.
 
 ## Avgränsning – obligatorisk
 
-- Innehållet hålls på en **övergripande nivå**: riktning, förhållningssätt och
-  strategiska områden – inte arbetssätt, verktyg eller teknikval.
+- Webbplatsen är en **ingång, inte en textsamling**. Fokus ligger på
+  **målarkitekturen, webbkatalogen och API-katalogen** – i den ordningen. De
+  ligger överst och ska tydligt framgå som det viktiga här.
+- Skriv inte tillbaka strategitexterna om omställning, digital mognad,
+  förhållningssätt och strategiska områden – de överlappar med innehåll i
+  andra kanaler.
 - **Upprepa inte innehållet i utvecklarportalen**
   (devportal.sundsvall.dev): golden paths, DevOps, självservice,
-  leveransgrindar och plattformsteam hör hemma där, inte här. Länka inte
-  heller dit så länge portalen är under uppbyggnad.
-- Fördjupningslänkarna går till målarkitekturen, Kommuna, Webbkatalogen och
-  API-katalogen.
+  leveransgrindar och plattformsteam hör hemma där, inte här.
+- Under **Vidare läsning** ligger Kommuna, Eneo och utvecklarportalen.
+  Utvecklarportalen ska alltid märkas tydligt som under utveckling, både med
+  etikett och i texten, så länge den byggs upp.
 
 ## Designsystem – obligatoriskt
 
