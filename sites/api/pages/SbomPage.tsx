@@ -56,7 +56,15 @@ export function SbomPage({ data }: { data: SbomPageData }) {
             >
               Ladda ner SPDX (JSON)
             </ButtonLink>
-            <ButtonLink as="a" href={`${api.slug}.html`} variant="secondary" color="vattjom">
+            <ButtonLink
+              as="a"
+              href={`${api.slug}.html`}
+              variant="secondary"
+              color="vattjom"
+              // Namnet kan vara långt: knappen får bryta rad i stället för att
+              // tvinga fram sidledsscroll på små skärmar.
+              className="h-auto max-w-full whitespace-normal py-8 text-left"
+            >
               Gå tillbaka till {api.namn}
             </ButtonLink>
           </>

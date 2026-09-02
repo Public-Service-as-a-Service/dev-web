@@ -52,7 +52,10 @@ export function Hero({
           </p>
         )}
         <p className="text-label-medium uppercase text-vattjom-text-primary m-0">{kicker}</p>
-        <h1 className="font-header mt-8">{title}</h1>
+        {/* Långa sammansatta ord (t.ex. "programvaruförteckning") får
+            avstavas – annars tvingar rubriken fram sidledsscroll på små
+            skärmar. break-words är reserven där avstavningsordlista saknas. */}
+        <h1 className="font-header hyphens-auto break-words mt-8">{title}</h1>
         <p className="text-lead m-0">{lead}</p>
         {actions && <div className="mt-32 flex flex-wrap gap-16">{actions}</div>}
       </div>
@@ -206,7 +209,10 @@ export function PageHero({
           ))}
         </Breadcrumb>
         <div className="flex flex-wrap gap-8">{tags}</div>
-        <h1 className="font-header mt-12">{title}</h1>
+        {/* Långa sammansatta ord (t.ex. "programvaruförteckning") får
+            avstavas – annars tvingar rubriken fram sidledsscroll på små
+            skärmar. break-words är reserven där avstavningsordlista saknas. */}
+        <h1 className="font-header hyphens-auto break-words mt-12">{title}</h1>
         <p className="text-lead m-0">{lead}</p>
         {actions && <div className="mt-24 flex flex-wrap gap-16">{actions}</div>}
       </div>
