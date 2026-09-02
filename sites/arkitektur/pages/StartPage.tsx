@@ -88,14 +88,14 @@ const fordjupning = [
   {
     tag: 'Katalog',
     title: 'API-katalogen',
-    href: 'https://api-katalog.sundsvall.dev/index.html',
+    href: '../api/index.html',
     more: 'Utforska katalogen',
     text: 'De API:er som körs i produktion på kommunens API-plattform, med beskrivningar, arkitekturritningar och interaktiv dokumentation.',
   },
   {
     tag: 'Katalog',
     title: 'Webbkatalogen',
-    href: 'https://web-katalog.sundsvall.dev/index.html',
+    href: '../tjanster/index.html',
     more: 'Utforska katalogen',
     text: 'De webbapplikationer kommunen publicerar som öppen källkod – vad varje tjänst gör, vem den är till för och hur den är uppbyggd.',
   },

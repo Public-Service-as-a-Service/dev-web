@@ -69,7 +69,7 @@ export function IndexPage() {
     const card: CardData = {
       kategori: app.kategori,
       namn: app.namn,
-      href: `tjanster/${app.slug}.html`,
+      href: `${app.slug}.html`,
       text: app.ingress ?? '',
       status: app.status ? STATUS_LABEL[app.status] : undefined,
     };

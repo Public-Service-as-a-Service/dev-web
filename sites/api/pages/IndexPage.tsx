@@ -39,7 +39,7 @@ const menu = [
 function ApiCard({ api }: { api: ApiData }) {
   const status = api.status ? STATUS_LABEL[api.status] : undefined;
   return (
-    <Card color="mono" useHoverEffect href={`api/${api.slug}.html`}>
+    <Card color="mono" useHoverEffect href={`${api.slug}.html`}>
       <Card.Body>
         <div className="flex flex-wrap gap-8 pt-8">
           <Label inverted color="vattjom">

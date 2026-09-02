@@ -109,6 +109,10 @@ Webbplatsen ska uppfylla **WCAG 2.2 AA** (DOS-lagen gäller kommunen), se
   sida per sektion** med headless Chromium i både desktop- och mobilbredd och
   kontrollera layout, kontrast, att diagrammen läses in och att länkarna mellan
   sektionerna pekar rätt.
-- Publicering sker automatiskt vid push till `main`: GitHub Pages via
-  `.github/workflows/deploy-pages.yml` och container via Dokploy-webhook
-  (`Dockerfile` bygger med Node och serverar `dist/` med nginx).
+- Publicering sker automatiskt vid push till `main`. **Containern är
+  kanonisk** (Dokploy-webhook; `Dockerfile` bygger med Node och serverar `dist/`
+  med nginx enligt `nginx.conf`); GitHub Pages ligger kvar som förhandsvisning
+  via `.github/workflows/deploy-pages.yml`.
+- **Behåll `base: './'` i `vite.config.ts`** så länge Pages finns kvar – alla
+  länkar och sökvägar ska vara relativa, aldrig rot-absoluta.
+- Domänbyte och omdirigeringar: se `docs/publicering.md`.

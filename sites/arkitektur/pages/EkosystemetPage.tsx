@@ -93,11 +93,11 @@ export function EkosystemetPage() {
                 links={[
                   {
                     label: 'API-katalogen',
-                    href: 'https://api-katalog.sundsvall.dev/index.html',
+                    href: '../api/index.html',
                   },
                   {
                     label: 'Webbkatalogen',
-                    href: 'https://web-katalog.sundsvall.dev/index.html',
+                    href: '../tjanster/index.html',
                   },
                 ]}
               />
@@ -151,17 +151,11 @@ export function EkosystemetPage() {
           </p>
           <p>
             Webbapplikationerna och deras API-anrop kommer från{' '}
-            <Link
-              href="https://web-katalog.sundsvall.dev/index.html"
-              external
-            >
+            <Link href="../tjanster/index.html">
               webbkatalogen
             </Link>{' '}
             och API:erna med sina inbördes beroenden från{' '}
-            <Link
-              href="https://api-katalog.sundsvall.dev/index.html"
-              external
-            >
+            <Link href="../api/index.html">
               API-katalogen
             </Link>
             , där informationen i sin tur är härledd ur källkoden på{' '}

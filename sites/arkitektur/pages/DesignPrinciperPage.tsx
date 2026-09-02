@@ -282,7 +282,7 @@ export function DesignPrinciperPage() {
           <h3 className="font-header">Slutanvändarens kontaktytor</h3>
           <p>
             Webb och app är de ytor invånare, företagare och medarbetare möter. Hos oss är det de{' '}
-            <Link href="https://web-katalog.sundsvall.dev/index.html" external>
+            <Link href="../tjanster/index.html">
               39 webbapplikationerna i webbkatalogen
             </Link>{' '}
             – bland andra <strong>Mina sidor för företag hos kommunen</strong>,{' '}
@@ -297,7 +297,7 @@ export function DesignPrinciperPage() {
           <p>
             Blueprintens gateway är hos oss den gemensamma <strong>API-plattformen</strong>: samma
             krypterade och autentiserade ingång till samtliga 75 API:er i{' '}
-            <Link href="https://api-katalog.sundsvall.dev/index.html" external>
+            <Link href="../api/index.html">
               API-katalogen
             </Link>
             , dokumenterade enligt OpenAPI. Det är principen om interoperabilitet i sin mest

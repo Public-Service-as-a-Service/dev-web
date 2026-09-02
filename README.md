@@ -70,19 +70,21 @@ Designsystemet:
 
 ## Publicering
 
-Webbplatsen byggs med `npm run build` och publiceras automatiskt via GitHub
-Pages när ändringar pushas till `main`-grenen, på
-`https://<organisation>.github.io/dev-web/`.
+Containern är den kanoniska publiceringen: `Dockerfile` bygger webbplatsen i ett
+Node-steg och serverar `dist/` med nginx på port 80 (`nginx.conf` sätter
+cache-huvuden). En webhook i repot anropar Dokploy vid varje push till `main`.
 
-Webbplatsen driftsätts även som container: `Dockerfile` bygger webbplatsen i
-ett Node-steg och serverar `dist/` med nginx på port 80. Deployn sker via
-Dokploy – byggtyp Dockerfile, containerport 80. En webhook i repot anropar
-Dokploy vid varje push till `main`, så containerdeployn sker automatiskt precis
-som GitHub Pages-publiceringen.
+GitHub Pages ligger kvar som förhandsvisning på
+`https://<organisation>.github.io/dev-web/` via
+`.github/workflows/deploy-pages.yml`. Bygget använder relativa sökvägar
+(`base: './'`), så samma artefakt fungerar både på rot och i en underkatalog.
+
+Domänbytet till `ekosystemet.sundsvall.dev` och omdirigeringarna från de fyra
+gamla domänerna beskrivs i [`docs/publicering.md`](docs/publicering.md).
 
 ## Uppdatera innehållet
 
-Texterna redigeras i `src/pages/StartPage.tsx`. Menyn, sidfotens länkar och
+Texterna redigeras i `sites/start/StartPage.tsx`. Menyn, sidfotens länkar och
 korten i respektive avsnitt ligger som datalitteraler överst i samma fil.
 Verifiera lokalt innan push: bygg webbplatsen, rendera sidan med headless
 Chromium och kontrollera layout i både desktop- och mobilbredd.
