@@ -2,7 +2,7 @@
   "name": "dev-web",
   "private": true,
   "version": "1.0.0",
-  "description": "Portalsida om Sundsvalls kommuns digitala utveckling",
+  "description": "Sundsvalls kommuns webbplats om den digitala miljön: startsida, målarkitektur och kataloger",
   "license": "MIT",
   "type": "module",
   "scripts": {
@@ -11,6 +11,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@sundsvall/chrome": "*",
     "@fontsource/raleway": "^5.3.0",
     "@sk-web-gui/core": "^4.6.1",
     "@sk-web-gui/react": "^3.1.2",
@@ -26,5 +27,8 @@
     "tailwindcss": "^3.4.17",
     "typescript": "^5.7.2",
     "vite": "^5.4.11"
-  }
+  },
+  "workspaces": [
+    "packages/*"
+  ]
 }

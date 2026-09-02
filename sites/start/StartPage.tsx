@@ -1,29 +1,20 @@
-import { Link } from '@sk-web-gui/react';
-import { Hero, PageSection, TeaserCard } from '../components/blocks';
-import { SiteFooter } from '../components/SiteFooter';
-import { SiteHeader } from '../components/SiteHeader';
+import {
+  Hero,
+  PageSection,
+  SiteFooter,
+  SiteHeader,
+  TeaserCard,
+  footerLinks,
+  sectionLinks,
+} from '@sundsvall/chrome';
 
-const menu = [
-  { label: 'Målarkitekturen', href: 'https://arkitektur.sundsvall.dev/index.html', external: true },
-  { label: 'Webbkatalogen', href: 'https://web-katalog.sundsvall.dev/index.html', external: true },
-  { label: 'API-katalogen', href: 'https://api-katalog.sundsvall.dev/index.html', external: true },
-  { label: 'Vidare läsning', href: '#vidare-lasning' },
-];
-
-const footerLinks = [
-  { label: 'Målarkitekturen', href: 'https://arkitektur.sundsvall.dev/index.html', external: true },
-  { label: 'Webbkatalogen', href: 'https://web-katalog.sundsvall.dev/index.html', external: true },
-  { label: 'API-katalogen', href: 'https://api-katalog.sundsvall.dev/index.html', external: true },
-  { label: 'Kommuna', href: 'https://kommuna.se/index.html', external: true },
-  { label: 'Eneo', href: 'https://eneo.ai/', external: true },
-  { label: 'sundsvall.se', href: 'https://sundsvall.se', external: true },
-];
+const menu = [...sectionLinks(), { label: 'Vidare läsning', href: '#vidare-lasning' }];
 
 const huvudingangar = [
   {
     tag: 'Arkitektur',
     title: 'Målarkitekturen',
-    href: 'https://arkitektur.sundsvall.dev/index.html',
+    href: './arkitektur/index.html',
     more: 'Utforska målarkitekturen',
     text: 'Riktningen och de väsentliga vägvalen för kommunkoncernens digitala miljö: ett ekosystem av väl avgränsade komponenter som exponerar funktionalitet och data via API:er, samt de riktlinjer som styr utvecklingen.',
   },
@@ -129,22 +120,7 @@ export function StartPage() {
           </div>
         </PageSection>
       </main>
-      <SiteFooter
-        title="Utveckling"
-        description={
-          <>
-            Digitalisering och Innovation, Sundsvalls kommun
-            <br />
-            Norrmalmsgatan 4, 851 85 Sundsvall
-            <br />
-            E-post:{' '}
-            <Link href="mailto:diggin@sundsvall.se" className="break-all">
-              diggin@sundsvall.se
-            </Link>
-          </>
-        }
-        links={footerLinks}
-      />
+      <SiteFooter links={footerLinks()} />
     </>
   );
 }
