@@ -90,6 +90,9 @@ jobs:
   sbom-api:
     name: SBOM API ${{ matrix.api.slug }}
     needs: matrix
+    # En tom matris får GitHub att markera jobbet som misslyckat i stället för
+    # hoppat över, vilket rödmarkerar hela körningen när bara en sektion körs.
+    if: needs.matrix.outputs.apis != '[]'
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -192,6 +195,7 @@ jobs:
   sbom-app:
     name: SBOM webbapp ${{ matrix.app.slug }}
     needs: matrix
+    if: needs.matrix.outputs.apps != '[]'
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
