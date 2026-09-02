@@ -145,6 +145,9 @@ export function StartPage() {
               <ButtonLink as="a" href="#riktlinjer" variant="secondary" color="vattjom">
                 Läs våra riktlinjer
               </ButtonLink>
+              <ButtonLink as="a" href="design-principer.html" variant="secondary" color="vattjom">
+                Läs designprinciperna
+              </ButtonLink>
             </>
           }
         />

@@ -1,4 +1,4 @@
-import { Button, Card, Label } from '@sk-web-gui/react';
+import { Button, Card, Label, Link } from '@sk-web-gui/react';
 import React from 'react';
 
 // Button är polymorf (as="a") men den exporterade typen tappar ankar-attributen.
@@ -33,15 +33,24 @@ export function Hero({
   title,
   lead,
   actions,
+  back,
 }: {
   kicker: string;
   title: string;
   lead: React.ReactNode;
   actions?: React.ReactNode;
+  back?: { label: string; href: string };
 }) {
   return (
     <section className="bg-vattjom-background-200">
       <div className="mx-auto w-full max-w-content px-16 py-48 md:px-24 md:py-64">
+        {back && (
+          <p className="m-0 mb-16">
+            <Link href={back.href} variant="tertiary">
+              ← {back.label}
+            </Link>
+          </p>
+        )}
         <p className="text-label-medium uppercase text-vattjom-text-primary m-0">{kicker}</p>
         <h1 className="font-header mt-8">{title}</h1>
         <p className="text-lead m-0">{lead}</p>
