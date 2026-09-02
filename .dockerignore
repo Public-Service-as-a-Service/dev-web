@@ -5,3 +5,7 @@ dist
 README.md
 LICENSE
 CLAUDE.md
+
+# Hämtas i byggsteget från datarepot – ska inte med i byggkontexten.
+public/api/assets/sbom
+public/tjanster/assets/sbom

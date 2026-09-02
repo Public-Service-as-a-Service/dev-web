@@ -138,7 +138,18 @@ def sbom_shell(app):
     )
 
 
+SBOM_DIR = os.path.join(ROOT, "public", "tjanster", "assets", "sbom")
+
+
 def main():
+    # Förteckningarna hämtas från datarepot sbom-data. Utan dem skulle varje
+    # SBOM-sida se ut att sakna förteckning och tyst falla bort ur bygget, så
+    # avbryt hellre med besked.
+    if not os.path.isdir(SBOM_DIR):
+        raise SystemExit(
+            f"Programvaruförteckningarna saknas i {SBOM_DIR}.\n"
+            "Kör scripts/fetch-sbom.sh från repots rot först."
+        )
     with open(DATA, encoding="utf-8") as f:
         apps = json.load(f)
     with open(EXTRA, encoding="utf-8") as f:

@@ -53,7 +53,9 @@ till en enda uppsättning statiska filer och publiceras som en container.
   appskal, byggblock och webbplatsens gemensamma navigation. Sektionerna har
   inga egna kopior av chromet.
 - `public/assets/` – delade ikoner. `public/SEKTION/assets/` – sektionernas
-  genererade ritningar, OpenAPI-specar och programvaruförteckningar.
+  genererade ritningar och OpenAPI-specar. Programvaruförteckningarna hämtas hit
+  från datarepot [sbom-data](https://github.com/Public-Service-as-a-Service/sbom-data)
+  av `scripts/fetch-sbom.sh` och ligger inte i det här repot.
 - `.github/workflows/refresh-sbom.yml` – arbetsflöde som varje vecka uppdaterar
   båda katalogernas programvaruförteckningar från källkodsrepona.
 
@@ -66,10 +68,14 @@ Sidskalen (`*.html`) bär webbadressen och plockas upp automatiskt av
 Webbplatsen är en React-applikation som byggs med Vite till statiska filer:
 
 ```sh
-npm install   # installera beroenden
-npm run dev   # utvecklingsserver med omedelbar omladdning
-npm run build # bygg produktionsversionen till dist/
+npm install            # installera beroenden
+sh scripts/fetch-sbom.sh  # hämta programvaruförteckningarna (drygt 90 MB)
+npm run dev            # utvecklingsserver med omedelbar omladdning
+npm run build          # bygg produktionsversionen till dist/
 ```
+
+Förteckningarna ligger i datarepot `sbom-data` och hämtas grunt. Utan dem
+saknar SBOM-sidorna innehåll, och katalogernas generatorer avbryter med besked.
 
 Bygget omfattar alla sektioner – knappt 300 sidor – så ett fel i en sektion
 stoppar hela webbplatsen.

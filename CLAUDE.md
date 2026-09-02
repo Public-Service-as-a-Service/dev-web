@@ -17,6 +17,7 @@ sites/arkitektur/     sektionens React-kod, sidor och diagramgeneratorer
 sites/tjanster/       webbkatalogens React-kod, data och generatorer
 sites/api/            API-katalogens React-kod, data och generatorer
 public/               delade ikoner och sektionernas diagram
+scripts/fetch-sbom.sh hämtar programvaruförteckningarna från datarepot
 ```
 
 - **Sidhuvud, sidfot, appskal och byggblock importeras alltid från
@@ -35,6 +36,12 @@ public/               delade ikoner och sektionernas diagram
   för hand.
 - Programvaruförteckningarna uppdateras av `.github/workflows/refresh-sbom.yml`,
   ett arbetsflöde för båda katalogerna: en körning ger en commit och en deploy.
+- **Förteckningarna ligger inte i det här repot** utan i datarepot
+  [sbom-data](https://github.com/Public-Service-as-a-Service/sbom-data) – drygt
+  90 MB som skrivs om varje vecka. `scripts/fetch-sbom.sh` hämtar dem grunt till
+  `public/<sektion>/assets/sbom/` (gitignorerat). **Kör skriptet före
+  `npm run build` och före katalogernas `generate-pages.py`** – sidorna bäddar
+  in komponentlistorna, och generatorerna avbryter om förteckningarna saknas.
 
 ## Avgränsning – obligatorisk
 

@@ -9,7 +9,9 @@ till den nya.
 
 **Containern är den enda publiceringen.** `Dockerfile` bygger webbplatsen i ett
 Node-steg och serverar `dist/` med nginx på port 80 (`nginx.conf` sätter
-cache-huvuden). Dokploy bygger om och deployar vid varje push till `main` via
+cache-huvuden). Byggsteget hämtar först programvaruförteckningarna från
+datarepot `sbom-data` med `scripts/fetch-sbom.sh` (grunt klon), så att den här
+utcheckningen slipper bära drygt 90 MB data som skrivs om varje vecka. Dokploy bygger om och deployar vid varje push till `main` via
 repots webhook – även för commits som SBOM-arbetsflödet gör med `GITHUB_TOKEN`,
 eftersom en GitHub-webhook till skillnad från ett arbetsflöde triggas av alla
 pushar. Arbetsflödet anropar dessutom Dokploy direkt när hemligheten

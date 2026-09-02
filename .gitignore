@@ -1,2 +1,7 @@
 node_modules/
 dist/
+
+# Programvaruförteckningarna bor i datarepot sbom-data och hämtas av
+# scripts/fetch-sbom.sh – de ska inte committas hit.
+public/api/assets/sbom/
+public/tjanster/assets/sbom/

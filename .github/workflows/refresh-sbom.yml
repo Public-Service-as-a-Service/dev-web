@@ -10,6 +10,11 @@ name: Refresh SBOMs
 # keepalive, och en körning ger därmed en deploy av hela webbplatsen i stället
 # för två som kan hamna i kö efter varandra.
 #
+# Själva förteckningarna committas inte hit utan till datarepot sbom-data (de
+# är drygt 90 MB och skrivs om varje vecka). Hit committas bara sidskalen, som
+# bäddar in komponentlistorna. Bygget hämtar förteckningarna med
+# scripts/fetch-sbom.sh.
+#
 # Publicering sköts av Dokploy, som bygger om vid varje push till main. En push
 # med GITHUB_TOKEN startar inga andra workflows, men repots GitHub-webhook går
 # fram – commit-jobbet anropar dessutom Dokploy explicit när hemligheten
@@ -354,9 +359,57 @@ jobs:
           path: public/tjanster/assets/sbom
           merge-multiple: true
 
+      - name: Publicera förteckningarna i sbom-data
+        # Förteckningarna bor i ett eget datarepo: de är drygt 90 MB och skrivs
+        # om varje vecka, vilket skulle göra webbplatsens utcheckning och
+        # byggkontext lika stor. Bygget hämtar dem grunt vid varje deploy.
+        id: data
+        env:
+          TOKEN: ${{ secrets.SBOM_DATA_TOKEN }}
+        run: |
+          if [ -z "$TOKEN" ]; then
+            echo "::error::Hemligheten SBOM_DATA_TOKEN saknas – kan inte publicera i sbom-data."
+            exit 1
+          fi
+          git clone --depth 1 --quiet \
+            "https://x-access-token:$TOKEN@github.com/Public-Service-as-a-Service/sbom-data.git" \
+            "$RUNNER_TEMP/sbom-data"
+          mkdir -p "$RUNNER_TEMP/sbom-data/api" "$RUNNER_TEMP/sbom-data/tjanster"
+          cp public/api/assets/sbom/*.spdx.json "$RUNNER_TEMP/sbom-data/api/" 2>/dev/null || true
+          cp public/tjanster/assets/sbom/*.spdx.json "$RUNNER_TEMP/sbom-data/tjanster/" 2>/dev/null || true
+          cd "$RUNNER_TEMP/sbom-data"
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "Inga ändrade förteckningar."
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add api tjanster
+          git commit -m "Uppdatera programvaruförteckningar (SBOM)"
+          for attempt in 1 2 3; do
+            if git push; then
+              echo "Publicerade förteckningarna i sbom-data."
+              exit 0
+            fi
+            echo "Push avvisad (försök $attempt); hämtar och försöker igen."
+            git pull --rebase origin main
+          done
+          echo "::error::Kunde inte pusha till sbom-data efter 3 försök."
+          exit 1
+
+      - name: Hämta hela uppsättningen förteckningar
+        # En körning kan ha gällt bara en sektion (input sektion=api). Sidorna
+        # genereras om för båda katalogerna, så hela uppsättningen måste finnas
+        # – annars skulle den andra katalogens SBOM-sidor tas bort.
+        run: sh scripts/fetch-sbom.sh
+
       - name: Regenerate pages
         # Only generate-pages.py is affected; the architecture diagrams are a pure
-        # function of apps-data.json and are unrelated to the SBOMs.
+        # function of apps-data.json and are unrelated to the SBOMs. Sidorna
+        # bäddar in komponentlistorna, så de genereras ur de nedladdade
+        # förteckningarna (som ligger kvar i arbetskopian, men är gitignorerade).
         run: |
           python3 sites/api/scripts/generate-pages.py
           python3 sites/tjanster/scripts/generate-pages.py
@@ -365,14 +418,14 @@ jobs:
         id: commit
         run: |
           if [ -z "$(git status --porcelain)" ]; then
-            echo "No SBOM changes - nothing to commit."
+            echo "Inga ändrade sidskal - inget att committa."
             echo "changed=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
           echo "changed=true" >> "$GITHUB_OUTPUT"
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add public/api/assets/sbom public/tjanster/assets/sbom api tjanster
+          git add api tjanster
           git commit -m "Uppdatera programvaruförteckningar (SBOM)"
           # main can move between this job's checkout and its push, which rejects
           # the push as non-fast-forward and loses the whole refresh. Rebase and
@@ -389,7 +442,9 @@ jobs:
           exit 1
 
       - name: Notifiera Dokploy
-        if: steps.commit.outputs.changed == 'true'
+        # Även en ändring som bara rör förteckningarna kräver ombyggnad:
+        # bygget hämtar dem från datarepot.
+        if: steps.commit.outputs.changed == 'true' || steps.data.outputs.changed == 'true'
         env:
           DOKPLOY_WEBHOOK_URL: ${{ secrets.DOKPLOY_WEBHOOK_URL }}
         run: |

@@ -89,6 +89,11 @@ den här filen.
 
 ## Steg 2 – SBOM för nya och ändrade applikationer
 
+Förteckningarna bor i datarepot
+[sbom-data](https://github.com/Public-Service-as-a-Service/sbom-data) och hämtas
+till arbetskopian med `sh scripts/fetch-sbom.sh` från repots rot – kör det innan
+generatorerna, annars avbryter de.
+
 Programvaruförteckningarna underhålls uteslutande av
 `.github/workflows/refresh-sbom.yml`; de skrivs aldrig för hand (se
 `CLAUDE.md`). Steg 2 börjar först när PR:en från steg 1 är mergad till
