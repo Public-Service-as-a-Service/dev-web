@@ -9,9 +9,11 @@ container.
 ```
 index.html            startsidan            →  /
 arkitektur/*.html     målarkitekturen       →  /arkitektur/
+tjanster/*.html       webbkatalogen         →  /tjanster/
 packages/chrome/      delad sidchrome (@sundsvall/chrome)
 sites/start/          startsidans React-kod
 sites/arkitektur/     sektionens React-kod, sidor och diagramgeneratorer
+sites/tjanster/       webbkatalogens React-kod, data och generatorer
 public/               delade ikoner och sektionernas diagram
 ```
 
@@ -25,8 +27,11 @@ public/               delade ikoner och sektionernas diagram
   annan sektions webbadress för hand.
 - Sidskalen (`*.html`) bär webbadressen; de plockas upp automatiskt av
   `vite.config.ts`. React-koden ligger under `sites/`.
-- Webb- och API-katalogen är ännu egna webbplatser och länkas som externa
-  länkar tills de flyttas in.
+- API-katalogen är ännu en egen webbplats och länkas som en extern länk tills
+  den flyttas in.
+- Sidskalen under `tjanster/` **genereras** – ändra i
+  `sites/tjanster/scripts/apps-data.json` och kör om generatorn, redigera dem
+  aldrig för hand.
 
 ## Avgränsning – obligatorisk
 

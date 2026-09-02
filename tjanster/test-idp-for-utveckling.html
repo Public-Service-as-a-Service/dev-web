@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Test-IdP för utveckling – Webbkatalogen</title>
+  <meta name="description" content="En enkel simulerad SAML-inloggningstjänst som utvecklare använder lokalt för att testa kommunens webbappar utan riktig inloggning.">
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+  <link rel="apple-touch-icon" href="../assets/favicon-180.png">
+</head>
+<body>
+  <script type="application/json" id="page-data">{"app":{"repo":"web-app-fake-sso-idp","namn":"Test-IdP för utveckling","kategori":"Utvecklingsverktyg","status":"verktyg","ingress":"En enkel simulerad SAML-inloggningstjänst som utvecklare använder lokalt för att testa kommunens webbappar utan riktig inloggning.","beskrivning":["Det här är ett litet utvecklingsverktyg som härmar kommunens centrala inloggningstjänst (SAML SSO). När utvecklare bygger och testar webbappar lokalt pekar de appens inloggning mot detta verktyg i stället för den riktiga identitetsleverantören.","Testanvändare definieras i en konfigurationsfil med namn, lösenord och de attribut som apparna förväntar sig, och visas som valbara inloggningsalternativ. Verktyget är en vidareutveckling (fork) av ett öppet npm-paket, med stöd för bland annat RelayState och audience.","Verktyget är inte en tjänst för verksamheten eller invånare, och är på väg att ersättas av en nyare test-IdP med administrationsgränssnitt."],"malgrupp":"Utvecklare","funktioner":[{"titel":"Simulerad SSO-inloggning","text":"Besvarar SAML-autentiseringsförfrågningar som en riktig IdP i utvecklingsmiljö."},{"titel":"Konfigurerbara testanvändare","text":"Testanvändare med attribut definieras i en enkel konfigurationsfil och listas som inloggningsval."},{"titel":"Sessionshantering","text":"Inloggningar sparas i session och kan göras direkt utan autentiseringsförfrågan."},{"titel":"Körbar i Docker","text":"Levereras med Dockerfile och miljövariabler för port, destination och metadata."}],"apis":[],"integrationer":["SAML (agerar IdP mot appars Service Provider)"],"auth":"Ingen riktig autentisering – verktyget är självt en simulerad IdP med låtsasanvändare","teknik":{"frontend":null,"backend":"Node.js/Express (JavaScript, npm-paketet fake-sso-idp)","tester":"Mocha"},"konfiguration":["Miljövariabler via envalid: PORT (standard 7000), HOST, DESTINATION, METADATA, BASEPATH, AUDIENCE, ENUMERATEUSERS","Testanvändare i users-example.js / egen users-fil","Dockerfile för containerkörning"],"anteckningar":["Fork av det öppna npm-paketet fake-sso-idp med tillägg för RelayState och audience.","Refereras som lokal inloggningslösning i andra kommun-repon, t.ex. Systemregistret.","Planeras ersättas av web-app-fake-idp-admin enligt det repots README."],"slug":"test-idp-for-utveckling"},"hasSbom":true,"sbom":{"komponenter":575,"licenser":15}}</script>
+  <div id="root"></div>
+  <script type="module" src="/sites/tjanster/entries/app.tsx"></script>
+</body>
+</html>

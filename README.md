@@ -31,11 +31,15 @@ byggs till en enda uppsättning statiska filer och publiceras som en container.
 - `arkitektur/*.html` / `sites/arkitektur/` – sektionen Målarkitekturen med
   undersidorna Ekosystemet och Designprinciper, samt diagramgeneratorerna. Se
   `sites/arkitektur/README.md`.
+- `tjanster/*.html` / `sites/tjanster/` – sektionen Webbkatalogen: startsida,
+  37 genererade tjänstesidor med lika många programvaruförteckningar, data och
+  generatorer. Se `sites/tjanster/README.md`.
 - `packages/chrome/` – paketet `@sundsvall/chrome` med sidhuvud, sidfot,
   appskal, byggblock och webbplatsens gemensamma navigation. Sektionerna har
   inga egna kopior av chromet.
-- `public/assets/` – delade ikoner. `public/arkitektur/assets/diagrams/` –
-  sektionens genererade ritningar.
+- `public/assets/` – delade ikoner. `public/arkitektur/assets/diagrams/`
+  och `public/tjanster/assets/` – sektionernas genererade ritningar och
+  programvaruförteckningar.
 - `.github/workflows/deploy-pages.yml` – arbetsflöde som bygger webbplatsen och
   publicerar den till GitHub Pages.
 

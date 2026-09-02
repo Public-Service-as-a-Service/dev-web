@@ -11,9 +11,12 @@ export {
   DiagramFigure,
   FactBox,
   Hero,
+  NoteBox,
+  PageHero,
   PageSection,
   TeaserCard,
   TwoColumns,
 } from './blocks';
+export type { Crumb } from './blocks';
 export { SITE_NAME, footerLinks, sectionLinks } from './navigation';
 export type { NavLink, Section } from './navigation';

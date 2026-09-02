@@ -27,6 +27,7 @@ export default defineConfig({
       input: {
         index: resolve(__dirname, 'index.html'),
         ...sectionPages('arkitektur'),
+        ...sectionPages('tjanster'),
       },
     },
   },

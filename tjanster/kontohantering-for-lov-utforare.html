@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kontohantering för LOV-utförare – Webbkatalogen</title>
+  <meta name="description" content="Internt verktyg där handläggare hanterar konton för privata LOV-utförares personal i verksamhetssystemet Lifecare.">
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+  <link rel="apple-touch-icon" href="../assets/favicon-180.png">
+</head>
+<body>
+  <script type="application/json" id="page-data">{"app":{"repo":"web-app-lifecare","namn":"Kontohantering för LOV-utförare","kategori":"Administration","status":"aktiv","ingress":"Internt verktyg där handläggare hanterar konton för privata LOV-utförares personal i verksamhetssystemet Lifecare.","beskrivning":["Tjänsten (Kontohantering.sundsvall.se) används för att skapa, ändra och avsluta användarkonton för personal hos privata utförare inom valfrihetssystemet LOV, så att de kan arbeta i vård- och omsorgssystemet Lifecare.","Handläggaren slår upp personen via personnummer, kopplar kontot till rätt utförarorganisation och anger giltighetstid och kontaktuppgifter. Kontona är tidsbegränsade och kan förlängas eller tas bort. Det går även att återställa en utförares lösenord, varvid ett nytt skickas ut via SMS.","Inloggning sker med kommunens centrala inloggning och tjänsten kontrollerar att handläggaren har rätt behörighet innan konton kan hanteras."],"malgrupp":"Handläggare/administratörer inom vård och omsorg","funktioner":[{"titel":"Skapa utförarkonton","text":"Registrera nya konton för LOV-utförares personal med koppling till rätt organisation."},{"titel":"Personuppslag","text":"Hämta personuppgifter via personnummer för säker identifiering."},{"titel":"Tidsbegränsade konton","text":"Sätt och förläng giltighetstid för konton samt avsluta konton som inte längre behövs."},{"titel":"Lösenordsåterställning via SMS","text":"Återställ en utförares lösenord och skicka det nya via SMS."}],"apis":[{"name":"metaadmin","version":"1.0","usage":"Kontoadministration i Lifecare, inklusive lösenordsåterställning med SMS-utskick."},{"name":"employee","version":"2.0","usage":"Uppgifter om kommunens medarbetare och behörighetskontroll."},{"name":"citizen","version":"3.0","usage":"Uppslag av personuppgifter utifrån personnummer."},{"name":"simulatorserver","version":"2.0","usage":"Simulering/test av API-anrop under utveckling."}],"integrationer":["Lifecare (verksamhetssystem för vård och omsorg)","WSO2 API-gateway","SAML IdP"],"auth":"SAML (SSO)","teknik":{"frontend":"Next.js 14, React 18, sk-web-gui, Tailwind CSS","backend":"Node.js med Express och routing-controllers (TypeScript)","tester":"Jest och Cypress"},"konfiguration":[".env-filer för frontend och backend enligt exempel (.env-example, .env.example.local)","CLIENT_KEY och CLIENT_SECRET från WSO2-portalen för API-åtkomst","SAML-konfiguration med certifikat och nycklar (SAML_ENTRY_SSO, SAML_IDP_PUBLIC_CERT m.fl.)"],"anteckningar":["Sidtitlarna anger tjänstens namn som Kontohantering.sundsvall.se med beskrivningen Hantering av LOV-användare till Lifecare.","Byggd på kommunens web-app-starter-mall med separat backend (BFF) och frontend."],"slug":"kontohantering-for-lov-utforare"},"hasSbom":true,"sbom":{"komponenter":1294,"licenser":22}}</script>
+  <div id="root"></div>
+  <script type="module" src="/sites/tjanster/entries/app.tsx"></script>
+</body>
+</html>

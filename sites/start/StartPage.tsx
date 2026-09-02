@@ -21,7 +21,7 @@ const huvudingangar = [
   {
     tag: 'Katalog',
     title: 'Webbkatalogen',
-    href: 'https://web-katalog.sundsvall.dev/index.html',
+    href: './tjanster/index.html',
     more: 'Utforska webbkatalogen',
     text: 'De webbapplikationer kommunen publicerar som öppen källkod – vad varje tjänst gör, vem den är till för och hur den är uppbyggd.',
   },

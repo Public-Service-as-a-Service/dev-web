@@ -19,21 +19,21 @@ Inga hex-värden eller CSS-variabler hårdkodas i projektet.
 
 ## Innehåll
 
-- `index.html` / `src/pages/IndexPage.tsx` – förstasidan med information om
+- `index.html` / `sites/tjanster/pages/IndexPage.tsx` – förstasidan med information om
   katalogen och en översikt över applikationerna, grupperad per kategori
-  (korten renderas ur `scripts/apps-data.json`).
+  (korten renderas ur `sites/tjanster/scripts/apps-data.json`).
 - `tjanster/*.html` – ett sidskal per webbapplikation (ett 40-tal) med sidans
   data inbäddad som JSON; innehållet renderas av React-komponenterna i
-  `src/pages/`. Samtliga genereras från `scripts/apps-data.json` med
-  `scripts/generate-pages.py`. Ett repo som bygger flera webbappar (som
+  `sites/tjanster/pages/`. Samtliga genereras från `sites/tjanster/scripts/apps-data.json` med
+  `sites/tjanster/scripts/generate-pages.py`. Ett repo som bygger flera webbappar (som
   `web-app-draken-public`) får en gemensam sida som synliggör vilka processer
   varje webb implementerar (fältet `webbar` i datafilen).
-- `scripts/apps-data.json` – fakta om varje applikation, härledd ur respektive
+- `sites/tjanster/scripts/apps-data.json` – fakta om varje applikation, härledd ur respektive
   källkodsrepo.
-- `src/components/` – delade byggblock (sidhuvud, sidfot, hero, kort med mera)
+- `sites/tjanster/components/` – delade byggblock (sidhuvud, sidfot, hero, kort med mera)
   ovanpå designsystemets komponenter.
-- `assets/diagrams/*.svg` – arkitekturritningar, genererade med
-  `scripts/generate-diagrams.py`.
+- `public/tjanster/assets/diagrams/*.svg` – arkitekturritningar, genererade med
+  `sites/tjanster/scripts/generate-diagrams.py`.
 - `CLAUDE.md` – AI-instruktion som i detalj beskriver hur en tjänst
   dokumenteras i katalogen.
 - `.github/workflows/deploy-pages.yml` – arbetsflöde som publicerar webbplatsen
@@ -74,7 +74,7 @@ struktureras och hur arkitekturritningen genereras.
 
 Kort version: skapa en sida under `tjanster/` med verksamhetsnära beskrivning
 överst och teknisk dokumentation längre ned, generera en arkitekturritning via
-`scripts/generate-diagrams.py`, och lägg till ett kort i `index.html`. Interna
+`sites/tjanster/scripts/generate-diagrams.py`, och lägg till ett kort i `index.html`. Interna
 projektnamn används inte i katalogen; applikationerna presenteras under sina
 verksamhetsnamn.
 
@@ -82,5 +82,5 @@ verksamhetsnamn.
 
 Varje applikation har en programvaruförteckning i SPDX-format:
 `tjanster/<slug>-sbom.html` med komponenter, versioner och licenssammanfattning,
-och `assets/sbom/<slug>.spdx.json` för maskinell läsning. De underhålls av
-`.github/workflows/refresh-sbom.yml` och ska inte redigeras för hand.
+och `public/tjanster/assets/sbom/<slug>.spdx.json` för maskinell läsning. De underhålls av
+`.github/workflows/refresh-sbom-tjanster.yml` och ska inte redigeras för hand.

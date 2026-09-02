@@ -3,13 +3,15 @@
 
 One diagram per entry in scripts/apps-data.json; the data is derived from each
 source repository (API config, environment validation, controllers/services and
-feature flags). Run from anywhere: output is written to assets/diagrams/ in the
+feature flags). Run from anywhere: output is written to public/tjanster/assets/diagrams/ in the
 repo root.
 """
 
 import os
 
-OUT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "assets", "diagrams")
+OUT_DIR = os.path.join(
+    os.path.dirname(os.path.abspath(__file__)), "..", "..", "..", "public", "tjanster", "assets", "diagrams"
+)
 
 # Palette aligned with the site's stylesheet
 INK = "#1c2b33"

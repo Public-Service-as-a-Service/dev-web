@@ -1,4 +1,4 @@
-import { Button, Card, Label, Link } from '@sk-web-gui/react';
+import { Breadcrumb, Button, Card, Label, Link } from '@sk-web-gui/react';
 import React from 'react';
 
 // Button är polymorf (as="a") men den exporterade typen tappar ankar-attributen.
@@ -171,6 +171,53 @@ export function TwoColumns({
     <div className="grid items-start gap-32 lg:grid-cols-3">
       <div className="lg:col-span-2">{children}</div>
       <div>{aside}</div>
+    </div>
+  );
+}
+
+export interface Crumb {
+  label: string;
+  href?: string;
+}
+
+export function PageHero({
+  crumbs,
+  tags,
+  title,
+  lead,
+  actions,
+}: {
+  crumbs: Crumb[];
+  tags: React.ReactNode;
+  title: string;
+  lead: React.ReactNode;
+  actions?: React.ReactNode;
+}) {
+  return (
+    <section className="bg-vattjom-background-200">
+      <div className="mx-auto w-full max-w-content px-16 py-32 md:px-24 md:py-40">
+        <Breadcrumb aria-label="Brödsmulor" className="mb-16">
+          {crumbs.map((crumb) => (
+            <Breadcrumb.Item key={crumb.label} currentPage={!crumb.href}>
+              <Breadcrumb.Link href={crumb.href ?? '#'} currentPage={!crumb.href}>
+                {crumb.label}
+              </Breadcrumb.Link>
+            </Breadcrumb.Item>
+          ))}
+        </Breadcrumb>
+        <div className="flex flex-wrap gap-8">{tags}</div>
+        <h1 className="font-header mt-12">{title}</h1>
+        <p className="text-lead m-0">{lead}</p>
+        {actions && <div className="mt-24 flex flex-wrap gap-16">{actions}</div>}
+      </div>
+    </section>
+  );
+}
+
+export function NoteBox({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="mt-32 rounded-cards border-1 border-divider bg-background-100 p-24" role="note">
+      <p className="m-0">{children}</p>
     </div>
   );
 }

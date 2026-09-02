@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""Generate the page shells under tjanster/ from scripts/apps-data.json.
+"""Generate the page shells under tjanster/ from sites/tjanster/scripts/apps-data.json.
 
 Everything in tjanster/ is generated from the data file, which holds facts
 derived from each source repository (see CLAUDE.md for the method).
 
 Each generated shell carries the page's title and metadata plus the page data
-embedded as JSON; the content is rendered by the React entries in src/entries/
+embedded as JSON; the content is rendered by the React entries in sites/tjanster/entries/
 using Sundsvall's design system (@sk-web-gui/react + @sk-web-gui/core). The
 start page needs no generation step: src/pages/IndexPage.tsx imports
 apps-data.json directly.
@@ -18,16 +18,18 @@ import json
 import os
 from collections import Counter
 
-ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
-DATA = os.path.join(ROOT, "scripts", "apps-data.json")
+# Repots rot: sites/tjanster/scripts -> tre nivåer upp.
+ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "..")
+SECTION = os.path.join(ROOT, "sites", "tjanster")
+DATA = os.path.join(SECTION, "scripts", "apps-data.json")
 # Repos that need an SBOM but have no service page in the catalogue; currently
 # empty -- every repo with an SBOM has its own service page.
-EXTRA = os.path.join(ROOT, "scripts", "sbom-extra.json")
+EXTRA = os.path.join(SECTION, "scripts", "sbom-extra.json")
 OUT = os.path.join(ROOT, "tjanster")
 
 
 def sbom_path(app):
-    return os.path.join(ROOT, "assets", "sbom", f"{app['slug']}.spdx.json")
+    return os.path.join(ROOT, "public", "tjanster", "assets", "sbom", f"{app['slug']}.spdx.json")
 
 
 def has_sbom(app):
@@ -96,7 +98,7 @@ def shell(title, description, entry, data):
 <body>
   <script type="application/json" id="page-data">{payload}</script>
   <div id="root"></div>
-  <script type="module" src="/src/entries/{entry}.tsx"></script>
+  <script type="module" src="/sites/tjanster/entries/{entry}.tsx"></script>
 </body>
 </html>
 """

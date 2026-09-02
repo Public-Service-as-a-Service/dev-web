@@ -28,7 +28,7 @@ Webbplatsen följer [Sundsvalls kommuns designsystem](https://ui.sundsvall.dev/)
   `font-header`, `text-lead`, `max-w-content`, `rounded-cards` samt
   avståndsskalan (`p-24`, `gap-16`, `py-40` …).
 - **Hårdkoda aldrig hex-värden eller CSS-variabler.** Inga `#`-färger, inga
-  `var(--…)` och ingen egen CSS utöver Tailwind-direktiven i `src/index.css` –
+  `var(--…)` och ingen egen CSS utöver Tailwind-direktiven i `packages/chrome/src/index.css` –
   allt utseende ska komma från paketen via komponenter och tokenklasser.
 - `vattjom` (blå) är webbplatsens primärtema. Typsnitt: Raleway för rubriker
   via `font-header` (läses in från paketet `@fontsource/raleway`), Arial för
@@ -42,7 +42,7 @@ Webbplatsen följer [Sundsvalls kommuns designsystem](https://ui.sundsvall.dev/)
 0. **Endast applikationer i drift.** Katalogen listar de webbapplikationer som
    körs i drift. Prototyper och avvecklade applikationer ska inte finnas i
    katalogen – när en applikation avvecklas tas dess post bort ur
-   `scripts/apps-data.json` tillsammans med de genererade filerna (tjänstesidan
+   `sites/tjanster/scripts/apps-data.json` tillsammans med de genererade filerna (tjänstesidan
    och arkitekturritningen), varefter generatorskripten körs om.
 
 1. **Verksamhetsnamn, inte projektnamn.** Interna projekt-/kodnamn (t.ex.
@@ -50,7 +50,7 @@ Webbplatsen följer [Sundsvalls kommuns designsystem](https://ui.sundsvall.dev/)
    verksamhetsvända namn ("Ärendehantering och myndighetsutövning",
    "Mina sidor").
 2. **En sida per källkodsförråd.** Varje `web-app`-repo får EN post i
-   `scripts/apps-data.json` och därmed EN sida, även när repot bygger flera
+   `sites/tjanster/scripts/apps-data.json` och därmed EN sida, även när repot bygger flera
    webbappar. **Bygger repot flera webbar är fältet `webbar` obligatoriskt**:
    det ska räkna upp varje webb och de processer den implementerar (se
    "Webbappar och processer per webb" nedan), så att sidan synliggör vad de
@@ -119,17 +119,17 @@ kodgrenar) fylls fältet `webbar` i posten:
 
 ## Så skapas tjänstesidor
 
-**Datadrivet (enda sättet).** Lägg till ett objekt i `scripts/apps-data.json`
+**Datadrivet (enda sättet).** Lägg till ett objekt i `sites/tjanster/scripts/apps-data.json`
 med de fält som redan finns där (repo, namn, slug, kategori, status,
 ingress, beskrivning, målgrupp, funktioner, webbar, apis, integrationer,
 auth, teknik, konfiguration, anteckningar) och kör
-`python3 scripts/generate-pages.py` följt av
-`python3 scripts/generate-diagrams.py`. Generatorn skriver **sidskal**
+`python3 sites/tjanster/scripts/generate-pages.py` följt av
+`python3 sites/tjanster/scripts/generate-diagrams.py`. Generatorn skriver **sidskal**
 under `tjanster/` – head-metadata plus sidans data inbäddad som JSON i
 `<script id="page-data">` – och innehållet renderas av
-`src/pages/AppPage.tsx` respektive `src/pages/SbomPage.tsx` med
+`sites/tjanster/pages/AppPage.tsx` respektive `sites/tjanster/pages/SbomPage.tsx` med
 designsystemet. Startsidans kort behöver inte genereras:
-`src/pages/IndexPage.tsx` importerar `apps-data.json` direkt. Fyll fälten
+`sites/tjanster/pages/IndexPage.tsx` importerar `apps-data.json` direkt. Fyll fälten
 enligt tabellen ovan – uppgifterna ska vara härledda ur källkodsrepot.
 Ändras sidornas struktur eller utseende görs det i React-komponenterna;
 ändras datat körs generatorn om. Det finns inga handskrivna sidor.
@@ -138,7 +138,7 @@ enligt tabellen ovan – uppgifterna ska vara härledda ur källkodsrepot.
 
 Sidan heter `tjanster/<slug>.html` (slug utan å/ä/ö, med bindestreck,
 härledd ur tjänstens namn – inte ur repots kodnamn). Strukturen definieras
-av `src/components/AppArticle.tsx`:
+av `sites/tjanster/components/AppArticle.tsx`:
 
 1. **Sidhuvud** – `SiteHeader` (designsystemets `Header` med kommunlogotypen).
 2. **`PageHero`** – brödsmulor (Start / Webbapplikationer / sidnamn,
@@ -176,8 +176,8 @@ av `src/components/AppArticle.tsx`:
 ## Programvaruförteckningen (SBOM)
 
 `tjanster/<slug>-sbom.html` genereras av samma skript ur
-`assets/sbom/<slug>.spdx.json` – komponentlistan bäddas in i sidskalet som
-JSON – och renderas av `src/pages/SbomPage.tsx`: applikationens
+`public/tjanster/assets/sbom/<slug>.spdx.json` – komponentlistan bäddas in i sidskalet som
+JSON – och renderas av `sites/tjanster/pages/SbomPage.tsx`: applikationens
 tredjepartskomponenter med version och licens, en licenssammanfattning och
 ett filterfält.
 
@@ -185,7 +185,7 @@ ett filterfält.
 vanliga arbetsflödet.** Till skillnad från sidorna och ritningarna, som är rena
 funktioner av `apps-data.json`, är en SBOM en funktion av 36 externa repon som
 Dependabot uppdaterar löpande. De underhålls av
-`.github/workflows/refresh-sbom.yml`, som varje vecka checkar ut varje
+`.github/workflows/refresh-sbom-tjanster.yml`, som varje vecka checkar ut varje
 källkodsrepo, installerar beroendena, kör Trivy och commitar det som ändrats.
 Workflowet publicerar också till GitHub Pages i ett eget steg: en push gjord med
 `GITHUB_TOKEN` startar inga nya workflows, så `deploy-pages.yml` plockar *inte*
@@ -221,7 +221,7 @@ ge en degraderad SBOM: en delvis installation gör tyst om licenser till
 `NOASSERTION`, vilket hade commitat en diff som inte motsvarar någon verklig
 beroendeändring. Grenen behåller då sin förra SBOM.
 
-`scripts/sbom-extra.json` finns kvar för repon som skulle behöva en
+`sites/tjanster/scripts/sbom-extra.json` finns kvar för repon som skulle behöva en
 programvaruförteckning utan egen tjänstesida; listan är för närvarande tom –
 alla repon med SBOM har en egen sida i katalogen.
 
@@ -234,7 +234,7 @@ deterministiskt eftersom runnern alltid är ubuntu — men en lokal regenerering
 en Mac kommer aldrig att matcha det incheckade byte för byte. CI är sanningskällan;
 committa inte en lokalt regenererad SBOM.
 
-`scripts/normalize-sbom.py` låser de fält som annars varierar mellan körningar
+`sites/tjanster/scripts/normalize-sbom.py` låser de fält som annars varierar mellan körningar
 (namnrymd och tidsstämpel) till den scannade committen, tar bort Trivys
 verktygsinterna annoteringar och skriver in härkomsten i dokumentet.
 Kvarvarande licensluckor rapporteras som **en** grupperad varning per app –
@@ -258,9 +258,9 @@ ifrån dummy-commits till just API-anropet.
 
 ## Arkitekturritningen
 
-En SVG per applikation i `assets/diagrams/<samma slug>.svg`, genererad med
-`scripts/generate-diagrams.py`. Datadrivna applikationer får sin ritning
-automatiskt ur `scripts/apps-data.json`; lager utan innehåll utelämnas
+En SVG per applikation i `public/tjanster/assets/diagrams/<samma slug>.svg`, genererad med
+`sites/tjanster/scripts/generate-diagrams.py`. Datadrivna applikationer får sin ritning
+automatiskt ur `sites/tjanster/scripts/apps-data.json`; lager utan innehåll utelämnas
 (en app utan API-plattformskopplingar visar bara webb-app, eventuell
 inloggning och externa integrationer). Handskrivna sidor har egna
 `diagram(...)`-anrop i skriptet. Rita aldrig för hand – generatorn håller
