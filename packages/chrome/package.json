@@ -1,0 +1,15 @@
+{
+  "name": "@sundsvall/chrome",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Delad sidchrome för webbplatsen: sidhuvud, sidfot, appskal och byggblock",
+  "license": "MIT",
+  "type": "module",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "peerDependencies": {
+    "@sk-web-gui/react": "^3.1.2",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  }
+}

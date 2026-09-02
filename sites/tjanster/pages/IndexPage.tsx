@@ -1,0 +1,172 @@
+import { Card, Label } from '@sk-web-gui/react';
+import appsData from '../scripts/apps-data.json';
+import {
+  ButtonLink,
+  FactBox,
+  Hero,
+  NoteBox,
+  PageSection,
+  SiteFooter,
+  SiteHeader,
+  TwoColumns,
+  footerLinks,
+  sectionLinks,
+} from '@sundsvall/chrome';
+import { type AppData, STATUS_LABEL } from '../types';
+
+const apps = appsData as AppData[];
+
+const CATEGORY_ORDER = [
+  'Ärendehantering',
+  'Myndighetsutövning',
+  'Invånartjänster',
+  'Mina sidor',
+  'Medarbetartjänster',
+  'Utbildning',
+  'AI-tjänster',
+  'Administration',
+  'Utvecklingsverktyg',
+];
+
+interface CardData {
+  namn: string;
+  href: string;
+  text: string;
+  kategori: string;
+  status?: string;
+}
+
+const menu = [
+  ...sectionLinks('../', 'tjanster'),
+  { label: 'Om katalogen', href: '#om-katalogen' },
+  { label: 'Webbapplikationer', href: '#tjanster' },
+];
+
+
+function AppCard({ card }: { card: CardData }) {
+  return (
+    <Card color="mono" useHoverEffect href={card.href}>
+      <Card.Body>
+        <div className="flex flex-wrap gap-8 pt-8">
+          <Label inverted color="vattjom">
+            {card.kategori}
+          </Label>
+          {card.status && <Label inverted>{card.status}</Label>}
+        </div>
+        <h3 className="font-header text-h4-sm md:text-h4-md xl:text-h4-lg text-dark-primary mt-12 mb-0">
+          {card.namn}
+        </h3>
+        <p className="mt-8 mb-0">{card.text}</p>
+        <p className="mt-12 mb-0 font-bold text-vattjom-text-primary">Läs mer om {card.namn} →</p>
+      </Card.Body>
+    </Card>
+  );
+}
+
+export function IndexPage() {
+  const byCategory = new Map<string, CardData[]>();
+  for (const app of apps) {
+    const card: CardData = {
+      kategori: app.kategori,
+      namn: app.namn,
+      href: `${app.slug}.html`,
+      text: app.ingress ?? '',
+      status: app.status ? STATUS_LABEL[app.status] : undefined,
+    };
+    byCategory.set(app.kategori, [...(byCategory.get(app.kategori) ?? []), card]);
+  }
+
+  return (
+    <>
+      <SiteHeader menu={menu} prefix="../" />
+      <main>
+        <Hero
+          kicker="Öppen källkod från Sundsvalls kommun"
+          title="En katalog över kommunens öppna webbapplikationer"
+          lead="Sundsvalls kommun utvecklar digitala tjänster för invånare, företag och medarbetare – och delar dem öppet med omvärlden. Här hittar du en samlad översikt över de webbapplikationer som kommunen publicerar som öppen källkod."
+          actions={
+            <>
+              <ButtonLink as="a" href="#tjanster" variant="primary" color="vattjom">
+                Utforska applikationerna
+              </ButtonLink>
+              <ButtonLink
+                as="a"
+                href="https://github.com/Sundsvallskommun"
+                variant="secondary"
+                color="vattjom"
+              >
+                Besök Sundsvalls kommun på GitHub
+              </ButtonLink>
+            </>
+          }
+        />
+
+        <PageSection id="om-katalogen">
+          <h2 className="font-header">Vad innehåller katalogen?</h2>
+          <TwoColumns
+            aside={
+              <FactBox
+                title="Snabbfakta"
+                items={[
+                  <>
+                    <strong>Ett 40-tal</strong> öppna webbapplikationer
+                  </>,
+                  <>
+                    Tjänster för <strong>invånare, företag och medarbetare</strong>
+                  </>,
+                  <>
+                    Publiceras öppet på <strong>GitHub</strong>
+                  </>,
+                  <>
+                    Fritt att <strong>återanvända och vidareutveckla</strong>
+                  </>,
+                ]}
+              />
+            }
+          >
+            <p>
+              Sundsvalls kommun arbetar enligt principen <em>öppen källkod först</em> och
+              tillgängliggör sina webbapplikationer på GitHub, där de kan användas, granskas och
+              vidareutvecklas av andra kommuner, organisationer och intresserade.
+            </p>
+            <p>
+              Varje webbapplikation presenteras på en egen sida med två delar: en verksamhetsnära
+              beskrivning av vad tjänsten gör och vem den är till för, samt en teknisk
+              dokumentation för dig som vill förstå hur applikationen är byggd eller vill
+              återanvända den i din egen organisation.
+            </p>
+            <p>Katalogen byggs ut successivt med fler applikationer ur kommunens utbud.</p>
+          </TwoColumns>
+        </PageSection>
+
+        <PageSection id="tjanster" alt>
+          <h2 className="font-header">Webbapplikationer i katalogen</h2>
+          <p className="text-lead">
+            Katalogen omfattar de öppna webbapplikationer som körs i drift, grupperade per
+            område – en sida per källkodsförråd. Bygger ett förråd flera webbappar presenteras
+            de på en gemensam sida som visar vilka processer varje webb implementerar. Välj en
+            applikation för att läsa mer.
+          </p>
+          {CATEGORY_ORDER.filter((cat) => byCategory.has(cat)).map((cat) => (
+            <section key={cat} aria-label={cat}>
+              <h3 className="font-header mt-40">{cat}</h3>
+              <div className="mt-16 grid gap-24 md:grid-cols-2 xl:grid-cols-3">
+                {(byCategory.get(cat) ?? [])
+                  .slice()
+                  .sort((a, b) => a.namn.toLowerCase().localeCompare(b.namn.toLowerCase(), 'sv'))
+                  .map((card) => (
+                    <AppCard key={card.href} card={card} />
+                  ))}
+              </div>
+            </section>
+          ))}
+          <NoteBox>
+            Katalogen omfattar samtliga repon som börjar med <code>web-app</code> hos Sundsvalls
+            kommun på GitHub. Nya applikationer läggs till efter hand som de publiceras.
+          </NoteBox>
+        </PageSection>
+      </main>
+      <SiteFooter links={footerLinks('../')} />
+    </>
+  );
+}

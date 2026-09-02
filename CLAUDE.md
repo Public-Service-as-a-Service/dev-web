@@ -1,7 +1,40 @@
 # CLAUDE.md
 
-Ingångssida till Sundsvalls kommuns digitala miljö. Byggd som en statisk
-React-webbplats med Vite; en sida (`index.html`) med ingång under `src/`.
+Sundsvalls kommuns webbplats om den digitala miljön: en startsida och ett antal
+sektioner, byggda som en statisk React-webbplats med Vite och publicerade som en
+container.
+
+## Struktur – obligatorisk
+
+```
+index.html            startsidan            →  /
+arkitektur/*.html     målarkitekturen       →  /arkitektur/
+tjanster/*.html       webbkatalogen         →  /tjanster/
+api/*.html            API-katalogen         →  /api/
+packages/chrome/      delad sidchrome (@sundsvall/chrome)
+sites/start/          startsidans React-kod
+sites/arkitektur/     sektionens React-kod, sidor och diagramgeneratorer
+sites/tjanster/       webbkatalogens React-kod, data och generatorer
+sites/api/            API-katalogens React-kod, data och generatorer
+public/               delade ikoner och sektionernas diagram
+```
+
+- **Sidhuvud, sidfot, appskal och byggblock importeras alltid från
+  `@sundsvall/chrome`.** Kopiera aldrig en komponent in i en sektion – det är
+  precis den drift hopslagningen tog bort. Behöver en sektion något nytt läggs
+  det i paketet.
+- **Tvärlänkar mellan sektioner kommer från `sectionLinks()` och
+  `footerLinks()`** i `packages/chrome/src/navigation.ts`, med en relativ
+  prefix (`'./'` på startsidan, `'../'` i en sektion). Skriv aldrig ut en
+  annan sektions webbadress för hand.
+- Sidskalen (`*.html`) bär webbadressen; de plockas upp automatiskt av
+  `vite.config.ts`. React-koden ligger under `sites/`.
+- Sidskalen under `tjanster/` och `api/` **genereras** – ändra i
+  `sites/tjanster/scripts/apps-data.json` respektive
+  `sites/api/scripts/apis-data.json` och kör om generatorn, redigera dem aldrig
+  för hand.
+- Programvaruförteckningarna uppdateras av `.github/workflows/refresh-sbom.yml`,
+  ett arbetsflöde för båda katalogerna: en körning ger en commit och en deploy.
 
 ## Avgränsning – obligatorisk
 
@@ -34,13 +67,13 @@ samma grafiska profil som
   `font-header`, `text-lead`, `max-w-content`, `rounded-cards` samt
   avståndsskalan (`p-24`, `gap-16`, `py-40` …).
 - **Hårdkoda aldrig hex-värden eller CSS-variabler.** Inga `#`-färger, inga
-  `var(--…)` och ingen egen CSS utöver Tailwind-direktiven i `src/index.css` –
+  `var(--…)` och ingen egen CSS utöver Tailwind-direktiven i `packages/chrome/src/index.css` –
   allt utseende ska komma från paketen via komponenter och tokenklasser.
 - Färgprofilerna heter `vattjom` (blå, används som primärfärg här), `gronsta`,
   `bjornstigen` och `juniskar`. Typsnitt: Raleway för rubriker via
   `font-header` (läses in från paketet `@fontsource/raleway`), Arial för
   brödtext (temats standard).
-- `GuiProvider` (i `src/components/AppShell.tsx`) sätter temats CSS-variabler –
+- `GuiProvider` (i `packages/chrome/src/AppShell.tsx`) sätter temats CSS-variabler –
   alla sidor ska renderas innanför den.
 
 ## Språk och ton
@@ -72,9 +105,14 @@ Webbplatsen ska uppfylla **WCAG 2.2 AA** (DOS-lagen gäller kommunen), se
 
 - `npm install`, `npm run dev` för utveckling, `npm run build` för
   produktionsbygge till `dist/`.
-- Verifiera före push: kör `npm run build`, rendera sidan med headless
-  Chromium i både desktop- och mobilbredd och kontrollera layout, kontrast och
-  att inget scrollar horisontellt.
-- Publicering sker automatiskt vid push till `main`: GitHub Pages via
-  `.github/workflows/deploy-pages.yml` och container via Dokploy-webhook
-  (`Dockerfile` bygger med Node och serverar `dist/` med nginx).
+- Verifiera före push: kör `npm run build`, rendera startsidan **och minst en
+  sida per sektion** med headless Chromium i både desktop- och mobilbredd och
+  kontrollera layout, kontrast, att diagrammen läses in och att länkarna mellan
+  sektionerna pekar rätt.
+- Publicering sker automatiskt vid push till `main`. **Containern är
+  kanonisk** (Dokploy-webhook; `Dockerfile` bygger med Node och serverar `dist/`
+  med nginx enligt `nginx.conf`); GitHub Pages ligger kvar som förhandsvisning
+  via `.github/workflows/deploy-pages.yml`.
+- **Behåll `base: './'` i `vite.config.ts`** så länge Pages finns kvar – alla
+  länkar och sökvägar ska vara relativa, aldrig rot-absoluta.
+- Domänbyte och omdirigeringar: se `docs/publicering.md`.

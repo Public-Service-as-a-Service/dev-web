@@ -1,0 +1,4 @@
+{
+  "beskrivning": "Repon som behöver en programvaruförteckning men saknar tjänstesida i katalogen. Posterna här får en SBOM-sida (tjanster/<slug>-sbom.html) utan att synas som kort på startsidan. Listan är för närvarande tom - alla repon med SBOM har en egen tjänstesida.",
+  "repon": []
+}

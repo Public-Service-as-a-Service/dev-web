@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Luftkvalitet i Sundsvall – Webbkatalogen</title>
+  <meta name="description" content="Publik webbsida som visar uppmätt luftkvalitet från kommunens mätstationer i diagram och tabeller.">
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+  <link rel="apple-touch-icon" href="../assets/favicon-180.png">
+</head>
+<body>
+  <script type="application/json" id="page-data">{"app":{"repo":"web-app-air","namn":"Luftkvalitet i Sundsvall","kategori":"Invånartjänster","status":"aktiv","ingress":"Publik webbsida som visar uppmätt luftkvalitet från kommunens mätstationer i diagram och tabeller.","beskrivning":["Tjänsten visar luftkvalitetsdata för Sundsvall från mätstationerna vid Köpmangatan och Bergsgatan. Besökare kan se halter av partiklar (PM2,5 och PM10) och kvävedioxid (NO2) för olika tidsperioder – från senaste dygnet upp till ett år.","Data hämtas från kommunens öppna data och presenteras som grafer och tabeller, med stöd för flera språk. Tjänsten är helt öppen och kräver ingen inloggning.","Repot är byggt på kommunens webbappsmall och delar av mallens texter och konfiguration finns kvar, vilket tyder på att tjänsten är förhållandevis ny."],"malgrupp":"Invånare och allmänhet","funktioner":[{"titel":"Luftkvalitet per mätstation","text":"Visar uppmätta halter från stationerna Köpmangatan (PM10, PM2,5, NO2) och Bergsgatan (PM10, PM2,5)."},{"titel":"Valbara tidsperioder","text":"Data kan visas för dygn, fyra dygn, vecka, månad eller år."},{"titel":"Diagram och tabeller","text":"Mätvärden presenteras som grafer och i tabellform."},{"titel":"Flerspråksstöd","text":"Gränssnittet är översättningsbart via språkfiler."}],"apis":[{"name":"OpenData","version":"1.0","usage":"Hämtar luftkvalitetsobservationer (airqualities) per mätstation, kodverifierat anrop."},{"name":"SimulatorServer","version":"2.0","usage":"Hälsokontroll av API-anslutningen (enligt api-config)."}],"integrationer":["WSO2 API-gateway (api.sundsvall.se)","Sensordata i NGSI-LD-format (AirQualityObserved)"],"auth":"Ingen inloggning","teknik":{"frontend":"Next.js/React (App Router) med react-i18next och Recharts","backend":"Node.js med Express och routing-controllers","tester":null},"konfiguration":["Miljöfiler för frontend (.env-example) och backend (.env.example.local)","CLIENT_KEY/CLIENT_SECRET för API-gatewayn","API_BASE_URL mot api-test.sundsvall.se i exempel"],"anteckningar":["Mätstationerna är hårdkodade i backend: Köpmangatan (888100) och Bergsgatan (1098100).","I utvecklingsläge används genererad mockdata i stället för riktiga mätvärden.","SAML-inloggning finns i mallen men är bortkommenterad – tjänsten är helt publik.","README och delar av konfigurationen är kvar från webbappsmallen (web-app-starter)."],"slug":"luftkvalitet-i-sundsvall"},"hasSbom":true,"sbom":{"komponenter":1641,"licenser":24}}</script>
+  <div id="root"></div>
+  <script type="module" src="/sites/tjanster/entries/app.tsx"></script>
+</body>
+</html>

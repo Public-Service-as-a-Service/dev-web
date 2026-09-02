@@ -23,12 +23,26 @@ svenska. Den grafiska profilen är densamma som på
 
 ## Innehåll
 
-- `index.html` / `src/pages/StartPage.tsx` – hela webbplatsen: omställningen,
-  digital mognad (digital förmåga och digitalt arv), förhållningssätten, de
-  strategiska områdena samt fördjupningslänkarna.
-- `src/components/` – delade byggblock (sidhuvud, sidfot, hero, kort med mera)
-  ovanpå designsystemets komponenter.
-- `public/assets/` – ikoner för webbplatsen.
+Webbplatsen är ett monorepo: en startsida och en sektion per delwebbplats, som
+byggs till en enda uppsättning statiska filer och publiceras som en container.
+
+- `index.html` / `sites/start/StartPage.tsx` – startsidan, ingången till
+  målarkitekturen och katalogerna.
+- `arkitektur/*.html` / `sites/arkitektur/` – sektionen Målarkitekturen med
+  undersidorna Ekosystemet och Designprinciper, samt diagramgeneratorerna. Se
+  `sites/arkitektur/README.md`.
+- `tjanster/*.html` / `sites/tjanster/` – sektionen Webbkatalogen: startsida,
+  37 genererade tjänstesidor med lika många programvaruförteckningar, data och
+  generatorer. Se `sites/tjanster/README.md`.
+- `api/*.html` / `sites/api/` – sektionen API-katalogen: startsida, 75 API-sidor
+  med Swagger UI och programvaruförteckningar, data och generatorer. Se
+  `sites/api/README.md`.
+- `packages/chrome/` – paketet `@sundsvall/chrome` med sidhuvud, sidfot,
+  appskal, byggblock och webbplatsens gemensamma navigation. Sektionerna har
+  inga egna kopior av chromet.
+- `public/assets/` – delade ikoner. `public/arkitektur/assets/diagrams/`
+  och `public/tjanster/assets/` – sektionernas genererade ritningar och
+  programvaruförteckningar.
 - `.github/workflows/deploy-pages.yml` – arbetsflöde som bygger webbplatsen och
   publicerar den till GitHub Pages.
 
@@ -56,19 +70,21 @@ Designsystemet:
 
 ## Publicering
 
-Webbplatsen byggs med `npm run build` och publiceras automatiskt via GitHub
-Pages när ändringar pushas till `main`-grenen, på
-`https://<organisation>.github.io/dev-web/`.
+Containern är den kanoniska publiceringen: `Dockerfile` bygger webbplatsen i ett
+Node-steg och serverar `dist/` med nginx på port 80 (`nginx.conf` sätter
+cache-huvuden). En webhook i repot anropar Dokploy vid varje push till `main`.
 
-Webbplatsen driftsätts även som container: `Dockerfile` bygger webbplatsen i
-ett Node-steg och serverar `dist/` med nginx på port 80. Deployn sker via
-Dokploy – byggtyp Dockerfile, containerport 80. En webhook i repot anropar
-Dokploy vid varje push till `main`, så containerdeployn sker automatiskt precis
-som GitHub Pages-publiceringen.
+GitHub Pages ligger kvar som förhandsvisning på
+`https://<organisation>.github.io/dev-web/` via
+`.github/workflows/deploy-pages.yml`. Bygget använder relativa sökvägar
+(`base: './'`), så samma artefakt fungerar både på rot och i en underkatalog.
+
+Domänbytet till `ekosystemet.sundsvall.dev` och omdirigeringarna från de fyra
+gamla domänerna beskrivs i [`docs/publicering.md`](docs/publicering.md).
 
 ## Uppdatera innehållet
 
-Texterna redigeras i `src/pages/StartPage.tsx`. Menyn, sidfotens länkar och
+Texterna redigeras i `sites/start/StartPage.tsx`. Menyn, sidfotens länkar och
 korten i respektive avsnitt ligger som datalitteraler överst i samma fil.
 Verifiera lokalt innan push: bygg webbplatsen, rendera sidan med headless
 Chromium och kontrollera layout i både desktop- och mobilbredd.
