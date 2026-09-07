@@ -17,6 +17,8 @@ export interface ApiTeknik {
 
 export interface ApiData {
   repo: string;
+  /** GitHub-organisation som äger källkodsrepot; Sundsvallskommun när fältet saknas. */
+  agare?: string | null;
   namn: string;
   slug: string;
   kategori: string;
@@ -32,6 +34,19 @@ export interface ApiData {
   teknik?: ApiTeknik | null;
   konfiguration?: string[] | null;
   anteckningar?: string[] | null;
+}
+
+/** GitHub-organisationen som kommunens api-service-repon ligger under. */
+export const DEFAULT_AGARE = 'Sundsvallskommun';
+
+/** Webbadressen till ett API:s källkodsrepo på GitHub. */
+export function repoUrl(api: { repo: string; agare?: string | null }): string {
+  return `https://github.com/${api.agare ?? DEFAULT_AGARE}/${api.repo}`;
+}
+
+/** Ägarens namn i löptext: kommunen för dess egna repon, annars organisationens namn. */
+export function agareNamn(agare?: string | null): string {
+  return !agare || agare === DEFAULT_AGARE ? 'Sundsvalls kommun' : agare;
 }
 
 export const STATUS_LABEL: Record<string, string> = {

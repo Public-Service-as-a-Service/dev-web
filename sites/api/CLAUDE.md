@@ -12,7 +12,10 @@ Sundsvalls kommuns API-katalog: den beskriver de API:er som körs skarpt i produ
 API-plattform. Många av API:erna utvecklas som öppen källkod på
 [github.com/Sundsvallskommun](https://github.com/Sundsvallskommun) – repon som
 börjar med `api-service` – men katalogen kan även omfatta API:er vars lösningar
-inte publiceras som öppen källkod; att källkoden är öppen är sekundärt. Utöver
+inte publiceras som öppen källkod; att källkoden är öppen är sekundärt. Även
+API:er som kommunen driver men som utvecklas i en annan organisation ingår,
+t.ex. Öppna data från IoT-plattformen [diwise](https://github.com/diwise) –
+fältet `agare` i datafilen anger då GitHub-organisationen. Utöver
 beskrivningssidorna exponeras varje API:s OpenAPI-specifikation interaktivt via
 Swagger UI, och varje API:s programvaruförteckning (SBOM) i SPDX-format.
 Publiceras som en del av webbplatsen: containern byggs och deployas av Dokploy
@@ -85,12 +88,27 @@ Alla API:er exponeras via kommunens API-plattform (WSO2) på api.sundsvall.se
 och anropas med OAuth2-klientuppgifter; `municipalityId` ingår normalt i
 API-vägarna.
 
+### Go-repon från diwise
+
+Öppna data (`diwise/api-opendata`) är skrivet i Go och följer inte
+dept44-mönstret. Motsvarande källor där:
+
+| Fakta | Källa i repot |
+| --- | --- |
+| API-namn och version | `info.title`/`info.version` i `api/openapi-spec/openapi.json`. Specen är JSON – konvertera den till YAML (`yaml.safe_dump(..., allow_unicode=True, sort_keys=False)`) till `public/api/assets/openapi/<slug>.yml`; generatorn och Swagger UI-sidan förutsätter `.yml`. |
+| Beroende tjänster | Importerna av `github.com/diwise/context-broker` (NGSI-LD-klienten) och det `DIWISE_CONTEXT_BROKER_URL` som läses i `internal/pkg/presentation/api.go`. |
+| Teknikstack | `go.mod`: Go-version, `service-chassis`, router (`chi`), observabilitet (OpenTelemetry). |
+| Konfiguration | Anropen till `env.GetVariableOrDie`/`GetVariableOrDefault` och `os.Getenv` samt startflaggorna i `cmd/api-opendata/main.go`; `deployments/` visar containern. |
+| Beteenden | Tjänsterna under `internal/pkg/application/services/` (uppdateringsintervall, cache) och handlarna under `internal/pkg/presentation/handlers/` (format, innehållsförhandling). |
+
 ## Så skapas API-sidor
 
 **Datadrivet (enda sättet).** Lägg till ett objekt i `sites/api/scripts/apis-data.json`
 med de fält som redan finns där (repo, namn, slug, kategori, status,
 apiVersion, ingress, beskrivning, malgrupp, funktioner, beroenden,
-integrationer, databas, teknik, konfiguration, anteckningar), kopiera
+integrationer, databas, teknik, konfiguration, anteckningar; `agare` bara när
+repot inte ligger under Sundsvallskommun – sidorna, SBOM-workflowet och
+normaliseringen läser alla ägaren därifrån), kopiera
 OpenAPI-specifikationen till `public/api/assets/openapi/<slug>.yml` och kör
 `python3 sites/api/scripts/generate-pages.py` följt av
 `python3 sites/api/scripts/generate-diagrams.py`. Generatorn skriver **sidskal** under
@@ -159,7 +177,11 @@ vanliga arbetsflödet.** Till skillnad från sidorna och ritningarna, som är re
 funktioner av `apis-data.json`, är en SBOM en funktion av 75 externa repon som
 Dependabot uppdaterar löpande. De underhålls därför av
 `.github/workflows/refresh-sbom.yml` (gemensamt för båda katalogerna), som varje vecka checkar ut varje
-källkodsrepo, kör Trivy och commitar det som ändrats. Deployn sköts av Dokploy:
+källkodsrepo, kör Trivy och commitar det som ändrats. Workflowet känner själv
+av byggsystemet i utcheckningen: `pom.xml` ger Maven-vägen
+(`dependency:go-offline` + Trivy), `go.mod` ger Go-vägen (`go mod download` +
+samma Trivy-kommando – licenserna läses ur modulcachen, som därför måste vara
+fylld). Deployn sköts av Dokploy:
 en push som gjorts med `GITHUB_TOKEN` startar inga nya workflows, men repots
 GitHub-webhook går fram, och workflowet anropar dessutom Dokploy när
 `DOKPLOY_WEBHOOK_URL` är satt.

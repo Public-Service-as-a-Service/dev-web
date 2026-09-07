@@ -25,6 +25,7 @@ const CATEGORY_ORDER = [
   'AI-tjänster',
   'Integration',
   'Samhällsservice',
+  'Öppna data',
   'Utbildning',
   'Utvecklingsverktyg',
 ];

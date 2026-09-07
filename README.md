@@ -126,7 +126,8 @@ kontrollera att länkarna mellan sektionerna pekar rätt.
 ## Underlag
 
 Katalogernas innehåll härleds ur källkoden i kommunens öppna repon på
-[github.com/Sundsvallskommun](https://github.com/Sundsvallskommun). Startsidans
+[github.com/Sundsvallskommun](https://github.com/Sundsvallskommun) och, för
+Öppna data, hos IoT-plattformen [diwise](https://github.com/diwise). Startsidans
 och målarkitekturens texter bygger på kommunens egen dokumentation av
 målarkitekturen, samt på [kommuna.se](https://kommuna.se/index.html) och
 [eneo.ai](https://eneo.ai/) för de initiativ som beskrivs under vidare läsning.

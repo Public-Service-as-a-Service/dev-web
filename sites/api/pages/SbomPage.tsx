@@ -6,10 +6,10 @@ import {
 } from '@sundsvall/chrome';
 import { useMemo, useState } from 'react';
 import { SubpageChrome } from '../components/SubpageChrome';
-import type { SbomKomponent, SbomProvenans } from '../types';
+import { type SbomKomponent, type SbomProvenans, repoUrl } from '../types';
 
 export interface SbomPageData {
-  api: { slug: string; namn: string; kategori: string; repo: string };
+  api: { slug: string; namn: string; kategori: string; repo: string; agare?: string | null };
   komponenter: SbomKomponent[];
   licenser: [string, number][];
   provenans: SbomProvenans;
@@ -17,7 +17,7 @@ export interface SbomPageData {
 
 export function SbomPage({ data }: { data: SbomPageData }) {
   const { api, komponenter, licenser, provenans } = data;
-  const repoUrl = `https://github.com/Sundsvallskommun/${api.repo}`;
+  const kallkod = repoUrl(api);
   const datum = provenans.created.slice(0, 10);
   const [filter, setFilter] = useState('');
 
@@ -82,7 +82,7 @@ export function SbomPage({ data }: { data: SbomPageData }) {
           </li>
           <li>
             Källa: <strong>{provenans.namn}</strong> (
-            <Link href={repoUrl} external>
+            <Link href={kallkod} external>
               källkod på GitHub
             </Link>
             )

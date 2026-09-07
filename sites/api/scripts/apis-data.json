@@ -3946,6 +3946,86 @@
     ]
   },
   {
+    "repo": "api-opendata",
+    "agare": "diwise",
+    "namn": "Öppna data",
+    "slug": "oppna-data",
+    "kategori": "Öppna data",
+    "status": null,
+    "apiVersion": "1.0",
+    "ingress": "Publicerar kommunens öppna data – badplatser och vattenkvalitet, luftkvalitet, väder, motionsspår, idrottsplatser och idrottsanläggningar, gatuarbeten, trafikolyckor och trafikflöden – ur kommunens IoT-plattform, tillsammans med publicerade rapporter från Stratsys.",
+    "beskrivning": [
+      "Öppna data är kommunens ingång för den som vill återanvända data som kommunen samlar in om stadsmiljön: aktuella badtemperaturer och vattenkvalitet, luftkvalitet, väderobservationer, motionsspår med spårstatus, idrottsplatser och idrottsanläggningar, pågående gatuarbeten, trafikolyckor och trafikflöden. Datan är fri att använda för utvecklare, företag, forskare och kommunens egna webbtjänster – till exempel kartor som visar badplatser med senaste mätning.",
+      "Källan är kommunens IoT-plattform diwise, som utvecklas som öppen källkod i samarbete mellan kommuner. Sensorer och register rapporterar in till plattformens kontextmäklare (NGSI-LD med FIWARE:s datamodeller), och API:et läser därifrån, håller en kopia i minnet och uppdaterar den var femte minut. Konsumenterna får därmed snabba svar utan att belasta plattformen, och varje dataset kan hämtas som helhet eller per objekt.",
+      "Svaren levereras som JSON, och för geografiska dataset även som GeoJSON – ett motionsspår kan dessutom hämtas som GPX-fil för GPS-klockor och kartappar. Trafikflöden lämnas som CSV. Utöver sensordatan förmedlar API:et kommunens publicerade rapporter från lednings- och uppföljningssystemet Stratsys, så att även de nås via samma ingång."
+    ],
+    "malgrupp": "Allmänheten – utvecklare, företag, forskare och kommunens egna webbtjänster",
+    "funktioner": [
+      {
+        "titel": "Badplatser och vattenkvalitet",
+        "text": "Lista och enskilda badplatser med senaste vattentemperatur och mätningar från närliggande mätpunkter; vattenkvalitet kan även frågas fristående per läge och tidsintervall."
+      },
+      {
+        "titel": "Luftkvalitet och väder",
+        "text": "Senaste luftkvalitetsmätningar med läge och miljövärden, samt väderobservationer nära en punkt eller per station, med valbar tidsaggregering."
+      },
+      {
+        "titel": "Motionsspår, idrottsplatser och anläggningar",
+        "text": "Publicerade motionsspår, idrottsplatser och idrottsanläggningar med kategorifilter, valbara fält och ansvarig organisation ur ett organisationsregister."
+      },
+      {
+        "titel": "Gatuarbeten och trafikolyckor",
+        "text": "Pågående och planerade gatuarbeten samt publicerade trafikolyckor från Trafikverket."
+      },
+      {
+        "titel": "Trafikflöden",
+        "text": "Dygnsvisa fordonsräkningar och medelhastigheter per körfält, levererade som CSV."
+      },
+      {
+        "titel": "Rapporter från Stratsys",
+        "text": "Kommunens publicerade rapporter hämtas direkt ur Stratsys och förmedlas oförändrade."
+      },
+      {
+        "titel": "Flera format",
+        "text": "JSON som standard, GeoJSON via Accept-huvudet för geografiska dataset och GPX för enskilda motionsspår."
+      }
+    ],
+    "beroenden": [
+      {
+        "name": "Kontextmäklare (diwise)",
+        "version": null,
+        "usage": "NGSI-LD-kontextmäklaren i kommunens IoT-plattform diwise; enda datakällan för samtliga dataset utom Stratsys-rapporterna."
+      }
+    ],
+    "integrationer": [
+      "Stratsys (publicerade rapporter, OAuth2 client credentials)",
+      "Trafikverket (indirekt – trafikolyckorna hämtas ur kontextmäklaren)"
+    ],
+    "databas": null,
+    "teknik": {
+      "sprak": "Go 1.26",
+      "ramverk": "diwise service-chassis (chi-router, OpenTelemetry-baserad loggning och spårning), byggd med Go modules",
+      "ovrigt": "NGSI-LD-klient ur diwise context-broker, FIWARE-datamodeller via ngsi-ld-golang, CORS öppet för alla ursprung, gzip-komprimerade svar; containern byggs på ubi9-minimal"
+    },
+    "konfiguration": [
+      "DIWISE_CONTEXT_BROKER_URL (obligatorisk) och DIWISE_CONTEXT_BROKER_TENANT för kontextmäklaren",
+      "ENABLED_SERVICES – kommaseparerad lista över vilka dataset som ska startas (standard: alla); badplatser slår automatiskt på vattenkvalitet",
+      "WATER_QUALITY_MAX_DISTANCE – största avstånd i meter mellan badplats och vattenmätpunkt (standard 1000)",
+      "STRATSYS_COMPANY_CODE, STRATSYS_CLIENT_ID, STRATSYS_SCOPE, STRATSYS_LOGIN_URL och STRATSYS_DEFAULT_URL – samtliga krävs när Stratsys-tjänsten är påslagen",
+      "Startflaggor: -oas (OpenAPI-specifikation som serveras på /api/openapi), -rdffile (DCAT-katalog som serveras på /api/datasets/dcat) och -orgreg (YAML-register över organisationer); SERVICE_PORT (standard 8080)",
+      "Ingen databas – datan hålls i minnet och läses om från kontextmäklaren",
+      "Exponeras på kommunens API-plattform under opendata/1.0 och anropas med API-nyckel i huvudet apikey enligt specifikationen"
+    ],
+    "anteckningar": [
+      "Källkodsrepot ligger hos diwise, kommunens IoT-plattform i öppen källkod (github.com/diwise), inte under Sundsvallskommun; tjänsten är skriven i Go och bygger inte på dept44. Specifikationens titel är \"Sundsvalls Kommuns öppna data\" och servern api.sundsvall.se/opendata/1.0.",
+      "Enligt specifikationen anropas API:et med API-nyckel (huvudet apikey) i stället för OAuth2-klientuppgifter som kommunens övriga API:er.",
+      "Datan hålls i minnet och läses om från kontextmäklaren var femte minut; misslyckas en läsning görs nya försök efter 5–10 sekunder – verifierat i tjänsterna för badplatser, luftkvalitet, motionsspår och idrottsanläggningar. Väder och trafikflöden frågas i stället live vid varje anrop.",
+      "Trafikflödena aggregeras per dygn och körfält till CSV med semikolon; vägsegmentet är fast angivet i koden (urn:ngsi-ld:RoadSegment:19312:2860:35243) – verifierat i handlers/trafficflow.go.",
+      "Startas Stratsys-tjänsten utan att alla fem STRATSYS-variabler är satta avslutas processen – verifierat i handlers/stratsys.",
+      "Repot innehåller en DCAT-AP-SE-katalog (assets/dcat.rdf) som serveras på /api/datasets/dcat, men filen i repot är ett exempel; den skarpa katalogen monteras in vid driftsättning. Vägen ingår inte i OpenAPI-specifikationen."
+    ]
+  },
+  {
     "repo": "api-service-party",
     "namn": "Party",
     "slug": "party",

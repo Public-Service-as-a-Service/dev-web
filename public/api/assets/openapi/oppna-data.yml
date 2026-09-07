@@ -1,0 +1,2501 @@
+openapi: 3.0.3
+info:
+  title: Sundsvalls Kommuns öppna data
+  version: '1.0'
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: apikey
+security:
+- {}
+servers:
+- url: https://api.sundsvall.se/opendata/1.0
+  description: production environment
+- url: https://api-test.sundsvall.se/opendata/1.0
+  description: test environment
+paths:
+  /api-docs:
+    get:
+      description: Returns this OpenAPI specification
+      operationId: getOpenAPI
+      security:
+      - {}
+      responses:
+        '200':
+          description: OK
+  /airqualities:
+    get:
+      summary: Retrieve air quality data
+      description: Fetch a list of latest air quality measurements with location and
+        various environmental metrics.
+      responses:
+        '200':
+          description: A list of air quality data.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          description: Unique identifier for the air quality measurement.
+                        location:
+                          type: object
+                          properties:
+                            type:
+                              type: string
+                              enum:
+                              - Point
+                            coordinates:
+                              type: array
+                              description: WGS84 longitude and latitude
+                              minItems: 2
+                              maxItems: 3
+                              items:
+                                type: number
+                              example:
+                              - 17.454723
+                              - 62.266598
+                        dateObserved:
+                          type: object
+                          properties:
+                            '@type':
+                              type: string
+                              enum:
+                              - DateTime
+                            '@value':
+                              type: string
+                              format: date-time
+                              description: Date and time of observation in ISO 8601
+                                format.
+                        atmosphericPressure:
+                          type: number
+                          description: Atmospheric pressure in hPa.
+                        temperature:
+                          type: number
+                          description: Temperature in degrees Celsius.
+                        relativeHumidity:
+                          type: number
+                          description: Relative humidity as a percentage.
+                        particleCount:
+                          type: number
+                          description: Number of particles in the air.
+                        PM1:
+                          type: number
+                          description: PM1 particulate matter concentration.
+                        PM4:
+                          type: number
+                          description: PM4 particulate matter concentration.
+                        PM10:
+                          type: number
+                          description: PM10 particulate matter concentration.
+                        PM25:
+                          type: number
+                          description: PM2.5 particulate matter concentration.
+                        totalSuspendedParticulate:
+                          type: number
+                          description: Total suspended particulate matter.
+                        CO2:
+                          type: number
+                          description: Carbon dioxide concentration in ppm.
+                        'NO':
+                          type: number
+                          description: Nitric oxide concentration.
+                        NO2:
+                          type: number
+                          description: Nitrogen dioxide concentration.
+                        NOx:
+                          type: number
+                          description: Total nitrogen oxides concentration.
+                        voltage:
+                          type: number
+                          description: Voltage reading from the sensor.
+                        windDirection:
+                          type: number
+                          description: Wind direction in degrees.
+                        windSpeed:
+                          type: number
+                          description: Wind speed in meters per second.
+  /airqualities/{id}:
+    get:
+      summary: Retrieve air quality data by ID
+      description: Fetch detailed air quality data for a specific observation by its
+        unique ID.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: Unique identifier of the air quality observation.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Detailed air quality data for the specified ID.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        description: Unique identifier for the air quality observation.
+                      location:
+                        type: object
+                        properties:
+                          type:
+                            type: string
+                            enum:
+                            - Point
+                          coordinates:
+                            type: array
+                            items:
+                              type: number
+                            description: '[longitude, latitude].'
+                      dateObserved:
+                        type: object
+                        properties:
+                          '@type':
+                            type: string
+                            enum:
+                            - DateTime
+                          '@value':
+                            type: string
+                            format: date-time
+                            description: Date and time of observation in ISO 8601
+                              format.
+                      pollutants:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                              description: The name of the pollutant.
+                            values:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  value:
+                                    type: number
+                                    description: The observed value of the pollutant.
+                                  observedAt:
+                                    type: string
+                                    format: date-time
+                                    description: The timestamp when the value was
+                                      observed.
+                example:
+                  data:
+                    id: urn:ngsi-ld:AirQualityObserved:test3
+                    location:
+                      type: Point
+                      coordinates:
+                      - -3.712247
+                      - 40.423853
+                    dateObserved:
+                      '@type': DateTime
+                      '@value': '2025-02-12T19:23:09Z'
+                    pollutants:
+                    - name: AtmosphericPressure
+                      values:
+                      - value: 12.2
+                        observedAt: '2025-02-12T06:23:09Z'
+                      - value: 12.2
+                        observedAt: '2025-02-12T16:23:09Z'
+                      - value: 12.2
+                        observedAt: '2025-02-12T19:23:09Z'
+                    - name: Temperature
+                      values:
+                      - value: 12.2
+                        observedAt: '2025-02-12T06:23:09Z'
+                      - value: 12.2
+                        observedAt: '2025-02-12T16:23:09Z'
+                      - value: 12.2
+                        observedAt: '2025-02-12T19:23:09Z'
+                    - name: RelativeHumidity
+                      values:
+                      - value: 0.54
+                        observedAt: '2025-02-12T06:23:09Z'
+                      - value: 0.54
+                        observedAt: '2025-02-12T16:23:09Z'
+                      - value: 0.54
+                        observedAt: '2025-02-12T19:23:09Z'
+                    - name: ParticleCount
+                      values:
+                      - value: 12.2
+                        observedAt: '2025-02-12T06:23:09Z'
+                      - value: 12.2
+                        observedAt: '2025-02-12T16:23:09Z'
+                      - value: 12.2
+                        observedAt: '2025-02-12T19:23:09Z'
+                    - name: CO2
+                      values:
+                      - value: 500
+                        observedAt: '2025-02-12T06:23:09Z'
+                      - value: 500
+                        observedAt: '2025-02-12T16:23:09Z'
+                      - value: 500
+                        observedAt: '2025-02-12T19:23:09Z'
+                    - name: 'NO'
+                      values:
+                      - value: 45
+                        observedAt: '2025-02-12T06:23:09Z'
+                      - value: 45
+                        observedAt: '2025-02-12T16:23:09Z'
+                      - value: 45
+                        observedAt: '2025-02-12T19:23:09Z'
+                    - name: NO2
+                      values:
+                      - value: 69
+                        observedAt: '2025-02-12T06:23:09Z'
+                      - value: 69
+                        observedAt: '2025-02-12T16:23:09Z'
+                      - value: 69
+                        observedAt: '2025-02-12T19:23:09Z'
+                    - name: NOx
+                      values:
+                      - value: 139
+                        observedAt: '2025-02-12T06:23:09Z'
+                      - value: 139
+                        observedAt: '2025-02-12T16:23:09Z'
+                      - value: 139
+                        observedAt: '2025-02-19T16:23:09Z'
+                    - name: PM1
+                      values:
+                      - value: 12.6
+                        observedAt: '2025-02-12T06:23:09Z'
+                      - value: 12.6
+                        observedAt: '2025-02-12T16:23:09Z'
+                      - value: 12.6
+                        observedAt: '2025-02-12T19:23:09Z'
+                    - name: PM4
+                      values:
+                      - value: 12.6
+                        observedAt: '2025-02-12T06:23:09Z'
+                      - value: 12.6
+                        observedAt: '2025-02-12T16:23:09Z'
+                      - value: 12.6
+                        observedAt: '2025-02-12T19:23:09Z'
+                    - name: PM10
+                      values:
+                      - value: 12.6
+                        observedAt: '2025-02-12T06:23:09Z'
+                      - value: 12.6
+                        observedAt: '2025-02-12T16:23:09Z'
+                      - value: 12.6
+                        observedAt: '2025-02-12T19:23:09Z'
+                    - name: PM25
+                      values:
+                      - value: 12.6
+                        observedAt: '2025-02-12T06:23:09Z'
+                      - value: 12.6
+                        observedAt: '2025-02-12T16:23:09Z'
+                      - value: 12.6
+                        observedAt: '2025-02-12T19:23:09Z'
+                    - name: totalSuspendedParticulate
+                      values:
+                      - value: 12.6
+                        observedAt: '2025-02-12T06:23:09Z'
+                      - value: 12.6
+                        observedAt: '2025-02-12T16:23:09Z'
+                      - value: 12.6
+                        observedAt: '2025-02-12T19:23:09Z'
+                    - name: Voltage
+                      values:
+                      - value: 12.2
+                        observedAt: '2025-02-12T06:23:09Z'
+                      - value: 12.2
+                        observedAt: '2025-02-12T16:23:09Z'
+                      - value: 12.2
+                        observedAt: '2025-02-12T19:23:09Z'
+                    - name: windDirection
+                      values:
+                      - value: 12.6
+                        observedAt: '2025-02-12T06:23:09Z'
+                      - value: 12.6
+                        observedAt: '2025-02-12T16:23:09Z'
+                      - value: 12.6
+                        observedAt: '2025-02-12T19:23:09Z'
+                    - name: windSpeed
+                      values:
+                      - value: 12.6
+                        observedAt: '2025-02-12T06:23:09Z'
+                      - value: 12.6
+                        observedAt: '2025-02-12T16:23:09Z'
+                      - value: 12.6
+                        observedAt: '2025-02-12T19:23:09Z'
+  /beaches:
+    get:
+      operationId: getBeaches
+      description: Get information about public beaches.
+      parameters:
+      - in: query
+        name: fields
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - description
+            - waterquality
+            - seealso
+            - source
+        required: false
+        description: Filter the returned properties per entry
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          description: The ID of this Beach
+                          example: urn:ngsi-ld:Beach:se:sundsvall:facilities:553
+                        name:
+                          type: string
+                          description: The name of this beach
+                          example: Bergafjärdens Havsbad
+                        location:
+                          type: object
+                          properties:
+                            type:
+                              type: string
+                              enum:
+                              - Point
+                            coordinates:
+                              type: array
+                              description: WGS84 longitude and latitude
+                              minItems: 2
+                              maxItems: 3
+                              items:
+                                type: number
+                              example:
+                              - 17.454723
+                              - 62.266598
+                        waterquality:
+                          type: object
+                          description: The most recent water quality value
+                          properties:
+                            temperature:
+                              type: number
+                              example: 11.7
+                            source:
+                              type: string
+                              format: uri
+                              example: https://badplatsen.havochvatten.se/
+                            dateObserved:
+                              type: string
+                              format: date-time
+                        description:
+                          type: string
+                          description: The description of this beach
+                          example: Slädavikens havsbad är en badstrand belägen på
+                            den östra sidan av Alnön, öppen maj-augusti.
+            application/geo+json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - FeatureCollection
+                  features:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: urn:ngsi-ld:Beach:se:sundsvall:facilities:553
+                        type:
+                          type: string
+                          enum:
+                          - Feature
+                        geometry:
+                          type: object
+                          properties:
+                            type:
+                              type: string
+                              enum:
+                              - MultiPolygon
+                            coordinates:
+                              type: array
+                              items:
+                                type: array
+                                items:
+                                  type: array
+                                  minItems: 3
+                                  items:
+                                    type: array
+                                    minItems: 2
+                                    maxItems: 3
+                                    items:
+                                      type: number
+                                      description: WGS84 longitude and latitude
+                              example:
+                              - - - - 17.428771593881844
+                                    - 62.42103804538807
+                                  - - 17.428785133659883
+                                    - 62.421037809376244
+                                  - - 17.428821575900738
+                                    - 62.42048396661722
+                                  - - 17.428101436027845
+                                    - 62.42046508568337
+                                  - - 17.428025378913084
+                                    - 62.42103219129709
+                                  - - 17.428365400350206
+                                    - 62.421045125144
+                                  - - 17.428690864217362
+                                    - 62.421045739009976
+                                  - - 17.428771593881844
+                                    - 62.42103804538807
+                        properties:
+                          type: object
+                          properties:
+                            type:
+                              type: string
+                              enum:
+                              - Beach
+                            name:
+                              type: string
+                              example: Skolans grusplan och isbana
+                            source:
+                              type: string
+                              description: The source of the data for this beach
+                              example: https://api.sundsvall.se/facilities/2.1/get/123
+                            waterquality:
+                              type: object
+                              description: The most recent water quality value
+                              properties:
+                                temperature:
+                                  type: number
+                                  example: 11.7
+                                source:
+                                  type: string
+                                  format: uri
+                                  example: https://badplatsen.havochvatten.se/
+                                dateObserved:
+                                  type: string
+                                  format: date-time
+                            seeAlso:
+                              type: array
+                              items:
+                                type: string
+                                format: uri
+                              example:
+                              - https://badplatsen.havochvatten.se/badplatsen/karta/#/bath/SE0712281000003475
+                              - https://www.wikidata.org/wiki/Q16498519
+                            description:
+                              type: string
+                              description: The description of this beach
+                              example: Slädavikens havsbad är en badstrand belägen
+                                på den östra sidan av Alnön, öppen maj-augusti.
+  /beaches/{id}:
+    get:
+      operationId: getBeachByID
+      description: Get information about a single beach.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        description: ID of the Beach to retrieve
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        description: The ID of this Beach
+                        example: urn:ngsi-ld:Beach:se:sundsvall:facilities:553
+                      name:
+                        type: string
+                        description: The name of this beach
+                        example: Bergafjärdens Havsbad
+                      description:
+                        type: string
+                        description: A description about this beach
+                        example: Bergafjärden i Njurunda är ett havsbad med 800 m
+                          fin sandstrand och långgrunt, vilket gör att den passar
+                          bra för familjer med barn. Butik och servering, grillplats,
+                          minigolf, lekplats och toalett finns vid stranden. Bergafjärden
+                          är öppet maj-september och vattenprover tas. Badet ligger
+                          vid Bergafjärdens camping.
+                      location:
+                        type: object
+                        properties:
+                          type:
+                            type: string
+                            enum:
+                            - Point
+                          coordinates:
+                            type: array
+                            description: WGS84 longitude and latitude
+                            minItems: 2
+                            maxItems: 3
+                            items:
+                              type: number
+                            example:
+                            - 17.454723
+                            - 62.266598
+                      waterquality:
+                        type: array
+                        description: An array of water quality observations, sorted
+                          in reversed historical order
+                        items:
+                          type: object
+                          properties:
+                            temperature:
+                              type: number
+                              example: 11.7
+                            source:
+                              type: string
+                              format: uri
+                              example: https://badplatsen.havochvatten.se/
+                            dateObserved:
+                              type: string
+                              format: date-time
+                      weather:
+                        type: array
+                        description: An array of weather observations, sorted in reversed
+                          historical order
+                        items:
+                          type: object
+                          properties:
+                            temperature:
+                              type: number
+                              example: 16.2
+                            windDirection:
+                              type: number
+                              description: The wind direction expressed in decimal
+                                degrees compared to geographic North (measured clockwise).
+                              minimum: 0
+                              maximum: 360
+                              exclusiveMaximum: true
+                              example: 127
+                            windSpeed:
+                              type: number
+                              description: The observed wind speed in m/s.
+                              minimum: 0
+                              example: 6
+                            source:
+                              type: string
+                              format: uri
+                              example: https://www.smhi.se/
+                            dateObserved:
+                              type: string
+                              format: date-time
+                      seeAlso:
+                        type: array
+                        items:
+                          type: string
+                          format: uri
+                        example:
+                        - https://badplatsen.havochvatten.se/badplatsen/karta/#/bath/SE0712281000003475
+                        - https://www.wikidata.org/wiki/Q16498519
+  /cityworks:
+    get:
+      operationId: getCityWorks
+      description: Get information about ongoing or planned cityworks
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          description: The ID of this citywork instance
+                          example: urn:ngsi-ld:CityWork:se:sundsvall:cityworks
+                        location:
+                          type: object
+                          properties:
+                            type:
+                              type: string
+                              enum:
+                              - Point
+                            coordinates:
+                              type: array
+                              description: WGS84 longitude and latitude
+                              minItems: 2
+                              maxItems: 3
+                              items:
+                                type: number
+                              example:
+                              - 17.454723
+                              - 62.266598
+                        startDate:
+                          type: string
+                          format: date-time
+                        endDate:
+                          type: string
+                          format: date-time
+  /cityworks/{id}:
+    get:
+      operationId: getCityWorksByID
+      description: Get information about a specific citywork instance
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        description: ID of the citywork to retrieve
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        description: The ID of this citywork instance
+                        example: urn:ngsi-ld:CityWork:se:sundsvall:cityworks
+                      description:
+                        type: string
+                        description: A description containing a reason, and contact
+                          information about this citywork instance
+                        example: Road closed until 2022-02-22
+                      location:
+                        type: object
+                        properties:
+                          type:
+                            type: string
+                            enum:
+                            - Point
+                          coordinates:
+                            type: array
+                            description: WGS84 longitude and latitude
+                            minItems: 2
+                            maxItems: 3
+                            items:
+                              type: number
+                            example:
+                            - 17.454723
+                            - 62.266598
+                      dateModified:
+                        type: string
+                        format: date-time
+                      startDate:
+                        type: string
+                        format: date-time
+                      endDate:
+                        type: string
+                        format: date-time
+  /exercisetrails:
+    get:
+      operationId: getExerciseTrails
+      description: Get information about published exercise trails
+      parameters:
+      - in: query
+        name: categories
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - bike-track
+            - bike-track-enduro
+            - bike-track-flow
+            - bike-track-xc
+            - floodlit
+            - ice-skating
+            - ski-classic
+            - ski-lift
+            - anchor-lift
+            - button-lift
+            - ski-skate
+            - ski-slope
+        required: false
+        description: Filter the returned trails by category
+      - in: query
+        name: fields
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - annotations
+            - areaserved
+            - datelastpreparation
+            - description
+            - difficulty
+            - elevationgain
+            - location
+            - managedby
+            - owner
+            - paymentrequired
+            - publicaccess
+            - source
+            - status
+            - width
+        required: false
+        description: Filter the returned properties per entry
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          description: The ID of this exercise trail
+                          example: urn:ngsi-ld:ExerciseTrail:se:sundsvall:facilities:123
+                        name:
+                          type: string
+                          description: The name of this exercise trail
+                          example: Hotellslingan 5K
+                        description:
+                          type: string
+                          description: A description of this exercise trail
+                          example: After a rather steep climb you are rewarded with
+                            a lovely view over the city
+                        annotations:
+                          type: string
+                          description: A field reserved for annotations (incidences,
+                            remarks, etc.).
+                          example: Some areas currently covered by storm debris. Clearing
+                            up is in progress.
+                        owner:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                              description: The name of the owner of this exercise
+                                trail
+                              example: Sundsvalls kommun Friluftsenheten
+                        managedBy:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                              description: The name of the manager of this exercise
+                                trail
+                              example: Sundsvalls kommun Friluftsenheten
+                        location:
+                          type: object
+                          properties:
+                            type:
+                              type: string
+                              enum:
+                              - Point
+                            coordinates:
+                              type: array
+                              description: WGS84 longitude and latitude
+                              minItems: 2
+                              maxItems: 3
+                              items:
+                                type: number
+                              example:
+                              - 17.454723
+                              - 62.266598
+                        categories:
+                          type: array
+                          description: List of exercise trail categories
+                          items:
+                            type: string
+                            enum:
+                            - bike-track
+                            - bike-track-enduro
+                            - bike-track-flow
+                            - bike-track-xc
+                            - floodlit
+                            - ice-skating
+                            - ski-classic
+                            - ski-lift
+                            - anchor-lift
+                            - button-lift
+                            - ski-skate
+                            - ski-slope
+                          example:
+                          - floodlit
+                          - ski-classic
+                        length:
+                          type: number
+                          description: The length of this trail in kilometers
+                          format: float
+                          example: 5
+                        width:
+                          type: number
+                          description: The minimum width of this trail in centimeters
+                          format: float
+                          example: 150
+                        elevationGain:
+                          type: number
+                          description: The elevation gain of this trail in meters
+                          format: float
+                          example: 72
+                        difficulty:
+                          type: number
+                          description: A difficulty rating in the range [0.0 1.0]
+                            where 0 is easy and 1 is very hard
+                          format: float
+                          example: 0.5
+                        paymentRequired:
+                          type: boolean
+                          description: A value determining if payment is required
+                            to use the trail
+                        publicAccess:
+                          type: string
+                          description: Information about when/if this trail is open
+                            for the public
+                          enum:
+                          - always
+                          - 'no'
+                          - opening-hours
+                          - after-school
+                          example: opening-hours
+                        status:
+                          type: string
+                          description: The status of this exercise trail
+                          enum:
+                          - open
+                          - closed
+                        dateLastPreparation:
+                          type: string
+                          description: Time of last preparation
+                          example: '2022-10-02T03:27:18Z'
+            application/geo+json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - FeatureCollection
+                  features:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: urn:ngsi-ld:ExerciseTrail:se:sundsvall:facilities:123
+                        type:
+                          type: string
+                          enum:
+                          - Feature
+                        geometry:
+                          type: object
+                          properties:
+                            type:
+                              type: string
+                              enum:
+                              - LineString
+                            coordinates:
+                              type: array
+                              items:
+                                type: array
+                                minItems: 2
+                                maxItems: 3
+                                items:
+                                  type: number
+                                  description: WGS84 longitude and latitude
+                              example:
+                              - - 17.454723
+                                - 62.266598
+                              - - 17.454727
+                                - 62.266612
+                        properties:
+                          type: object
+                          properties:
+                            type:
+                              type: string
+                              enum:
+                              - ExerciseTrail
+                            name:
+                              type: string
+                              example: Hotellslingan 5K
+                            description:
+                              type: string
+                              description: A description of this exercise trail
+                              example: After a rather steep climb you are rewarded
+                                with a lovely view over the city
+                            annotations:
+                              type: string
+                              description: A field reserved for annotations (incidences,
+                                remarks, etc.).
+                              example: Some areas currently covered by storm debris.
+                                Clearing up is in progress.
+                            owner:
+                              type: object
+                              properties:
+                                name:
+                                  type: string
+                                  description: The name of the owner of this exercise
+                                    trail
+                                  example: Sundsvalls kommun Friluftsenheten
+                            managedBy:
+                              type: object
+                              properties:
+                                name:
+                                  type: string
+                                  description: The name of the manager of this exercise
+                                    trail
+                                  example: Sundsvalls kommun Friluftsenheten
+                            categories:
+                              type: array
+                              description: List of exercise trail categories
+                              items:
+                                type: string
+                                enum:
+                                - bike-track
+                                - bike-track-enduro
+                                - bike-track-flow
+                                - bike-track-xc
+                                - floodlit
+                                - ice-skating
+                                - ski-classic
+                                - ski-lift
+                                - anchor-lift
+                                - button-lift
+                                - ski-skate
+                                - ski-slope
+                              example:
+                              - floodlit
+                              - ski-classic
+                            length:
+                              type: number
+                              description: The length of this trail in kilometers
+                              format: float
+                              example: 5
+                            width:
+                              type: number
+                              description: The minimum width of this trail in centimeters
+                              format: float
+                              example: 150
+                            elevationGain:
+                              type: number
+                              description: The elevation gain of this trail in meters
+                              format: float
+                              example: 72
+                            difficulty:
+                              type: number
+                              description: A difficulty rating in the range [0.0 1.0]
+                                where 0 is easy and 1 is very hard
+                              format: float
+                              example: 0.5
+                            paymentRequired:
+                              type: boolean
+                              description: A value determining if payment is required
+                                to use the trail
+                            publicAccess:
+                              type: string
+                              description: Information about when/if this trail is
+                                open for the public
+                              enum:
+                              - always
+                              - 'no'
+                              - opening-hours
+                              - after-school
+                              example: after-school
+                            status:
+                              type: string
+                              description: The status of this exercise trail
+                              enum:
+                              - open
+                              - closed
+                            dateLastPreparation:
+                              type: string
+                              description: Time of last preparation
+                              example: '2022-10-02T03:27:18Z'
+  /exercisetrails/{id}:
+    get:
+      operationId: getExerciseTrailsByID
+      description: Get information on a single published exercise trail
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        description: ID of the exercise trail to be retrieved
+      responses:
+        '200':
+          description: OK
+          content:
+            application/gpx+xml:
+              schema:
+                type: object
+                properties:
+                  creator:
+                    type: string
+                    xml:
+                      attribute: true
+                    example: diwise cip
+                  xmlns:xsi:
+                    type: string
+                    xml:
+                      attribute: true
+                    example: http://www.w3.org/2001/XMLSchema-instance
+                  xsi:schemaLocation:
+                    type: string
+                    xml:
+                      attribute: true
+                    example: http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd
+                  trk:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        example: Hotellslingan 5K
+                      trkseg:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            trkpt:
+                              type: object
+                              properties:
+                                lat:
+                                  type: number
+                                  xml:
+                                    attribute: true
+                                  example: 62.366359
+                                lon:
+                                  type: number
+                                  xml:
+                                    attribute: true
+                                  example: 17.308707
+                xml:
+                  name: gpx
+                  namespace: http://www.topografix.com/GPX/1/1
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        description: The ID of this exercise trail
+                        example: urn:ngsi-ld:ExerciseTrail:se:sundsvall:facilities:775
+                      name:
+                        type: string
+                        description: The name of this exercise trail
+                        example: Hotellslingan 5K
+                      description:
+                        type: string
+                        description: A description of this exercise trail
+                        example: After a rather steep climb you are rewarded with
+                          a lovely view over the city
+                      annotations:
+                        type: string
+                        description: A field reserved for annotations (incidences,
+                          remarks, etc.).
+                        example: Some areas currently covered by storm debris. Clearing
+                          up is in progress.
+                      owner:
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                            description: The name of the owner of this exercise trail
+                            example: Sundsvalls kommun Friluftsenheten
+                      managedBy:
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                            description: The name of the manager of this exercise
+                              trail
+                            example: Sundsvalls kommun Friluftsenheten
+                      location:
+                        type: object
+                        properties:
+                          type:
+                            type: string
+                            enum:
+                            - LineString
+                          coordinates:
+                            items:
+                              type: array
+                              description: WGS84 longitude and latitude
+                              minItems: 2
+                              maxItems: 3
+                              items:
+                                type: number
+                            minItems: 2
+                            example:
+                            - - 17.308707
+                              - 62.366359
+                            - - 17.308765
+                              - 62.366428
+                            - - 17.308771
+                              - 62.366531
+                      categories:
+                        type: array
+                        description: List of exercise trail categories
+                        items:
+                          type: string
+                          enum:
+                          - bike-track
+                          - bike-track-enduro
+                          - bike-track-flow
+                          - bike-track-xc
+                          - floodlit
+                          - ice-skating
+                          - ski-classic
+                          - ski-lift
+                          - anchor-lift
+                          - button-lift
+                          - ski-skate
+                          - ski-slope
+                        example:
+                        - floodlit
+                        - ski-classic
+                        - ski-skate
+                      status:
+                        type: string
+                        description: The status of this exercise trail
+                        enum:
+                        - closed
+                        - open
+                      length:
+                        type: number
+                        format: float
+                        example: 5.0
+                      width:
+                        type: number
+                        description: The minimum width of this trail in centimeters
+                        format: float
+                        example: 150
+                      elevationGain:
+                        type: number
+                        description: The elevation gain of this trail in meters
+                        format: float
+                        example: 72
+                      difficulty:
+                        type: number
+                        description: A difficulty rating in the range [0.0 1.0] where
+                          0 is easy and 1 is very hard
+                        format: float
+                        example: 0.5
+                      paymentRequired:
+                        type: boolean
+                        description: A value determining if payment is required to
+                          use the trail
+                      publicAccess:
+                        type: string
+                        description: Information about when/if this trail is open
+                          for the public
+                        enum:
+                        - always
+                        - 'no'
+                        - opening-hours
+                        - after-school
+                        example: 'no'
+                      source:
+                        type: string
+                        description: The source of this exercise trail
+                        example: https://api.sundsvall.se/facilities/2.1/get/775
+                      areaServed:
+                        type: string
+                        description: Grouping of related exercise trails
+                        example: Motionsspår Södra spårområdet
+                      dateLastPreparation:
+                        type: string
+                        description: Time of last preparation
+                        example: '2022-10-02T03:27:18Z'
+            application/geo+json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: urn:ngsi-ld:ExerciseTrail:se:sundsvall:facilities:123
+                  type:
+                    type: string
+                    enum:
+                    - Feature
+                  geometry:
+                    type: object
+                    properties:
+                      type:
+                        type: string
+                        enum:
+                        - LineString
+                      coordinates:
+                        type: array
+                        items:
+                          type: array
+                          minItems: 2
+                          maxItems: 3
+                          items:
+                            type: number
+                            description: WGS84 longitude and latitude
+                        example:
+                        - - 17.454723
+                          - 62.266598
+                        - - 17.454727
+                          - 62.266612
+                  properties:
+                    type: object
+                    properties:
+                      type:
+                        type: string
+                        enum:
+                        - ExerciseTrail
+                      name:
+                        type: string
+                        example: Hotellslingan 5K
+                      description:
+                        type: string
+                        description: A description of this exercise trail
+                        example: After a rather steep climb you are rewarded with
+                          a lovely view over the city
+                      annotations:
+                        type: string
+                        description: A field reserved for annotations (incidences,
+                          remarks, etc.).
+                        example: Some areas currently covered by storm debris. Clearing
+                          up is in progress.
+                      owner:
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                            description: The name of the owner of this exercise trail
+                            example: Sundsvalls kommun Friluftsenheten
+                      managedBy:
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                            description: The name of the manager of this exercise
+                              trail
+                            example: Sundsvalls kommun Friluftsenheten
+                      categories:
+                        type: array
+                        description: List of exercise trail categories
+                        items:
+                          type: string
+                          enum:
+                          - bike-track
+                          - bike-track-enduro
+                          - bike-track-flow
+                          - bike-track-xc
+                          - floodlit
+                          - ice-skating
+                          - ski-classic
+                          - ski-lift
+                          - anchor-lift
+                          - button-lift
+                          - ski-skate
+                          - ski-slope
+                        example:
+                        - floodlit
+                        - ski-classic
+                      length:
+                        type: number
+                        description: The length of this trail in kilometers
+                        format: float
+                        example: 5
+                      difficulty:
+                        type: number
+                        description: A difficulty rating in the range [0.0 1.0] where
+                          0 is easy and 1 is very hard
+                        format: float
+                        example: 0.5
+                      paymentRequired:
+                        type: boolean
+                        description: A value determining if payment is required to
+                          use the trail
+                      publicAccess:
+                        type: string
+                        description: Information about when/if this trail is open
+                          for the public
+                        enum:
+                        - always
+                        - 'no'
+                        - opening-hours
+                        - after-school
+                        example: after-school
+                      status:
+                        type: string
+                        description: The status of this exercise trail
+                        enum:
+                        - open
+                        - closed
+                      dateLastPreparation:
+                        type: string
+                        description: Time of last preparation
+                        example: '2022-10-02T03:27:18Z'
+  /roadaccidents:
+    get:
+      operationId: getRoadAccidents
+      description: Get published road accidents from Trafikverket
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          description: The ID of this road accident
+                          example: urn:ngsi-ld:RoadAccident:se:sundsvall:roadaccidents
+                        location:
+                          type: object
+                          properties:
+                            type:
+                              type: string
+                              enum:
+                              - Point
+                            coordinates:
+                              type: array
+                              description: WGS84 longitude and latitude
+                              minItems: 2
+                              maxItems: 3
+                              items:
+                                type: number
+                              example:
+                              - 17.454723
+                              - 62.266598
+                        accidentDate:
+                          type: string
+                          format: date-time
+  /roadaccidents/{id}:
+    get:
+      operationId: getRoadAccidentsByID
+      description: Get single published road accident from Trafikverket
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        description: ID of the road accident to retrieve
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        description: The ID of this road accident
+                        example: urn:ngsi-ld:RoadAccident:se:sundsvall:facilities:553
+                      description:
+                        type: string
+                        description: The description of this road accident
+                        example: Passenger car broken down in left lane.
+                      location:
+                        type: object
+                        properties:
+                          type:
+                            type: string
+                            enum:
+                            - Point
+                          coordinates:
+                            type: array
+                            description: WGS84 longitude and latitude
+                            minItems: 2
+                            maxItems: 3
+                            items:
+                              type: number
+                            example:
+                            - 17.454723
+                            - 62.266598
+                      accidentDate:
+                        type: string
+                        format: date-time
+                      dateCreated:
+                        type: string
+                        format: date-time
+                      dateModified:
+                        type: string
+                        format: date-time
+                      status:
+                        type: string
+                        description: The status of this road accident
+                        example: Ongoing
+  /sportsfields:
+    get:
+      operationId: getSportsFields
+      description: Get information about published sports fields
+      parameters:
+      - in: query
+        name: categories
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - bandy
+            - hockey
+            - ice-rink
+            - skating
+            - floodlit
+        required: false
+        description: Filter the returned sports fields by category
+      - in: query
+        name: fields
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - datelastpreparation
+            - description
+            - location
+            - managedby
+            - owner
+            - publicaccess
+            - source
+            - seealso
+        required: false
+        description: Filter the returned properties per entry
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          description: The ID of this sports field
+                          example: urn:ngsi-ld:SportsField:se:sundsvall:facilities:123
+                        name:
+                          type: string
+                          description: The name of this sports field
+                          example: Skolans grusplan och isbana
+                        owner:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                              description: The name of the owner of this sports field
+                              example: Sundsvalls kommun Friluftsenheten
+                        managedBy:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                              description: The name of the manager of this sports
+                                field
+                              example: Sundsvalls kommun Friluftsenheten
+                        location:
+                          type: object
+                          properties:
+                            type:
+                              type: string
+                              enum:
+                              - Point
+                            coordinates:
+                              type: array
+                              description: WGS84 longitude and latitude
+                              minItems: 2
+                              maxItems: 3
+                              items:
+                                type: number
+                              example:
+                              - 17.454723
+                              - 62.266598
+                        categories:
+                          type: array
+                          description: List of sports field categories
+                          items:
+                            type: string
+                            enum:
+                            - bandy
+                            - hockey
+                            - ice-rink
+                            - skating
+                            - floodlit
+                          example:
+                          - floodlit
+                          - hockey
+                        publicAccess:
+                          type: string
+                          description: Information about when/if this sports field
+                            is open for the public
+                          enum:
+                          - always
+                          - 'no'
+                          - opening-hours
+                          - after-school
+                          example: always
+                        description:
+                          type: string
+                          description: The description of this sports field
+                          example: 7-manna grusplan intill skolan. Vintertid spolas
+                            och snöröjs isbanan en gång i veckan.
+                        dateLastPreparation:
+                          type: string
+                          description: Time of last preparation
+                          example: '2022-10-02T03:27:18Z'
+            application/geo+json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - FeatureCollection
+                  features:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: urn:ngsi-ld:SportsField:se:sundsvall:facilities:123
+                        type:
+                          type: string
+                          enum:
+                          - Feature
+                        geometry:
+                          type: object
+                          properties:
+                            type:
+                              type: string
+                              enum:
+                              - MultiPolygon
+                            coordinates:
+                              type: array
+                              items:
+                                type: array
+                                items:
+                                  type: array
+                                  minItems: 3
+                                  items:
+                                    type: array
+                                    minItems: 2
+                                    maxItems: 3
+                                    items:
+                                      type: number
+                                      description: WGS84 longitude and latitude
+                              example:
+                              - - - - 17.428771593881844
+                                    - 62.42103804538807
+                                  - - 17.428785133659883
+                                    - 62.421037809376244
+                                  - - 17.428821575900738
+                                    - 62.42048396661722
+                                  - - 17.428101436027845
+                                    - 62.42046508568337
+                                  - - 17.428025378913084
+                                    - 62.42103219129709
+                                  - - 17.428365400350206
+                                    - 62.421045125144
+                                  - - 17.428690864217362
+                                    - 62.421045739009976
+                                  - - 17.428771593881844
+                                    - 62.42103804538807
+                        properties:
+                          type: object
+                          properties:
+                            type:
+                              type: string
+                              enum:
+                              - SportsField
+                            name:
+                              type: string
+                              example: Skolans grusplan och isbana
+                            owner:
+                              type: object
+                              properties:
+                                name:
+                                  type: string
+                                  description: The name of the owner of this sports
+                                    field
+                                  example: Sundsvalls kommun Friluftsenheten
+                            managedBy:
+                              type: object
+                              properties:
+                                name:
+                                  type: string
+                                  description: The name of the manager of this sports
+                                    field
+                                  example: Sundsvalls kommun Friluftsenheten
+                            source:
+                              type: string
+                              description: The source of the data for this sports
+                                field
+                              example: https://api.sundsvall.se/facilities/2.1/get/123
+                            categories:
+                              type: array
+                              description: List of sports field categories
+                              items:
+                                type: string
+                                enum:
+                                - bandy
+                                - hockey
+                                - ice-rink
+                                - skating
+                                - floodlit
+                              example:
+                              - floodlit
+                              - skating
+                            publicAccess:
+                              type: string
+                              description: Information about when/if this sports field
+                                is open for the public
+                              enum:
+                              - always
+                              - 'no'
+                              - opening-hours
+                              - after-school
+                              example: opening-hours
+                            dateLastPreparation:
+                              type: string
+                              description: Time of last preparation
+                              example: '2022-10-02T03:27:18Z'
+  /sportsfields/{id}:
+    get:
+      operationId: getSportsFieldByID
+      description: Get information about a single published sports field
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: array
+          items:
+            type: string
+        required: true
+        description: ID of the sports field to be retrieved
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: The ID of this sports field
+                    example: urn:ngsi-ld:SportsField:se:sundsvall:facilities:123
+                  name:
+                    type: string
+                    description: The name of this sports field
+                    example: Skolans grusplan och isbana
+                  owner:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        description: The name of the owner of this sports field
+                        example: Sundsvalls kommun Friluftsenheten
+                  managedBy:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        description: The name of the manager of this sports field
+                        example: Sundsvalls kommun Friluftsenheten
+                  location:
+                    type: object
+                    properties:
+                      type:
+                        type: string
+                        enum:
+                        - MultiPolygon
+                      coordinates:
+                        type: array
+                        items:
+                          type: array
+                          items:
+                            type: array
+                            minItems: 3
+                            items:
+                              type: array
+                              minItems: 2
+                              maxItems: 3
+                              items:
+                                type: number
+                                description: WGS84 longitude and latitude
+                        example:
+                        - - - - 17.428771593881844
+                              - 62.42103804538807
+                            - - 17.428785133659883
+                              - 62.421037809376244
+                            - - 17.428821575900738
+                              - 62.42048396661722
+                            - - 17.428101436027845
+                              - 62.42046508568337
+                            - - 17.428025378913084
+                              - 62.42103219129709
+                            - - 17.428365400350206
+                              - 62.421045125144
+                            - - 17.428690864217362
+                              - 62.421045739009976
+                            - - 17.428771593881844
+                              - 62.42103804538807
+                  categories:
+                    type: array
+                    description: List of sports field categories
+                    items:
+                      type: string
+                      enum:
+                      - bandy
+                      - hockey
+                      - ice-rink
+                      - skating
+                      - floodlit
+                    example:
+                    - floodlit
+                    - hockey
+                  publicAccess:
+                    type: string
+                    description: Information about when/if this sports field is open
+                      for the public
+                    enum:
+                    - always
+                    - 'no'
+                    - opening-hours
+                    - after-school
+                    example: always
+                  description:
+                    type: string
+                    description: The description of this sports field
+                    example: 7-manna grusplan intill skolan. Vintertid spolas och
+                      snöröjs isbanan en gång i veckan.
+                  dateCreated:
+                    type: string
+                    description: Time of creation
+                    example: '2022-10-02T03:27:18Z'
+                  dateModified:
+                    type: string
+                    description: Time of last modification
+                    example: '2022-10-02T03:27:18Z'
+                  dateLastPreparation:
+                    type: string
+                    description: Time of last preparation
+                    example: '2022-10-02T03:27:18Z'
+                  source:
+                    type: string
+                    description: The source of the data for this sports field
+                    example: https://api.sundsvall.se/facilities/2.1/get/123
+  /sportsvenues:
+    get:
+      operationId: getSportsVenues
+      description: Get information about published sports venues
+      parameters:
+      - in: query
+        name: categories
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - ice-rink
+            - sports-hall
+            - swimming-pool
+        required: false
+        description: Filter the returned sports venues by category
+      - in: query
+        name: fields
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - description
+            - location
+            - managedby
+            - owner
+            - seealso
+            - source
+        required: false
+        description: Filter the returned properties per entry
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          description: The ID of this sports venue
+                          example: urn:ngsi-ld:SportsVenue:se:sundsvall:facilities:123
+                        name:
+                          type: string
+                          description: The name of this sports venue
+                          example: Sporthallen
+                        owner:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                              description: The name of the owner of this sports venue
+                              example: Sundsvalls kommun Friluftsenheten
+                        managedBy:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                              description: The name of the manager of this sports
+                                venue
+                              example: Sundsvalls kommun Friluftsenheten
+                        location:
+                          type: object
+                          properties:
+                            type:
+                              type: string
+                              enum:
+                              - Point
+                            coordinates:
+                              type: array
+                              description: WGS84 longitude and latitude
+                              minItems: 2
+                              maxItems: 3
+                              items:
+                                type: number
+                              example:
+                              - 17.454723
+                              - 62.266598
+                        categories:
+                          type: array
+                          description: List of sports venue categories
+                          items:
+                            type: string
+                            enum:
+                            - ice-rink
+                            - sports-hall
+                            - swimming-pool
+                          example:
+                          - sports-hall
+                        description:
+                          type: string
+                          description: The description of this sports venue
+                          example: I stora sporthallen finns det möjlighet för många
+                            olika aktiviteter.
+                        seeAlso:
+                          type: array
+                          items:
+                            type: string
+                            format: uri
+                          example:
+                          - https://sundsvall.se/uppleva-och-gora/idrott-motion-och-friluftsliv/hallar-och-idrottsanlaggningar/sporthallen
+            application/geo+json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - FeatureCollection
+                  features:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: urn:ngsi-ld:SportsVenue:se:sundsvall:facilities:123
+                        type:
+                          type: string
+                          enum:
+                          - Feature
+                        geometry:
+                          type: object
+                          properties:
+                            type:
+                              type: string
+                              enum:
+                              - MultiPolygon
+                            coordinates:
+                              type: array
+                              items:
+                                type: array
+                                items:
+                                  type: array
+                                  minItems: 3
+                                  items:
+                                    type: array
+                                    minItems: 2
+                                    maxItems: 3
+                                    items:
+                                      type: number
+                                      description: WGS84 longitude and latitude
+                              example:
+                              - - - - 17.428771593881844
+                                    - 62.42103804538807
+                                  - - 17.428785133659883
+                                    - 62.421037809376244
+                                  - - 17.428821575900738
+                                    - 62.42048396661722
+                                  - - 17.428101436027845
+                                    - 62.42046508568337
+                                  - - 17.428025378913084
+                                    - 62.42103219129709
+                                  - - 17.428365400350206
+                                    - 62.421045125144
+                                  - - 17.428690864217362
+                                    - 62.421045739009976
+                                  - - 17.428771593881844
+                                    - 62.42103804538807
+                        properties:
+                          type: object
+                          properties:
+                            type:
+                              type: string
+                              enum:
+                              - SportsVenue
+                            name:
+                              type: string
+                              example: Sporthallen
+                            owner:
+                              type: object
+                              properties:
+                                name:
+                                  type: string
+                                  description: The name of the owner of this sports
+                                    venue
+                                  example: Sundsvalls kommun Friluftsenheten
+                            managedBy:
+                              type: object
+                              properties:
+                                name:
+                                  type: string
+                                  description: The name of the manager of this sports
+                                    venue
+                                  example: Sundsvalls kommun Friluftsenheten
+                            source:
+                              type: string
+                              description: The source of the data for this sports
+                                venue
+                              example: https://api.sundsvall.se/facilities/2.1/get/123
+                            categories:
+                              type: array
+                              description: List of sports venue categories
+                              items:
+                                type: string
+                                enum:
+                                - ice-rink
+                                - sports-hall
+                                - swimming-pool
+                              example:
+                              - sports-hall
+                            seeAlso:
+                              type: array
+                              items:
+                                type: string
+                                format: uri
+                              example:
+                              - https://sundsvall.se/uppleva-och-gora/idrott-motion-och-friluftsliv/hallar-och-idrottsanlaggningar/sporthallen
+  /sportsvenues/{id}:
+    get:
+      operationId: getSportsVenueByID
+      description: Get information about a single published sports venue
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: array
+          items:
+            type: string
+        required: true
+        description: ID of the sports venue to be retrieved
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: The ID of this sports venue
+                    example: urn:ngsi-ld:SportsVenue:se:sundsvall:facilities:123
+                  name:
+                    type: string
+                    description: The name of this sports venue
+                    example: Sporthallen
+                  owner:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        description: The name of the owner of this sports venue
+                        example: Sundsvalls kommun Friluftsenheten
+                  managedBy:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        description: The name of the manager of this sports venue
+                        example: Sundsvalls kommun Friluftsenheten
+                  location:
+                    type: object
+                    properties:
+                      type:
+                        type: string
+                        enum:
+                        - MultiPolygon
+                      coordinates:
+                        type: array
+                        items:
+                          type: array
+                          items:
+                            type: array
+                            minItems: 3
+                            items:
+                              type: array
+                              minItems: 2
+                              maxItems: 3
+                              items:
+                                type: number
+                                description: WGS84 longitude and latitude
+                        example:
+                        - - - - 17.428771593881844
+                              - 62.42103804538807
+                            - - 17.428785133659883
+                              - 62.421037809376244
+                            - - 17.428821575900738
+                              - 62.42048396661722
+                            - - 17.428101436027845
+                              - 62.42046508568337
+                            - - 17.428025378913084
+                              - 62.42103219129709
+                            - - 17.428365400350206
+                              - 62.421045125144
+                            - - 17.428690864217362
+                              - 62.421045739009976
+                            - - 17.428771593881844
+                              - 62.42103804538807
+                  categories:
+                    type: array
+                    description: List of sports venue categories
+                    items:
+                      type: string
+                      enum:
+                      - ice-rink
+                      - sports-hall
+                      - swimming-pool
+                    example:
+                    - sports-hall
+                  description:
+                    type: string
+                    description: The description of this sports venue
+                    example: I stora sporthallen finns det möjlighet för många olika
+                      aktiviteter.
+                  dateCreated:
+                    type: string
+                    description: Time of creation
+                    example: '2022-10-02T03:27:18Z'
+                  dateModified:
+                    type: string
+                    description: Time of last modification
+                    example: '2022-10-02T03:27:18Z'
+                  source:
+                    type: string
+                    description: The source of the data for this sports venue
+                    example: https://api.sundsvall.se/facilities/2.1/get/123
+                  seeAlso:
+                    type: array
+                    items:
+                      type: string
+                      format: uri
+                    example:
+                    - https://sundsvall.se/uppleva-och-gora/idrott-motion-och-friluftsliv/hallar-och-idrottsanlaggningar/sporthallen
+  /stratsys/publishedreports:
+    get:
+      operationId: getStratsysReports
+      description: Get published reports from stratsys.se.
+      responses:
+        '200':
+          description: OK
+  /stratsys/publishedreports/{reportId}:
+    get:
+      operationId: getStratsysReportByID
+      description: Get a published report by ID from stratsys.se.
+      parameters:
+      - name: reportId
+        in: path
+        description: ID of the report to be retrieved
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: OK
+  /waterqualities:
+    get:
+      operationId: getWaterQuality
+      description: Get information about water quality.
+      security:
+      - {}
+      parameters:
+      - in: query
+        name: maxDistance
+        explode: false
+        schema:
+          type: string
+        required: false
+        description: Filter the returned properties per entry
+      - in: query
+        name: coordinates
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+        required: false
+        description: Filter the returned properties per entry
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          description: The ID of this water quality
+                          example: urn:ngsi-ld:WaterQuality:temperature:se:test
+                        location:
+                          type: object
+                          properties:
+                            type:
+                              type: string
+                              enum:
+                              - Point
+                            coordinates:
+                              type: array
+                              description: WGS84 longitude and latitude
+                              minItems: 2
+                              maxItems: 3
+                              items:
+                                type: number
+                              example:
+                              - 17.454723
+                              - 62.266598
+                        temperature:
+                          type: number
+                          example: 11.7
+                        source:
+                          type: string
+                          format: uri
+                          example: https://badplatsen.havochvatten.se/
+                        dateObserved:
+                          type: string
+                          format: date-time
+  /waterqualities/{id}:
+    get:
+      operationId: getWaterQualityByID
+      description: Get information about water quality readings
+      security:
+      - {}
+      parameters:
+      - name: timeAt
+        in: query
+        description: Select water qualities from time
+        example: '2021-06-01T00:00:00Z'
+        schema:
+          type: string
+          format: date-time
+      - name: endTimeAt
+        in: query
+        description: Select water qualities up to time
+        example: '2021-07-01T00:00:00Z'
+        schema:
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          description: The ID of this water quality
+                          example: urn:ngsi-ld:WaterQuality:temperature:se:test
+                        location:
+                          type: object
+                          properties:
+                            type:
+                              type: string
+                              enum:
+                              - Point
+                            coordinates:
+                              type: array
+                              description: WGS84 longitude and latitude
+                              minItems: 2
+                              maxItems: 3
+                              items:
+                                type: number
+                              example:
+                              - 17.454723
+                              - 62.266598
+                        temperature:
+                          type: array
+                          description: list of historical readings of temperatures
+                          items:
+                            type: object
+                            properties:
+                              value:
+                                type: number
+                                format: float
+                                example: 11.7
+                              observedAt:
+                                type: string
+                                format: date-time
+                        source:
+                          type: string
+                          format: uri
+                          example: https://badplatsen.havochvatten.se/
+  /weather:
+    get:
+      operationId: getWeather
+      description: Get weather observations.
+      parameters:
+      - in: query
+        name: coordinates
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: number
+              minItems: 2
+              maxItems: 2
+        description: Retrieve observations in proximity to point [longitude, latitude]
+          (specified in WGS84).
+        example:
+        - 17.454723
+        - 62.266598
+      - in: query
+        name: maxDistance
+        explode: false
+        schema:
+          type: number
+        required: false
+        description: Maximum distance in meters from point specified in coordinates.
+        example: 1000
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          description: The ID of this weather observation
+                          example: urn:ngsi-ld:WeatherObserved:123
+                        dateObserved:
+                          type: string
+                          format: date-time
+                          description: Time of the weather observation
+                          example: '2021-06-01T00:00:00Z'
+                        location:
+                          type: object
+                          properties:
+                            type:
+                              type: string
+                              enum:
+                              - Point
+                            coordinates:
+                              type: array
+                              description: WGS84 longitude and latitude
+                              minItems: 2
+                              maxItems: 3
+                              items:
+                                type: number
+                              example:
+                              - 17.454723
+                              - 62.266598
+                        temperature:
+                          type: object
+                          properties:
+                            value:
+                              type: number
+                              description: The temperature in degrees Celsius
+                              example: 11.7
+                            when:
+                              type: string
+                              format: date-time
+                              description: Time of the weather observation
+                              example: '2021-06-01T00:00:00Z'
+  /weather/{id}:
+    get:
+      operationId: getWeatherByID
+      description: Get weather observations by ID.
+      parameters:
+      - name: id
+        in: path
+        description: ID of the weather observation to be retrieved
+        required: true
+        schema:
+          type: string
+      - name: timeAt
+        in: query
+        description: Select temperatures from time
+        example: '2021-06-01T00:00:00Z'
+        schema:
+          type: string
+          format: date-time
+      - name: endTimeAt
+        in: query
+        description: Select temperatures up to time
+        example: '2021-07-01T00:00:00Z'
+        schema:
+          type: string
+          format: date-time
+      - name: aggr
+        in: query
+        description: Aggregate temperatures by hour, day, month or year
+        example: hour
+        schema:
+          type: string
+          enum:
+          - hour
+          - day
+          - month
+          - year
+        required: false
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        description: The ID of this weather observation
+                        example: urn:ngsi-ld:WeatherObserved:123
+                      dateObserved:
+                        type: string
+                        format: date-time
+                        description: Time of the weather observation
+                        example: '2021-06-01T00:00:00Z'
+                      location:
+                        type: object
+                        properties:
+                          type:
+                            type: string
+                            enum:
+                            - Point
+                          coordinates:
+                            type: array
+                            description: WGS84 longitude and latitude
+                            minItems: 2
+                            maxItems: 3
+                            items:
+                              type: number
+                            example:
+                            - 17.454723
+                            - 62.266598
+                      temperature:
+                        type: array
+                        description: list of historical readings of temperatures
+                        items:
+                          type: object
+                          properties:
+                            value:
+                              type: number
+                              format: float
+                              example: 11.7
+                            when:
+                              type: string
+                              format: date-time
+                              example: '2021-06-01T00:00:00Z'
