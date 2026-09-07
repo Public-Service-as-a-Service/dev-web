@@ -5,7 +5,8 @@ produktion på kommunens API-plattform, med de versioner som är driftsatta.
 Avvecklade API:er och prototyper ingår inte. Många av API:erna utvecklas som
 öppen källkod på GitHub
 ([github.com/Sundsvallskommun](https://github.com/Sundsvallskommun)
-– repon som börjar med `api-service`), men katalogen omfattar även API:er vars
+– repon som börjar med `api-service`, samt Öppna data hos IoT-plattformen
+[diwise](https://github.com/diwise)), men katalogen omfattar även API:er vars
 lösningar inte publiceras som öppen källkod.
 
 Katalogen beskriver API:erna på ett lättillgängligt sätt: vad varje API gör,

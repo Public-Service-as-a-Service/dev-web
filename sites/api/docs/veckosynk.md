@@ -24,9 +24,12 @@ den här filen.
    `sites/api/CLAUDE.md` – den senare styr hur katalogen underhålls och hur
    teknisk fakta härleds ur ett `api-service`-repo.
 2. Utgå från `sites/api/scripts/apis-data.json`; fältet `repo` pekar på
-   källkodsrepot under `github.com/Sundsvallskommun`.
-3. **Nya API:er.** Lista organisationens repon som börjar med `api-service-`
-   och som saknas i datafilen. Klona kandidaterna grunt och bedöm om de är i
+   källkodsrepot under `github.com/Sundsvallskommun`, eller under den
+   organisation fältet `agare` anger (t.ex. `diwise` för Öppna data).
+3. **Nya API:er.** Lista Sundsvallskommuns repon som börjar med
+   `api-service-` och som saknas i datafilen. API:er från andra organisationer
+   (som diwise) upptäcks inte automatiskt utan läggs till på begäran. Klona
+   kandidaterna grunt och bedöm om de är i
    skarp produktion (incheckad OpenAPI-specifikation, releaser/taggar,
    version ≥ 1.0, aktiv historik). Lägg bara till API:er där bedömningen är
    säker; lista osäkra kandidater i PR-beskrivningen i stället för att gissa
@@ -44,9 +47,10 @@ den här filen.
    posten: `info.version` i OpenAPI-specifikationen mot `apiVersion`,
    integrationsklienterna under `src/main/resources/integrations/` mot
    beroendetabellen, databas, teknikstack och särdrag enligt tabellen i
-   `sites/api/CLAUDE.md`. Uppdatera posten och kopiera in den nya
-   specifikationen till `public/api/assets/openapi/<slug>.yml` när den
-   ändrats.
+   `sites/api/CLAUDE.md` (för Go-repon: tabellen under "Go-repon från
+   diwise" där). Uppdatera posten och kopiera in den nya specifikationen
+   till `public/api/assets/openapi/<slug>.yml` när den ändrats – en
+   JSON-spec konverteras till YAML.
    **Även verksamhetsbeskrivningen ingår i jämförelsen.** Har källrepots
    README eller specens `info.description` ändrats sedan posten skrevs,
    eller stämmer postens bild av API:et inte längre, omprövas ingress,

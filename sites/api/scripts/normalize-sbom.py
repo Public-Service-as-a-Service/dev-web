@@ -20,7 +20,12 @@ the whole file churn. See .github/workflows/refresh-sbom.yml.
 
 Usage:
     normalize-sbom.py --input raw.spdx.json --output assets/sbom/<slug>.spdx.json \
-                      --slug <slug> --repo <repo> --source <checkout-dir>
+                      --slug <slug> --repo <repo> [--agare <github-org>] --source <checkout-dir>
+
+The scan itself is language-agnostic: the workflow feeds this script Trivy output
+for Maven repositories (~/.m2 populated by dependency:go-offline) as well as Go
+modules (module cache populated by `go mod download`, which is where Trivy reads
+Go licences from). Nothing below depends on the package ecosystem.
 """
 
 import argparse
@@ -82,7 +87,7 @@ def relationship_key(rel):
     )
 
 
-def normalise(doc, slug, repo, sha, short_sha, date):
+def normalise(doc, slug, repo, agare, sha, short_sha, date):
     """Pin volatile fields to the scanned commit and sort for readable diffs."""
     doc["name"] = f"{repo}@{short_sha}"
     doc["documentNamespace"] = f"{NAMESPACE_BASE}/{slug}/{sha}"
@@ -98,7 +103,7 @@ def normalise(doc, slug, repo, sha, short_sha, date):
     # SPDX download location and would also leak the scan path into the document.
     # The repository packages get the real clone URL; for third-party components we
     # do not assert one -- the purl in externalRefs already identifies them.
-    repo_url = f"git+https://github.com/Sundsvallskommun/{repo}.git"
+    repo_url = f"git+https://github.com/{agare}/{repo}.git"
     for pkg in doc.get("packages", []):
         # Trivy's annotations are tool-internal (PkgID, PkgType, Class, SchemaVersion)
         # and carry no meaning for an SBOM consumer -- the purl in externalRefs is the
@@ -196,6 +201,8 @@ def main():
     parser.add_argument("--output", required=True, help="normalised SPDX JSON to write")
     parser.add_argument("--slug", required=True, help="catalogue slug")
     parser.add_argument("--repo", required=True, help="source repository name")
+    parser.add_argument("--agare", default="Sundsvallskommun",
+                        help="GitHub organisation owning the repository (default: Sundsvallskommun)")
     parser.add_argument("--source", required=True, help="path to the scanned checkout")
     args = parser.parse_args()
 
@@ -203,7 +210,7 @@ def main():
         doc = json.load(f)
 
     sha, short_sha, date = commit_info(args.source)
-    doc = normalise(doc, args.slug, args.repo, sha, short_sha, date)
+    doc = normalise(doc, args.slug, args.repo, args.agare, sha, short_sha, date)
     doc = reconcile_duplicate_licences(doc)
     remaining = apply_licence_overrides(doc, load_overrides())
     # ::warning:: makes the gap visible as an annotation on the scheduled run
@@ -213,7 +220,10 @@ def main():
               "rätta vid källan eller lägg till i scripts/license-overrides.json.")
 
     components = sum(1 for p in doc.get("packages", []) if p.get("externalRefs"))
-    if components < 50:
+    # A dept44 service never has fewer than ~150 Maven components, so a small
+    # count means the pom did not resolve. A Go module legitimately has a few
+    # dozen, so the check is only meaningful for Maven repositories.
+    if components < 50 and os.path.exists(os.path.join(args.source, "pom.xml")):
         print(f"WARNING: {args.slug} has only {components} components - "
               "Trivy may have failed to resolve the pom")
 

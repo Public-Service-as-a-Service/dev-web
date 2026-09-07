@@ -8,7 +8,7 @@ import {
   TwoColumns,
 } from '@sundsvall/chrome';
 import { SubpageChrome } from '../components/SubpageChrome';
-import { type ApiData, STATUS_LABEL } from '../types';
+import { type ApiData, STATUS_LABEL, agareNamn, repoUrl } from '../types';
 
 export interface ApiPageData {
   api: ApiData;
@@ -43,7 +43,7 @@ function archProse(api: ApiData): string {
 
 export function ApiPage({ data }: { data: ApiPageData }) {
   const { api, hasSpec, hasSbom, sbom } = data;
-  const repoUrl = `https://github.com/Sundsvallskommun/${api.repo}`;
+  const kallkod = repoUrl(api);
   const status = api.status ? STATUS_LABEL[api.status] : undefined;
   const teknik = api.teknik ?? {};
   const beroenden = api.beroenden ?? [];
@@ -97,7 +97,7 @@ export function ApiPage({ data }: { data: ApiPageData }) {
                 ...(hasSbom
                   ? [{ label: 'Programvaruförteckning (SBOM)', href: `${api.slug}-sbom.html` }]
                   : []),
-                { label: 'Källkod på GitHub', href: repoUrl },
+                { label: 'Källkod på GitHub', href: kallkod },
               ]}
             />
           }
@@ -272,8 +272,8 @@ export function ApiPage({ data }: { data: ApiPageData }) {
         <h3 className="font-header">Källkod</h3>
         <p>
           Källkoden är öppen och finns hos{' '}
-          <Link href={repoUrl} external>
-            Sundsvalls kommun på GitHub
+          <Link href={kallkod} external>
+            {agareNamn(api.agare)} på GitHub
           </Link>
           . I källkodsförrådet finns även instruktioner för att klona, konfigurera och starta
           tjänsten i egen miljö.
