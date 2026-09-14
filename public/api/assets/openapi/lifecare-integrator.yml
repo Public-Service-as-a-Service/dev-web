@@ -85,7 +85,7 @@ paths:
             type: boolean
             description: Sort order by date
             examples:
-              - "true"
+              - true
         - name: page
           in: query
           description: Page number
@@ -236,7 +236,7 @@ paths:
             type: boolean
             description: Sort order by date
             examples:
-              - "true"
+              - true
         - name: page
           in: query
           description: Page number
@@ -529,7 +529,7 @@ paths:
             type: boolean
             description: Sort order by date
             examples:
-              - "true"
+              - true
         - name: page
           in: query
           description: Page number
@@ -633,7 +633,7 @@ paths:
             type: boolean
             description: Sort order by date
             examples:
-              - "true"
+              - true
         - name: page
           in: query
           description: Page number
@@ -784,7 +784,7 @@ paths:
             type: boolean
             description: Sort order by date
             examples:
-              - "true"
+              - true
         - name: page
           in: query
           description: Page number
@@ -887,7 +887,7 @@ paths:
             type: boolean
             description: Sort order by date
             examples:
-              - "true"
+              - true
         - name: page
           in: query
           description: Page number
@@ -990,7 +990,7 @@ paths:
             type: boolean
             description: Sort order by date
             examples:
-              - "true"
+              - true
         - name: page
           in: query
           description: Page number
@@ -1094,7 +1094,7 @@ paths:
             type: boolean
             description: Sort order by date
             examples:
-              - "true"
+              - true
         - name: page
           in: query
           description: Page number
@@ -1244,6 +1244,89 @@ paths:
                 $ref: "#/components/schemas/DecisionsResponse"
         "404":
           description: Not found
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/Problem"
+        "400":
+          description: Bad request
+          content:
+            application/problem+json:
+              schema:
+                oneOf:
+                  - $ref: "#/components/schemas/Problem"
+                  - $ref: "#/components/schemas/ConstraintViolationProblem"
+        "500":
+          description: Internal server error
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/Problem"
+  /{municipalityId}/decisions/{decisionId}:
+    get:
+      tags:
+        - Decisions
+      description: "Get a single decision for a person. A decisionId is only unique\
+        \ within its source system, so the source (and, for ELDERLY_CARE, the law)\
+        \ must be given along with it — pass back the source, law and decisionId of\
+        \ an item from the decision list. SFB decisions are served by the LSS source,\
+        \ so law LSS and SFB address the same ids. A decision that does not belong\
+        \ to the person is reported as not found. Unlike the list, a source that cannot\
+        \ be reached fails the request."
+      operationId: getDecision
+      parameters:
+        - name: municipalityId
+          in: path
+          description: Municipality id
+          required: true
+          schema:
+            type: string
+          example: 2281
+        - name: decisionId
+          in: path
+          description: The decision id in the source system
+          required: true
+          schema:
+            type: string
+            pattern: ^\d+$
+          example: 12345
+        - name: partyId
+          in: query
+          description: Party id of the person the decision must belong to
+          required: true
+          schema:
+            type: string
+          example: 81471222-5798-11e9-ae24-57fa13b361e1
+        - name: source
+          in: query
+          description: The source system the decision originates from
+          required: true
+          schema:
+            type: string
+          example: ELDERLY_CARE
+        - name: law
+          in: query
+          description: "The law of the decision. Required for ELDERLY_CARE, not applicable\
+            \ for FAMILY_CARE"
+          required: false
+          schema:
+            type: string
+          example: SOL
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Decision"
+        "404":
+          description: Not found
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/Problem"
+        "502":
+          description: Bad gateway
           content:
             application/problem+json:
               schema:
@@ -1603,7 +1686,7 @@ components:
           type: boolean
           description: Whether a custom household size is used
           examples:
-            - "false"
+            - false
         householdSize:
           type: integer
           format: int32
@@ -1834,7 +1917,7 @@ components:
           type: boolean
           description: Whether the user account is disabled
           examples:
-            - "false"
+            - false
     CaseService:
       type: object
       description: A service (insats) from the Lifecare family care system
@@ -1969,7 +2052,7 @@ components:
           description: Whether the person is a co-applicant. Null when the source
             does not state a role
           examples:
-            - "false"
+            - false
     PagedResourceAllocationResponse:
       type: object
       description: A paged list of resource allocations from the Lifecare family care
@@ -2086,17 +2169,17 @@ components:
           type: boolean
           description: Whether the person's address is protected
           examples:
-            - "false"
+            - false
         secretPhone:
           type: boolean
           description: Whether the person's phone number is secret
           examples:
-            - "false"
+            - false
         protectedRegistration:
           type: boolean
           description: Whether the person has protected registration
           examples:
-            - "false"
+            - false
     PagedPaymentResponse:
       type: object
       description: A paged list of payments from the Lifecare family care system
@@ -2402,11 +2485,14 @@ components:
           type:
             - string
             - "null"
-          description: The law the decision is made under. Only present for ELDERLY_CARE
-            decisions
+          description: "The law this decision is made under. Only present for ELDERLY_CARE\
+            \ decisions. SFB decisions (assistansersättning, decided by Försäkringskassan)\
+            \ are delivered by the LSS source, so a decision's law is not always the\
+            \ law of the source that carried it."
           enum:
             - SOL
             - LSS
+            - SFB
           examples:
             - SOL
         decisionId:
@@ -2585,35 +2671,35 @@ components:
           type: boolean
           description: Whether the decision is deleted in the source system
           examples:
-            - "false"
+            - false
         personCategory1:
           type:
             - boolean
             - "null"
           description: "LSS only: whether the person belongs to person category 1"
           examples:
-            - "true"
+            - true
         personCategory2:
           type:
             - boolean
             - "null"
           description: "LSS only: whether the person belongs to person category 2"
           examples:
-            - "false"
+            - false
         personCategory3:
           type:
             - boolean
             - "null"
           description: "LSS only: whether the person belongs to person category 3"
           examples:
-            - "false"
+            - false
         personCategory3P:
           type:
             - boolean
             - "null"
           description: "LSS only: whether the person belongs to person category 3P"
           examples:
-            - "false"
+            - false
         increasedHourlyAmount:
           type:
             - number
@@ -2695,7 +2781,9 @@ components:
           type:
             - string
             - "null"
-          description: The law the source covers. Only present for ELDERLY_CARE sources
+          description: "The law the source covers, identifying which fetch this status\
+            \ belongs to. Only present for ELDERLY_CARE sources. The LSS source also\
+            \ delivers SFB decisions."
           enum:
             - SOL
             - LSS
@@ -2860,7 +2948,7 @@ components:
           type: boolean
           description: Whether the calculation is final
           examples:
-            - "true"
+            - true
         connectedApplication:
           type: integer
           format: int32
@@ -3041,7 +3129,7 @@ components:
           type: boolean
           description: Whether a calculation must be linked to an actualisation
           examples:
-            - "true"
+            - true
         numberOfFamilyMembersNotInHousehold:
           type: integer
           format: int32
@@ -3075,7 +3163,7 @@ components:
           type: boolean
           description: Whether the member is a child from another household
           examples:
-            - "false"
+            - false
     Lookup:
       type: object
       description: A lookup value from a code list
@@ -3311,13 +3399,13 @@ components:
           description: Whether a specify type must be given for this actualisation
             type
           examples:
-            - "true"
+            - true
         workingStatus:
           type: boolean
           description: Whether a working status must be given for this actualisation
             type
           examples:
-            - "false"
+            - false
         reasons:
           type: array
           items:

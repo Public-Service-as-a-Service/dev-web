@@ -5,7 +5,7 @@ info:
   license:
     name: MIT License
     url: https://opensource.org/licenses/MIT
-  version: "5.7"
+  version: "5.8"
 servers:
 - url: http://localhost:53033
   description: Generated server url
@@ -444,6 +444,17 @@ paths:
               ids contains a requested value
             examples:
             - "123456789012345670"
+      - name: invoiceNumbers
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: integer
+            format: int64
+            description: Invoice numbers
+            examples:
+            - 123456789
       - name: status
         in: query
         description: Invoice status
@@ -835,7 +846,7 @@ paths:
           type: boolean
           description: Is the installation installed
           examples:
-          - "true"
+          - true
       - name: lastModifiedDateFrom
         in: query
         description: Earliest date when item was last modified
@@ -1255,7 +1266,7 @@ paths:
           - "null"
           description: Shows if agreement is a main-agreement or not
           examples:
-          - "true"
+          - true
       - name: binding
         in: query
         description: Shows if agreement include binding or not
@@ -1266,7 +1277,7 @@ paths:
           - "null"
           description: Shows if agreement include binding or not
           examples:
-          - "false"
+          - false
       - name: bindingRule
         in: query
         description: Rule of binding if exists
@@ -1323,7 +1334,7 @@ paths:
           description: Signal if the agreement is a production agreement or not (can
             be null if not applicable)
           examples:
-          - "true"
+          - true
       - name: fromDate
         in: query
         description: From-date in validity of agreement
@@ -1356,7 +1367,7 @@ paths:
           description: Shows if agreement is active ('fromDate' <= today and 'toDate'
             => today). Null shows both active and inactive
           examples:
-          - "true"
+          - true
       - name: sortBy
         in: query
         required: false
@@ -1712,7 +1723,7 @@ components:
           type: boolean
           description: Reversed VAT
           examples:
-          - "false"
+          - false
           readOnly: true
         currency:
           type: string
@@ -1766,7 +1777,7 @@ components:
           type: boolean
           description: Is pdf-version of invoice available
           examples:
-          - "false"
+          - false
           readOnly: true
     InvoiceResponse:
       type: object
@@ -2117,7 +2128,7 @@ components:
           type: boolean
           description: Is pdf-version of invoice available
           examples:
-          - "true"
+          - true
           readOnly: true
         details:
           type: array
@@ -2429,7 +2440,7 @@ components:
           description: "Indicates customer status, if not active then the moveInDate\
             \ holds information on when the customer will be activated"
           examples:
-          - "true"
+          - true
           readOnly: true
         moveInDate:
           type: string
@@ -2548,14 +2559,14 @@ components:
           description: Indicates if placement and/or equipment details have changed
             since the search date
           examples:
-          - "true"
+          - true
           readOnly: true
         active:
           type: boolean
           description: "Indicates customer status, if not active then the moveInDate\
             \ holds information on when the customer will be activated"
           examples:
-          - "true"
+          - true
           readOnly: true
         moveInDate:
           type: string
@@ -2621,13 +2632,13 @@ components:
           type: boolean
           description: Shows if agreement is a main-agreement or not
           examples:
-          - "true"
+          - true
           readOnly: true
         binding:
           type: boolean
           description: Shows if agreement include binding or not
           examples:
-          - "false"
+          - false
           readOnly: true
         bindingRule:
           type: string
@@ -2658,7 +2669,7 @@ components:
           description: Signal if the agreement is a production agreement or not (can
             be null if not applicable)
           examples:
-          - "true"
+          - true
           readOnly: true
         fromDate:
           type: string
@@ -2675,7 +2686,7 @@ components:
           description: Shows if agreement is active ('fromDate' <= today and 'toDate'
             => today)
           examples:
-          - "true"
+          - true
           readOnly: true
     AgreementResponse:
       type: object

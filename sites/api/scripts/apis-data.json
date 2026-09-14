@@ -5,7 +5,7 @@
     "slug": "access-mapper",
     "kategori": "Integration",
     "status": null,
-    "apiVersion": "1.0",
+    "apiVersion": "2.2",
     "ingress": "Översätter en medarbetares Active Directory-grupper till behörigheter i kommunens interna system, utifrån konfigurerbara åtkomstgrupper.",
     "beskrivning": [
       "Många av kommunens interna system behöver veta vad en medarbetare får göra – men behörigheterna förvaltas i Active Directory, som systemen inte bör integrera direkt mot. AccessMapper fungerar som brygga: tjänsten slår upp vilka AD-grupper en användare tillhör och översätter dem till åtkomstgrupper med systemspecifika behörigheter.",
@@ -29,6 +29,10 @@
       {
         "titel": "Åtkomsttyper och nivåer",
         "text": "Varje åtkomstgrupp innehåller åtkomsttyper med behörighetsposter (nivå och mönster) som beskriver vad gruppen ger rätt till."
+      },
+      {
+        "titel": "Åtkomstkonfiguration per användare",
+        "text": "Behörigheter kan registreras direkt på en användare, med angivet ursprung, vid sidan av AD-gruppernas åtkomstgrupper – skapa, hämta, lista, uppdatera och ta bort per kommun och namnrymd."
       }
     ],
     "beroenden": [
@@ -44,7 +48,7 @@
     "databas": "MariaDB; lagrar åtkomstgrupper med åtkomsttyper och behörighetsposter per kommun och namnrymd",
     "teknik": {
       "sprak": "Java 25",
-      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.8), byggd med Maven",
+      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.10), byggd med Maven",
       "ovrigt": "Feign-klient genererad ur ActiveDirectory-specifikationen (openapi-generator), JPA med Specification-baserad filtrering, Resilience4j (circuit breaker mot ActiveDirectory)"
     },
     "konfiguration": [
@@ -56,7 +60,8 @@
       "Behörighetsuppslaget hämtar användarens grupper från AD och matchar gruppernas GUID mot registrerade åtkomstgrupper i namnrymden; AD-domänen är hårdkodad till personal i tjänsten – verifierat i AccessService.",
       "Åtkomstgruppens id är AD-gruppens GUID, vilket gör kopplingen mellan AD och den interna behörighetsmodellen explicit.",
       "Ett initialt Flyway-skript finns under db/migration, men Flyway är avstängt i application.yml – schemat förutsätts vara etablerat i förväg.",
-      "Inparametrar saneras innan de skrivs till loggar och felmeddelanden (sanitizeForLogging) – verifierat i AccessGroupService."
+      "Inparametrar saneras innan de skrivs till loggar och felmeddelanden (sanitizeForLogging) – verifierat i AccessGroupService.",
+      "Version 2.2 lägger till användarspecifik åtkomstkonfiguration (AccessUser med userId, origin och åtkomsttyper) och flyttar åtkomstgrupperna till resursvägen access-config/group med id i vägen – enligt specifikationen."
     ]
   },
   {
@@ -98,7 +103,7 @@
     "beroenden": [
       {
         "name": "DataWarehouseReader",
-        "version": "4.1",
+        "version": "5.7",
         "usage": "Hämtar avtalsuppgifter ur kommunens datalager, per part eller per anläggning."
       }
     ],
@@ -106,7 +111,7 @@
     "databas": null,
     "teknik": {
       "sprak": "Java 25",
-      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.8), byggd med Maven",
+      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.10), byggd med Maven",
       "ovrigt": "Resilience4j-circuit breaker mot DataWarehouseReader"
     },
     "konfiguration": [
@@ -165,7 +170,7 @@
     "databas": "MariaDB med Flyway-migrationer; insamlade Confluence-sidor och deras Eneo-koppling lagras per kommun, samt ShedLock-tabell för schemaläggningslås",
     "teknik": {
       "sprak": "Java 25",
-      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.8), byggd med Maven",
+      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.10), byggd med Maven",
       "ovrigt": "ShedLock med JDBC-låsning för schemalagda jobb, OpenAPI Generator för Eneo-klienten, HMAC-signaturverifiering av webhooks"
     },
     "konfiguration": [
@@ -234,7 +239,7 @@
     "databas": "MariaDB med Flyway-migrationer; flödesdefinitioner lagras versionerade (sessioner hålls däremot i minnet)",
     "teknik": {
       "sprak": "Java 25",
-      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.8), byggd med Maven",
+      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.10), byggd med Maven",
       "ovrigt": "Apache PDFBox och Apache POI för dokumentextraktion, dept44-scheduler med ShedLock för sessionstädning, asynkron stegexekvering"
     },
     "konfiguration": [
@@ -297,7 +302,7 @@
     "databas": "Microsoft SQL Server (AlkT:s databas, strikt läsande anslutning, inga egna migrationer)",
     "teknik": {
       "sprak": "Java 25 (via dept44-föräldern)",
-      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.8), byggd med Maven",
+      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.10), byggd med Maven",
       "ovrigt": "Resilience4j (circuit breaker mot Party), Spring Cache för klartexter och legalId-uppslag"
     },
     "konfiguration": [
@@ -363,7 +368,7 @@
     "databas": null,
     "teknik": {
       "sprak": "Java 21",
-      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.8), byggd med Maven",
+      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.10), byggd med Maven",
       "ovrigt": "Feign-klient med Resilience4j circuit breaker mot FormpipeProxy, jsoup för XML-bearbetning av arkivmetadata"
     },
     "konfiguration": [
@@ -427,7 +432,7 @@
       },
       {
         "name": "Contract",
-        "version": "10.0",
+        "version": "11.0",
         "usage": "Hämtar avtal som underlag för den schemalagda avtalsfaktureringen."
       },
       {
@@ -453,7 +458,7 @@
     "databas": "MariaDB med Flyway-migrationer; lagrar historik, falloutposter, schemalagd fakturering och motpartsmappning",
     "teknik": {
       "sprak": "Java 25",
-      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.8), byggd med Maven",
+      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.10), byggd med Maven",
       "ovrigt": "Schemalagda jobb med Shedlock-låsning, Caffeine-cache för partyId och KPI-data, Xsoup för tolkning av formulärdata"
     },
     "konfiguration": [
@@ -529,7 +534,7 @@
     "databas": "MariaDB med Flyway-migrationer; lagrar fakturaposter, kontering, filkonfiguration och genererade fakturafiler",
     "teknik": {
       "sprak": "Java 25",
-      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.8), byggd med Maven",
+      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.10), byggd med Maven",
       "ovrigt": "Spring Integration SFTP för filöverföring, schemalagda jobb med Shedlock-låsning, spring-filter för sökuttryck"
     },
     "konfiguration": [
@@ -589,7 +594,7 @@
     "databas": null,
     "teknik": {
       "sprak": "Java 25",
-      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.8), byggd med Maven",
+      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.10), byggd med Maven",
       "ovrigt": "SOAP-klient genererad ur incheckad WSDL (MinutMiljoService), Feign med NTLM-autentisering mot Ecos"
     },
     "konfiguration": [
@@ -652,7 +657,7 @@
     "databas": null,
     "teknik": {
       "sprak": "Java 25",
-      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.8), byggd med Maven",
+      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.10), byggd med Maven",
       "ovrigt": "Egenutvecklad regelmotor (Rule/Criteria-abstraktioner), Feign-klient genererad ur PartyAssets-specifikationen, Guava"
     },
     "konfiguration": [
@@ -673,7 +678,7 @@
     "slug": "byggr-integrator",
     "kategori": "Integration",
     "status": null,
-    "apiVersion": "2.4",
+    "apiVersion": "2.5",
     "ingress": "Hämtar byggärenden, grannhöranden och ärendehandlingar ur bygglovssystemet ByggR och gör dem tillgängliga för e-tjänster och andra applikationer.",
     "beskrivning": [
       "ByggR är stadsbyggnadskontorets ärendesystem för bygglov. ByggrIntegrator kapslar in systemets SOAP-gränssnitt (ArendeExport) bakom ett modernt API, så att kommunens e-tjänster kan visa invånarens byggärenden utan att integrera direkt mot ByggR.",
@@ -701,6 +706,10 @@
       {
         "titel": "Anpassat för Open ePlatform",
         "text": "Egna resurser som svarar med HTML respektive XML i det format e-tjänsteplattformen förväntar sig."
+      },
+      {
+        "titel": "Beslut med beslutshandlingar",
+        "text": "Listar beslut för ett ärende där identiteten är sökande – beslutsnummer, datum, utfall och giltighetstid – tillsammans med beslutshandlingar vars nedladdningslänkar är tidsbegränsade; avbrutna och sekretessbelagda händelser filtreras bort."
       }
     ],
     "beroenden": [],
@@ -710,7 +719,7 @@
     "databas": "MariaDB med Flyway-migrationer; lagrar endast tidsbegränsade åtkomsttokens för filhämtning",
     "teknik": {
       "sprak": "Java 25",
-      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.8), byggd med Maven",
+      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.10), byggd med Maven",
       "ovrigt": "SOAP-klient genererad ur ByggR:s WSDL (jaxb2-maven-plugin), Caffeine-cache av ByggR-svar, Thymeleaf för HTML-mallar, dept44-scheduler för schemalagd städning"
     },
     "konfiguration": [
@@ -787,7 +796,7 @@
     "databas": "MariaDB med Flyway-migrationer; batch- och arkivhistorik, felposter samt ShedLock-tabell för schemaläggningslås",
     "teknik": {
       "sprak": "Java 25",
-      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.8), byggd med Maven",
+      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.10), byggd med Maven",
       "ovrigt": "SOAP-klient genererad ur ByggR:s WSDL, Resilience4j (retry och circuit breakers), ShedLock, jmimemagic för filtypsdetektering"
     },
     "konfiguration": [
@@ -812,41 +821,45 @@
     "kategori": "Ärendehantering",
     "status": null,
     "apiVersion": "1.0",
-    "ingress": "Ärendehantering för omsorgsverksamheten – lagrar ärenden med intressenter, parametrar, bilagor och beslut och driver dem framåt genom BPMN-processer i processmotorn Operaton.",
+    "ingress": "Ärendehantering för individ- och familjeomsorgen – i dag ansökningar om ekonomiskt bistånd – med intressenter, dokument, journal, meddelanden och beslut, drivna av BPMN-processer i Operaton och skrivna tillbaka till verksamhetssystemet Lifecare.",
     "beskrivning": [
-      "CareManagement håller ordning på omsorgsrelaterade ärenden åt kommunens verksamhetssystem. Varje ärende lagras i ett namespace per verksamhet och kan förses med intressenter, fritt definierade parametrar, bilagor och en beslutslogg. Uppslagsvärden som kontaktorsaker och namespace-konfiguration administreras via egna metadataresurser.",
-      "När ett ärende skapas kan ett processdefinitionsnamn anges – då startar tjänsten automatiskt en BPMN-processinstans i processmotorn Operaton med ärendet som affärsnyckel. Ärendets parametrar hålls därefter synkroniserade som processvariabler, och via meddelandekorrelering kan väntande processteg återupptas, till exempel när en handläggare godkänner eller avslår.",
-      "Beslutsloggen fungerar som revisionsspår och rymmer både systemgenererade beslut, exempelvis DMN-utvärderade rekommendationer från processen, och mänskliga beslut, åtskilda med beslutstyp. Ärenden söks fram med fria filteruttryck, paginering och sortering."
+      "CareManagement är ärendemotorn bakom Draken, handläggarnas gränssnitt för ekonomiskt bistånd. Ärenden lagras per kommun och namespace med intressenter, dokument, journalanteckningar, anteckningar, remisser, tillstånd, notifieringar och en beslutslogg. Ärendetyperna beskrivs av API:et självt – statusar, roller och vilka fält ärendets data ska bära – och i dag finns tre: ny, förnyad och kompletterande ansökan om ekonomiskt bistånd.",
+      "För ekonomiskt bistånd läser tjänsten den sökandes historik direkt ur Lifecare FamilyCare – aktualiseringar, beräkningar, beslut och dokument – avgör vilken ansökan invånaren ska erbjudas, förifyller förnyade ansökningar och registrerar aktualiseringen i Lifecare. Inkomstunderlaget hämtas via kommunens FinancialAid-API (SSBTEK), och normberäkningen förbereds dagligen som ett utkast handläggaren kan justera rad för rad innan den skrivs till Lifecare efter beslut. Vissa skrivningar till Lifecare köas som RPA-jobb i UiPath Orchestrator.",
+      "När ett ärende skapas kan en BPMN-processinstans startas i Operaton med ärendet som affärsnyckel; väntande processteg återupptas via meddelandekorrelering, till exempel när en handläggare godkänner eller avslår. Konversationen mellan handläggare och sökande förs i ärendet, och ett nattligt jobb arkiverar meddelandehistoriken för avslutade ärenden som PDF i Lifecare. Beslutsloggen fungerar som revisionsspår för både systemgenererade rekommendationer och handläggarbeslut."
     ],
     "malgrupp": "Kommunens applikationer och verksamhetssystem",
     "funktioner": [
       {
-        "titel": "Ärenden per namespace",
-        "text": "Skapa, läsa, uppdatera och ta bort ärenden, uppdelade per kommun och namespace med konfigurerbart visningsnamn och kortkod."
+        "titel": "Ärenden och ärendetyper",
+        "text": "Skapa, läsa, uppdatera och söka ärenden per kommun och namespace; ärendetyperna beskriver statusar, roller, datafält och beslutsalternativ som formulärstöd för klienter."
+      },
+      {
+        "titel": "Ekonomiskt bistånd",
+        "text": "Prövning av vilken ansökan invånaren ska erbjudas (ny, förnyad eller kompletterande), förifyllnad från Lifecare, aktualisering, inkomstvarningar, bevakningar och avsnittsgodkännanden."
+      },
+      {
+        "titel": "Normberäkning",
+        "text": "Dagligt förberett beräkningsutkast med personer, inkomster och utgifter som handläggaren kan redigera, ta bort och återställa rad för rad, och som skrivs till Lifecare först efter beslut."
+      },
+      {
+        "titel": "Lifecare-historik",
+        "text": "Den sökandes aktualiseringar, beräkningar, beslut och dokument läses direkt ur Lifecare FamilyCare, inklusive dokumentinnehåll som PDF och om utbetalningen är verkställd."
       },
       {
         "titel": "Processautomation",
-        "text": "Ärenden kan starta en BPMN-processinstans i Operaton; ärendeparametrar synkroniseras löpande som processvariabler."
+        "text": "Ärenden kan starta en BPMN-processinstans i Operaton; BPMN-meddelanden korreleras till processinstansen och RPA-jobb köas i UiPath Orchestrator."
       },
       {
-        "titel": "Meddelandekorrelering",
-        "text": "BPMN-meddelanden korreleras till ärendets pågående processinstans för att återuppta väntande processteg."
+        "titel": "Dokument, journal och anteckningar",
+        "text": "Formella handlingar och journalanteckningar kan låsas till oföränderliga poster; anteckningar, remisser med svar och tillstånd med giltighetstid hanteras per ärende."
       },
       {
-        "titel": "Beslutslogg",
-        "text": "Revisionsspår med både systemgenererade beslut (t.ex. DMN-rekommendationer) och handläggarbeslut, åtskilda med beslutstyp."
+        "titel": "Konversation och notifieringar",
+        "text": "Meddelanden mellan handläggare och sökande med bilagor och lässtatus, samt notifieringar till mottagare som kvitteras och rensas efter 30 dagar."
       },
       {
-        "titel": "Intressenter och parametrar",
-        "text": "Intressenter med egna parametrar samt fria ärendeparametrar i nyckel/värde-form."
-      },
-      {
-        "titel": "Bilagor",
-        "text": "Bilagor lagras med innehållet i databasen och hanteras per ärende."
-      },
-      {
-        "titel": "Metadata",
-        "text": "Uppslagsvärden som kontaktorsaker administreras per namespace via metadataresurser."
+        "titel": "Händelselogg, statushistorik och statistik",
+        "text": "Vem-gjorde-vad-logg för varje läsning och skrivning, statusövergångar per ärende och ärendestatistik för handläggargränssnittet."
       }
     ],
     "beroenden": [
@@ -854,26 +867,55 @@
         "name": "Operaton",
         "version": "1.0",
         "usage": "Startar processinstanser, uppdaterar processvariabler och korrelerar BPMN-meddelanden för ärendenas processer."
+      },
+      {
+        "name": "Citizen",
+        "version": "v3",
+        "usage": "Översätter partyId till personnummer innan Lifecare och FinancialAid anropas."
+      },
+      {
+        "name": "FinancialAid",
+        "version": null,
+        "usage": "Hämtar den sökandes samlade inkomstunderlag ur SSBTEK (Försäkringskassans sammansatta bastjänst) via kommunens proxy."
+      },
+      {
+        "name": "Messaging",
+        "version": "1.0",
+        "usage": "Klient konfigurerad; anropas ännu inte från tjänstelagret."
+      },
+      {
+        "name": "Templating",
+        "version": "2.0",
+        "usage": "Klient för PDF-rendering konfigurerad; anropas ännu inte från tjänstelagret."
       }
     ],
-    "integrationer": [],
-    "databas": "MariaDB med Flyway-migrationer; ärenden, intressenter, parametrar, beslut, bilagor (som blob) och namespace-konfiguration lagras per kommun och namespace",
+    "integrationer": [
+      "Lifecare FamilyCare (Tietoevry – individ- och familjeomsorgens verksamhetssystem, domän och API-nyckel)",
+      "UiPath Orchestrator (RPA-kö för skrivningar till Lifecare)"
+    ],
+    "databas": "MariaDB med Flyway-migrationer; ärenden, intressenter, dokument, journal, anteckningar, meddelanden, remisser, tillstånd, notifieringar, beslut, händelselogg, statushistorik, formulärögonblicksbilder, beräkningsutkast och namespace-konfiguration lagras per kommun och namespace",
     "teknik": {
       "sprak": "Java 25",
-      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.8), byggd med Maven",
-      "ovrigt": "Resilience4j (circuit breaker mot Operaton), spring-filter (turkraft) för dynamiska sökfilter, JPA/Hibernate med auditering"
+      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.10), byggd med Maven",
+      "ovrigt": "Spring Modulith (en modul per domän med händelsedriven koppling), Resilience4j, spring-filter (turkraft) för dynamiska sökfilter, JPA/Hibernate med auditering, PDFBox och Apache POI för PDF-sammanslagning och dokumentkonvertering, dept44-scheduler med ShedLock"
     },
     "konfiguration": [
-      "application.yml med URL och OAuth2-klientuppgifter för Operaton-API:et",
+      "application.yml med URL och OAuth2-klientuppgifter för Operaton, Citizen, FinancialAid, Messaging, Templating och UiPath Orchestrator",
+      "Lifecare FamilyCare: bas-URL, domän och API-nyckel (valfri separat nyckel för användarkatalogen) samt 13 månaders tillbakablick för behörighetsprövningen",
+      "RPA är avstängt som standard – varje köläggning blir då en loggad no-op; kö och Orchestrator-mapp per kommun konfigureras",
+      "Regler för ekonomiskt bistånd: 90 dagars fönster för dubbla ansökningar, 30 dagars spärr för nyligen avslutade ärenden och en testflagga (return-all-types) som aldrig ska sättas i produktion",
+      "Två schemalagda jobb med ShedLock: notifieringsrensning kl. 02:00 och arkivering av meddelandehistorik kl. 03:30",
       "MariaDB-anslutning; databasschemat versionshanteras med Flyway",
-      "Namespace-konfiguration (visningsnamn, kortkod) administreras per kommun via API:et",
       "Anrop görs per kommun och namespace – municipalityId och namespace ingår i API-vägarna"
     ],
     "anteckningar": [
-      "Processtart är frivillig: anges inget processdefinitionsnamn skapas ärendet utan processinstans – verifierat i ErrandService/ProcessService.",
-      "Ärendeparametrar speglas till processvariabler i Operaton när de skapas, ändras eller tas bort; byts en parameternyckel raderas den gamla variabeln först.",
-      "Processdefinitionen slås upp på namn hos Operaton vid ärendeskapandet; okänt namn ger 400 Bad Request.",
-      "Beslutsloggen är utformad som revisionsspår med både systemgenererade och mänskliga beslut, enligt både API-dokumentationen och beslutsentiteten i koden."
+      "Specifikationen har växt från 40 till 126 operationer utan versionsbyte (info.version är fortfarande 1.0); resurserna för fria ärende- och intressentparametrar har tagits bort och ersatts av typade ärendedata per ärendetyp.",
+      "Behörighetsprövningen väger samman befintliga ärenden i CareManagement och Lifecare, ansökningsmånad och nyligen avslutade ärenden; ett ärende som skapas inom 30 dagar efter ett avslutat fryses för manuell granskning – enligt konfigurationen i application.yml och specifikationen.",
+      "Normberäkningen förbereds dagligen utan skrivning till Lifecare; handläggarens radändringar överlever den dagliga uppdateringen, och beräkningen skrivs till Lifecare först efter beslut – enligt specifikationens beskrivning av beräkningsresurserna.",
+      "Tjänsten gör inga utbetalningar själv – den läser bara om Lifecares manuella utbetalning för ansökningsmånaden är verkställd.",
+      "Klienter mot Messaging och Templating är konfigurerade i integrationslagret men anropas inte från tjänstelagret – verifierat med sökning i koden.",
+      "Processtart är frivillig: anges inget processdefinitionsnamn skapas ärendet utan processinstans – verifierat i ProcessService.",
+      "README är fortfarande mallens platshållartext och beskriver inte tjänsten – koden och specifikationen är sanningskällan."
     ]
   },
   {
@@ -882,7 +924,7 @@
     "slug": "case-data",
     "kategori": "Ärendehantering",
     "status": null,
-    "apiVersion": "13.0",
+    "apiVersion": "13.1",
     "ingress": "Ärendehanterings-API som lagrar och förvaltar myndighetsärenden – bland annat parkeringstillstånd, färdtjänst samt mark- och exploateringsärenden – åt kommunens handläggarapplikationer.",
     "beskrivning": [
       "CaseData är kommunens datanav för myndighetsärenden. API:et lagrar ärenden med parter, fastigheter/anläggningar, beslut, bilagor, anteckningar och statusar, och exponerar allt per kommun och namnrymd (namespace). Idag hanteras bland annat parkeringstillstånd, färdtjänst och mark- och exploateringsärenden, där varje verksamhetsområde har sin egen namnrymd.",
@@ -901,7 +943,7 @@
       },
       {
         "titel": "Meddelanden och konversationer",
-        "text": "Meddelanden per ärende, inklusive utgående meddelanden via Messaging och trådade konversationer via MessageExchange."
+        "text": "Meddelanden per ärende, inklusive utgående meddelanden via Messaging och trådade konversationer via MessageExchange. Meddelanden kan markeras som lästa och lässtatus räknas per konversation, med ärendenumret som partsidentitet mot MessageExchange."
       },
       {
         "titel": "Automatisk insamling av inkommande post",
@@ -986,7 +1028,7 @@
     "databas": "MariaDB med Flyway-migrationer; ärenden med beslut, parter och bilagor lagras tillsammans med Javers-ändringshistorik",
     "teknik": {
       "sprak": "Java 21",
-      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.8), byggd med Maven",
+      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.10), byggd med Maven",
       "ovrigt": "Javers för ändringshistorik, schemalagda jobb med Shedlock-låsning (dept44-starter-scheduler), Resilience4j (circuit breakers), Feign-klienter, Logbook för anropsloggning"
     },
     "konfiguration": [
@@ -1009,7 +1051,7 @@
     "slug": "case-status",
     "kategori": "Ärendehantering",
     "status": null,
-    "apiVersion": "4.3",
+    "apiVersion": "4.4",
     "ingress": "Samlar ärendestatus från flera bakomliggande system och ger invånare och företag en aktuell bild av var deras ärenden befinner sig.",
     "beskrivning": [
       "CaseStatus svarar på frågan \"hur går det med mitt ärende?\" oavsett i vilket system ärendet handläggs. API:et hämtar och slår samman status från CaseManagement (som i sin tur täcker bland annat ByggR och Ecos), SupportManagement och e-tjänsteplattformen Open ePlatform, och exponerar dem samlat per externt ärende-id, organisationsnummer eller part.",
@@ -1061,7 +1103,7 @@
       },
       {
         "name": "OepIntegrator",
-        "version": "1.6",
+        "version": "1.7",
         "usage": "Läser ärenden och statusar från Open ePlatform samt skriver tillbaka statusuppdateringar och hämtar ärende-PDF."
       },
       {
@@ -1084,7 +1126,7 @@
     "databas": "MariaDB med Flyway-migrationer; cachade företagsärenden och statusmappningar lagras här",
     "teknik": {
       "sprak": "Java 25",
-      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.8), byggd med Maven",
+      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.10), byggd med Maven",
       "ovrigt": "Parallella uppslag med CompletableFuture och MDC-medveten trådpool, schemalagda jobb med Dept44Scheduled/Shedlock, Resilience4j (circuit breakers)"
     },
     "konfiguration": [
@@ -1097,7 +1139,8 @@
       "Statusuppslag görs parallellt mot CaseManagement, Open ePlatform och SupportManagement med CompletableFuture på en MDC-medveten trådpool, och utkast (status \"utkast\") kan filtreras bort (CaseAggregator).",
       "Cachejobbet sätter tjänstens hälsoindikator till unhealthy om inga ärenden alls kunde cachas för en e-tjänstefamilj – en medveten skyddsmekanism mot att cachen tyst blir inaktuell (CaseStatusCacheWorker).",
       "E-tjänstefamiljerna som cachas ligger som uppräkning i koden (FamilyId) med separata id:n för test och produktion.",
-      "Misslyckade statusuppdateringar mot e-tjänsteplattformen rapporteras med formaterade Slack-meddelanden via Messaging, inklusive request-id för felsökning (EventLogWorker)."
+      "Misslyckade statusuppdateringar mot e-tjänsteplattformen rapporteras med formaterade Slack-meddelanden via Messaging, inklusive request-id för felsökning (EventLogWorker).",
+      "Ärendelistor får svarshuvudet X-Unavailable-Sources när något källsystem inte svarat, så att anroparen ser att listan kan vara ofullständig – nytt i version 4.4."
     ]
   },
   {
@@ -1182,7 +1225,7 @@
     "databas": "MariaDB med Flyway-migrationer; inkommande ärenden och mappningen mellan externa ärende-id:n och verksamhetssystemens diarienummer lagras här",
     "teknik": {
       "sprak": "Java 25",
-      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.8), byggd med Maven",
+      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.10), byggd med Maven",
       "ovrigt": "SOAP-klienter (genererade ur WSDL) mot ByggR, Ecos och EDP Future, Failsafe-återförsökspolicyer, asynkron hantering via Springs applikationshändelser, Resilience4j (circuit breakers)"
     },
     "konfiguration": [
@@ -1270,7 +1313,7 @@
     "databas": "MariaDB med Flyway-migrationer; mallar, medarbetarchecklistor, framdrift, delegeringar och initieringsinformation lagras per kommun",
     "teknik": {
       "sprak": "Java 25",
-      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.8), byggd med Maven",
+      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.10), byggd med Maven",
       "ovrigt": "dept44-scheduler med ShedLock för fem schemalagda jobb, Resilience4j mot beroende tjänster, e-postmall incheckad under src/main/resources/templates"
     },
     "konfiguration": [
@@ -1342,7 +1385,7 @@
     "databas": "MariaDB med Flyway-migrationer; används enbart för ShedLock-tabellen som låser de schemalagda jobben",
     "teknik": {
       "sprak": "Java 25",
-      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.8), byggd med Maven",
+      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.10), byggd med Maven",
       "ovrigt": "Poiji för Excel-inläsning, ShedLock för schemalagda jobb, Logbook-filter som maskerar base64-innehåll i loggar"
     },
     "konfiguration": [
@@ -1397,7 +1440,7 @@
     "databas": "MariaDB med Flyway-migrationer; lagrar konfigurationer och deras nyckel-värdepar med unikhetskrav per kommun, applikation och namespace",
     "teknik": {
       "sprak": "Java 25 (via dept44-föräldern)",
-      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.8), byggd med Maven",
+      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.10), byggd med Maven",
       "ovrigt": "Renodlad CRUD-tjänst utan externa integrationer"
     },
     "konfiguration": [
@@ -1453,7 +1496,7 @@
     "databas": "MariaDB med Flyway-migrationer; kontaktinställningar, kanaler, delegat-relationer och filter lagras här",
     "teknik": {
       "sprak": "Java 25",
-      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.8), byggd med Maven",
+      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.10), byggd med Maven",
       "ovrigt": "Ingen integration mot andra mikrotjänster – tjänsten är ett fristående register"
     },
     "konfiguration": [
@@ -1474,7 +1517,7 @@
     "slug": "contract",
     "kategori": "Ärendehantering",
     "status": null,
-    "apiVersion": "10.0",
+    "apiVersion": "11.0",
     "ingress": "Hanterar kommunens avtal om mark och nyttjanderätter – arrenden, köpeavtal och andra upplåtelser – med parter, villkor, bilagor och automatisk förlängning.",
     "beskrivning": [
       "Contracts är kommunens register-API för avtal kopplade till mark och nyttjanderätter: markarrenden, tomträtter, jakt- och jordbruksupplåtelser, köpeavtal med mera. Varje avtal lagras med parter (intressenter med roller), fastighetsbeteckningar, avtalsvillkor, avgifter, faktureringsuppgifter och avtalsperioder, och kan förses med bilagor som avtalsdokument.",
@@ -1493,7 +1536,7 @@
       },
       {
         "titel": "Bilagor",
-        "text": "Avtalsdokument och andra bilagor lagras per avtal med metadata och kategori."
+        "text": "Avtalsdokument och andra bilagor lagras per avtal med metadata och kategori; metadatan listas och ändras separat (PATCH), medan filinnehållet hämtas strömmat och bara kan bytas genom att bilagan tas bort och skapas om."
       },
       {
         "titel": "Automatisk förlängning",
@@ -1523,7 +1566,7 @@
     "databas": "MariaDB med Flyway-migrationer; lagrar avtal, intressenter, villkor, bilagor samt en utkorg (outbox) för faktureringshändelser",
     "teknik": {
       "sprak": "Java 25 (via dept44-föräldern)",
-      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.8), byggd med Maven",
+      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.10), byggd med Maven",
       "ovrigt": "Transaktionellt outbox-mönster med omförsök för händelsepublicering, ShedLock för schemalagda jobb, optimistisk låsning av avtal"
     },
     "konfiguration": [
@@ -1635,7 +1678,7 @@
     "beroenden": [
       {
         "name": "DataWarehouseReader",
-        "version": "4.0",
+        "version": "5.7",
         "usage": "Hämtar kundengagemang och kunddetaljer ur kommunkoncernens datalager."
       }
     ],
@@ -1643,7 +1686,7 @@
     "databas": null,
     "teknik": {
       "sprak": "Java 25",
-      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.8), byggd med Maven",
+      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.10), byggd med Maven",
       "ovrigt": "Feign-klient genererad från DataWarehouseReaders API-kontrakt, Resilience4j (circuit breaker)"
     },
     "konfiguration": [
@@ -1726,7 +1769,7 @@
     "slug": "datawarehousereader",
     "kategori": "Parts- och kunddata",
     "status": null,
-    "apiVersion": "5.7",
+    "apiVersion": "5.8",
     "ingress": "Läs-API mot Stadsbackenkoncernens datalager – kunder, avtal, anläggningar, fakturor och mätvärden för el, fjärrvärme, vatten och andra nyttigheter.",
     "beskrivning": [
       "DataWarehouseReader ger kommunens applikationer ett enhetligt REST-gränssnitt mot Stadsbackenkoncernens datalager, där kund-, avtals- och förbrukningsdata från de kommunala bolagen samlas. I stället för att applikationer ansluter direkt till datalagret frågar de detta API, som hanterar behörigheter, paginering och identitetsöversättning.",
@@ -1773,7 +1816,7 @@
     "databas": "Microsoft SQL Server – läser direkt ur Stadsbackens datalager (inga egna migrationer; schemat ägs av datalagret)",
     "teknik": {
       "sprak": "Java 25",
-      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.8), byggd med Maven",
+      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.10), byggd med Maven",
       "ovrigt": "JPA mot SQL Server med lagrade procedurer och JDBC-frågor, Caffeine-cache för Party-uppslag, Resilience4j circuit breaker mot Party"
     },
     "konfiguration": [
@@ -1845,7 +1888,7 @@
     "databas": "MariaDB; används för schemaläggningslås (ShedLock) – Flyway-migrationen finns men är avstängd som standard",
     "teknik": {
       "sprak": "Java 25",
-      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.8), byggd med Maven",
+      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.10), byggd med Maven",
       "ovrigt": "Apache CXF för SOAP mot Skatteverket med signering (kod från Mina meddelanden), Resilience4j circuit breakers, ShedLock"
     },
     "konfiguration": [
@@ -1926,7 +1969,7 @@
     "databas": "MariaDB med Flyway-migrationer; brev, bilagor, signeringsinformation och avsändarorganisationer (tenants) lagras här",
     "teknik": {
       "sprak": "Java 25",
-      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.8), byggd med Maven",
+      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.10), byggd med Maven",
       "ovrigt": "Apache PDFBox och OpenPDF för sammanslagning av kvitto-PDF:er, Jilt för builders, ShedLock för schemalagda jobb"
     },
     "konfiguration": [
@@ -1994,7 +2037,7 @@
     "databas": "MariaDB med Flyway-migrationer; lagrar störningar, berörda parter och prenumerationer med opt-out-inställningar",
     "teknik": {
       "sprak": "Java 25",
-      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.8), byggd med Maven",
+      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.10), byggd med Maven",
       "ovrigt": "Resilience4j (circuit breaker mot Messaging), ShedLock för schemalagda jobb, Apache Commons Text för mallhantering"
     },
     "konfiguration": [
@@ -2062,7 +2105,7 @@
     "databas": "MariaDB med Flyway-migrationer; dokumentmetadata, revisioner och filernas binärdata lagras i databasen",
     "teknik": {
       "sprak": "Java 25",
-      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.8), byggd med Maven",
+      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.10), byggd med Maven",
       "ovrigt": "Feign-klient mot Eventlog, JPA/Hibernate för lagring, filinnehåll strömmas som BLOB:ar"
     },
     "konfiguration": [
@@ -2084,7 +2127,7 @@
     "slug": "e-signing",
     "kategori": "Dokument och arkiv",
     "status": null,
-    "apiVersion": "2.1",
+    "apiVersion": "2.2",
     "ingress": "Gemensam ingång för elektronisk signering av dokument – startar, följer upp och avbryter signeringsärenden hos den signeringsleverantör som är konfigurerad för kommunen.",
     "beskrivning": [
       "ESigning ger kommunens verksamhetssystem ett leverantörsoberoende sätt att få dokument elektroniskt signerade. Anroparen startar ett signeringsärende med dokument och undertecknare, och tjänsten väljer signeringsleverantör utifrån vilken kommun anropet gäller – idag Comfact via kommunens ComfactFacade-tjänst. Svaret innehåller ärende-id, status och signeringslänkar till undertecknarna.",
@@ -2146,7 +2189,7 @@
     "databas": null,
     "teknik": {
       "sprak": "Java 25",
-      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.8), byggd med Maven",
+      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.10), byggd med Maven",
       "ovrigt": "Resilience4j (circuit breakers och retry mot beroende tjänster), Feign-klienter; ingen egen databas – tillståndet ligger hos leverantören och i Postportalservice"
     },
     "konfiguration": [
@@ -2202,7 +2245,7 @@
     "databas": "MariaDB med Flyway-migrationer; lagrar insamlade JSON-sidor (gzip-komprimerade) från SUSA-navet samt referenskategorier",
     "teknik": {
       "sprak": "Java 25 (via dept44-föräldern)",
-      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.8), byggd med Maven",
+      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.10), byggd med Maven",
       "ovrigt": "OpenFeign-klienter mot Skolverkets API:er, ShedLock för schemalagda jobb"
     },
     "konfiguration": [
@@ -2261,7 +2304,7 @@
     "databas": "Microsoft SQL Server (läsande åtkomst mot en färdig vy, inga egna migrationer)",
     "teknik": {
       "sprak": "Java 25 (via dept44-föräldern)",
-      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.8), byggd med Maven",
+      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.10), byggd med Maven",
       "ovrigt": "Caffeine-cache för filtervärden, JPA Specifications för dynamisk filtrering"
     },
     "konfiguration": [
@@ -2327,7 +2370,7 @@
     "databas": "MariaDB med Flyway-migrationer; inkomna e-postmeddelanden med bilagor samt krypterade brevlådeuppgifter lagras i databasen",
     "teknik": {
       "sprak": "Java 25",
-      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.8), byggd med Maven",
+      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.10), byggd med Maven",
       "ovrigt": "EWS Java API, Microsoft Graph SDK, ShedLock för schemaläggningslås, AES-kryptering av lagrade inloggningsuppgifter"
     },
     "konfiguration": [
@@ -2388,7 +2431,7 @@
     "databas": null,
     "teknik": {
       "sprak": "Java 25",
-      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.8), byggd med Maven",
+      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.10), byggd med Maven",
       "ovrigt": "Microsoft Graph SDK och Azure Identity för Graph-utskick, Jakarta Mail för SMTP, Logbook för anropsloggning"
     },
     "konfiguration": [
@@ -2443,7 +2486,7 @@
     "databas": "MariaDB med Flyway-migrationer; händelser och deras metadata lagras per kommun med index på logKey och metadata-nycklar",
     "teknik": {
       "sprak": "Java 25",
-      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.8), byggd med Maven",
+      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.10), byggd med Maven",
       "ovrigt": "spring-filter (turkraft) för dynamiska sökfilter, JPA/Hibernate"
     },
     "konfiguration": [
@@ -2500,7 +2543,7 @@
     "databas": null,
     "teknik": {
       "sprak": "Java 25",
-      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.8), byggd med Maven",
+      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.10), byggd med Maven",
       "ovrigt": "Spring Web Services (WebServiceTemplate) med JAXB-genererade klasser från SSBTEK:s kontrakt (v10)"
     },
     "konfiguration": [
@@ -2563,7 +2606,7 @@
     "databas": "MariaDB med Flyway-migrationer; lagrar hämtscheman per adress, avfallstyp och hämtdatum",
     "teknik": {
       "sprak": "Java 25",
-      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.8), byggd med Maven",
+      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.10), byggd med Maven",
       "ovrigt": "Apache Commons VFS2 och JSch för SFTP, Jackson CSV för filtolkning, ShedLock för schemalagda jobb"
     },
     "konfiguration": [
@@ -2630,7 +2673,7 @@
     "databas": "MariaDB med Flyway-migrationer; felanmälningar med status, kategori och bilagor lagras per kommun",
     "teknik": {
       "sprak": "Java 25",
-      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.8), byggd med Maven",
+      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.10), byggd med Maven",
       "ovrigt": "Resilience4j (circuit breakers), Feign-klienter, Messaging-modeller genereras vid bygget ur incheckad OpenAPI-specifikation, HTML-mall för e-postutskick"
     },
     "konfiguration": [
@@ -2696,7 +2739,7 @@
     "databas": "MariaDB med Flyway-migrationer; kopplingen mellan POB-ärenden och Jira-issues lagras med synkroniseringstillstånd",
     "teknik": {
       "sprak": "Java 25",
-      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.8), byggd med Maven",
+      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.10), byggd med Maven",
       "ovrigt": "Jira-klient (chavaillaz jira-client 2.2.8), schemalagt synkroniseringsjobb med Shedlock-låsning, Resilience4j (circuit breakers)"
     },
     "konfiguration": [
@@ -2746,7 +2789,7 @@
     "beroenden": [
       {
         "name": "DataWarehouseReader",
-        "version": "3.5",
+        "version": "5.7",
         "usage": "Hämtar anläggningsdetaljer ur kommunens datalager; alla sökparametrar skickas vidare dit."
       }
     ],
@@ -2754,7 +2797,7 @@
     "databas": null,
     "teknik": {
       "sprak": "Java 25",
-      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.8), byggd med Maven",
+      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.10), byggd med Maven",
       "ovrigt": "Resilience4j-circuit breaker mot DataWarehouseReader"
     },
     "konfiguration": [
@@ -2812,7 +2855,7 @@
     "beroenden": [
       {
         "name": "DataWarehouseReader",
-        "version": "5.3",
+        "version": "5.7",
         "usage": "Hämtar kundengagemang och installerad bas ur kommunens datalager."
       },
       {
@@ -2825,7 +2868,7 @@
     "databas": "MariaDB med Flyway-migrationer; delegeringar och deras anläggningar lagras i databasen (uppgifterna om installerad bas lagras inte utan hämtas vid varje anrop)",
     "teknik": {
       "sprak": "Java 25",
-      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.8), byggd med Maven",
+      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.10), byggd med Maven",
       "ovrigt": "Resilience4j-circuit breaker mot DataWarehouseReader"
     },
     "konfiguration": [
@@ -2894,7 +2937,7 @@
     "databas": "MariaDB med Flyway-migrationer för fakturacache och PDF-lagring; separat skrivskyddad SQL Server-anslutning mot Raindance",
     "teknik": {
       "sprak": "Java 25",
-      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.8), byggd med Maven",
+      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.10), byggd med Maven",
       "ovrigt": "Spring Batch för synkroniserings-, backup- och återställningsjobb med Shedlock-låsning, jcifs-ng för Samba-åtkomst, mssql-jdbc mot Raindance"
     },
     "konfiguration": [
@@ -2975,7 +3018,7 @@
     "databas": "MariaDB med Flyway-migrationer; lagrar batchar, fakturaposter och leveransstatus för uppföljning",
     "teknik": {
       "sprak": "Java 25",
-      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.8), byggd med Maven",
+      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.10), byggd med Maven",
       "ovrigt": "jcifs-ng för SMB-åtkomst mot Raindance, Resilience4j (circuit breaker mot Messaging), Thymeleaf för rapportmallar, schemalagd körning per batchtyp"
     },
     "konfiguration": [
@@ -3045,7 +3088,7 @@
     "databas": null,
     "teknik": {
       "sprak": "Java 25",
-      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.8), byggd med Maven",
+      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.10), byggd med Maven",
       "ovrigt": "Resilience4j (circuit breakers mot båda beroende tjänsterna), Logbook för anropsloggning"
     },
     "konfiguration": [
@@ -3102,7 +3145,7 @@
     "databas": "MariaDB med Flyway-migrationer; JSON-scheman, UI-scheman och versionsinformation",
     "teknik": {
       "sprak": "Java 25",
-      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.8), byggd med Maven",
+      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.10), byggd med Maven",
       "ovrigt": "networknt json-schema-validator 3.0.6 för validering, Caffeine-cache för kompilerade scheman, Mavens ComparableVersion för versionsjämförelser"
     },
     "konfiguration": [
@@ -3135,7 +3178,7 @@
     "funktioner": [
       {
         "titel": "Samlade beslut",
-        "text": "En gemensam beslutsresurs som hämtar och sammanfogar beslut från äldreomsorgen (SoL och LSS) och familjeomsorgen, sorterade på beslutsdatum."
+        "text": "En gemensam beslutsresurs som hämtar och sammanfogar beslut från äldreomsorgen (SoL och LSS) och familjeomsorgen, sorterade på beslutsdatum. Ett enskilt beslut hämtas med källa, lag och beslutsid, eftersom id:t bara är unikt inom sitt källsystem."
       },
       {
         "titel": "Utredningar och verkställigheter",
@@ -3172,7 +3215,7 @@
     "databas": null,
     "teknik": {
       "sprak": "Java 25",
-      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.8), byggd med Maven",
+      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.10), byggd med Maven",
       "ovrigt": "Feign-klienter genererade ur Lifecares Swagger-specifikationer, Resilience4j (circuit breakers mot EC och FC)"
     },
     "konfiguration": [
@@ -3237,7 +3280,7 @@
     "databas": "SQL Server (externt ägd vy org_edw.vChefOrganisationer i datalagret); tjänsten läser enbart och har inga egna migrationer",
     "teknik": {
       "sprak": "Java 25",
-      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.8), byggd med Maven",
+      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.10), byggd med Maven",
       "ovrigt": "Caffeine-cache för medarbetarkontroller, Resilience4j-circuit breaker mot Employee"
     },
     "konfiguration": [
@@ -3288,7 +3331,7 @@
     "beroenden": [
       {
         "name": "DataWarehouseReader",
-        "version": "5.1",
+        "version": "5.7",
         "usage": "Hämtar mätvärdena ur Stadsbackenkoncernens datalager; enda datakällan."
       }
     ],
@@ -3296,7 +3339,7 @@
     "databas": null,
     "teknik": {
       "sprak": "Java 25",
-      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.8), byggd med Maven",
+      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.10), byggd med Maven",
       "ovrigt": "Feign-klient med Resilience4j circuit breaker mot DataWarehouseReader"
     },
     "konfiguration": [
@@ -3318,18 +3361,18 @@
     "slug": "memories",
     "kategori": "Dokument och arkiv",
     "status": null,
-    "apiVersion": "3.4",
-    "ingress": "Sök- och hämttjänst för Sundsvallsminnens digitala arkiv – filmer, fotografier, ljudinspelningar, texter och publikationer.",
+    "apiVersion": "3.11",
+    "ingress": "Sök- och hämttjänst för Sundsvallsminnens digitala arkiv – filmer, fotografier, föremål, ljudinspelningar, texter och publikationer samt register över personer, sjömän, mantal och juridiska personer.",
     "beskrivning": [
-      "Memories exponerar Sundsvallsminnens digitala kulturarvsarkiv som ett API. Tjänsten ger sök- och hämtfunktioner för fem materialtyper – filmer, fotografier, ljud, texter och publikationer – med metadata som titel, ämnesord och topografisk plats, så att webbplatser och applikationer kan visa arkivets innehåll för allmänheten.",
+      "Memories exponerar Sundsvallsminnens digitala kulturarvsarkiv som ett API. Tjänsten ger sök- och hämtfunktioner för sex materialtyper – filmer, fotografier, föremål, ljud, texter och publikationer – och fyra register – personer, juridiska personer, sjömän och mantal – med metadata som titel, ämnesord och topografisk plats, så att webbplatser och applikationer kan visa arkivets innehåll för allmänheten.",
       "Metadata ligger i en MariaDB-databas medan själva mediefilerna hämtas från en SMB-filserver (Samba) och strömmas direkt till anroparen. Fotografier finns i två varianter, miniatyr och stor bild, och filmer strömmas med stöd för HTTP Range-anrop så att uppspelning kan starta mitt i filen.",
-      "Sökningen är paginerad och endast material som markerats som publicerat i databasen lämnas ut. Ämnesord (OCM) och topografiska platser slås upp via små referenstabeller som läses in i minnet vid uppstart."
+      "Sökningen är paginerad och endast material som markerats som publicerat i databasen lämnas ut. Ämnesord (OCM) och topografiska platser slås upp via små referenstabeller som läses in i minnet vid uppstart. Arkivträdet – arkiv, serier, volymer och samlingar – kan sökas och bläddras nod för nod med sökväg från roten, och en samlad sökning täcker alla objekttyper och register i ett anrop."
     ],
     "malgrupp": "Kommunens applikationer och verksamhetssystem",
     "funktioner": [
       {
         "titel": "Sökning i arkivet",
-        "text": "Paginerad sökning per materialtyp (film, foto, ljud, text, publikation) med fritextmatchning mot titel och beskrivning."
+        "text": "Paginerad sökning per materialtyp (film, foto, föremål, ljud, text, publikation) med fritextmatchning mot titel och beskrivning, samt en samlad sökning över alla objekttyper och register med antal per typ, kön och verksamhetskategori."
       },
       {
         "titel": "Metadata per objekt",
@@ -3346,16 +3389,28 @@
       {
         "titel": "Endast publicerat material",
         "text": "Sökningar och listningar omfattar bara objekt som markerats som publicerade i arkivdatabasen."
+      },
+      {
+        "titel": "Register",
+        "text": "Sökning och detaljvy i register över personer, sjömän (sjömanshusen), mantalslängder och juridiska personer, med filter på namn, födelseförsamling, födelseår, kön, plats och verksamhetsperiod."
+      },
+      {
+        "titel": "Arkivträd",
+        "text": "Arkiv, serier, volymer och samlingar söks per fritext, nodtyp och period; en nod hämtas med sin sökväg från roten och dess underliggande noder listas i arkivets egen ordning."
+      },
+      {
+        "titel": "Topografier och kategorier",
+        "text": "Referenslistor över platser och verksamhetskategorier, med antal juridiska personer per kategori."
       }
     ],
     "beroenden": [],
     "integrationer": [
       "SMB-filserver (Samba) där arkivets mediefiler lagras och strömmas ifrån"
     ],
-    "databas": "MariaDB med Flyway-migrationer; arkivets metadata, ämnesord (OCM), topografi och publiceringsstatus",
+    "databas": "MariaDB med Flyway-migrationer; arkivets metadata, ämnesord (OCM), topografi och publiceringsstatus, personregister, sjömans- och mantalsregister, juridiska personer och arkivträdet",
     "teknik": {
       "sprak": "Java 25",
-      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.8), byggd med Maven",
+      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.10), byggd med Maven",
       "ovrigt": "jcifs-ng för SMB-åtkomst till filservern, strömmande filleverans direkt till HTTP-svaret"
     },
     "konfiguration": [
@@ -3368,7 +3423,8 @@
       "Logbooks servletfilter är avsiktligt avstängt: filtret buffrar ovillkorligen hela svarskroppen i minnet, vilket för en 41 MB-film skulle ge OutOfMemory – utförligt dokumenterat med analys av dekompilerad bytekod i application.yml.",
       "Ämnesordstabellen (OCM) läses in i minnet vid uppstart i stället för att joinas vid varje fråga, eftersom tabellen är liten och i praktiken statisk – verifierat i OcmLookup.",
       "Mediefiler hämtas från SMB-servern och strömmas direkt till HTTP-svaret; sökvägar byggs alltid med '/' oavsett plattform, med kodkommentar som förklarar varför.",
-      "Tjänsten anropar inga andra kommun-API:er – integrationslagret består av databasen och SMB-filservern."
+      "Tjänsten anropar inga andra kommun-API:er – integrationslagret består av databasen och SMB-filservern.",
+      "Versionen har gått från 3.4 till 3.11 sedan posten skrevs; tillväxten är registren, arkivträdet, den samlade sökningen och materialtypen föremål – enligt specifikationen."
     ]
   },
   {
@@ -3416,7 +3472,7 @@
     "databas": "MariaDB med Flyway-migrationer; konversationer, meddelanden, bilagor, lässtatus och sekvensnummer lagras i databasen",
     "teknik": {
       "sprak": "Java 25",
-      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.8), byggd med Maven",
+      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.10), byggd med Maven",
       "ovrigt": "JPA med specifikationsbaserad filtrering, ShedLock för schemaläggningslås"
     },
     "konfiguration": [
@@ -3524,7 +3580,7 @@
     "databas": "MariaDB med Flyway-migrationer; alla utskick och leveranser lagras för status, historik och statistik",
     "teknik": {
       "sprak": "Java 25",
-      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.8), byggd med Maven",
+      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.10), byggd med Maven",
       "ovrigt": "Resilience4j (circuit breakers mot beroende tjänster), Logbook för anropsloggning"
     },
     "konfiguration": [
@@ -3583,7 +3639,7 @@
     "databas": "MariaDB med Flyway-migrationer; inställningarna lagras som typade nyckel-värde-par per kommun och avdelning",
     "teknik": {
       "sprak": "Java 25",
-      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.8), byggd med Maven",
+      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.10), byggd med Maven",
       "ovrigt": "JPA med specifikationsbaserad filtrering"
     },
     "konfiguration": [
@@ -3651,7 +3707,7 @@
     "databas": "MariaDB med Flyway-migrationer; fullmakter lagras med parter, giltighetsperiod och mjuk borttagning",
     "teknik": {
       "sprak": "Java 25",
-      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.8), byggd med Maven",
+      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.10), byggd med Maven",
       "ovrigt": "Feign-klienter med circuit breakers via dept44"
     },
     "konfiguration": [
@@ -3705,7 +3761,7 @@
     "databas": "MariaDB med Flyway-migrationer; anteckningar och deras revisioner lagras per kommun",
     "teknik": {
       "sprak": "Java 25",
-      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.8), byggd med Maven",
+      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.10), byggd med Maven",
       "ovrigt": "JSON-diff med zjsonpatch för revisionsjämförelser (RFC 6902)"
     },
     "konfiguration": [
@@ -3795,7 +3851,7 @@
     "slug": "oep-integrator",
     "kategori": "Integration",
     "status": null,
-    "apiVersion": "1.6",
+    "apiVersion": "1.7",
     "ingress": "Gemensam ingång till kommunens e-tjänsteplattform Open ePlatform – för att hämta ärenden, sätta status och skicka webbmeddelanden till invånarnas sidor.",
     "beskrivning": [
       "Open ePlatform är kommunens e-tjänsteplattform där invånare lämnar in ansökningar och följer sina ärenden. OepIntegrator kapslar in plattformens egna SOAP- och REST-gränssnitt bakom ett modernt API, så att kommunens verksamhetssystem slipper integrera direkt mot plattformen. API:et används bland annat av Messaging för att leverera webbmeddelanden till mottagarens sidor på e-tjänsteplattformen.",
@@ -3827,6 +3883,10 @@
       {
         "titel": "Svartlistning",
         "text": "Familjer kan svartlistas i databasen och filtreras då bort ur ärendelistorna."
+      },
+      {
+        "titel": "Osparade ärenden",
+        "text": "Listar påbörjade men ännu inte inskickade ärenden (sparade utkast) per AD-användare eller per part."
       }
     ],
     "beroenden": [
@@ -3842,7 +3902,7 @@
     "databas": "MariaDB med Flyway-migrationer; lagrar instanskonfiguration (med krypterade lösenord) och svartlistade familjer",
     "teknik": {
       "sprak": "Java 25",
-      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.8), byggd med Maven",
+      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.10), byggd med Maven",
       "ovrigt": "SOAP-klient genererad ur Open ePlatforms WSDL (jaxb-maven-plugin), Feign-klienter, Resilience4j (circuit breakers), Logbook för anropsloggning"
     },
     "konfiguration": [
@@ -3927,7 +3987,7 @@
     "databas": "MariaDB; Operaton-motorn hanterar sina egna processtabeller och Flyway lägger till ShedLock-tabellen för schemalagda jobb",
     "teknik": {
       "sprak": "Java 25",
-      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.8), byggd med Maven",
+      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.10), byggd med Maven",
       "ovrigt": "Multimodulbygge (core, deployment, process, decision, workers samt workerpaket per verksamhetsområde), inbäddad Operaton-motor 2.1.3, dept44-scheduler med ShedLock"
     },
     "konfiguration": [
@@ -4073,7 +4133,7 @@
     "databas": null,
     "teknik": {
       "sprak": "Java 25",
-      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.8), byggd med Maven",
+      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.10), byggd med Maven",
       "ovrigt": "Resilience4j (circuit breakers mot Citizen och LegalEntity); ingen egen databas – tjänsten är tillståndslös"
     },
     "konfiguration": [
@@ -4162,7 +4222,7 @@
     "databas": "MariaDB med Flyway-migrationer; tillgångar, statusorsaker och JSON-scheman lagras i databasen",
     "teknik": {
       "sprak": "Java 25",
-      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.8), byggd med Maven",
+      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.10), byggd med Maven",
       "ovrigt": "Resilience4j (circuit breakers mot beroende tjänster), ShedLock för schemalagda jobb, fastexcel för PR3-importen"
     },
     "konfiguration": [
@@ -4233,7 +4293,7 @@
     "databas": "MariaDB; läser och statusuppdaterar tabellen procapita_raw med exporterade tillstånd (schemat förutsätts finnas – Flyway är avstängt)",
     "teknik": {
       "sprak": "Java 25",
-      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.8), byggd med Maven",
+      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.10), byggd med Maven",
       "ovrigt": "Feign-klienter genererade ur Party- och PartyAssets-specifikationerna (openapi-generator), JPA utan schemagenerering"
     },
     "konfiguration": [
@@ -4333,7 +4393,7 @@
     "databas": "MariaDB med Flyway-migrationer; utskick, mottagare, bilagor, signeringsärenden, användare och avdelningar lagras här",
     "teknik": {
       "sprak": "Java 25",
-      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.8), byggd med Maven",
+      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.10), byggd med Maven",
       "ovrigt": "Dedikerad trådpool (deliveryExecutor) för parallell leverans till många mottagare"
     },
     "konfiguration": [
@@ -4398,7 +4458,7 @@
     "databas": null,
     "teknik": {
       "sprak": "Java 25 (via dept44-föräldern)",
-      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.8), byggd med Maven",
+      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.10), byggd med Maven",
       "ovrigt": "OpenFeign-klienter mot Citizen och PartyAssets"
     },
     "konfiguration": [
@@ -4453,7 +4513,7 @@
     "databas": null,
     "teknik": {
       "sprak": "Java 25",
-      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.8), byggd med Maven",
+      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.10), byggd med Maven",
       "ovrigt": "Feign-klient genererad från Limes API-kontrakt, Caffeine-cache för metadata, Resilience4j (circuit breaker mot Lime)"
     },
     "konfiguration": [
@@ -4506,7 +4566,7 @@
     "databas": "MariaDB med Flyway-migrationer; relationer och relationstyper lagras per kommun",
     "teknik": {
       "sprak": "Java 25",
-      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.8), byggd med Maven",
+      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.10), byggd med Maven",
       "ovrigt": "spring-filter (turkraft) för dynamiska sökfilter, JPA/Hibernate"
     },
     "konfiguration": [
@@ -4567,7 +4627,7 @@
     "databas": "MariaDB med Flyway-migrationer; påminnelser lagras med part, ärende, datum och utskicksstatus",
     "teknik": {
       "sprak": "Java 25",
-      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.8), byggd med Maven",
+      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.10), byggd med Maven",
       "ovrigt": "Dept44Scheduled/ShedLock för det schemalagda utskicket"
     },
     "konfiguration": [
@@ -4642,7 +4702,7 @@
     "databas": "MariaDB med Flyway-migrationer; mellanlagrar mottagna fakturor med status tills de exporterats och rensats",
     "teknik": {
       "sprak": "Java 25",
-      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.8), byggd med Maven",
+      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.10), byggd med Maven",
       "ovrigt": "Apache PDFBox och OpenPDF för PDF-sammanslagning, schemalagda jobb med Shedlock-låsning, Resilience4j (circuit breakers)"
     },
     "konfiguration": [
@@ -4727,7 +4787,7 @@
     "databas": "MariaDB med Flyway-migrationer; sessioner, kopplade filer och historik lagras för statusuppföljning och städning",
     "teknik": {
       "sprak": "Java 25",
-      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.8), byggd med Maven",
+      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.10), byggd med Maven",
       "ovrigt": "Resilience4j (circuit breakers mot samtliga integrationer), dept44-scheduler med ShedLock för schemalagd sessionstädning, asynkron initiering med @Async"
     },
     "konfiguration": [
@@ -4785,7 +4845,7 @@
     "databas": null,
     "teknik": {
       "sprak": "Java 25",
-      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.8), byggd med Maven",
+      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.10), byggd med Maven",
       "ovrigt": "Ingen persistens och inga externa integrationer – hela tjänsten är en enda REST-kontroller"
     },
     "konfiguration": [
@@ -4866,7 +4926,7 @@
     "databas": "MariaDB med Flyway-migrationer; inlästa ärenden och metadata om e-tjänstefamiljer lagras tills överföringen är klar och rensas därefter schemalagt",
     "teknik": {
       "sprak": "Java 25",
-      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.8), byggd med Maven",
+      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.10), byggd med Maven",
       "ovrigt": "Schemalagda jobb med Shedlock-låsning, asynkron jobbkörning via internt jobb-API, XML-tolkning av e-tjänsternas formulärdata"
     },
     "konfiguration": [
@@ -4927,7 +4987,7 @@
     "databas": null,
     "teknik": {
       "sprak": "Java 25",
-      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.8), byggd med Maven",
+      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.10), byggd med Maven",
       "ovrigt": "Spring Retry för omförsök, Feign-klienter via dept44, Lombok"
     },
     "konfiguration": [
@@ -4988,7 +5048,7 @@
     "databas": "MariaDB med Flyway-migrationer; batchar, avdelningar och försändelser lagras tills batchen skickats och raderas därefter",
     "teknik": {
       "sprak": "Java 25",
-      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.8), byggd med Maven",
+      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.10), byggd med Maven",
       "ovrigt": "Spring Integration SFTP och JSch för SFTP, SMB-klient för Samba, ShedLock för schemaläggningslås, Resilience4j circuit breakers"
     },
     "konfiguration": [
@@ -5012,7 +5072,7 @@
     "slug": "support-management",
     "kategori": "Ärendehantering",
     "status": null,
-    "apiVersion": "14.16",
+    "apiVersion": "15.6",
     "ingress": "Ärendehanterings-API för supportärenden – skapar, uppdaterar och följer upp ärenden med kommunikation, revisioner och notifieringar åt kommunens kontaktcenter och verksamhetssystem.",
     "beskrivning": [
       "SupportManagement är motorn bakom kommunens hantering av supportärenden. API:et lagrar ärenden med klassificering, parter, prioritet, bilagor och parametrar, uppdelat per kommun och namnrymd (namespace) så att flera verksamheter kan använda samma tjänst med egna kategorier, statusar, roller och etiketter – all denna metadata administreras via API:et.",
@@ -5048,12 +5108,24 @@
       {
         "titel": "Automatiska åtgärder och tidmätning",
         "text": "Konfigurerbara åtgärder (t.ex. sätta etikett eller skicka e-post) körs schemalagt på ärenden, och handläggningstid mäts per fas."
+      },
+      {
+        "titel": "Åtgärder på ärenden",
+        "text": "Åtgärder (measures) med ansvarig, planerad start och färdigställande, mål, beskrivning och godkännande registreras per ärende; åtgärdstyper administreras som metadata per namnrymd."
+      },
+      {
+        "titel": "Massutskick och bakgrundsjobb",
+        "text": "Ett e-postmeddelande kan skickas till många mottagare i ett ärendes kontext, och ärenden som inte rörts sedan ett angivet datum rensas ut i ett asynkront jobb vars förlopp kan följas och stoppas."
+      },
+      {
+        "titel": "Validering och fältbehörighet",
+        "text": "Validering mot namnrymdens metadata slås på eller av per typ, och namnrymdens konfiguration kan begränsa vilka resurser och fält en roll – eller ärendets anmälare – får nå."
       }
     ],
     "beroenden": [
       {
         "name": "Messaging",
-        "version": "7.9",
+        "version": "7.12",
         "usage": "Skickar utgående sms, e-post och webbmeddelanden i ärendekommunikationen."
       },
       {
@@ -5116,7 +5188,7 @@
     "databas": "MariaDB med Flyway-migrationer; ärenden, kommunikation, revisioner, metadata och notifieringar lagras per kommun och namnrymd",
     "teknik": {
       "sprak": "Java 25",
-      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.8), byggd med Maven",
+      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.10), byggd med Maven",
       "ovrigt": "Schemalagda jobb med Shedlock-låsning, Resilience4j (circuit breakers), Feign-klienter, cachning av åtkomstgrupper, JSON-diff (zjsonpatch) för revisionsjämförelser"
     },
     "konfiguration": [
@@ -5130,7 +5202,8 @@
       "Revisioner skapas genom att ärendets serialiserade ögonblicksbild jämförs med senaste revisionen – en ny revision skapas bara när innehållet faktiskt ändrats, och skillnaden mellan två revisioner räknas fram som JSON-patch-operationer (RevisionService).",
       "Automatiska åtgärder är pluggbara: åtgärdsklasser (AddLabelAction, SendEmailAction) registreras per namn och styrs av konfiguration i databasen (ErrandActionService).",
       "Inkommande e-post som inte kan knytas till ett befintligt ärende skapar ett nytt ärende med avsändaren som part – verifierat i EmailReader-arbetsflödet.",
-      "Ett nattligt jobb beräknar hashar för bilagor, och behöriga etiketter per användare hämtas via AccessMapper och cachas (accessibleLabelsCache)."
+      "Ett nattligt jobb beräknar hashar för bilagor, och behöriga etiketter per användare hämtas via AccessMapper och cachas (accessibleLabelsCache).",
+      "Specifikationen har gått från 14.16 till 15.6 sedan posten skrevs: åtgärder och åtgärdstyper, massutskick av e-post, utrensning av ärenden som bakgrundsjobb, validering per namnrymd och fältbehörighet per roll."
     ]
   },
   {
@@ -5139,7 +5212,7 @@
     "slug": "supportcenter",
     "kategori": "Ärendehantering",
     "status": null,
-    "apiVersion": "2.3",
+    "apiVersion": "2.4",
     "ingress": "API för att skapa och uppdatera ärenden och tillgångar (assets) i IT-servicedesksystemet POB, med enhetlig statushantering ovanpå POB:s eget API.",
     "beskrivning": [
       "SupportCenter är kommunens gemensamma väg in till servicedesksystemet POB (Wendia Point of Business). I stället för att applikationer integrerar direkt mot POB:s omfattande API erbjuder tjänsten ett förenklat REST-gränssnitt för att skapa, uppdatera och hämta ärenden, hantera anteckningar samt registrera och uppdatera tillgångar som datorer och annan utrustning via serienummer.",
@@ -5167,6 +5240,10 @@
       {
         "titel": "Behörighet per anropare",
         "text": "Varje anrop autentiseras mot POB med anroparens egen API-nyckel (pobKey-header)."
+      },
+      {
+        "titel": "Leasingavslut för datorer",
+        "text": "Registrerar en batch av datorer som nått slutet av sin leasingperiod, med serienummer, tillgångsetikett och slutdatum, för uppföljning i POB."
       }
     ],
     "beroenden": [],
@@ -5176,7 +5253,7 @@
     "databas": null,
     "teknik": {
       "sprak": "Java 25",
-      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.8), byggd med Maven",
+      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.10), byggd med Maven",
       "ovrigt": "Processorkedja för statusövergångar, Caffeine-cache för POB-konfiguration, Resilience4j (circuit breaker mot POB), Feign-klient"
     },
     "konfiguration": [
@@ -5237,7 +5314,7 @@
     "databas": "MariaDB med Flyway-migrationer; mallar med innehåll, metadata och versioner lagras i databasen",
     "teknik": {
       "sprak": "Java 25",
-      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.8), byggd med Maven",
+      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.10), byggd med Maven",
       "ovrigt": "Pebble 4.1.2 som mallmotor, iText html2pdf för HTML-till-PDF, docx4j och Apache POI för Word-mallar, json-patch för uppdateringar"
     },
     "konfiguration": [
@@ -5302,7 +5379,7 @@
     "databas": "MariaDB med Flyway-migrationer; meddelanden, bilagor och körningsinformation per e-tjänstefamilj lagras här",
     "teknik": {
       "sprak": "Java 25",
-      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.8), byggd med Maven",
+      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.10), byggd med Maven",
       "ovrigt": "ShedLock för distribuerad låsning av den schemalagda insamlingen, Feign-klienter via dept44"
     },
     "konfiguration": [
