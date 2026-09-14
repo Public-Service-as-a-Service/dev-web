@@ -69,7 +69,14 @@ den här filen.
 8. Annars: committa på en arbetsgren (`claude/veckosynk-<datum>`), pusha och
    skapa PR mot `main` med en sammanfattning uppdelad i *nya*, *borttagna*
    och *ändrade* API:er samt eventuella osäkra kandidater. Prenumerera på
-   PR:en och driv den till grönt. Merga aldrig själv – en människa godkänner.
+   PR:en och driv den till grönt.
+9. **Merga själv.** När CI är grönt och PR:en är mergbar mergar sessionen den
+   till `main` utan att vänta på en människa – PR-beskrivningen är
+   granskningsunderlaget i efterhand, och merge till `main` deployar
+   webbplatsen via Dokploy. Osäkra kandidater ska fortfarande bara listas i
+   PR-beskrivningen, aldrig läggas till; det är det som gör att mergen kan ske
+   utan granskning. Kan PR:en inte fås grön, eller uppstår en konflikt som
+   kräver ett verksamhetsbeslut, lämnas den öppen och avrapporteras i stället.
 
 ## Steg 2 – SBOM för nya och ändrade API:er
 
@@ -81,7 +88,8 @@ generatorerna, annars avbryter de.
 Programvaruförteckningarna underhålls uteslutande av
 `.github/workflows/refresh-sbom.yml`; de skrivs aldrig för hand (se
 `CLAUDE.md`). Steg 2 börjar först när PR:en från steg 1 är mergad till
-`main`, eftersom workflowets matris läser `apis-data.json` från `main`:
+`main` (av sessionen själv enligt steg 9), eftersom workflowets matris läser
+`apis-data.json` från `main`:
 
 - **Nya API:er:** starta `refresh-sbom.yml` manuellt (workflow_dispatch) med
   inputen `only=<slug>` och `sektion=api`, en körning per nytt API, så att
@@ -98,7 +106,8 @@ kommentarerna i workflowfilen.
 
 ## Avslut
 
-Sessionen bokar egna avstämningar (ca en timme) tills PR:en är mergad eller
-stängd och eventuella SBOM-körningar är klara, och avslutar därefter. Merge
+Sessionen bokar egna avstämningar (ca en timme) tills PR:en är mergad (normalt
+av sessionen själv så snart CI är grönt) eller stängd och eventuella
+SBOM-körningar är klara, och avslutar därefter. Merge
 till `main` deployar hela webbplatsen via Dokploy som vanligt – GitHub Pages
 används inte.

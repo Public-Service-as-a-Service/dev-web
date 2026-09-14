@@ -1042,12 +1042,12 @@ components:
           type: boolean
           description: Is VAT reversed
           examples:
-          - "false"
+          - false
         pdfAvailable:
           type: boolean
           description: Is invoice-pdf available
           examples:
-          - "false"
+          - false
         currency:
           type: string
           description: Currency
@@ -1483,7 +1483,7 @@ components:
           type: boolean
           description: Is pdf-version of invoice available
           examples:
-          - "true"
+          - true
         details:
           type: array
           items:

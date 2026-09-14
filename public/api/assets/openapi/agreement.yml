@@ -339,7 +339,7 @@ components:
           description: "Signal if only active or all agreements should be included\
             \ in response, default is to only return active agreements."
           examples:
-          - "true"
+          - true
     Agreement:
       type: object
       description: Agreement model
@@ -382,14 +382,14 @@ components:
           description: Signal indicating whether the agreement is the main agreement
             or not
           examples:
-          - "true"
+          - true
           readOnly: true
         binding:
           type: boolean
           description: Signal indicating whether the agreement has a binding period
             or not
           examples:
-          - "true"
+          - true
           readOnly: true
         bindingRule:
           type:
@@ -425,7 +425,7 @@ components:
           description: Signal if the agreement is a production agreement or not (can
             be null if not applicable)
           examples:
-          - "true"
+          - true
           readOnly: true
         fromDate:
           type: string
@@ -445,7 +445,7 @@ components:
           type: boolean
           description: Signal if the agreement is active or not
           examples:
-          - "true"
+          - true
           readOnly: true
     PagedAgreementResponse:
       type: object

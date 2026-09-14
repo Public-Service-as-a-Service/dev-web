@@ -423,14 +423,14 @@ components:
           description: Indicates if placement and/or equipment details have changed
             since the search date
           examples:
-          - "true"
+          - true
           readOnly: true
         active:
           type: boolean
           description: "Indicates customer status, if not active then the moveInDate\
             \ holds information on when the customer will be activated"
           examples:
-          - "true"
+          - true
           readOnly: true
         moveInDate:
           type: string
@@ -539,7 +539,7 @@ components:
           description: "Indicates customer status, if not active then the moveInDate\
             \ holds information on when the customer will be activated"
           examples:
-          - "true"
+          - true
           readOnly: true
         moveInDate:
           type: string
