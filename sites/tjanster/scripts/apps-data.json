@@ -716,7 +716,7 @@
     ],
     "auth": "SAML (SSO)",
     "teknik": {
-      "frontend": "Next.js 14, React 18, sk-web-gui, Tailwind CSS",
+      "frontend": "Next.js 16, React 19, sk-web-gui, Tailwind CSS",
       "backend": "Node.js med Express och routing-controllers (TypeScript)",
       "tester": "Jest och Cypress"
     },
@@ -910,7 +910,7 @@
       },
       {
         "name": "CaseData",
-        "version": "12.5",
+        "version": "13.1",
         "usage": "Ärendedata för myndighetsärenden."
       },
       {
@@ -955,7 +955,7 @@
       },
       {
         "name": "Invoices",
-        "version": "8.0",
+        "version": "9.5",
         "usage": "Fakturor från kommunen."
       },
       {
@@ -1102,16 +1102,6 @@
         "usage": "Kommunens AI-plattform som driver assistenten."
       },
       {
-        "name": "ActiveDirectory",
-        "version": "2.0",
-        "usage": "Behörighetskontroll för administrationsläget."
-      },
-      {
-        "name": "Employee",
-        "version": "2.0",
-        "usage": "Uppslag av intern personal i administrationsläget."
-      },
-      {
         "name": "SimulatorServer",
         "version": "2.0",
         "usage": "Simulerings-API för test och utveckling."
@@ -1139,7 +1129,8 @@
       "Portalen har ett privatläge och ett företagsläge med samma sektioner (representing-lägena PRIVATE/BUSINESS i koden); inloggningen landar i privatläget och företrädare växlar via organisationsvalet.",
       "Administrationsläget låter behörig personal växla till en kunds vy (impersonation) för supportändamål.",
       "BankID-signering sker via CGI:s GRP-tjänst med QR-kodsstöd.",
-      "AI-assistenten är kopplad till kommunens Eneo-plattform via SelfServiceAI-API:t."
+      "AI-assistenten är kopplad till kommunens Eneo-plattform via SelfServiceAI-API:t.",
+      "Administrationsläget (impersonation) bygger på SAML-attribut i backendens behörighetstjänst; ActiveDirectory och Employee finns varken i api-config.ts eller bland anropen (getApiBase) – verifierat i koden."
     ],
     "slug": "mina-sidor-for-foretagskunder-hos-kommunala-bolag"
   },
@@ -1274,7 +1265,8 @@
       "Mätstationerna är hårdkodade i backend: Köpmangatan (888100) och Bergsgatan (1098100).",
       "I utvecklingsläge används genererad mockdata i stället för riktiga mätvärden.",
       "SAML-inloggning finns i mallen men är bortkommenterad – tjänsten är helt publik.",
-      "README och delar av konfigurationen är kvar från webbappsmallen (web-app-starter)."
+      "README och delar av konfigurationen är kvar från webbappsmallen (web-app-starter).",
+      "OpenData anropas med hårdkodad väg opendata/1.0 i air.controller.ts och finns inte i api-config.ts, som bara listar SimulatorServer."
     ],
     "slug": "luftkvalitet-i-sundsvall"
   },
@@ -1398,7 +1390,7 @@
     ],
     "auth": "SAML (SSO)",
     "teknik": {
-      "frontend": "Next.js 15 (Pages Router), React 19, sk-web-gui, Tailwind CSS, next-i18next",
+      "frontend": "Next.js 16 (Pages Router), React 19, sk-web-gui, Tailwind CSS, next-i18next",
       "backend": "Node.js, Express, routing-controllers, TypeScript",
       "tester": "Jest, Cypress med kodtäckning"
     },
@@ -1414,74 +1406,6 @@
       "Frontendpaketet använder fortfarande starter-mallens namn (@sk-web-gui/web-app-starter)."
     ],
     "slug": "digital-checklista-for-introduktion-av-medarbetare"
-  },
-  {
-    "repo": "web-app-digital-checklist",
-    "namn": "Digital checklista för introduktion av nyanställda",
-    "kategori": "Medarbetartjänster",
-    "status": "aktiv",
-    "ingress": "Digital checklista som guidar chefer och nyanställda genom introduktionsprocessen, med översikt över hur långt varje introduktion kommit.",
-    "beskrivning": [
-      "Tjänsten digitaliserar kommunens introduktion av nyanställda. Både chefen och den nyanställda får varsin checklista med aktiviteter att bocka av under introduktionen, och uppgifter kan även delegeras till en annan ansvarig person.",
-      "Chefer får en samlad översikt över nyanställda i den egna organisationen med hur långt både chefens och medarbetarens delar av introduktionen har kommit. Uppgifter kan läggas till och uppdateras löpande, och tjänsten innehåller även en e-postmall för utskick kopplade till introduktionen.",
-      "Medarbetare loggar in med kommunens gemensamma inloggning, och medarbetaruppgifter som namn och foto hämtas från kommunens personalsystem via interna API:er."
-    ],
-    "malgrupp": "Chefer och nyanställda medarbetare i kommunen",
-    "funktioner": [
-      {
-        "titel": "Checklista för nyanställd",
-        "text": "Den nyanställda ser och bockar av sina introduktionsaktiviteter."
-      },
-      {
-        "titel": "Checklista för chef",
-        "text": "Chefen har en egen lista med aktiviteter inför och under introduktionen."
-      },
-      {
-        "titel": "Delegering",
-        "text": "Ansvar för en checklista kan delegeras till annan medarbetare."
-      },
-      {
-        "titel": "Chefsöversikt",
-        "text": "Samlad vy över alla nyanställda i organisationen med progress för chef respektive anställd."
-      },
-      {
-        "titel": "Uppgiftshantering",
-        "text": "Uppgifter kan skapas, uppdateras och massuppdateras i checklistorna."
-      }
-    ],
-    "apis": [
-      {
-        "name": "Employee",
-        "version": "1.0",
-        "usage": "Hämtar medarbetaruppgifter, bland annat personbild."
-      },
-      {
-        "name": "Onboarding",
-        "version": "1.4",
-        "usage": "Checklistor och uppgifter för introduktionen – hämtning, skapande och uppdatering."
-      }
-    ],
-    "integrationer": [
-      "SAML IdP",
-      "WSO2 API-gateway"
-    ],
-    "auth": "SAML (SSO)",
-    "teknik": {
-      "frontend": "Next.js/React med sk-web-gui",
-      "backend": "Node.js/Express med routing-controllers och Passport-SAML",
-      "tester": "Jest (backend); Cypress i frontend"
-    },
-    "konfiguration": [
-      ".env-filer för frontend och backend utifrån .env-exempel",
-      "CLIENT_KEY/CLIENT_SECRET mot kommunens API-gateway (api-i-test.sundsvall.se i exempel)",
-      "SAML-certifikat och callback-/redirect-adresser",
-      "SECRET_KEY för sessionskryptering, CORS-origin"
-    ],
-    "anteckningar": [
-      "Byggd utifrån kommunens web-app-starter; README är delvis kvar från mallen.",
-      "Sidor för egen checklista, delegerad checklista, chefsöversikt och e-postmall är verifierade i koden."
-    ],
-    "slug": "digital-checklista-for-introduktion-av-nyanstallda"
   },
   {
     "repo": "web-app-new-personal-files",
@@ -1670,7 +1594,7 @@
     "apis": [
       {
         "name": "PostPortalService",
-        "version": "1.8",
+        "version": "1.9",
         "usage": "Själva utskickstjänsten: brev, rekommenderade brev, sms och status."
       },
       {
@@ -2570,7 +2494,7 @@
       },
       {
         "name": "SupportManagement (sprint)",
-        "version": "14.14",
+        "version": "15.1",
         "usage": "Tillfällig utvecklingsversion av ärende-API:t som trafiken styrs om till under pågående sprint."
       },
       {
@@ -2582,11 +2506,6 @@
         "name": "Employee",
         "version": "2.0",
         "usage": "Uppslag av medarbetare via användarnamn."
-      },
-      {
-        "name": "Company",
-        "version": "1.0",
-        "usage": "Uppslag av företagsuppgifter."
       },
       {
         "name": "JsonSchema",
@@ -2618,7 +2537,8 @@
     "anteckningar": [
       "Koden innehåller en tillfällig omstyrning till en sprintversion av ärende-API:t, vilket visar på pågående aktiv utveckling.",
       "Behörighet styrs via SAML-grupper och attribut; användare utan rätt grupp nekas inloggning.",
-      "Gränssnittet finns på både svenska och engelska."
+      "Gränssnittet finns på både svenska och engelska.",
+      "Company finns inte i api-config.ts och anropas inte i backend – verifierat i koden; sprintversionen av SupportManagement är nu 15.1."
     ],
     "slug": "rapportering-och-hantering-av-supportarenden"
   },
@@ -2796,7 +2716,7 @@
     "apis": [
       {
         "name": "SupportManagement",
-        "version": "14.9",
+        "version": "14.15",
         "usage": "Kärnan i den generiska ärendehanteringen – ärenden, kategorier, status, kommunikation och handläggning"
       },
       {
@@ -2806,7 +2726,7 @@
       },
       {
         "name": "Contract",
-        "version": "9.0",
+        "version": "11.0",
         "usage": "Avtal i mark- och exploateringsärenden, till exempel arrende- och köpeavtal"
       },
       {
