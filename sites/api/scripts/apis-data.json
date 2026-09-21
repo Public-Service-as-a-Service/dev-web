@@ -3364,7 +3364,7 @@
     "slug": "memories",
     "kategori": "Dokument och arkiv",
     "status": null,
-    "apiVersion": "3.11",
+    "apiVersion": "3.12",
     "ingress": "Sök- och hämttjänst för Sundsvallsminnens digitala arkiv – filmer, fotografier, föremål, ljudinspelningar, texter och publikationer samt register över personer, sjömän, mantal och juridiska personer.",
     "beskrivning": [
       "Memories exponerar Sundsvallsminnens digitala kulturarvsarkiv som ett API. Tjänsten ger sök- och hämtfunktioner för sex materialtyper – filmer, fotografier, föremål, ljud, texter och publikationer – och fyra register – personer, juridiska personer, sjömän och mantal – med metadata som titel, ämnesord och topografisk plats, så att webbplatser och applikationer kan visa arkivets innehåll för allmänheten.",
@@ -3395,39 +3395,43 @@
       },
       {
         "titel": "Register",
-        "text": "Sökning och detaljvy i register över personer, sjömän (sjömanshusen), mantalslängder och juridiska personer, med filter på namn, födelseförsamling, födelseår, kön, plats och verksamhetsperiod."
+        "text": "Sökning och detaljvy i register över personer, sjömän (sjömanshusen), mantalslängder och juridiska personer, med filter på namn, födelseförsamling, födelseår, kön, plats och verksamhetsperiod. Biografi respektive historik för en person eller juridisk person kan hämtas som separat dokument."
       },
       {
-        "titel": "Arkivträd",
-        "text": "Arkiv, serier, volymer och samlingar söks per fritext, nodtyp och period; en nod hämtas med sin sökväg från roten och dess underliggande noder listas i arkivets egen ordning."
+        "titel": "Arkivträd och institutioner",
+        "text": "Arkiv, serier, volymer och samlingar söks per fritext, nodtyp, period, institution, kategori och plats; en nod hämtas med sin sökväg från roten och dess underliggande noder listas i arkivets egen ordning, med arkivbildare, kategori, plats och volymuppgifter. Institutioner listas separat som filter, och objekt kan sökas per arkivnod."
       },
       {
         "titel": "Topografier och kategorier",
-        "text": "Referenslistor över platser och verksamhetskategorier, med antal juridiska personer per kategori."
+        "text": "Referenslistor över platser och verksamhetskategorier, med antal juridiska personer och arkivobjekt per plats."
+      },
+      {
+        "titel": "Fritextsökning i publikationers innehåll",
+        "text": "Sökningen matchar även mot det inskannade textinnehållet i publikationer, utan att den tunga textmassan läses in vid vanlig listning."
       }
     ],
     "beroenden": [],
     "integrationer": [
       "SMB-filserver (Samba) där arkivets mediefiler lagras och strömmas ifrån"
     ],
-    "databas": "MariaDB med Flyway-migrationer; arkivets metadata, ämnesord (OCM), topografi och publiceringsstatus, personregister, sjömans- och mantalsregister, juridiska personer och arkivträdet",
+    "databas": "MariaDB med Flyway-migrationer; arkivets metadata, ämnesord (OCM), topografi och publiceringsstatus, personregister, sjömans- och mantalsregister, juridiska personer, arkivträdet samt institutioner kopplade till arkivnoderna",
     "teknik": {
       "sprak": "Java 25",
       "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.10), byggd med Maven",
-      "ovrigt": "jcifs-ng för SMB-åtkomst till filservern, strömmande filleverans direkt till HTTP-svaret"
+      "ovrigt": "jcifs-ng för SMB-åtkomst till filservern, strömmande filleverans direkt till HTTP-svaret, Tika för MIME-typsdetektering av strömmade filer"
     },
     "konfiguration": [
-      "SMB-anslutning: värd, port, share, autentisering samt mappar per materialtyp",
+      "SMB-anslutning: värd, port, share, autentisering samt mappar per materialtyp, inklusive separata mappar för personers och juridiska personers dokument (biografi/historik)",
       "MariaDB-anslutning till arkivets metadatabas; schemat versionshanteras med Flyway",
       "Logbook-payloadloggning är helt avstängd i denna tjänst (se anteckningar)",
       "Anrop görs per kommun – municipalityId ingår i alla API-vägar"
     ],
     "anteckningar": [
       "Logbooks servletfilter är avsiktligt avstängt: filtret buffrar ovillkorligen hela svarskroppen i minnet, vilket för en 41 MB-film skulle ge OutOfMemory – utförligt dokumenterat med analys av dekompilerad bytekod i application.yml.",
-      "Ämnesordstabellen (OCM) läses in i minnet vid uppstart i stället för att joinas vid varje fråga, eftersom tabellen är liten och i praktiken statisk – verifierat i OcmLookup.",
-      "Mediefiler hämtas från SMB-servern och strömmas direkt till HTTP-svaret; sökvägar byggs alltid med '/' oavsett plattform, med kodkommentar som förklarar varför.",
+      "Mediefiler hämtas från SMB-servern och strömmas direkt till HTTP-svaret.",
       "Tjänsten anropar inga andra kommun-API:er – integrationslagret består av databasen och SMB-filservern.",
-      "Versionen har gått från 3.4 till 3.11 sedan posten skrevs; tillväxten är registren, arkivträdet, den samlade sökningen och materialtypen föremål – enligt specifikationen."
+      "Versionen har gått från 3.4 till 3.12 sedan posten skrevs; tillväxten är registren, arkivträdet, den samlade sökningen, materialtypen föremål samt – i v3.12 – institutioner, arkivbildare och platsuppgifter kopplade till arkivnoder, koppling mellan noder och objekt, fritextsökning i publikationers inskannade textinnehåll (hålls utanför standardlistningen för att inte belasta varje sökning) samt dokumentleverans för personers och juridiska personers biografi/historik.",
+      "Databasändringar för arkivnoderna görs för hand i skarp drift: Flyway är avstängt där, så migrationerna som lägger till institutionstabellen och nod-kopplingen måste köras manuellt innan koden som läser dem driftsätts – dokumenterat i migrationsfilernas kommentarer."
     ]
   },
   {

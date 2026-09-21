@@ -5,9 +5,9 @@ info:
   license:
     name: MIT License
     url: https://opensource.org/licenses/MIT
-  version: "9.5"
+  version: "9.6"
 servers:
-- url: http://localhost:56062
+- url: http://localhost:56736
   description: Generated server url
 tags:
 - name: Invoices
@@ -1251,6 +1251,33 @@ components:
           description: Unit-price
           examples:
           - 271.3
+        unitPriceVatExcluded:
+          type: number
+          description: Unit-price excluding VAT
+          examples:
+          - 217.04
+        invoiceUnitPrice:
+          type: number
+          description: "Unit-price as presented on the invoice, in the currency and\
+            \ unit given by invoiceUnitPriceCurrency and invoiceUnitPriceUnit"
+          examples:
+          - 27130.0
+        invoiceUnitPriceVatExcluded:
+          type: number
+          description: "Unit-price excluding VAT as presented on the invoice, in the\
+            \ currency and unit given by invoiceUnitPriceCurrency and invoiceUnitPriceUnit"
+          examples:
+          - 21704.0
+        invoiceUnitPriceCurrency:
+          type: string
+          description: Currency that the invoice unit-prices are expressed in
+          examples:
+          - öre
+        invoiceUnitPriceUnit:
+          type: string
+          description: Unit that the invoice unit-prices are expressed per
+          examples:
+          - kWh
         description:
           type: string
           description: Description of detail
