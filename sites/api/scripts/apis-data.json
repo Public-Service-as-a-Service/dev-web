@@ -924,7 +924,7 @@
     "slug": "case-data",
     "kategori": "Ärendehantering",
     "status": null,
-    "apiVersion": "13.1",
+    "apiVersion": "13.2",
     "ingress": "Ärendehanterings-API som lagrar och förvaltar myndighetsärenden – bland annat parkeringstillstånd, färdtjänst samt mark- och exploateringsärenden – åt kommunens handläggarapplikationer.",
     "beskrivning": [
       "CaseData är kommunens datanav för myndighetsärenden. API:et lagrar ärenden med parter, fastigheter/anläggningar, beslut, bilagor, anteckningar och statusar, och exponerar allt per kommun och namnrymd (namespace). Idag hanteras bland annat parkeringstillstånd, färdtjänst och mark- och exploateringsärenden, där varje verksamhetsområde har sin egen namnrymd.",
@@ -990,7 +990,7 @@
       },
       {
         "name": "MessageExchange",
-        "version": "1.1",
+        "version": "3.0",
         "usage": "Synkroniserar trådade konversationer kopplade till ärenden."
       },
       {
@@ -1042,7 +1042,8 @@
       "ProcessService väljer processmotor utifrån ärendets namnrymd: parkeringstillstånd och färdtjänst delar namnrymd och skiljs på ärendetyp, medan mark- och exploateringsärenden har egen namnrymd – verifierat i ProcessService.startProcess.",
       "Ärendetyper kan konfigureras i databasen att inte starta någon process (isProcessingDisabled) – processtarten hoppas då över.",
       "Bilage-endpoints är undantagna från Logbook-payloadloggning; en kommentar i application.yml förklarar att base64-kropparna tidigare orsakade OOM-omstarter.",
-      "README beskriver tjänsten som hantering av parkeringstillstånd samt mark och exploatering, men koden hanterar även färdtjänstärenden via PwParatransit – koden är sanningskällan."
+      "README beskriver tjänsten som hantering av parkeringstillstånd samt mark och exploatering, men koden hanterar även färdtjänstärenden via PwParatransit – koden är sanningskällan.",
+      "Från v13.2: mejl- och meddelandenotiser till ärendets sökande och anmälare väljs numera per mottagare (e-post eller /messages) i stället för för hela gruppen gemensamt, och skickas ett anrop per mottagare med personifierat innehåll. Den manuella bulk-mejl-endpointen (/errands/{errandId}/messages/email/batch) är begränsad till 200 mottagare, dedupliceras och svarar med fel om Messaging redan vid mottagandet rapporterar en misslyckad leverans – men fångar inte fel som sker senare i den asynkrona sändningen."
     ]
   },
   {
@@ -1769,7 +1770,7 @@
     "slug": "datawarehousereader",
     "kategori": "Parts- och kunddata",
     "status": null,
-    "apiVersion": "5.8",
+    "apiVersion": "5.9",
     "ingress": "Läs-API mot Stadsbackenkoncernens datalager – kunder, avtal, anläggningar, fakturor och mätvärden för el, fjärrvärme, vatten och andra nyttigheter.",
     "beskrivning": [
       "DataWarehouseReader ger kommunens applikationer ett enhetligt REST-gränssnitt mot Stadsbackenkoncernens datalager, där kund-, avtals- och förbrukningsdata från de kommunala bolagen samlas. I stället för att applikationer ansluter direkt till datalagret frågar de detta API, som hanterar behörigheter, paginering och identitetsöversättning.",
@@ -1817,7 +1818,7 @@
     "teknik": {
       "sprak": "Java 25",
       "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.10), byggd med Maven",
-      "ovrigt": "JPA mot SQL Server med lagrade procedurer och JDBC-frågor, Caffeine-cache för Party-uppslag, Resilience4j circuit breaker mot Party"
+      "ovrigt": "JPA mot SQL Server med lagrade procedurer och JDBC-frågor, Caffeine-cache för Party-uppslag, Resilience4j circuit breaker mot Party och mot samtliga stadsbacken-repositories"
     },
     "konfiguration": [
       "SQL Server-anslutning till Stadsbackens datalager med utökad anslutningspool (upp till 50 anslutningar)",
@@ -1829,7 +1830,8 @@
       "Tjänsten är ett renodlat läs-API: den äger ingen egen databas utan frågar Stadsbackens SQL Server-datalager direkt, utan Flyway-migrationer.",
       "PartyId slås upp först som privatkund och därefter som företagskund innan 404 returneras – verifierat i PartyProvider.",
       "Uppslag mot Party cachas i Caffeine (partyIds/legalIds, 24 timmar) för att minska trafiken vid stora svarsmängder.",
-      "Mätvärdeskategorierna mappas till datalagrets svenska benämningar (t.ex. ELECTRICITY ⇒ 'El', WASTE_MANAGEMENT ⇒ 'Avfallsvåg') i Category-enumen."
+      "Mätvärdeskategorierna mappas till datalagrets svenska benämningar (t.ex. ELECTRICITY ⇒ 'El', WASTE_MANAGEMENT ⇒ 'Avfallsvåg') i Category-enumen.",
+      "Varje stadsbacken-repository (Agreement, Customer, CustomerDetail, Installation, InstalledBase, Invoice, InvoiceJdbc, InvoiceDetailJdbc, Measurement) har sin egen namngivna Resilience4j circuit breaker utöver den mot Party."
     ]
   },
   {
@@ -3042,7 +3044,7 @@
     "slug": "invoices",
     "kategori": "Ekonomi och fakturering",
     "status": null,
-    "apiVersion": "9.5",
+    "apiVersion": "9.6",
     "ingress": "Samlad ingång för fakturauppgifter – hämtar kommersiella fakturor och offentliga förvaltningsfakturor från underliggande källor och levererar dem i ett gemensamt format.",
     "beskrivning": [
       "Invoices ger kommunens applikationer en gemensam väg till fakturainformation, oavsett var fakturorna kommer ifrån. API:et delar upp fakturor i två ursprung: kommersiella fakturor (till exempel el- och fjärrvärmefakturor från de kommunala bolagen) som hämtas via DataWarehouseReader, och offentliga förvaltningsfakturor som hämtas från InvoiceCache.",
@@ -3075,7 +3077,7 @@
     "beroenden": [
       {
         "name": "DataWarehouseReader",
-        "version": "5.7",
+        "version": "5.9",
         "usage": "Hämtar kommersiella fakturor, fakturadetaljer och kundengagemang ur kommunkoncernens datalager."
       },
       {
@@ -3101,7 +3103,8 @@
       "Vid sökning av kommersiella fakturor på partyId hämtas först kundengagemang från DataWarehouseReader; saknas engagemang svarar tjänsten 404 – verifierat i InvoicesService.",
       "Tjänsten saknar helt egen datalagring – den mappar och vidarebefordrar frågor till DataWarehouseReader respektive InvoiceCache.",
       "Den äldre sökvägen för kommersiella fakturor är markerad som utfasad i koden till förmån för kundfakturalistan (getInvoicesForCustomer).",
-      "PDF-innehåll maskeras i anropsloggarna via Logbook-filter, och 4xx-svar från de beroende tjänsterna öppnar inte circuit breakern."
+      "PDF-innehåll maskeras i anropsloggarna via Logbook-filter, och 4xx-svar från de beroende tjänsterna öppnar inte circuit breakern.",
+      "Fakturadetaljer (getInvoiceDetails) innehåller från och med v9.6 enhetspriser (unitPrice, invoiceUnitPrice med flera) hämtade från DataWarehouseReader 5.9."
     ]
   },
   {
@@ -3361,7 +3364,7 @@
     "slug": "memories",
     "kategori": "Dokument och arkiv",
     "status": null,
-    "apiVersion": "3.11",
+    "apiVersion": "3.12",
     "ingress": "Sök- och hämttjänst för Sundsvallsminnens digitala arkiv – filmer, fotografier, föremål, ljudinspelningar, texter och publikationer samt register över personer, sjömän, mantal och juridiska personer.",
     "beskrivning": [
       "Memories exponerar Sundsvallsminnens digitala kulturarvsarkiv som ett API. Tjänsten ger sök- och hämtfunktioner för sex materialtyper – filmer, fotografier, föremål, ljud, texter och publikationer – och fyra register – personer, juridiska personer, sjömän och mantal – med metadata som titel, ämnesord och topografisk plats, så att webbplatser och applikationer kan visa arkivets innehåll för allmänheten.",
@@ -3392,39 +3395,43 @@
       },
       {
         "titel": "Register",
-        "text": "Sökning och detaljvy i register över personer, sjömän (sjömanshusen), mantalslängder och juridiska personer, med filter på namn, födelseförsamling, födelseår, kön, plats och verksamhetsperiod."
+        "text": "Sökning och detaljvy i register över personer, sjömän (sjömanshusen), mantalslängder och juridiska personer, med filter på namn, födelseförsamling, födelseår, kön, plats och verksamhetsperiod. Biografi respektive historik för en person eller juridisk person kan hämtas som separat dokument."
       },
       {
-        "titel": "Arkivträd",
-        "text": "Arkiv, serier, volymer och samlingar söks per fritext, nodtyp och period; en nod hämtas med sin sökväg från roten och dess underliggande noder listas i arkivets egen ordning."
+        "titel": "Arkivträd och institutioner",
+        "text": "Arkiv, serier, volymer och samlingar söks per fritext, nodtyp, period, institution, kategori och plats; en nod hämtas med sin sökväg från roten och dess underliggande noder listas i arkivets egen ordning, med arkivbildare, kategori, plats och volymuppgifter. Institutioner listas separat som filter, och objekt kan sökas per arkivnod."
       },
       {
         "titel": "Topografier och kategorier",
-        "text": "Referenslistor över platser och verksamhetskategorier, med antal juridiska personer per kategori."
+        "text": "Referenslistor över platser och verksamhetskategorier, med antal juridiska personer och arkivobjekt per plats."
+      },
+      {
+        "titel": "Fritextsökning i publikationers innehåll",
+        "text": "Sökningen matchar även mot det inskannade textinnehållet i publikationer, utan att den tunga textmassan läses in vid vanlig listning."
       }
     ],
     "beroenden": [],
     "integrationer": [
       "SMB-filserver (Samba) där arkivets mediefiler lagras och strömmas ifrån"
     ],
-    "databas": "MariaDB med Flyway-migrationer; arkivets metadata, ämnesord (OCM), topografi och publiceringsstatus, personregister, sjömans- och mantalsregister, juridiska personer och arkivträdet",
+    "databas": "MariaDB med Flyway-migrationer; arkivets metadata, ämnesord (OCM), topografi och publiceringsstatus, personregister, sjömans- och mantalsregister, juridiska personer, arkivträdet samt institutioner kopplade till arkivnoderna",
     "teknik": {
       "sprak": "Java 25",
       "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.10), byggd med Maven",
-      "ovrigt": "jcifs-ng för SMB-åtkomst till filservern, strömmande filleverans direkt till HTTP-svaret"
+      "ovrigt": "jcifs-ng för SMB-åtkomst till filservern, strömmande filleverans direkt till HTTP-svaret, Tika för MIME-typsdetektering av strömmade filer"
     },
     "konfiguration": [
-      "SMB-anslutning: värd, port, share, autentisering samt mappar per materialtyp",
+      "SMB-anslutning: värd, port, share, autentisering samt mappar per materialtyp, inklusive separata mappar för personers och juridiska personers dokument (biografi/historik)",
       "MariaDB-anslutning till arkivets metadatabas; schemat versionshanteras med Flyway",
       "Logbook-payloadloggning är helt avstängd i denna tjänst (se anteckningar)",
       "Anrop görs per kommun – municipalityId ingår i alla API-vägar"
     ],
     "anteckningar": [
       "Logbooks servletfilter är avsiktligt avstängt: filtret buffrar ovillkorligen hela svarskroppen i minnet, vilket för en 41 MB-film skulle ge OutOfMemory – utförligt dokumenterat med analys av dekompilerad bytekod i application.yml.",
-      "Ämnesordstabellen (OCM) läses in i minnet vid uppstart i stället för att joinas vid varje fråga, eftersom tabellen är liten och i praktiken statisk – verifierat i OcmLookup.",
-      "Mediefiler hämtas från SMB-servern och strömmas direkt till HTTP-svaret; sökvägar byggs alltid med '/' oavsett plattform, med kodkommentar som förklarar varför.",
+      "Mediefiler hämtas från SMB-servern och strömmas direkt till HTTP-svaret.",
       "Tjänsten anropar inga andra kommun-API:er – integrationslagret består av databasen och SMB-filservern.",
-      "Versionen har gått från 3.4 till 3.11 sedan posten skrevs; tillväxten är registren, arkivträdet, den samlade sökningen och materialtypen föremål – enligt specifikationen."
+      "Versionen har gått från 3.4 till 3.12 sedan posten skrevs; tillväxten är registren, arkivträdet, den samlade sökningen, materialtypen föremål samt – i v3.12 – institutioner, arkivbildare och platsuppgifter kopplade till arkivnoder, koppling mellan noder och objekt, fritextsökning i publikationers inskannade textinnehåll (hålls utanför standardlistningen för att inte belasta varje sökning) samt dokumentleverans för personers och juridiska personers biografi/historik.",
+      "Databasändringar för arkivnoderna görs för hand i skarp drift: Flyway är avstängt där, så migrationerna som lägger till institutionstabellen och nod-kopplingen måste köras manuellt innan koden som läser dem driftsätts – dokumenterat i migrationsfilernas kommentarer."
     ]
   },
   {
@@ -4156,7 +4163,7 @@
     "slug": "party-assets",
     "kategori": "Parts- och kunddata",
     "status": null,
-    "apiVersion": "6.5",
+    "apiVersion": "6.6",
     "ingress": "Register över tillstånd och andra tillgångar som en part – invånare eller företag – har hos kommunen, till exempel parkeringstillstånd.",
     "beskrivning": [
       "PartyAssets håller reda på tillgångar (assets) som kommunen utfärdat till en part, exempelvis tillstånd och kort. Varje tillgång knyts till en part via partyId och beskrivs med typ, giltighetstid, status, statusorsak och valfria tilläggsparametrar. Verksamhetssystem kan därmed slå upp vilka engagemang en invånare eller ett företag har hos kommunen utan att själva hålla egna register.",
@@ -4192,6 +4199,10 @@
       {
         "titel": "PR3-import",
         "text": "Parkeringstillstånd importeras från Excel-filer ur systemet PR3 och resultatet rapporteras via e-post."
+      },
+      {
+        "titel": "Bilagor till tillgångar",
+        "text": "Filer (PDF, PNG, JPEG, TIFF eller Word) kan laddas upp, listas, laddas ner, uppdateras och tas bort per tillgång, max 50 MB per fil."
       }
     ],
     "beroenden": [
@@ -4219,7 +4230,7 @@
     "integrationer": [
       "PR3 (import av parkeringstillstånd via Excel-filer)"
     ],
-    "databas": "MariaDB med Flyway-migrationer; tillgångar, statusorsaker och JSON-scheman lagras i databasen",
+    "databas": "MariaDB med Flyway-migrationer; tillgångar, statusorsaker, JSON-scheman och tillgångars bilagor (filer, lagrade som blob) lagras i databasen",
     "teknik": {
       "sprak": "Java 25",
       "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.10), byggd med Maven",
@@ -4230,13 +4241,15 @@
       "MariaDB-anslutning; databasschemat versionshanteras med Flyway",
       "Cron-schema och ShedLock-låstid för det dagliga utgångsjobbet",
       "PR3-importen kan slås av med pr3import.enabled=false",
+      "Max filstorlek för bilagor: 50 MB per fil (spring.servlet.multipart)",
       "Anrop görs per kommun – municipalityId ingår i alla API-vägar"
     ],
     "anteckningar": [
       "Ett schemalagt jobb (kl. 00:00 varje natt, med ShedLock-lås) letar upp aktiva och tillfälliga tillgångar vars validTo passerats och sätter status EXPIRED – verifierat i AssetExpirationWorker.",
       "Källreferenser valideras mot formatet '{relationType}|{sourceResourceId};{sourceType};{sourceService};{sourceNamespace}|' och skapar relationer i Relation-tjänsten – verifierat i AssetService.",
       "PR3-importen läser Excel-filer med fastexcel, skiljer på förare och passagerare för parkeringstillstånd och mejlar en resultatrapport via Messaging – verifierat i PR3Importer och PR3ImportMessagingClient.",
-      "Sökningar exkluderar alltid utkast; utkast hämtas via en separat operation – verifierat i AssetService."
+      "Sökningar exkluderar alltid utkast; utkast hämtas via en separat operation – verifierat i AssetService.",
+      "Tillgångar kan ha bilagor (PDF, PNG, JPEG, TIFF, Word) kopplade till sig, max 50 MB per fil; bilagor kan bara läggas till, ändras eller tas bort medan tillgången har status DRAFT, ACTIVE eller TEMPORARY, men kan alltid listas och laddas ner. Ett utkast som skapas från en aktiv tillgång får en egen kopia av alla bilagor, och en borttagen tillgång tar bort sina bilagor."
     ]
   },
   {
@@ -4724,7 +4737,7 @@
     "slug": "self-service-ai",
     "kategori": "AI-tjänster",
     "status": null,
-    "apiVersion": "2.0",
+    "apiVersion": "2.1",
     "ingress": "Driver en AI-assistent för kundservice i självbetjäningskanaler – assistenten laddas med kundens avtal, fakturor och mätvärden och kan sedan svara på frågor om kundens engagemang.",
     "beskrivning": [
       "SelfServiceAi gör det möjligt för kommunkoncernens självbetjäningskanaler att erbjuda en AI-assistent som kan svara på frågor om kundens egna engagemang. När en session skapas hämtar tjänsten kundens installerade bas (abonnemang och anläggningar) och berikar den med avtal, fakturor och mätdata från kommunens övriga API:er.",
@@ -4761,12 +4774,12 @@
     "beroenden": [
       {
         "name": "Agreement",
-        "version": "4.0",
+        "version": "4.1",
         "usage": "Hämtar kundens avtal för att berika kundunderlaget."
       },
       {
         "name": "InstalledBase",
-        "version": "3.0",
+        "version": "3.2",
         "usage": "Hämtar kundens installerade bas – grunden i det underlag som laddas upp till assistenten."
       },
       {
@@ -4776,7 +4789,7 @@
       },
       {
         "name": "MeasurementData",
-        "version": "2.0",
+        "version": "3.3",
         "usage": "Hämtar mätvärden för kundens anläggningar."
       }
     ],
@@ -4801,7 +4814,7 @@
       "Kundunderlaget byggs asynkront efter att sessionen skapats; berikningen från Agreement, Invoices och MeasurementData är individuellt felskyddad så att ett fel i en källa inte stoppar de övriga – verifierat i tjänstelagret.",
       "Om en fil laddats upp till Eneo men inte kan kopplas till sessionen (t.ex. för att sessionen hunnit tas bort) raderas filen ur Eneo igen, så att inga föräldralösa filer lämnas kvar.",
       "En session tas bara bort om chatthistoriken först kunnat sparas till Lime; misslyckas historiksparningen lämnas sessionen kvar och rapporteras via schemaläggarens hälsokontroll.",
-      "Utan träff i installerad bas markeras sessionen som misslyckad med förklarande status i stället för att assistenten startas utan underlag."
+      "Utan träff i installerad bas markeras sessionen ändå som klar (READY), men med en förklarande statustext ('No installed base information found...') i stället för att assistenten startas utan underlag – sessionen blir inte FAILED."
     ]
   },
   {
@@ -5072,7 +5085,7 @@
     "slug": "support-management",
     "kategori": "Ärendehantering",
     "status": null,
-    "apiVersion": "15.6",
+    "apiVersion": "16.0",
     "ingress": "Ärendehanterings-API för supportärenden – skapar, uppdaterar och följer upp ärenden med kommunikation, revisioner och notifieringar åt kommunens kontaktcenter och verksamhetssystem.",
     "beskrivning": [
       "SupportManagement är motorn bakom kommunens hantering av supportärenden. API:et lagrar ärenden med klassificering, parter, prioritet, bilagor och parametrar, uppdelat per kommun och namnrymd (namespace) så att flera verksamheter kan använda samma tjänst med egna kategorier, statusar, roller och etiketter – all denna metadata administreras via API:et.",
@@ -5120,6 +5133,14 @@
       {
         "titel": "Validering och fältbehörighet",
         "text": "Validering mot namnrymdens metadata slås på eller av per typ, och namnrymdens konfiguration kan begränsa vilka resurser och fält en roll – eller ärendets anmälare – får nå."
+      },
+      {
+        "titel": "Gemensam hanteringsmodell",
+        "text": "Yttranden, utredningar (med avsnitt) och beslut (med villkor) delar en gemensam modell för ärendehandlingar tillsammans med åtgärder, med bilagor, JSON-parametrar och bilagesyften (attachment purposes) som metadata."
+      },
+      {
+        "titel": "Ärendeåtkomst per fält och resurs",
+        "text": "En ny åtkomstresurs redovisar vad den anropande användaren får läsa och ändra på ett specifikt ärende, fält för fält; namnrymdskonfigurationen listar de giltiga fälten och resurserna. Rollbaserad fältmappning och resursåtkomstkontroll kan slås på per namnrymd."
       }
     ],
     "beroenden": [
@@ -5185,25 +5206,27 @@
       }
     ],
     "integrationer": [],
-    "databas": "MariaDB med Flyway-migrationer; ärenden, kommunikation, revisioner, metadata och notifieringar lagras per kommun och namnrymd",
+    "databas": "MariaDB med Flyway-migrationer; ärenden, kommunikation, revisioner, metadata, notifieringar samt yttranden, utredningar, beslut och åtgärder (gemensam hanteringsmodell) lagras per kommun och namnrymd",
     "teknik": {
       "sprak": "Java 25",
       "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.10), byggd med Maven",
-      "ovrigt": "Schemalagda jobb med Shedlock-låsning, Resilience4j (circuit breakers), Feign-klienter, cachning av åtkomstgrupper, JSON-diff (zjsonpatch) för revisionsjämförelser"
+      "ovrigt": "Schemalagda jobb med Shedlock-låsning, Resilience4j (circuit breakers), Feign-klienter, cachning av behörighetssnapshots, JSON-diff (zjsonpatch) för revisionsjämförelser"
     },
     "konfiguration": [
       "application.yml med base-url och OAuth2-klientuppgifter (client-id/client-secret) för samtliga tolv beroende mikrotjänster",
       "MariaDB-anslutning; databasschemat versionshanteras med Flyway",
       "Cron-uttryck och Shedlock-låstider för åtta schemalagda jobb (e-post, webbmeddelanden, konversationer, åtgärder, notifieringar, suspensioner, bilage-hashar med flera)",
       "E-post- och message-exchange-integrationen konfigureras per namnrymd via API:ets konfigurationsendpoints",
+      "ROLE_BASED_MAPPING och RESOURCE_ACCESS_CONTROL är nya namnrymdskonfigurerade egenskaper som slår på rollbaserad fältmappning respektive resursåtkomstkontroll, båda av som standard",
       "Anrop görs per kommun och namnrymd – municipalityId och namespace ingår i alla API-vägar"
     ],
     "anteckningar": [
       "Revisioner skapas genom att ärendets serialiserade ögonblicksbild jämförs med senaste revisionen – en ny revision skapas bara när innehållet faktiskt ändrats, och skillnaden mellan två revisioner räknas fram som JSON-patch-operationer (RevisionService).",
-      "Automatiska åtgärder är pluggbara: åtgärdsklasser (AddLabelAction, SendEmailAction) registreras per namn och styrs av konfiguration i databasen (ErrandActionService).",
+      "Automatiska åtgärder är pluggbara: åtgärdsklasser (AddLabelAction, SendEmailAction) registreras per namn och styrs av konfiguration i databasen (ErrandActionService); från v16.0 kan en åtgärd även begränsas till specifika operationstyper.",
       "Inkommande e-post som inte kan knytas till ett befintligt ärende skapar ett nytt ärende med avsändaren som part – verifierat i EmailReader-arbetsflödet.",
-      "Ett nattligt jobb beräknar hashar för bilagor, och behöriga etiketter per användare hämtas via AccessMapper och cachas (accessibleLabelsCache).",
-      "Specifikationen har gått från 14.16 till 15.6 sedan posten skrevs: åtgärder och åtgärdstyper, massutskick av e-post, utrensning av ärenden som bakgrundsjobb, validering per namnrymd och fältbehörighet per roll."
+      "Ett nattligt jobb beräknar hashar för bilagor. En användares behörighetssnapshot (etiketter, roller och resursnivåer) hämtas i ett samlat anrop till AccessMapper och cachas per användare och namnrymd (accessibleLabelsCache) – tidigare cachades bara etiketter.",
+      "Specifikationen har gått från 14.16 till 15.6 sedan posten skrevs: åtgärder och åtgärdstyper, massutskick av e-post, utrensning av ärenden som bakgrundsjobb, validering per namnrymd och fältbehörighet per roll.",
+      "Från v16.0 (major, brytande ändring): en gemensam hanteringsmodell (yttranden, utredningar med avsnitt, beslut med villkor, samt en omarbetad åtgärdsmodell) delas mellan ärendetyper, med bilagesyften som ny metadata. Samtidigt slutar API:et publicera ErrandField- och ProtectedResource-enumerationerna – namnrymdskonfigurationen deklarerar dem numera som strängar, listade via /namespace-config/access-definition, och en ny endpoint .../errands/{errandId}/access redovisar fält- och resursbehörighet per ärende och användare."
     ]
   },
   {

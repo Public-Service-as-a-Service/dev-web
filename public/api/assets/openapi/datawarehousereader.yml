@@ -5,7 +5,7 @@ info:
   license:
     name: MIT License
     url: https://opensource.org/licenses/MIT
-  version: "5.8"
+  version: "5.9"
 servers:
 - url: http://localhost:53033
   description: Generated server url
@@ -1897,6 +1897,38 @@ components:
           description: Price per unit
           examples:
           - 0.347
+          readOnly: true
+        unitPriceVatExcluded:
+          type: number
+          description: Price per unit excluded VAT
+          examples:
+          - 0.278
+          readOnly: true
+        invoiceUnitPrice:
+          type: number
+          description: "Price per unit as presented on the invoice, expressed in the\
+            \ currency and unit given by invoiceUnitPriceCurrency and invoiceUnitPriceUnit"
+          examples:
+          - 34.7
+          readOnly: true
+        invoiceUnitPriceVatExcluded:
+          type: number
+          description: "Price per unit excluded VAT as presented on the invoice, expressed\
+            \ in the currency and unit given by invoiceUnitPriceCurrency and invoiceUnitPriceUnit"
+          examples:
+          - 27.8
+          readOnly: true
+        invoiceUnitPriceCurrency:
+          type: string
+          description: Currency that the invoice unit prices are expressed in
+          examples:
+          - öre
+          readOnly: true
+        invoiceUnitPriceUnit:
+          type: string
+          description: Unit that the invoice unit prices are expressed per
+          examples:
+          - kWh
           readOnly: true
         periodFrom:
           type: string
