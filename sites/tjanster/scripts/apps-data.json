@@ -975,6 +975,7 @@
       }
     ],
     "integrationer": [
+      "CGI GRP (BankID-signering via Funktionstjänster)",
       "SAML IdP"
     ],
     "auth": "SAML (SSO); inloggningsflödet är anpassat för BankID-baserad identifiering",
@@ -987,6 +988,7 @@
       "Miljöfiler: frontend/.env-example och backend/.env.example.local",
       "CLIENT_KEY och CLIENT_SECRET mot kommunens API-plattform (WSO2)",
       "SAML-inställningar med IdP-adress och certifikat",
+      "GRP-inställningar (GRP_URL, GRP_SERVICE_ID, GRP_ACCESS_TOKEN) för BankID-signering av fullmakter",
       "API-listan i backend/src/config/api-config.ts är enda sanningskälla för API-prenumerationer"
     ],
     "anteckningar": [
@@ -1093,7 +1095,7 @@
       },
       {
         "name": "SelfServiceAI",
-        "version": "2.0",
+        "version": "2.1",
         "usage": "AI-assistentens frågetjänst."
       },
       {
@@ -1254,7 +1256,7 @@
     "teknik": {
       "frontend": "Next.js/React (App Router) med react-i18next och Recharts",
       "backend": "Node.js med Express och routing-controllers",
-      "tester": null
+      "tester": "Jest (frontend och backend), Cypress (e2e)"
     },
     "konfiguration": [
       "Miljöfiler för frontend (.env-example) och backend (.env.example.local)",
@@ -1390,7 +1392,7 @@
     ],
     "auth": "SAML (SSO)",
     "teknik": {
-      "frontend": "Next.js 16 (Pages Router), React 19, sk-web-gui, Tailwind CSS, next-i18next",
+      "frontend": "Next.js 16 (App Router), React 19, sk-web-gui, Tailwind CSS, next-i18n-router",
       "backend": "Node.js, Express, routing-controllers, TypeScript",
       "tester": "Jest, Cypress med kodtäckning"
     },
@@ -1484,7 +1486,7 @@
       "SAML-inställningar med IdP-adress och certifikat"
     ],
     "anteckningar": [
-      "Repot är byggt på kommunens startmall och innehåller fortfarande exempelsidor från mallen, vilket tyder på tidig utvecklingsfas.",
+      "Repot är byggt på kommunens startmall; tre fullt utbyggda verksamhetssidor finns nu (min personakt, mina medarbetare, sök personakt) – enda kvarvarande spår av mallen är en oanvänd i18n-namespace ('example').",
       "Namnet 'new-personal-files' indikerar att tjänsten ersätter en äldre personaktslösning.",
       "Behörighet styrs via SAML-grupper; användare utan rätt grupp nekas åtkomst."
     ],
@@ -1543,7 +1545,7 @@
     "teknik": {
       "frontend": "Next.js (pages router), React, TypeScript, sk-web-gui, Tailwind CSS, next-i18next, Zustand",
       "backend": "Node.js, Express, routing-controllers, Passport SAML, Prisma",
-      "tester": null
+      "tester": "Jest och Cypress (frontend), Jest (backend)"
     },
     "konfiguration": [
       ".env-filer för frontend och backend utifrån .env-exempel",
@@ -1731,7 +1733,7 @@
     "teknik": {
       "frontend": "Next.js 15, React 19, i18next",
       "backend": "Node.js, Express 4, TypeScript",
-      "tester": "Jest"
+      "tester": "Jest, Cypress"
     },
     "konfiguration": [
       "Miljöfiler: frontend/.env-example (appnamn 'Färdtjänstregistrering') och backend/.env.example.local",
@@ -1958,7 +1960,7 @@
     "auth": "SAML (SSO) mot kommunens centrala inloggning",
     "teknik": {
       "frontend": "Next.js 15, React 19, sk-web-gui (separat frontend- och adminapplikation)",
-      "backend": "Node.js med Express och Prisma mot MySQL (TypeScript)",
+      "backend": "Node.js med Express och Prisma mot SQLite (TypeScript)",
       "tester": "Cypress med kodtäckning"
     },
     "konfiguration": [
@@ -2422,21 +2424,15 @@
         "text": "Backenden agerar både SAML Service Provider och test-IdP, med metadata och svarsbyggare."
       }
     ],
-    "apis": [
-      {
-        "name": "SimulatorServer",
-        "version": "2.0",
-        "usage": "Hälsokontroll/simulering i utvecklingsmiljö."
-      }
-    ],
+    "apis": [],
     "integrationer": [
       "SAML (SP och IdP)"
     ],
-    "auth": "SAML (SSO) för admingränssnittet; verktyget är självt en test-IdP",
+    "auth": "Lokalt admin-konto (användarnamn/lösenord, hastighetsbegränsat) för admingränssnittet; verktyget är självt en test-IdP",
     "teknik": {
       "frontend": "Next.js 16, React (separata frontend- och admin-appar, byggda på sk-web-gui webbappsmall)",
       "backend": "Node.js/Express med TypeScript, Prisma ORM mot SQLite",
-      "tester": "Jest, Cypress"
+      "tester": "Vitest (enhetstester, alla tre paket), Playwright (e2e, frontend och admin)"
     },
     "konfiguration": [
       "Miljöfiler: frontend/.env, backend/.env.development.local och .env.test.local",
@@ -2640,10 +2636,10 @@
     "slug": "arendehantering-och-myndighetsutovning",
     "kategori": "Ärendehantering",
     "status": "aktiv",
-    "ingress": "En gemensam, konfigurerbar plattform för att ta emot, handlägga och avsluta ärenden – från kontaktcenterärenden och intern service till myndighetsutövning inom mark och exploatering samt parkeringstillstånd.",
+    "ingress": "En gemensam, konfigurerbar plattform för att ta emot, handlägga och avsluta ärenden – från kontaktcenterärenden och intern service till myndighetsutövning inom mark och exploatering samt parkeringstillstånd och färdtjänst.",
     "beskrivning": [
       "Detta är kommunens gemensamma ärendehanteringsplattform för handläggare. I stället för att varje verksamhet skaffar och underhåller sitt eget ärendesystem erbjuder plattformen en gemensam grund som konfigureras per verksamhet – med egna ärendekategorier, roller, statusflöden och kommunikationsmallar. Handläggaren registrerar ärenden som kommer in via olika kanaler, ser all information om den som ärendet gäller, kommunicerar med invånare och medarbetare direkt från ärendet och följer ärendet från registrering till avslut.",
-      "Ur samma kodbas byggs flera webbappar. Den generiska ärendehanteringen används av nio verksamheter – från kontaktcenter i Sundsvall och Ånge till löne-, rekryterings- och ekonomifunktioner – medan två specialiserade webbar stödjer myndighetsutövning: handläggning av mark- och exploateringsärenden respektive parkeringstillstånd för rörelsehindrade. Vilken webb som byggs, och hur den beter sig, styrs av konfiguration och funktionsflaggor – inte av separata kodgrenar.",
+      "Ur samma kodbas byggs flera webbappar. Den generiska ärendehanteringen används av nio verksamheter – från kontaktcenter i Sundsvall och Ånge till löne-, rekryterings- och ekonomifunktioner – medan två specialiserade webbar stödjer myndighetsutövning: handläggning av mark- och exploateringsärenden respektive parkeringstillstånd och färdtjänst för personer med funktionsnedsättning. Vilken webb som byggs, och hur den beter sig, styrs av konfiguration och funktionsflaggor – inte av separata kodgrenar.",
       "Att såväl förvaltningar som kommunala bolag och en annan kommun använder samma lösning visar styrkan i det generiska angreppssättet: samma öppna kodbas, konfigurerad för olika behov. Nya verksamheter ansluts utan att ny programvara behöver utvecklas, vilket ger kort startsträcka, lägre förvaltningskostnad och en enhetlig arbetsmiljö för handläggare i hela organisationen."
     ],
     "malgrupp": "handläggare i kommunens verksamheter",
@@ -2704,12 +2700,13 @@
         ]
       },
       {
-        "namn": "Myndighetsutövning – parkeringstillstånd",
-        "beskrivning": "digital handläggning av parkeringstillstånd för rörelsehindrade",
+        "namn": "Myndighetsutövning – parkeringstillstånd och färdtjänst",
+        "beskrivning": "digital handläggning av parkeringstillstånd samt färdtjänst och riksfärdtjänst för personer med funktionsnedsättning",
         "processer": [
           "Ansökan, utredning och komplettering",
           "Beslut med automatisk kontroll av strukturerade ansökningsuppgifter",
-          "Utfärdande, registrering och förnyelse av tillstånd"
+          "Utfärdande, registrering och förnyelse av parkeringstillstånd",
+          "Ansökan, utredning och beslut om färdtjänst, riksfärdtjänst och busskort"
         ]
       }
     ],
@@ -2737,7 +2734,7 @@
       {
         "name": "Messaging",
         "version": "7.10",
-        "usage": "Meddelanden till sökande och andra parter i myndighetsärenden (parkeringstillstånd: sms och digital brevlåda, inte e-post)"
+        "usage": "Meddelanden till sökande och andra parter i myndighetsärenden (parkeringstillstånd och färdtjänst: sms och digital brevlåda, inte e-post)"
       },
       {
         "name": "PartyAssets",
@@ -2810,7 +2807,7 @@
     "teknik": {
       "frontend": "React-baserad webbapplikation (Node.js 20 LTS eller senare, Yarn)",
       "backend": "Node.js-backend i samma kodbas (monorepo)",
-      "tester": "Vitest (backend, med kodtäckning), Cypress och Playwright (end-to-end)"
+      "tester": "Vitest (backend, med kodtäckning), Playwright (end-to-end)"
     },
     "konfiguration": [
       "Varje webb och verksamhetsinstans konfigureras med egna miljövariabelfiler för frontend respektive backend.",
@@ -2821,7 +2818,7 @@
     ],
     "anteckningar": [
       "Samma kodbas bygger samtliga webbar; vilken webb som byggs och vilka funktioner den har styrs av konfiguration och funktionsflaggor, inte av separata kodgrenar.",
-      "Parkeringstillstånd skickar beslut som sms och digital brevlåda; e-post används inte.",
+      "Parkeringstillstånd och färdtjänst skickar beslut som sms och digital brevlåda; e-post används inte.",
       "Fakturering används av vissa verksamheter (t.ex. Lön och pension) och styrs med funktionsflaggor."
     ]
   }
