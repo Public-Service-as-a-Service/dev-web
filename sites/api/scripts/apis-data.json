@@ -3165,6 +3165,58 @@
     ]
   },
   {
+    "repo": "api-service-licensed-business",
+    "namn": "LicensedBusiness",
+    "slug": "licensed-business",
+    "kategori": "Samhällsservice",
+    "status": null,
+    "apiVersion": "1.0",
+    "ingress": "Håller reda på serveringsnummer, adresser och licensinnehavare för näringsverksamheter med tillståndsplikt, till exempel serveringstillstånd för alkohol.",
+    "beskrivning": [
+      "LicensedBusiness administrerar de serveringsnummer (fyrsiffriga, unika per kommun) som knyts till en adress där en tillståndspliktig verksamhet – till exempel en restaurang med serveringstillstånd – bedrivs. API:et tilldelar nästa lediga nummer för en adress och håller reda på vilken licensinnehavare (organisationsnummer) som är kopplad till numret över tid.",
+      "Varje koppling mellan ett serveringsnummer och en licensinnehavare hanteras som en tidsbegränsad tilldelning (assignment) med giltighetsperiod och status – aktiv eller avslutad. En ny tilldelning avslutar automatiskt en tidigare aktiv tilldelning på samma nummer, och ett schemalagt jobb stänger löpande tilldelningar vars giltighetstid gått ut.",
+      "Historiska bestånd kan föras in i registret genom en engångsimport av en CSV-fil: adresser, licensinnehavare, serveringsnummer och tilldelningar skapas eller återanvänds rad för rad, och rader som pekar ut samma nummer på olika adresser rapporteras tillbaka som konflikter i importsvaret."
+    ],
+    "malgrupp": "Kommunens applikationer och verksamhetssystem inom alkohol- och näringstillsyn",
+    "funktioner": [
+      {
+        "titel": "Tilldela serveringsnummer",
+        "text": "Allokerar nästa lediga fyrsiffriga serveringsnummer för en adress."
+      },
+      {
+        "titel": "Tilldelningar",
+        "text": "Skapar och uppdaterar tidsbegränsade kopplingar mellan serveringsnummer och licensinnehavare, med automatisk statusuppdatering när giltighetstiden går ut."
+      },
+      {
+        "titel": "Adresser",
+        "text": "Skapar adresser och listar dem sida för sida med sortering och filtrering."
+      },
+      {
+        "titel": "Import",
+        "text": "Läser in ett historiskt bestånd av serveringsnummer, adresser, licensinnehavare och tilldelningar från en CSV-fil i ett svep."
+      }
+    ],
+    "beroenden": [],
+    "integrationer": [],
+    "databas": "MariaDB med Flyway-migrationer; adresser, licensinnehavare, serveringsnummer och tilldelningar lagras per kommun",
+    "teknik": {
+      "sprak": "Java 25",
+      "ramverk": "Spring Boot via kommunens gemensamma tjänsteplattform dept44 (8.0.10), byggd med Maven",
+      "ovrigt": "dept44-scheduler med ShedLock för det dagliga jobbet som stänger utgångna tilldelningar, Apache Commons CSV för importen"
+    },
+    "konfiguration": [
+      "MariaDB-anslutning i application.yml",
+      "Cron-schema för jobbet som stänger utgångna tilldelningar (schedulers.update-assignment-status)",
+      "Anrop görs per kommun – municipalityId ingår i alla API-vägar"
+    ],
+    "anteckningar": [
+      "Serveringsnumret är fyra siffror och allokeras som lägsta lediga nummer per kommun; krockar vid samtidiga tilldelningsförsök löses med tre nya försök innan anropet avvisas – verifierat i RestaurantNumberService.",
+      "En ny tilldelning på samma serveringsnummer avslutar automatiskt den tidigare aktiva tilldelningen – verifierat i AssignmentService/AssignmentStatusResolver.",
+      "CSV-importen är allt-eller-inget: hittar den några felaktiga rader sparas ingenting alls, och samtliga radfel rapporteras tillbaka i importsvaret (som mest 100 st) – verifierat i ImportService.",
+      "Organisationsnummer normaliseras till formatet NNNNNN-NNNN innan lagring, inklusive hantering av personnummer med sekelprefix 16 – verifierat i OrgNumberNormalizer."
+    ]
+  },
+  {
     "repo": "api-service-lifecare-integrator",
     "namn": "LifecareIntegrator",
     "slug": "lifecare-integrator",
@@ -4163,7 +4215,7 @@
     "slug": "party-assets",
     "kategori": "Parts- och kunddata",
     "status": null,
-    "apiVersion": "6.6",
+    "apiVersion": "6.7",
     "ingress": "Register över tillstånd och andra tillgångar som en part – invånare eller företag – har hos kommunen, till exempel parkeringstillstånd.",
     "beskrivning": [
       "PartyAssets håller reda på tillgångar (assets) som kommunen utfärdat till en part, exempelvis tillstånd och kort. Varje tillgång knyts till en part via partyId och beskrivs med typ, giltighetstid, status, statusorsak och valfria tilläggsparametrar. Verksamhetssystem kan därmed slå upp vilka engagemang en invånare eller ett företag har hos kommunen utan att själva hålla egna register.",
@@ -4202,7 +4254,15 @@
       },
       {
         "titel": "Bilagor till tillgångar",
-        "text": "Filer (PDF, PNG, JPEG, TIFF eller Word) kan laddas upp, listas, laddas ner, uppdateras och tas bort per tillgång, max 50 MB per fil."
+        "text": "Filer kan laddas upp, listas, laddas ner, uppdateras och tas bort per tillgång, max 50 MB per fil; valfri filtyp accepteras och typer som inte känns igen lagras som octet-stream."
+      },
+      {
+        "titel": "Historik",
+        "text": "Varje ändring av en tillgång sparar en version av det tidigare tillståndet, som kan listas eller hämtas revision för revision; ändringar medan tillgången är ett utkast sparas inte i historiken."
+      },
+      {
+        "titel": "Samtidighetskontroll",
+        "text": "Vid uppslag av en tillgång returneras en ETag med versionen, som kan skickas tillbaka som If-Match vid uppdatering för att upptäcka att tillgången ändrats under tiden."
       }
     ],
     "beroenden": [
@@ -4249,7 +4309,10 @@
       "Källreferenser valideras mot formatet '{relationType}|{sourceResourceId};{sourceType};{sourceService};{sourceNamespace}|' och skapar relationer i Relation-tjänsten – verifierat i AssetService.",
       "PR3-importen läser Excel-filer med fastexcel, skiljer på förare och passagerare för parkeringstillstånd och mejlar en resultatrapport via Messaging – verifierat i PR3Importer och PR3ImportMessagingClient.",
       "Sökningar exkluderar alltid utkast; utkast hämtas via en separat operation – verifierat i AssetService.",
-      "Tillgångar kan ha bilagor (PDF, PNG, JPEG, TIFF, Word) kopplade till sig, max 50 MB per fil; bilagor kan bara läggas till, ändras eller tas bort medan tillgången har status DRAFT, ACTIVE eller TEMPORARY, men kan alltid listas och laddas ner. Ett utkast som skapas från en aktiv tillgång får en egen kopia av alla bilagor, och en borttagen tillgång tar bort sina bilagor."
+      "Bilagor kan bara läggas till, ändras eller tas bort medan tillgången har status DRAFT, ACTIVE eller TEMPORARY, men kan alltid listas och laddas ner; sedan version 6.7 accepteras valfri innehållstyp – anropare får själva validera filtyper, och en typ som inte kan tolkas lagras som application/octet-stream. Ett utkast som skapas från en aktiv tillgång får en egen kopia av alla bilagor, och en borttagen tillgång tar bort sina bilagor – verifierat i AssetAttachmentMapper.",
+      "Sedan version 6.7 sparas en revision av tillgångens tidigare tillstånd inför varje ändring (utom medan tillgången är ett utkast), med vem som gjorde ändringen (X-Sent-By), tidpunkt och samtliga fält – verifierat i AssetRevisions och AssetRevisionService.",
+      "Sedan version 6.7 kan en uppdatering skicka med If-Match (ETag från ett tidigare GET-anrop); stämmer den inte med tillgångens aktuella version avvisas anropet med 412 – verifierat i AssetResource/AssetService.",
+      "Tillgångar har sedan version 6.7 ett valfritt titel-fält som visas för parten, skiljt från den interna beskrivningen – verifierat i Asset-modellen."
     ]
   },
   {
