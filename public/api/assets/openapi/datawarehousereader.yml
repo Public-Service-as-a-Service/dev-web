@@ -5,7 +5,7 @@ info:
   license:
     name: MIT License
     url: https://opensource.org/licenses/MIT
-  version: "5.9"
+  version: "5.10"
 servers:
 - url: http://localhost:53033
   description: Generated server url
@@ -1501,7 +1501,8 @@ components:
         instance:
           type: string
           format: uri
-        causeAsProblem: {}
+        causeAsProblem:
+          $ref: "#/components/schemas/ThrowableProblem"
     Violation:
       type: object
       properties:
@@ -2103,6 +2104,12 @@ components:
           description: Amount eligible for VAT
           examples:
           - 986.81
+          readOnly: true
+        vat:
+          type: number
+          description: VAT amount
+          examples:
+          - 246.7
           readOnly: true
         rounding:
           type: number

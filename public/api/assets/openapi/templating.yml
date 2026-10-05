@@ -5,7 +5,7 @@ info:
   license:
     name: MIT License
     url: https://opensource.org/licenses/MIT
-  version: "2.1"
+  version: "2.2"
 servers:
 - url: http://localhost:63896
   description: Generated server url
@@ -165,6 +165,12 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/RenderResponse"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Problem"
         "404":
           description: Not Found - the template could not be found
           content:
@@ -204,6 +210,59 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/RenderResponse"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Problem"
+        "404":
+          description: Not Found - the template could not be found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RenderResponse"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Problem"
+  /{municipalityId}/render/pdf/preview:
+    post:
+      tags:
+      - Rendering resources
+      summary: Render a stored template as a watermarked PDF preview
+      description: Renders the template like /pdf and stamps every page to mark the
+        document as a preview
+      operationId: renderPdfPreview
+      parameters:
+      - name: municipalityId
+        in: path
+        description: Municipality ID
+        required: true
+        schema:
+          type: string
+        example: 2281
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RenderRequest"
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RenderResponse"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Problem"
         "404":
           description: Not Found - the template could not be found
           content:
@@ -243,6 +302,12 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DirectRenderResponse"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Problem"
         "500":
           description: Internal Server Error
           content:
@@ -276,6 +341,12 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DirectRenderResponse"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Problem"
         "500":
           description: Internal Server Error
           content:

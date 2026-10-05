@@ -5,7 +5,7 @@ info:
   license:
     name: MIT License
     url: https://opensource.org/licenses/MIT
-  version: "13.2"
+  version: "14.0"
 servers:
 - url: http://localhost:52467
   description: Generated server url
@@ -5336,7 +5336,8 @@ components:
         instance:
           type: string
           format: uri
-        causeAsProblem: {}
+        causeAsProblem:
+          $ref: "#/components/schemas/ThrowableProblem"
     Violation:
       type: object
       properties:
@@ -5588,6 +5589,8 @@ components:
           - REJECTION
           - DISMISSAL
           - CANCELLATION
+          - CONDITIONAL_APPROVAL
+          - REVOCATION
           examples:
           - GRANTED
         description:
@@ -6886,6 +6889,8 @@ components:
           - REJECTION
           - DISMISSAL
           - CANCELLATION
+          - CONDITIONAL_APPROVAL
+          - REVOCATION
           examples:
           - GRANTED
         description:
