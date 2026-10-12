@@ -1,0 +1,116 @@
+name: Repolista
+
+# Skriver veckans lista över källkodsrepona (namn, archived, pushed_at) till
+# grenen "repolista" i det här repot. Veckosynken av API-katalogen körs som en
+# Claude-routine vars GitHub-åtkomst bara omfattar dev-web; den läser listan
+# härifrån i stället för att anropa Sundsvallskommun och diwise direkt.
+#
+# Listan ligger på en egen gren och inte på main, så att en uppdatering inte
+# startar någon deploy av webbplatsen. Routinen hämtar den med
+#   git fetch origin repolista && git show origin/repolista:repolista.json
+#
+# Innehåll:
+#   - Sundsvallskommun: alla repon vars namn börjar med api-service-.
+#   - Övriga ägare (fältet agare i apis-data.json, t.ex. diwise): bara de repon
+#     som finns i datafilen. Fler repon från andra organisationer upptäcks inte.
+#   - Poster i apis-data.json vars repo inte hittas får finns=false (borttaget).
+
+on:
+  schedule:
+    # 05:30 UTC på måndagar: efter SBOM-körningen (05:00) och före routinen (06:00).
+    - cron: "30 5 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: repolista
+  cancel-in-progress: false
+
+jobs:
+  repolista:
+    name: Skriv repolistan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Hämta repolistan
+        env:
+          # Token med läsrätt på organisationernas repon (även privata om sådana
+          # ska synas). GITHUB_TOKEN räcker inte utanför det här repot.
+          GH_TOKEN: ${{ secrets.REPOLISTA_TOKEN }}
+        run: |
+          if [ -z "$GH_TOKEN" ]; then
+            echo "::error::Hemligheten REPOLISTA_TOKEN saknas – kan inte läsa organisationernas repon."
+            exit 1
+          fi
+          mkdir -p "$RUNNER_TEMP/repolista"
+          cd "$RUNNER_TEMP/repolista"
+
+          # Sundsvallskommun: alla api-service-repon.
+          gh api --paginate "/orgs/Sundsvallskommun/repos?type=all&per_page=100" \
+            | jq -s '[.[][] | select(.name | startswith("api-service-"))
+                      | {agare: "Sundsvallskommun", repo: .name, finns: true,
+                         archived, pushed_at, default_branch}]' \
+            > sundsvall.json
+
+          # Katalogposter hos andra ägare: slå upp varje repo för sig.
+          jq -c '.[] | select((.agare // "Sundsvallskommun") != "Sundsvallskommun")
+                 | {agare, repo}' "$GITHUB_WORKSPACE/sites/api/scripts/apis-data.json" \
+            | while read -r post; do
+                agare=$(echo "$post" | jq -r .agare)
+                repo=$(echo "$post" | jq -r .repo)
+                if svar=$(gh api "/repos/$agare/$repo" 2>/dev/null); then
+                  echo "$svar" | jq -c '{agare: .owner.login, repo: .name, finns: true,
+                                         archived, pushed_at, default_branch}'
+                else
+                  jq -nc --arg a "$agare" --arg r "$repo" \
+                    '{agare: $a, repo: $r, finns: false, archived: null, pushed_at: null, default_branch: null}'
+                fi
+              done | jq -s '.' > andra.json
+
+          # Katalogposter hos Sundsvallskommun som saknas i listan är borttagna.
+          jq -n --slurpfile sk sundsvall.json --slurpfile an andra.json \
+                --slurpfile data "$GITHUB_WORKSPACE/sites/api/scripts/apis-data.json" '
+            ($sk[0]) as $sk | ($an[0]) as $an |
+            ($sk | map(.repo)) as $namn |
+            [$data[0][] | select((.agare // "Sundsvallskommun") == "Sundsvallskommun")
+                        | select(.repo as $r | $namn | index($r) | not)
+                        | {agare: "Sundsvallskommun", repo, finns: false,
+                           archived: null, pushed_at: null, default_branch: null}] as $saknas |
+            {repon: (($sk + $an + $saknas) | sort_by(.agare, .repo))}' \
+            > repolista.json
+
+          jq -r '.repon | "\(length) repon, \(map(select(.archived == true)) | length) arkiverade, \(map(select(.finns | not)) | length) saknas"' repolista.json
+          # Skydd mot en tom eller avklippt lista: en lyckad körning som skriver 0
+          # repon skulle få routinen att tro att hela katalogen avvecklats.
+          if [ "$(jq '[.repon[] | select(.agare == "Sundsvallskommun" and .finns)] | length' repolista.json)" -lt 10 ]; then
+            echo "::error::Misstänkt kort lista från Sundsvallskommun – avbryter utan att skriva."
+            exit 1
+          fi
+
+      - name: Publicera på grenen repolista
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git ls-remote --exit-code --heads origin repolista >/dev/null 2>&1; then
+            git fetch --depth 1 origin repolista
+            git checkout -B repolista origin/repolista
+          else
+            git checkout --orphan repolista
+            git rm -rfq .
+          fi
+          cp "$RUNNER_TEMP/repolista/repolista.json" repolista.json
+          printf '%s\n' \
+            'Genereras av .github/workflows/repolista.yml på main – redigera inte för hand.' \
+            'repolista.json: källkodsrepona bakom API-katalogen (namn, archived, pushed_at).' \
+            > README.md
+          git add repolista.json README.md
+          if git diff --cached --quiet; then
+            echo "Listan oförändrad."
+            exit 0
+          fi
+          git commit -m "Uppdatera repolistan ($(date -u +%F))"
+          git push origin repolista

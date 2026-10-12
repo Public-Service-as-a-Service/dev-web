@@ -26,6 +26,14 @@ den här filen.
 2. Utgå från `sites/api/scripts/apis-data.json`; fältet `repo` pekar på
    källkodsrepot under `github.com/Sundsvallskommun`, eller under den
    organisation fältet `agare` anger (t.ex. `diwise` för Öppna data).
+   **Repolistan.** Routinens GitHub-åtkomst kan vara begränsad till dev-web.
+   Arbetsflödet `.github/workflows/repolista.yml` (måndagar 05:30 UTC) skriver
+   därför veckans lista över källkodsrepona (`agare`, `repo`, `finns`,
+   `archived`, `pushed_at`, `default_branch`) till grenen `repolista` i
+   dev-web. Hämta den med `git fetch origin repolista` och
+   `git show origin/repolista:repolista.json` och använd den i steg 3 och 4 i
+   stället för att anropa organisationerna direkt. Saknas grenen eller är den
+   äldre än en vecka: avrapportera det i stället för att gissa.
 3. **Nya API:er.** Lista Sundsvallskommuns repon som börjar med
    `api-service-` och som saknas i datafilen. API:er från andra organisationer
    (som diwise) upptäcks inte automatiskt utan läggs till på begäran. Klona
@@ -34,8 +42,8 @@ den här filen.
    version ≥ 1.0, aktiv historik). Lägg bara till API:er där bedömningen är
    säker; lista osäkra kandidater i PR-beskrivningen i stället för att gissa
    – granskaren avgör.
-4. **Avvecklade API:er.** Poster vars källkodsrepo är arkiverat eller
-   borttaget behandlas som avvecklade: ta bort posten ur `apis-data.json`
+4. **Avvecklade API:er.** Poster vars källkodsrepo är arkiverat (`archived`)
+   eller borttaget (`finns: false`) behandlas som avvecklade: ta bort posten ur `apis-data.json`
    tillsammans med de genererade filerna (`api/<slug>.html`,
    `api/<slug>-swagger.html`, `api/<slug>-sbom.html`,
    `public/api/assets/openapi/<slug>.yml`,
