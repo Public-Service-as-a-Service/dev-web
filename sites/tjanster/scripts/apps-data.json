@@ -94,7 +94,7 @@
     "apis": [
       {
         "name": "AiFlow",
-        "version": "2.0",
+        "version": "3.1",
         "usage": "Kör AI-flöden som genererar och sammanställer dokumentets delar."
       },
       {
@@ -623,7 +623,7 @@
     "apis": [
       {
         "name": "SupportManagement",
-        "version": "15.4",
+        "version": "15.6",
         "usage": "Metadata för ärendehantering: kategorier, statusar, etiketter, roller och namnrymder."
       },
       {
@@ -786,12 +786,12 @@
       },
       {
         "name": "Employee",
-        "version": "1.0",
+        "version": "2.0",
         "usage": "Hämtar medarbetar- och portalpersondata."
       },
       {
         "name": "Messaging",
-        "version": "5.0",
+        "version": "7.11",
         "usage": "Skickar meddelanden/notifieringar."
       }
     ],
@@ -1073,7 +1073,7 @@
       },
       {
         "name": "DataWarehouseReader",
-        "version": "5.9",
+        "version": "5.10",
         "usage": "Fakturalista, fakturadetaljer och ägarkontroll för organisationens fakturor."
       },
       {
@@ -1323,7 +1323,7 @@
     "apis": [
       {
         "name": "Memories",
-        "version": "3.12",
+        "version": "3.13",
         "usage": "Hämtar och söker i minnesarkivets dokument och media."
       }
     ],
@@ -2542,7 +2542,7 @@
       },
       {
         "name": "SupportManagement (sprint)",
-        "version": "15.1",
+        "version": "17.0",
         "usage": "Tillfällig utvecklingsversion av ärende-API:t som trafiken styrs om till under pågående sprint."
       },
       {
@@ -2770,7 +2770,7 @@
       },
       {
         "name": "CaseData",
-        "version": "13.0",
+        "version": "14.0",
         "usage": "Kärnan i myndighetsärenden – utredning, beslut och status; eskalering från den generiska ärendehanteringen"
       },
       {
