@@ -1,0 +1,700 @@
+{
+  "repon": [
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-access-loader",
+      "finns": true,
+      "archived": false,
+      "pushed_at": "2026-10-09T05:00:00Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-access-mapper",
+      "finns": true,
+      "archived": false,
+      "pushed_at": "2026-10-09T05:00:04Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-agreement",
+      "finns": true,
+      "archived": false,
+      "pushed_at": "2026-10-12T10:20:19Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-ai-data-collector",
+      "finns": true,
+      "archived": false,
+      "pushed_at": "2026-10-09T05:00:08Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-ai-flow",
+      "finns": true,
+      "archived": false,
+      "pushed_at": "2026-10-09T05:00:12Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-alkt",
+      "finns": true,
+      "archived": false,
+      "pushed_at": "2026-10-09T05:00:13Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-aot-loader",
+      "finns": true,
+      "archived": false,
+      "pushed_at": "2026-10-12T07:50:48Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-archive",
+      "finns": true,
+      "archived": false,
+      "pushed_at": "2026-10-09T05:00:16Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-billing-data-collector",
+      "finns": true,
+      "archived": false,
+      "pushed_at": "2026-10-09T05:00:20Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-billing-preprocessor",
+      "finns": true,
+      "archived": false,
+      "pushed_at": "2026-10-09T05:00:23Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-business-engagements",
+      "finns": true,
+      "archived": true,
+      "pushed_at": "2026-03-31T11:04:24Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-business-information",
+      "finns": true,
+      "archived": false,
+      "pushed_at": "2026-10-09T05:00:21Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-business-rules",
+      "finns": true,
+      "archived": false,
+      "pushed_at": "2026-10-09T05:00:25Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-byggr-integrator",
+      "finns": true,
+      "archived": false,
+      "pushed_at": "2026-10-09T12:39:48Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-byggrarchiver",
+      "finns": true,
+      "archived": false,
+      "pushed_at": "2026-10-09T14:15:14Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-caremanagement",
+      "finns": true,
+      "archived": false,
+      "pushed_at": "2026-10-09T05:00:39Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-case-data",
+      "finns": true,
+      "archived": false,
+      "pushed_at": "2026-10-09T06:35:05Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-case-status",
+      "finns": true,
+      "archived": false,
+      "pushed_at": "2026-10-09T05:00:41Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-casemanagement",
+      "finns": true,
+      "archived": false,
+      "pushed_at": "2026-10-09T11:24:06Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-checklist",
+      "finns": true,
+      "archived": false,
+      "pushed_at": "2026-10-09T05:00:53Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-citizen-changes",
+      "finns": true,
+      "archived": false,
+      "pushed_at": "2026-10-09T05:00:52Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-configuration",
+      "finns": true,
+      "archived": false,
+      "pushed_at": "2026-10-09T05:00:51Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-contactsettings",
+      "finns": true,
+      "archived": false,
+      "pushed_at": "2026-10-09T05:00:55Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-contract",
+      "finns": true,
+      "archived": false,
+      "pushed_at": "2026-10-12T03:53:48Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-contract-loader",
+      "finns": true,
+      "archived": true,
+      "pushed_at": "2026-04-13T11:33:21Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-csv-filereader",
+      "finns": true,
+      "archived": false,
+      "pushed_at": "2026-10-09T05:12:05Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-customer",
+      "finns": true,
+      "archived": false,
+      "pushed_at": "2026-10-09T05:01:03Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-datacatalog",
+      "finns": true,
+      "archived": false,
+      "pushed_at": "2026-10-09T05:01:00Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-datawarehousereader",
+      "finns": true,
+      "archived": false,
+      "pushed_at": "2026-10-12T06:48:01Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-digital-mail-sender",
+      "finns": true,
+      "archived": false,
+      "pushed_at": "2026-10-09T06:35:15Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-digital-registered-letter",
+      "finns": true,
+      "archived": false,
+      "pushed_at": "2026-10-09T05:01:13Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-disturbance",
+      "finns": true,
+      "archived": false,
+      "pushed_at": "2026-10-09T11:17:40Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-document",
+      "finns": true,
+      "archived": false,
+      "pushed_at": "2026-10-09T05:01:14Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-e-signing",
+      "finns": true,
+      "archived": false,
+      "pushed_at": "2026-10-09T05:01:18Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-education-data",
+      "finns": true,
+      "archived": false,
+      "pushed_at": "2026-10-09T05:01:19Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-education-finder",
+      "finns": true,
+      "archived": false,
+      "pushed_at": "2026-10-09T05:01:22Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-email-reader",
+      "finns": true,
+      "archived": false,
+      "pushed_at": "2026-10-12T11:28:58Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-email-sender",
+      "finns": true,
+      "archived": false,
+      "pushed_at": "2026-10-09T05:01:26Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-eventlog",
+      "finns": true,
+      "archived": false,
+      "pushed_at": "2026-10-09T05:01:27Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-financial-aid",
+      "finns": true,
+      "archived": false,
+      "pushed_at": "2026-10-09T06:35:25Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-garbage",
+      "finns": true,
+      "archived": false,
+      "pushed_at": "2026-10-12T06:09:34Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-incident",
+      "finns": true,
+      "archived": false,
+      "pushed_at": "2026-10-09T05:01:36Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-incident-mapper",
+      "finns": true,
+      "archived": false,
+      "pushed_at": "2026-10-09T05:01:37Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-installation",
+      "finns": true,
+      "archived": false,
+      "pushed_at": "2026-10-09T05:01:40Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-installedbase",
+      "finns": true,
+      "archived": false,
+      "pushed_at": "2026-10-12T11:58:08Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-invoice-cache",
+      "finns": true,
+      "archived": false,
+      "pushed_at": "2026-10-12T12:00:18Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-invoice-sender",
+      "finns": true,
+      "archived": false,
+      "pushed_at": "2026-10-09T07:29:30Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-invoices",
+      "finns": true,
+      "archived": false,
+      "pushed_at": "2026-10-12T12:00:12Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-json-schema",
+      "finns": true,
+      "archived": false,
+      "pushed_at": "2026-10-12T11:57:57Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-licensed-business",
+      "finns": true,
+      "archived": false,
+      "pushed_at": "2026-10-12T11:47:45Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-lifecare-integrator",
+      "finns": true,
+      "archived": false,
+      "pushed_at": "2026-10-12T11:58:01Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-manager-responsibility",
+      "finns": true,
+      "archived": false,
+      "pushed_at": "2026-10-12T11:47:46Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-measurement-data",
+      "finns": true,
+      "archived": false,
+      "pushed_at": "2026-10-12T11:47:45Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-memories",
+      "finns": true,
+      "archived": false,
+      "pushed_at": "2026-10-09T07:19:22Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-message-exchange",
+      "finns": true,
+      "archived": false,
+      "pushed_at": "2026-10-09T07:29:32Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-messaging",
+      "finns": true,
+      "archived": false,
+      "pushed_at": "2026-10-09T06:33:10Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-messaging-settings",
+      "finns": true,
+      "archived": false,
+      "pushed_at": "2026-10-12T11:39:49Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-my-representative",
+      "finns": true,
+      "archived": false,
+      "pushed_at": "2026-10-12T11:37:33Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-notes",
+      "finns": true,
+      "archived": false,
+      "pushed_at": "2026-10-09T06:58:50Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-notifier",
+      "finns": true,
+      "archived": false,
+      "pushed_at": "2026-10-09T05:02:24Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-objectstore",
+      "finns": true,
+      "archived": false,
+      "pushed_at": "2026-10-12T11:37:33Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-oep-integrator",
+      "finns": true,
+      "archived": false,
+      "pushed_at": "2026-10-12T11:29:30Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-operaton",
+      "finns": true,
+      "archived": false,
+      "pushed_at": "2026-10-12T11:27:22Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-party",
+      "finns": true,
+      "archived": false,
+      "pushed_at": "2026-10-09T07:19:22Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-party-assets",
+      "finns": true,
+      "archived": false,
+      "pushed_at": "2026-10-12T11:30:17Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-permit-loader",
+      "finns": true,
+      "archived": false,
+      "pushed_at": "2026-10-09T08:29:27Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-postportalservice",
+      "finns": true,
+      "archived": false,
+      "pushed_at": "2026-10-09T07:19:22Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-precheck",
+      "finns": true,
+      "archived": true,
+      "pushed_at": "2024-04-01T15:36:43Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-private-precheck",
+      "finns": true,
+      "archived": false,
+      "pushed_at": "2026-10-09T08:29:27Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-quotation-request",
+      "finns": true,
+      "archived": false,
+      "pushed_at": "2026-10-12T11:25:42Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-relations",
+      "finns": true,
+      "archived": false,
+      "pushed_at": "2026-10-09T07:19:22Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-remindandinform",
+      "finns": true,
+      "archived": false,
+      "pushed_at": "2026-10-09T07:19:22Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-seab-loader",
+      "finns": true,
+      "archived": false,
+      "pushed_at": "2026-10-09T07:09:15Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-self-service-ai",
+      "finns": true,
+      "archived": false,
+      "pushed_at": "2026-10-09T08:29:28Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-simulator-server",
+      "finns": true,
+      "archived": false,
+      "pushed_at": "2026-10-12T11:25:41Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-sm-loader",
+      "finns": true,
+      "archived": false,
+      "pushed_at": "2026-10-09T07:09:14Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-sms-sender",
+      "finns": true,
+      "archived": false,
+      "pushed_at": "2026-10-09T06:59:07Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-snailmail-sender",
+      "finns": true,
+      "archived": false,
+      "pushed_at": "2026-10-09T06:59:06Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-support-management",
+      "finns": true,
+      "archived": false,
+      "pushed_at": "2026-10-12T12:04:16Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-supportcenter",
+      "finns": true,
+      "archived": false,
+      "pushed_at": "2026-10-09T08:29:27Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-systemregister",
+      "finns": true,
+      "archived": false,
+      "pushed_at": "2026-10-09T07:09:15Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-teams-sender",
+      "finns": true,
+      "archived": false,
+      "pushed_at": "2026-10-09T05:03:10Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-teams-sender-old",
+      "finns": true,
+      "archived": true,
+      "pushed_at": "2026-08-17T12:24:46Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-templating",
+      "finns": true,
+      "archived": false,
+      "pushed_at": "2026-10-09T06:59:06Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-web-message-collector",
+      "finns": true,
+      "archived": false,
+      "pushed_at": "2026-10-09T06:59:06Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-webapp-users",
+      "finns": true,
+      "archived": false,
+      "pushed_at": "2026-10-09T05:03:19Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "diwise",
+      "repo": "api-opendata",
+      "finns": true,
+      "archived": false,
+      "pushed_at": "2026-05-05T20:47:06Z",
+      "default_branch": "main"
+    }
+  ]
+}
