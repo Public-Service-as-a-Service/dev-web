@@ -28,7 +28,13 @@ den här filen.
    repon som bygger flera webbappar (t.ex. `web-app-draken-public`, sidan
    "Ärendehantering och myndighetsutövning"), vilkas webbar beskrivs i
    postens `webbar`-fält.
-3. **Nya applikationer.** Lista organisationens repon som börjar med
+3. **Nya applikationer.** Sessionen når GitHub-API:et bara för det här repot och
+   kan inte lista organisationen själv. Läs i stället `meta/repolista.json` i
+   datarepot sbom-data (`git clone --depth 1`), som
+   `.github/workflows/list-org-repos.yml` skriver varje måndag 04:30 UTC med
+   namn, `archived` och `pushed_at` för organisationens `web-app*`-repon. Är
+   filen äldre än en vecka eller saknas: säg det i PR-beskrivningen. Lista
+   repon som börjar med
    `web-app` och som varken finns i datafilen eller i
    `sites/tjanster/scripts/sbom-extra.json`.
    Klona kandidaterna grunt och bedöm om de är i skarp drift (releaser/
@@ -40,8 +46,8 @@ den här filen.
    `webbar`-fält eller verksamhetslista. Lägg bara till applikationer där
    bedömningen är säker; lista osäkra kandidater i PR-beskrivningen i
    stället för att gissa – granskaren avgör.
-4. **Avvecklade applikationer.** Poster vars källkodsrepo är arkiverat eller
-   borttaget behandlas som avvecklade: ta bort posten ur `apps-data.json`
+4. **Avvecklade applikationer.** Poster vars källkodsrepo är arkiverat (`archived` i
+   repolistan) eller borttaget behandlas som avvecklade: ta bort posten ur `apps-data.json`
    tillsammans med de genererade filerna (`tjanster/<slug>.html`,
    `tjanster/<slug>-sbom.html`, `public/tjanster/assets/diagrams/<slug>.svg`,
    `public/tjanster/assets/sbom/<slug>.spdx.json`). Är repot kvar men
