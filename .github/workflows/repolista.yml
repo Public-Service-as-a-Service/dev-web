@@ -38,19 +38,15 @@ jobs:
 
       - name: Hämta repolistan
         env:
-          # Token med läsrätt på organisationernas repon (även privata om sådana
-          # ska synas). GITHUB_TOKEN räcker inte utanför det här repot.
-          GH_TOKEN: ${{ secrets.REPOLISTA_TOKEN }}
+          # Bara publika repon läses, så det inbyggda tokenet räcker – ingen
+          # egen hemlighet behövs.
+          GH_TOKEN: ${{ github.token }}
         run: |
-          if [ -z "$GH_TOKEN" ]; then
-            echo "::error::Hemligheten REPOLISTA_TOKEN saknas – kan inte läsa organisationernas repon."
-            exit 1
-          fi
           mkdir -p "$RUNNER_TEMP/repolista"
           cd "$RUNNER_TEMP/repolista"
 
           # Sundsvallskommun: alla api-service-repon.
-          gh api --paginate "/orgs/Sundsvallskommun/repos?type=all&per_page=100" \
+          gh api --paginate "/orgs/Sundsvallskommun/repos?type=public&per_page=100" \
             | jq -s '[.[][] | select(.name | startswith("api-service-"))
                       | {agare: "Sundsvallskommun", repo: .name, finns: true,
                          archived, pushed_at, default_branch}]' \
