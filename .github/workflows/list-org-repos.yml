@@ -1,0 +1,74 @@
+name: List organisation repos
+
+# Skriver en lista över organisationens web-app*-repon till datarepot sbom-data
+# (meta/repolista.json). Den schemalagda veckosynken av webbkatalogen
+# (se sites/tjanster/docs/veckosynk.md) körs i en session som bara når det här
+# repot via GitHub-API:et och därför inte kan lista Sundsvallskommun själv –
+# men den kan klona sbom-data med git och läsa filen.
+#
+# Körs måndagar 04:30 UTC: före SBOM-körningen (05:00) och veckosynken (07:00).
+
+on:
+  schedule:
+    - cron: "30 4 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: list-org-repos
+  cancel-in-progress: false
+
+jobs:
+  list:
+    name: Lista repon
+    runs-on: ubuntu-latest
+    steps:
+      - name: Hämta repolistan
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          # Organisationens repon är publika, så github.token räcker för läsning.
+          gh api --paginate "orgs/Sundsvallskommun/repos?type=public&per_page=100" \
+            --jq '.[] | select(.name | startswith("web-app"))
+                  | {name, archived, pushed_at, html_url}' \
+            | jq -s 'sort_by(.name)' > "$RUNNER_TEMP/repolista.json"
+          antal=$(jq length "$RUNNER_TEMP/repolista.json")
+          echo "Hittade $antal web-app-repon."
+          if [ "$antal" -lt 10 ]; then
+            echo "::error::Misstänkt kort lista ($antal repon) – skriver inte över förra veckans."
+            exit 1
+          fi
+
+      - name: Publicera i sbom-data
+        env:
+          TOKEN: ${{ secrets.SBOM_DATA_TOKEN }}
+        run: |
+          if [ -z "$TOKEN" ]; then
+            echo "::error::Hemligheten SBOM_DATA_TOKEN saknas – kan inte publicera i sbom-data."
+            exit 1
+          fi
+          git clone --depth 1 --quiet \
+            "https://x-access-token:$TOKEN@github.com/Public-Service-as-a-Service/sbom-data.git" \
+            "$RUNNER_TEMP/sbom-data"
+          mkdir -p "$RUNNER_TEMP/sbom-data/meta"
+          jq '{uppdaterad: (now | todate), repon: .}' "$RUNNER_TEMP/repolista.json" \
+            > "$RUNNER_TEMP/sbom-data/meta/repolista.json"
+          cd "$RUNNER_TEMP/sbom-data"
+          # Tidsstämpeln ändras varje körning, så jämför bara reponas innehåll.
+          if git diff --quiet HEAD -- meta/repolista.json 2>/dev/null \
+             && git ls-files --error-unmatch meta/repolista.json >/dev/null 2>&1; then
+            echo "Ingen ändring."; exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add meta/repolista.json
+          git commit -m "Uppdatera repolista för webbkatalogen"
+          for attempt in 1 2 3; do
+            if git push; then echo "Publicerade repolistan."; exit 0; fi
+            echo "Push avvisad (försök $attempt); hämtar och försöker igen."
+            git pull --rebase origin main
+          done
+          echo "::error::Kunde inte pusha till sbom-data efter 3 försök."
+          exit 1
