@@ -958,7 +958,7 @@
       },
       {
         "name": "Messaging",
-        "version": "7.3",
+        "version": "7.11",
         "usage": "Meddelanden och kommunikation i ärenden."
       },
       {
@@ -2586,7 +2586,7 @@
       "Koden innehåller en tillfällig omstyrning till en sprintversion av ärende-API:t, vilket visar på pågående aktiv utveckling.",
       "Behörighet styrs via SAML-grupper och attribut; användare utan rätt grupp nekas inloggning.",
       "Gränssnittet finns på både svenska och engelska.",
-      "Company finns inte i api-config.ts och anropas inte i backend – verifierat i koden; sprintversionen av SupportManagement är nu 15.1."
+      "Company finns inte i api-config.ts och anropas inte i backend – verifierat i koden; sprintversionen av SupportManagement är nu 17.0."
     ],
     "slug": "rapportering-och-hantering-av-supportarenden"
   },
