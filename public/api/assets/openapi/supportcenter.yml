@@ -916,29 +916,9 @@ components:
           type: string
         detail:
           type: string
-        causeAsProblem:
-          $ref: "#/components/schemas/ThrowableProblem"
         instance:
           type: string
           format: uri
-    ThrowableProblem:
-      type: object
-      properties:
-        type:
-          type: string
-          format: uri
-        title:
-          type: string
-        status:
-          type: integer
-          format: int32
-        detail:
-          type: string
-        instance:
-          type: string
-          format: uri
-        causeAsProblem:
-          $ref: "#/components/schemas/ThrowableProblem"
     Violation:
       type: object
       properties:
@@ -1350,7 +1330,10 @@ components:
             - INC232323
         caseStatus:
           type: string
-          description: Case status
+          description: "Case status. Known statuses are matched without regard to\
+            \ case and surrounding whitespace, other values are passed on to POB as\
+            \ they are. Delivered requires serialNumber and either hardwareName or imeiNumber,\
+            \ DeliveredIT requires serialNumber"
           examples:
             - In Process
         caseCategory:
