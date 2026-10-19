@@ -6,7 +6,7 @@ info:
   license:
     name: MIT License
     url: https://opensource.org/licenses/MIT
-  version: "2.0"
+  version: "2.1"
 servers:
 - url: http://localhost:62822
   description: Generated server url
@@ -327,28 +327,9 @@ components:
           type: string
         detail:
           type: string
-        causeAsProblem:
-          $ref: "#/components/schemas/ThrowableProblem"
         instance:
           type: string
           format: uri
-    ThrowableProblem:
-      type: object
-      properties:
-        type:
-          type: string
-          format: uri
-        title:
-          type: string
-        status:
-          type: integer
-          format: int32
-        detail:
-          type: string
-        instance:
-          type: string
-          format: uri
-        causeAsProblem: {}
     Violation:
       type: object
       properties:
