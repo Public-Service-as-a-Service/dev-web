@@ -1529,7 +1529,7 @@
     "slug": "contract",
     "kategori": "Ärendehantering",
     "status": null,
-    "apiVersion": "11.0",
+    "apiVersion": "11.1",
     "ingress": "Hanterar kommunens avtal om mark och nyttjanderätter – arrenden, köpeavtal och andra upplåtelser – med parter, villkor, bilagor och automatisk förlängning.",
     "beskrivning": [
       "Contracts är kommunens register-API för avtal kopplade till mark och nyttjanderätter: markarrenden, tomträtter, jakt- och jordbruksupplåtelser, köpeavtal med mera. Varje avtal lagras med parter (intressenter med roller), fastighetsbeteckningar, avtalsvillkor, avgifter, faktureringsuppgifter och avtalsperioder, och kan förses med bilagor som avtalsdokument.",
@@ -1540,7 +1540,7 @@
     "funktioner": [
       {
         "titel": "Avtalsregister",
-        "text": "Skapa, hämta, uppdatera och ta bort avtal med parter, fastighetsbeteckningar, villkor, avgifter och faktureringsuppgifter."
+        "text": "Skapa, hämta, uppdatera och ta bort avtal med parter, fastighetsbeteckningar, villkor, avgifter och faktureringsuppgifter – inklusive om avtalet ska faktureras och, vid årsvis fakturering, i vilken månad."
       },
       {
         "titel": "Många avtalstyper",
@@ -1592,7 +1592,8 @@
       "Autoförlängningen räknar fram nya perioder i en loop tills perioden når fram till dagens datum; kan förlängningen inte nå ett framtida datum innan avtalets slutdatum sätts avtalet i stället till avslutat – verifierat i ContractAutoExtensionWorker.",
       "Faktureringshändelser skickas aldrig direkt: de sparas i en outbox-tabell i samma transaktion som avtalsändringen och skickas av ett separat jobb med räknade omförsök och felloggning, så att händelser inte tappas vid driftstörningar.",
       "Affärsregler tillämpas per avtalstyp – för köpeavtal nollställs arrendeattribut (förlängning, autoförlängning) eftersom de inte är tillämpliga – verifierat i PurchaseAgreementRule.",
-      "Avtalsentiteten har versionskolumn för optimistisk låsning, så samtidiga uppdateringar av samma avtal upptäcks."
+      "Avtalsentiteten har versionskolumn för optimistisk låsning, så samtidiga uppdateringar av samma avtal upptäcks.",
+      "Från v11.1 har faktureringsuppgifterna två nya fält: billingEnabled (obligatoriskt) anger om avtalet ska faktureras, och yearlyBillingMonth (juni eller december) är obligatoriskt när faktureringsintervallet är årsvis. Kravet på en intressent med rollen PRIMARY_BILLING_PARTY gäller bara när fakturering är påslagen – verifierat i Invoicing och ContractValidator."
     ]
   },
   {
@@ -3186,7 +3187,7 @@
     "ingress": "Håller reda på serveringsnummer, adresser och licensinnehavare för näringsverksamheter med tillståndsplikt, till exempel serveringstillstånd för alkohol.",
     "beskrivning": [
       "LicensedBusiness administrerar de serveringsnummer (fyrsiffriga, unika per kommun) som knyts till en adress där en tillståndspliktig verksamhet – till exempel en restaurang med serveringstillstånd – bedrivs. API:et tilldelar nästa lediga nummer för en adress och håller reda på vilken licensinnehavare (organisationsnummer) som är kopplad till numret över tid.",
-      "Varje koppling mellan ett serveringsnummer och en licensinnehavare hanteras som en tidsbegränsad tilldelning (assignment) med giltighetsperiod och status – aktiv eller avslutad. En ny tilldelning avslutar automatiskt en tidigare aktiv tilldelning på samma nummer, och ett schemalagt jobb stänger löpande tilldelningar vars giltighetstid gått ut.",
+      "Varje koppling mellan ett serveringsnummer och en licensinnehavare hanteras som en tidsbegränsad tilldelning (assignment) med giltighetsperiod och status – aktiv eller avslutad. Tilldelningar på samma nummer får inte överlappa i tid: den tidigare måste avslutas innan en ny kan skapas, och ett schemalagt jobb stänger löpande tilldelningar vars giltighetstid gått ut.",
       "Historiska bestånd kan föras in i registret genom en engångsimport av en CSV-fil: adresser, licensinnehavare, serveringsnummer och tilldelningar skapas eller återanvänds rad för rad, och rader som pekar ut samma nummer på olika adresser rapporteras tillbaka som konflikter i importsvaret."
     ],
     "malgrupp": "Kommunens applikationer och verksamhetssystem inom alkohol- och näringstillsyn",
@@ -3197,7 +3198,7 @@
       },
       {
         "titel": "Tilldelningar",
-        "text": "Skapar och uppdaterar tidsbegränsade kopplingar mellan serveringsnummer och licensinnehavare, med automatisk statusuppdatering när giltighetstiden går ut."
+        "text": "Skapar och uppdaterar tidsbegränsade kopplingar mellan serveringsnummer och licensinnehavare, med automatisk statusuppdatering när giltighetstiden går ut. De aktiva tilldelningarna för ett serveringsnummer kan listas med adress och licensinnehavare."
       },
       {
         "titel": "Adresser",
@@ -3223,10 +3224,11 @@
     ],
     "anteckningar": [
       "Serveringsnumret är fyra siffror och allokeras som lägsta lediga nummer per kommun; krockar vid samtidiga tilldelningsförsök löses med tre nya försök innan anropet avvisas – verifierat i RestaurantNumberService.",
-      "En ny tilldelning på samma serveringsnummer avslutar automatiskt den tidigare aktiva tilldelningen – verifierat i AssignmentService/AssignmentStatusResolver.",
+      "Tilldelningar på samma serveringsnummer får aldrig överlappa, även avslutade räknas med: en ny tilldelning avslutar inte längre den tidigare, utan avvisas med 409 om perioden krockar (validFrom och validTo är båda inklusive, så den tidigare måste ha ett validTo och den nya kan börja dagen efter). Förlängs ett validTo kontrolleras överlappet på samma sätt, och serveringsnumret låses pessimistiskt under kontrollen – verifierat i AssignmentService.",
       "CSV-importen är allt-eller-inget: hittar den några felaktiga rader sparas ingenting alls, och samtliga radfel rapporteras tillbaka i importsvaret (som mest 100 st) – verifierat i ImportService.",
       "Organisationsnummer normaliseras till formatet NNNNNN-NNNN innan lagring. Ett tolvsiffrigt personnummer med sekelprefix (16, 19 eller 20) tas emot och sparas med tio siffror, och ett tomt lokalnamn avvisas när en tilldelning skapas eller ändras – verifierat i OrgNumberNormalizer.",
-      "Adresser kan slås upp mot sina tilldelade serveringsnummer (GET /addresses/{addressId}/restaurant-numbers) – enligt specifikationen."
+      "Adresser kan slås upp mot sina tilldelade serveringsnummer (GET /addresses/{addressId}/restaurant-numbers) – enligt specifikationen.",
+      "Aktiva tilldelningar för ett serveringsnummer kan hämtas, äldst validFrom först, med GET /{municipalityId}/restaurant-numbers/{restaurantNumber}/assignments; tilldelningar som ännu inte börjat ingår – verifierat i AssignmentService.getActiveAssignments."
     ]
   },
   {
@@ -5164,7 +5166,7 @@
     "slug": "support-management",
     "kategori": "Ärendehantering",
     "status": null,
-    "apiVersion": "17.0",
+    "apiVersion": "17.2",
     "ingress": "Ärendehanterings-API för supportärenden – skapar, uppdaterar och följer upp ärenden med kommunikation, revisioner och notifieringar åt kommunens kontaktcenter och verksamhetssystem.",
     "beskrivning": [
       "SupportManagement är motorn bakom kommunens hantering av supportärenden. API:et lagrar ärenden med klassificering, parter, prioritet, bilagor och parametrar, uppdelat per kommun och namnrymd (namespace) så att flera verksamheter kan använda samma tjänst med egna kategorier, statusar, roller och etiketter – all denna metadata administreras via API:et.",
@@ -5228,6 +5230,10 @@
       {
         "titel": "Omstrukturering av etiketter",
         "text": "Etiketter kan slås ihop och etikettträdet byggas om, med torrkörning som visar utfallet innan något ändras."
+      },
+      {
+        "titel": "Handläggningsprocesser",
+        "text": "Ärenden i namnrymder med processkoppling kan drivas av en handläggningsprocess i en processmotor: start (manuell eller automatisk), signaler som för processen förbi väntesteg, rapporterat tillstånd och en aktivitetslogg per ärende."
       }
     ],
     "beroenden": [
@@ -5290,6 +5296,11 @@
         "name": "AccessMapper",
         "version": null,
         "usage": "Hämtar användarens åtkomstgrupper för behörighetsstyrning av etiketter."
+      },
+      {
+        "name": "PwAlkt",
+        "version": "1.0",
+        "usage": "Tar emot ärendehändelser, start- och signalbegäranden för handläggningsprocesser (alkohol- och tobakstillstånd)."
       }
     ],
     "integrationer": [
@@ -5310,7 +5321,8 @@
       "ROLE_BASED_MAPPING och RESOURCE_ACCESS_CONTROL är nya namnrymdskonfigurerade egenskaper som slår på rollbaserad fältmappning respektive resursåtkomstkontroll, båda av som standard",
       "Anrop görs per kommun och namnrymd – municipalityId och namespace ingår i alla API-vägar",
       "Sökindexet (OpenSearch) är avstängt tills miljön har en instans; sökanropen svarar då 503. Ett nattligt jobb (search_reindex) bygger om indexet.",
-      "Leverans till Telia ACE styrs av en global strömbrytare (scheduler.telia-ace-work-item.enabled, av som standard) och en inställning per namnrymd; ett jobb körs varannan minut när funktionen är på."
+      "Leverans till Telia ACE styrs av en global strömbrytare (scheduler.telia-ace-work-item.enabled, av som standard) och en inställning per namnrymd; ett jobb körs varannan minut när funktionen är på.",
+      "Processintegrationen kräver base-url och OAuth2-klientuppgifter för pw-alkt även om ingen namnrymd kör processer – tjänsten startar inte utan dem; ett minutjobb (process-event) levererar utkorgen och ett nattligt jobb (process-cleanup) rensar levererade händelser samt aktivitetslogg äldre än 365 dagar."
     ],
     "anteckningar": [
       "Revisioner skapas genom att ärendets serialiserade ögonblicksbild jämförs med senaste revisionen – en ny revision skapas bara när innehållet faktiskt ändrats, och skillnaden mellan två revisioner räknas fram som JSON-patch-operationer (RevisionService).",
@@ -5321,7 +5333,8 @@
       "Från v16.0 (major, brytande ändring): en gemensam hanteringsmodell (yttranden, utredningar med avsnitt, beslut med villkor, samt en omarbetad åtgärdsmodell) delas mellan ärendetyper, med bilagesyften som ny metadata. Samtidigt slutar API:et publicera ErrandField- och ProtectedResource-enumerationerna – namnrymdskonfigurationen deklarerar dem numera som strängar, listade via /namespace-config/access-definition, och en ny endpoint .../errands/{errandId}/access redovisar fält- och resursbehörighet per ärende och användare.",
       "Från v16.1 finns etikettklassificeringar som metadata per namnrymd (skapa, lista, hämta, ändra och ta bort under metadata/label-classifications) – verifierat i MetadataLabelClassificationResource.",
       "Från v17.0 (major) finns fritextsökning i ärenden (…/errands/search och …/errands/search/count, samt omindexering) mot ett OpenSearch-index som Hibernate Search håller; svaret mappas med samma fältbehörighet som den databasstödda listan – verifierat i ErrandSearchService. Etiketter kan slås ihop (…/metadata/labels/{labelId}/merge) och etikettträdet byggas om (…/labels/restructure), båda med torrkörning.",
-      "Sidoeffekter från ändringar kan stängas av med headern X-notify: false – då notifieras prenumeranter inte, men en ändring av en anteckning notifierar fortfarande de användare den annars når direkt (NOTIFY_HEADER i ServiceUtil)."
+      "Sidoeffekter från ändringar kan stängas av med headern X-notify: false – då notifieras prenumeranter inte, men en ändring av en anteckning notifierar fortfarande de användare den annars når direkt (NOTIFY_HEADER i ServiceUtil).",
+      "Från v17.1–17.2 finns processintegration mot pw-alkt, valfri per namnrymd och av som standard (processConsumer sätts i namnrymdskonfigurationen). Ärendehändelser läggs i en utkorg och levereras av ett minutjobb med nattlig städning; processen rapporterar sitt tillstånd tillbaka (PUT …/processes/{processInstanceId}), och bara en person – inte ett system – får starta en process eller skicka en signal (…/processes/start, …/processes/{id}/signals). Etiketternas attribut processKey och processStartMode styr vilken process ett ärende tillhör – verifierat i ErrandProcessResource och ProcessEventScheduler."
     ]
   },
   {
