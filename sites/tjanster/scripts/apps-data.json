@@ -2765,7 +2765,7 @@
     "apis": [
       {
         "name": "SupportManagement",
-        "version": "15.2",
+        "version": "16.1",
         "usage": "Kärnan i den generiska ärendehanteringen – ärenden, kategorier, status, kommunikation och handläggning"
       },
       {
