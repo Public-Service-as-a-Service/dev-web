@@ -623,8 +623,8 @@
     "apis": [
       {
         "name": "SupportManagement",
-        "version": "15.6",
-        "usage": "Metadata för ärendehantering: kategorier, statusar, etiketter, roller och namnrymder."
+        "version": "17.2",
+        "usage": "Metadata för ärendehantering: kategorier, statusar, etiketter, roller och namnrymder. Anropas via API-namnet support-management-alkt-sprint (version 17.2)."
       },
       {
         "name": "Templating",
@@ -1323,7 +1323,7 @@
     "apis": [
       {
         "name": "Memories",
-        "version": "3.13",
+        "version": "3.16",
         "usage": "Hämtar och söker i minnesarkivets dokument och media."
       }
     ],
@@ -2775,7 +2775,7 @@
       },
       {
         "name": "Contract",
-        "version": "11.0",
+        "version": "11.1",
         "usage": "Avtal i mark- och exploateringsärenden, till exempel arrende- och köpeavtal"
       },
       {
