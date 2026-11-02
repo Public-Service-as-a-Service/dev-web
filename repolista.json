@@ -5,7 +5,7 @@
       "repo": "api-service-access-loader",
       "finns": true,
       "archived": false,
-      "pushed_at": "2026-10-26T10:38:04Z",
+      "pushed_at": "2026-10-28T14:18:37Z",
       "default_branch": "main"
     },
     {
@@ -13,7 +13,15 @@
       "repo": "api-service-access-mapper",
       "finns": true,
       "archived": false,
-      "pushed_at": "2026-10-12T14:35:12Z",
+      "pushed_at": "2026-10-27T13:06:20Z",
+      "default_branch": "main"
+    },
+    {
+      "agare": "Sundsvallskommun",
+      "repo": "api-service-activity-feed",
+      "finns": true,
+      "archived": false,
+      "pushed_at": "2026-11-02T12:01:29Z",
       "default_branch": "main"
     },
     {
@@ -21,7 +29,7 @@
       "repo": "api-service-agreement",
       "finns": true,
       "archived": false,
-      "pushed_at": "2026-10-12T14:37:21Z",
+      "pushed_at": "2026-10-27T13:36:59Z",
       "default_branch": "main"
     },
     {
@@ -29,7 +37,7 @@
       "repo": "api-service-ai-data-collector",
       "finns": true,
       "archived": false,
-      "pushed_at": "2026-10-19T07:26:32Z",
+      "pushed_at": "2026-10-27T12:59:05Z",
       "default_branch": "main"
     },
     {
@@ -37,7 +45,7 @@
       "repo": "api-service-ai-flow",
       "finns": true,
       "archived": false,
-      "pushed_at": "2026-10-19T23:36:47Z",
+      "pushed_at": "2026-10-27T12:58:42Z",
       "default_branch": "main"
     },
     {
@@ -45,7 +53,7 @@
       "repo": "api-service-alkt",
       "finns": true,
       "archived": false,
-      "pushed_at": "2026-10-12T14:29:00Z",
+      "pushed_at": "2026-10-27T12:25:33Z",
       "default_branch": "main"
     },
     {
@@ -53,7 +61,7 @@
       "repo": "api-service-aot-loader",
       "finns": true,
       "archived": false,
-      "pushed_at": "2026-10-23T13:56:48Z",
+      "pushed_at": "2026-10-27T15:16:49Z",
       "default_branch": "main"
     },
     {
@@ -61,7 +69,7 @@
       "repo": "api-service-archive",
       "finns": true,
       "archived": false,
-      "pushed_at": "2026-10-12T14:28:53Z",
+      "pushed_at": "2026-10-27T12:56:07Z",
       "default_branch": "main"
     },
     {
@@ -69,7 +77,7 @@
       "repo": "api-service-billing-data-collector",
       "finns": true,
       "archived": false,
-      "pushed_at": "2026-10-26T10:38:55Z",
+      "pushed_at": "2026-10-27T12:15:24Z",
       "default_branch": "main"
     },
     {
@@ -77,7 +85,7 @@
       "repo": "api-service-billing-preprocessor",
       "finns": true,
       "archived": false,
-      "pushed_at": "2026-10-12T14:28:37Z",
+      "pushed_at": "2026-10-27T12:56:07Z",
       "default_branch": "main"
     },
     {
@@ -93,7 +101,7 @@
       "repo": "api-service-business-information",
       "finns": true,
       "archived": false,
-      "pushed_at": "2026-10-12T14:28:37Z",
+      "pushed_at": "2026-10-27T12:25:34Z",
       "default_branch": "main"
     },
     {
@@ -101,7 +109,7 @@
       "repo": "api-service-business-rules",
       "finns": true,
       "archived": false,
-      "pushed_at": "2026-10-12T14:28:28Z",
+      "pushed_at": "2026-10-27T12:35:43Z",
       "default_branch": "main"
     },
     {
@@ -109,7 +117,7 @@
       "repo": "api-service-byggr-integrator",
       "finns": true,
       "archived": false,
-      "pushed_at": "2026-10-16T11:28:05Z",
+      "pushed_at": "2026-10-29T08:56:46Z",
       "default_branch": "main"
     },
     {
@@ -117,7 +125,7 @@
       "repo": "api-service-byggrarchiver",
       "finns": true,
       "archived": false,
-      "pushed_at": "2026-10-09T14:15:14Z",
+      "pushed_at": "2026-10-27T12:25:33Z",
       "default_branch": "main"
     },
     {
@@ -125,7 +133,7 @@
       "repo": "api-service-caremanagement",
       "finns": true,
       "archived": false,
-      "pushed_at": "2026-10-13T15:37:05Z",
+      "pushed_at": "2026-10-27T11:42:42Z",
       "default_branch": "main"
     },
     {
@@ -133,7 +141,7 @@
       "repo": "api-service-case-data",
       "finns": true,
       "archived": false,
-      "pushed_at": "2026-10-19T17:38:58Z",
+      "pushed_at": "2026-10-27T12:15:24Z",
       "default_branch": "main"
     },
     {
@@ -141,7 +149,7 @@
       "repo": "api-service-case-status",
       "finns": true,
       "archived": false,
-      "pushed_at": "2026-10-19T14:04:04Z",
+      "pushed_at": "2026-10-29T13:39:21Z",
       "default_branch": "main"
     },
     {
@@ -149,7 +157,7 @@
       "repo": "api-service-casemanagement",
       "finns": true,
       "archived": false,
-      "pushed_at": "2026-10-14T08:35:21Z",
+      "pushed_at": "2026-10-27T12:59:36Z",
       "default_branch": "main"
     },
     {
@@ -157,7 +165,7 @@
       "repo": "api-service-checklist",
       "finns": true,
       "archived": false,
-      "pushed_at": "2026-10-12T14:27:58Z",
+      "pushed_at": "2026-10-27T13:57:17Z",
       "default_branch": "main"
     },
     {
@@ -165,7 +173,7 @@
       "repo": "api-service-citizen-changes",
       "finns": true,
       "archived": false,
-      "pushed_at": "2026-10-12T14:28:09Z",
+      "pushed_at": "2026-10-27T13:36:59Z",
       "default_branch": "main"
     },
     {
@@ -173,7 +181,7 @@
       "repo": "api-service-configuration",
       "finns": true,
       "archived": false,
-      "pushed_at": "2026-10-12T14:28:11Z",
+      "pushed_at": "2026-10-27T11:44:50Z",
       "default_branch": "main"
     },
     {
@@ -181,7 +189,7 @@
       "repo": "api-service-contactsettings",
       "finns": true,
       "archived": false,
-      "pushed_at": "2026-10-12T14:27:59Z",
+      "pushed_at": "2026-10-27T13:36:59Z",
       "default_branch": "main"
     },
     {
@@ -189,7 +197,7 @@
       "repo": "api-service-contract",
       "finns": true,
       "archived": false,
-      "pushed_at": "2026-10-22T09:38:36Z",
+      "pushed_at": "2026-10-27T12:05:10Z",
       "default_branch": "main"
     },
     {
@@ -205,7 +213,7 @@
       "repo": "api-service-csv-filereader",
       "finns": true,
       "archived": false,
-      "pushed_at": "2026-10-13T11:32:32Z",
+      "pushed_at": "2026-10-27T12:48:13Z",
       "default_branch": "main"
     },
     {
@@ -213,7 +221,7 @@
       "repo": "api-service-customer",
       "finns": true,
       "archived": false,
-      "pushed_at": "2026-10-12T12:29:13Z",
+      "pushed_at": "2026-10-27T12:45:53Z",
       "default_branch": "main"
     },
     {
@@ -221,7 +229,7 @@
       "repo": "api-service-datacatalog",
       "finns": true,
       "archived": false,
-      "pushed_at": "2026-10-12T14:27:51Z",
+      "pushed_at": "2026-10-27T13:36:56Z",
       "default_branch": "main"
     },
     {
@@ -229,7 +237,7 @@
       "repo": "api-service-datawarehousereader",
       "finns": true,
       "archived": false,
-      "pushed_at": "2026-10-12T12:31:28Z",
+      "pushed_at": "2026-10-27T12:56:03Z",
       "default_branch": "main"
     },
     {
@@ -237,7 +245,7 @@
       "repo": "api-service-digital-mail-sender",
       "finns": true,
       "archived": false,
-      "pushed_at": "2026-10-14T06:00:15Z",
+      "pushed_at": "2026-10-27T11:54:59Z",
       "default_branch": "main"
     },
     {
@@ -245,7 +253,7 @@
       "repo": "api-service-digital-registered-letter",
       "finns": true,
       "archived": false,
-      "pushed_at": "2026-10-12T12:29:05Z",
+      "pushed_at": "2026-11-02T13:25:13Z",
       "default_branch": "main"
     },
     {
@@ -253,7 +261,7 @@
       "repo": "api-service-disturbance",
       "finns": true,
       "archived": false,
-      "pushed_at": "2026-10-12T15:21:26Z",
+      "pushed_at": "2026-10-27T13:16:38Z",
       "default_branch": "main"
     },
     {
@@ -261,7 +269,7 @@
       "repo": "api-service-document",
       "finns": true,
       "archived": false,
-      "pushed_at": "2026-10-12T12:28:56Z",
+      "pushed_at": "2026-10-27T11:54:59Z",
       "default_branch": "main"
     },
     {
@@ -269,7 +277,7 @@
       "repo": "api-service-e-signing",
       "finns": true,
       "archived": false,
-      "pushed_at": "2026-10-12T12:28:56Z",
+      "pushed_at": "2026-10-27T11:44:50Z",
       "default_branch": "main"
     },
     {
@@ -277,7 +285,7 @@
       "repo": "api-service-education-data",
       "finns": true,
       "archived": false,
-      "pushed_at": "2026-10-12T12:18:47Z",
+      "pushed_at": "2026-10-27T12:25:34Z",
       "default_branch": "main"
     },
     {
@@ -285,7 +293,7 @@
       "repo": "api-service-education-finder",
       "finns": true,
       "archived": false,
-      "pushed_at": "2026-10-12T12:18:39Z",
+      "pushed_at": "2026-10-27T13:57:16Z",
       "default_branch": "main"
     },
     {
@@ -293,7 +301,7 @@
       "repo": "api-service-email-reader",
       "finns": true,
       "archived": false,
-      "pushed_at": "2026-10-26T02:45:50Z",
+      "pushed_at": "2026-11-02T02:46:54Z",
       "default_branch": "main"
     },
     {
@@ -301,7 +309,7 @@
       "repo": "api-service-email-sender",
       "finns": true,
       "archived": false,
-      "pushed_at": "2026-10-26T06:38:52Z",
+      "pushed_at": "2026-10-27T12:58:48Z",
       "default_branch": "main"
     },
     {
@@ -309,7 +317,7 @@
       "repo": "api-service-eventlog",
       "finns": true,
       "archived": false,
-      "pushed_at": "2026-10-22T08:48:39Z",
+      "pushed_at": "2026-10-27T13:26:48Z",
       "default_branch": "main"
     },
     {
@@ -317,7 +325,7 @@
       "repo": "api-service-financial-aid",
       "finns": true,
       "archived": false,
-      "pushed_at": "2026-10-14T07:42:33Z",
+      "pushed_at": "2026-10-27T13:47:07Z",
       "default_branch": "main"
     },
     {
@@ -325,7 +333,7 @@
       "repo": "api-service-garbage",
       "finns": true,
       "archived": false,
-      "pushed_at": "2026-10-12T12:10:40Z",
+      "pushed_at": "2026-10-27T12:35:44Z",
       "default_branch": "main"
     },
     {
@@ -333,7 +341,7 @@
       "repo": "api-service-incident",
       "finns": true,
       "archived": false,
-      "pushed_at": "2026-10-12T12:08:17Z",
+      "pushed_at": "2026-10-27T13:47:08Z",
       "default_branch": "main"
     },
     {
@@ -341,7 +349,7 @@
       "repo": "api-service-incident-mapper",
       "finns": true,
       "archived": false,
-      "pushed_at": "2026-10-12T12:08:20Z",
+      "pushed_at": "2026-10-27T13:26:47Z",
       "default_branch": "main"
     },
     {
@@ -349,7 +357,7 @@
       "repo": "api-service-installation",
       "finns": true,
       "archived": false,
-      "pushed_at": "2026-10-12T12:08:18Z",
+      "pushed_at": "2026-10-27T12:15:25Z",
       "default_branch": "main"
     },
     {
@@ -357,7 +365,7 @@
       "repo": "api-service-installedbase",
       "finns": true,
       "archived": false,
-      "pushed_at": "2026-10-22T08:50:29Z",
+      "pushed_at": "2026-10-27T11:44:50Z",
       "default_branch": "main"
     },
     {
@@ -365,7 +373,7 @@
       "repo": "api-service-invoice-cache",
       "finns": true,
       "archived": false,
-      "pushed_at": "2026-10-12T12:00:18Z",
+      "pushed_at": "2026-11-02T00:54:47Z",
       "default_branch": "main"
     },
     {
@@ -373,7 +381,7 @@
       "repo": "api-service-invoice-sender",
       "finns": true,
       "archived": false,
-      "pushed_at": "2026-10-09T07:29:30Z",
+      "pushed_at": "2026-10-27T13:06:18Z",
       "default_branch": "main"
     },
     {
@@ -381,7 +389,7 @@
       "repo": "api-service-invoices",
       "finns": true,
       "archived": false,
-      "pushed_at": "2026-10-12T12:00:12Z",
+      "pushed_at": "2026-10-27T12:35:44Z",
       "default_branch": "main"
     },
     {
@@ -389,7 +397,7 @@
       "repo": "api-service-json-schema",
       "finns": true,
       "archived": false,
-      "pushed_at": "2026-10-12T11:57:57Z",
+      "pushed_at": "2026-10-27T11:42:22Z",
       "default_branch": "main"
     },
     {
@@ -397,7 +405,7 @@
       "repo": "api-service-licensed-business",
       "finns": true,
       "archived": false,
-      "pushed_at": "2026-10-22T08:58:23Z",
+      "pushed_at": "2026-10-28T06:55:23Z",
       "default_branch": "main"
     },
     {
@@ -405,7 +413,7 @@
       "repo": "api-service-lifecare-integrator",
       "finns": true,
       "archived": false,
-      "pushed_at": "2026-10-14T07:42:35Z",
+      "pushed_at": "2026-10-27T13:57:16Z",
       "default_branch": "main"
     },
     {
@@ -413,7 +421,7 @@
       "repo": "api-service-manager-responsibility",
       "finns": true,
       "archived": false,
-      "pushed_at": "2026-10-12T11:47:46Z",
+      "pushed_at": "2026-10-27T12:45:53Z",
       "default_branch": "main"
     },
     {
@@ -421,7 +429,7 @@
       "repo": "api-service-measurement-data",
       "finns": true,
       "archived": false,
-      "pushed_at": "2026-10-12T11:47:45Z",
+      "pushed_at": "2026-10-27T11:42:38Z",
       "default_branch": "main"
     },
     {
@@ -429,7 +437,7 @@
       "repo": "api-service-memories",
       "finns": true,
       "archived": false,
-      "pushed_at": "2026-10-26T10:57:28Z",
+      "pushed_at": "2026-10-30T04:58:43Z",
       "default_branch": "main"
     },
     {
@@ -437,7 +445,7 @@
       "repo": "api-service-message-exchange",
       "finns": true,
       "archived": false,
-      "pushed_at": "2026-10-09T07:29:32Z",
+      "pushed_at": "2026-11-02T08:30:31Z",
       "default_branch": "main"
     },
     {
@@ -445,7 +453,7 @@
       "repo": "api-service-messaging",
       "finns": true,
       "archived": false,
-      "pushed_at": "2026-10-09T06:33:10Z",
+      "pushed_at": "2026-10-27T11:54:59Z",
       "default_branch": "main"
     },
     {
@@ -453,7 +461,7 @@
       "repo": "api-service-messaging-settings",
       "finns": true,
       "archived": false,
-      "pushed_at": "2026-10-12T11:39:49Z",
+      "pushed_at": "2026-10-27T13:06:17Z",
       "default_branch": "main"
     },
     {
@@ -461,7 +469,7 @@
       "repo": "api-service-my-representative",
       "finns": true,
       "archived": false,
-      "pushed_at": "2026-10-12T11:37:33Z",
+      "pushed_at": "2026-10-27T13:06:24Z",
       "default_branch": "main"
     },
     {
@@ -469,7 +477,7 @@
       "repo": "api-service-notes",
       "finns": true,
       "archived": false,
-      "pushed_at": "2026-10-26T06:08:28Z",
+      "pushed_at": "2026-10-27T11:44:50Z",
       "default_branch": "main"
     },
     {
@@ -477,7 +485,7 @@
       "repo": "api-service-notifier",
       "finns": true,
       "archived": false,
-      "pushed_at": "2026-10-13T17:30:42Z",
+      "pushed_at": "2026-10-27T12:51:06Z",
       "default_branch": "main"
     },
     {
@@ -485,7 +493,7 @@
       "repo": "api-service-objectstore",
       "finns": true,
       "archived": false,
-      "pushed_at": "2026-10-12T11:37:33Z",
+      "pushed_at": "2026-10-27T12:58:40Z",
       "default_branch": "main"
     },
     {
@@ -493,7 +501,7 @@
       "repo": "api-service-oep-integrator",
       "finns": true,
       "archived": false,
-      "pushed_at": "2026-10-15T13:16:47Z",
+      "pushed_at": "2026-10-27T12:56:07Z",
       "default_branch": "main"
     },
     {
@@ -501,7 +509,7 @@
       "repo": "api-service-operaton",
       "finns": true,
       "archived": false,
-      "pushed_at": "2026-10-14T07:42:30Z",
+      "pushed_at": "2026-10-29T13:29:10Z",
       "default_branch": "main"
     },
     {
@@ -509,7 +517,7 @@
       "repo": "api-service-party",
       "finns": true,
       "archived": false,
-      "pushed_at": "2026-10-09T07:19:22Z",
+      "pushed_at": "2026-10-27T13:36:57Z",
       "default_branch": "main"
     },
     {
@@ -517,7 +525,7 @@
       "repo": "api-service-party-assets",
       "finns": true,
       "archived": false,
-      "pushed_at": "2026-10-12T11:30:17Z",
+      "pushed_at": "2026-10-27T11:55:00Z",
       "default_branch": "main"
     },
     {
@@ -525,7 +533,7 @@
       "repo": "api-service-permit-loader",
       "finns": true,
       "archived": false,
-      "pushed_at": "2026-10-09T08:29:27Z",
+      "pushed_at": "2026-10-27T13:06:19Z",
       "default_branch": "main"
     },
     {
@@ -533,7 +541,7 @@
       "repo": "api-service-postportalservice",
       "finns": true,
       "archived": false,
-      "pushed_at": "2026-10-22T09:06:31Z",
+      "pushed_at": "2026-10-29T08:56:38Z",
       "default_branch": "main"
     },
     {
@@ -549,7 +557,7 @@
       "repo": "api-service-private-precheck",
       "finns": true,
       "archived": false,
-      "pushed_at": "2026-10-09T08:29:27Z",
+      "pushed_at": "2026-10-27T13:16:39Z",
       "default_branch": "main"
     },
     {
@@ -557,7 +565,7 @@
       "repo": "api-service-quotation-request",
       "finns": true,
       "archived": false,
-      "pushed_at": "2026-10-12T11:25:42Z",
+      "pushed_at": "2026-10-27T12:05:09Z",
       "default_branch": "main"
     },
     {
@@ -565,7 +573,7 @@
       "repo": "api-service-relations",
       "finns": true,
       "archived": false,
-      "pushed_at": "2026-10-09T07:19:22Z",
+      "pushed_at": "2026-10-27T13:47:08Z",
       "default_branch": "main"
     },
     {
@@ -573,7 +581,7 @@
       "repo": "api-service-remindandinform",
       "finns": true,
       "archived": false,
-      "pushed_at": "2026-10-09T07:19:22Z",
+      "pushed_at": "2026-10-27T13:26:48Z",
       "default_branch": "main"
     },
     {
@@ -581,7 +589,7 @@
       "repo": "api-service-rtj-management",
       "finns": true,
       "archived": false,
-      "pushed_at": "2026-10-19T09:11:10Z",
+      "pushed_at": "2026-10-28T09:14:02Z",
       "default_branch": "main"
     },
     {
@@ -589,7 +597,7 @@
       "repo": "api-service-seab-loader",
       "finns": true,
       "archived": false,
-      "pushed_at": "2026-10-09T07:09:15Z",
+      "pushed_at": "2026-10-27T13:16:34Z",
       "default_branch": "main"
     },
     {
@@ -597,7 +605,7 @@
       "repo": "api-service-self-service-ai",
       "finns": true,
       "archived": false,
-      "pushed_at": "2026-10-19T19:32:04Z",
+      "pushed_at": "2026-11-02T13:28:36Z",
       "default_branch": "main"
     },
     {
@@ -605,7 +613,7 @@
       "repo": "api-service-simulator-server",
       "finns": true,
       "archived": false,
-      "pushed_at": "2026-10-12T11:25:41Z",
+      "pushed_at": "2026-10-27T13:57:16Z",
       "default_branch": "main"
     },
     {
@@ -613,7 +621,7 @@
       "repo": "api-service-sm-loader",
       "finns": true,
       "archived": false,
-      "pushed_at": "2026-10-09T07:09:14Z",
+      "pushed_at": "2026-11-02T09:38:33Z",
       "default_branch": "main"
     },
     {
@@ -621,7 +629,7 @@
       "repo": "api-service-sms-sender",
       "finns": true,
       "archived": false,
-      "pushed_at": "2026-10-09T06:59:07Z",
+      "pushed_at": "2026-10-27T13:26:48Z",
       "default_branch": "main"
     },
     {
@@ -629,7 +637,7 @@
       "repo": "api-service-snailmail-sender",
       "finns": true,
       "archived": false,
-      "pushed_at": "2026-10-09T06:59:06Z",
+      "pushed_at": "2026-10-27T12:05:15Z",
       "default_branch": "main"
     },
     {
@@ -637,7 +645,7 @@
       "repo": "api-service-support-management",
       "finns": true,
       "archived": false,
-      "pushed_at": "2026-10-26T09:02:57Z",
+      "pushed_at": "2026-11-02T10:26:15Z",
       "default_branch": "main"
     },
     {
@@ -645,7 +653,7 @@
       "repo": "api-service-supportcenter",
       "finns": true,
       "archived": false,
-      "pushed_at": "2026-10-26T07:42:51Z",
+      "pushed_at": "2026-10-27T12:58:16Z",
       "default_branch": "main"
     },
     {
@@ -653,7 +661,7 @@
       "repo": "api-service-systemregister",
       "finns": true,
       "archived": false,
-      "pushed_at": "2026-10-09T07:09:15Z",
+      "pushed_at": "2026-10-27T13:47:07Z",
       "default_branch": "main"
     },
     {
@@ -661,7 +669,7 @@
       "repo": "api-service-teams-sender",
       "finns": true,
       "archived": false,
-      "pushed_at": "2026-10-13T14:37:46Z",
+      "pushed_at": "2026-10-27T12:48:28Z",
       "default_branch": "main"
     },
     {
@@ -677,7 +685,7 @@
       "repo": "api-service-templating",
       "finns": true,
       "archived": false,
-      "pushed_at": "2026-10-23T15:59:57Z",
+      "pushed_at": "2026-10-27T12:05:10Z",
       "default_branch": "main"
     },
     {
@@ -685,7 +693,7 @@
       "repo": "api-service-web-message-collector",
       "finns": true,
       "archived": false,
-      "pushed_at": "2026-10-09T06:59:06Z",
+      "pushed_at": "2026-10-27T11:42:31Z",
       "default_branch": "main"
     },
     {
@@ -693,7 +701,7 @@
       "repo": "api-service-webapp-users",
       "finns": true,
       "archived": false,
-      "pushed_at": "2026-10-13T18:57:20Z",
+      "pushed_at": "2026-10-27T12:51:08Z",
       "default_branch": "main"
     },
     {
