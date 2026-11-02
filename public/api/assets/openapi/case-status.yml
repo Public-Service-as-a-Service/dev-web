@@ -5,7 +5,7 @@ info:
   license:
     name: MIT License
     url: https://opensource.org/licenses/MIT
-  version: "4.4"
+  version: "4.5"
 servers:
 - url: http://localhost:51236
   description: Generated server url
@@ -364,30 +364,11 @@ components:
             $ref: "#/components/schemas/Violation"
         title:
           type: string
-        causeAsProblem:
-          $ref: "#/components/schemas/ThrowableProblem"
         detail:
           type: string
         instance:
           type: string
           format: uri
-    ThrowableProblem:
-      type: object
-      properties:
-        type:
-          type: string
-          format: uri
-        title:
-          type: string
-        status:
-          type: integer
-          format: int32
-        detail:
-          type: string
-        instance:
-          type: string
-          format: uri
-        causeAsProblem: {}
     Violation:
       type: object
       properties:
@@ -456,6 +437,11 @@ components:
             description: List of property designations
             examples:
             - Residential
+        allowMessages:
+          type: boolean
+          description: If messages can be managed
+          examples:
+          - true
     CasePdfResponse:
       type: object
       description: Case status response
