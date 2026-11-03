@@ -27,13 +27,29 @@ den här filen.
    källkodsrepot under `github.com/Sundsvallskommun`, eller under den
    organisation fältet `agare` anger (t.ex. `diwise` för Öppna data).
    **Repolistan.** Routinens GitHub-åtkomst kan vara begränsad till dev-web.
-   Arbetsflödet `.github/workflows/repolista.yml` (måndagar 05:30 UTC) skriver
-   därför veckans lista över källkodsrepona (`agare`, `repo`, `finns`,
-   `archived`, `pushed_at`, `default_branch`) till grenen `repolista` i
-   dev-web. Hämta den med `git fetch origin repolista` och
-   `git show origin/repolista:repolista.json` och använd den i steg 3 och 4 i
-   stället för att anropa organisationerna direkt. Saknas grenen eller är den
-   äldre än en vecka: avrapportera det i stället för att gissa.
+   Arbetsflödet `.github/workflows/repolista.yml` skriver därför en lista över
+   källkodsrepona (`agare`, `repo`, `finns`, `archived`, `pushed_at`,
+   `default_branch`) till grenen `repolista` i dev-web, och steg 3 och 4
+   använder den i stället för att anropa organisationerna direkt.
+   Arbetsflödets egen cron (måndagar 05:30 UTC) är **inte** att lita på:
+   GitHub startar schemalagda körningar med flera timmars försening (11:06,
+   11:25 och 13:45 UTC de tre senaste måndagarna), så listan är oftast inte
+   klar när routinen startar. Routinen startar därför arbetsflödet själv:
+   1. Anteckna tidpunkten och starta `repolista.yml` med
+      `workflow_dispatch` (`actions_run_trigger`, `run_workflow`, `ref: main`).
+   2. Följ körningen (`actions_list`) tills den är klar; den tar cirka 20
+      sekunder. Räkna inte med att den redan ligger i kön: en schemalagd
+      körning som hunnit starta ger en andra, harmlös körning (workflowet har
+      `concurrency` och skriver bara när listan ändrats).
+   3. Hämta listan med `git fetch origin repolista` och
+      `git show origin/repolista:repolista.json`. Kontrollera att grenens
+      senaste commit (`git log -1 --format=%cd origin/repolista`) är från
+      **samma dag**. En oförändrad lista ger ingen ny commit, så är den äldre
+      men körningen gick igenom är listan ändå aktuell; jämför då med
+      körningens sluttid i stället.
+   4. Misslyckas körningen, eller går den inte att starta: försök en gång till
+      och avrapportera sedan i stället för att gissa eller använda en gammal
+      lista.
 3. **Nya API:er.** Lista Sundsvallskommuns repon som börjar med
    `api-service-` och som saknas i datafilen. API:er från andra organisationer
    (som diwise) upptäcks inte automatiskt utan läggs till på begäran. Klona
