@@ -1927,7 +1927,7 @@
     "slug": "digital-registered-letter",
     "kategori": "Kommunikation",
     "status": null,
-    "apiVersion": "3.1",
+    "apiVersion": "3.2",
     "ingress": "Skickar digitala rekommenderade brev till invånare via Kivra och följer upp signering, leveransstatus och kvitton.",
     "beskrivning": [
       "DigitalRegisteredLetter gör det möjligt för kommunens verksamhetssystem att skicka rekommenderade brev digitalt i stället för på papper. Brevet levereras till mottagarens Kivra-brevlåda som ett registrerat brev, där mottagaren måste legitimera sig för att ta del av innehållet. Tjänsten hanterar hela flödet: kontroll av vilka mottagare som kan nås, utskick, statusuppföljning och kvitto.",
