@@ -23,8 +23,53 @@ DATA = os.path.join(SECTION, "scripts", "apis-data.json")
 OUT = os.path.join(ROOT, "api")
 
 
+def spec_path(api):
+    return os.path.join(ROOT, "public", "api", "assets", "openapi", f"{api['slug']}.yml")
+
+
 def has_spec(api):
-    return os.path.exists(os.path.join(ROOT, "public", "api", "assets", "openapi", f"{api['slug']}.yml"))
+    return os.path.exists(spec_path(api))
+
+
+def strip_internal(api):
+    """Remove the operations listed in the api's "interna" field from its spec.
+
+    Some APIs expose operations meant only for the municipality's own use (e.g.
+    Garbage's PUT that triggers a schedule update). The catalogue must not list
+    them, but the spec is copied verbatim from the source repository at every
+    sync, so the removal is enforced here rather than by hand. Returns the
+    operationIds that were removed.
+    """
+    interna = set(api.get("interna") or [])
+    if not interna or not has_spec(api):
+        return []
+    with open(spec_path(api), encoding="utf-8") as f:
+        text = f.read()
+    # Cheap textual check first, so that PyYAML is only needed when a spec
+    # actually carries an internal operation.
+    if not any(op in text for op in interna):
+        return []
+    try:
+        import yaml
+    except ImportError:
+        raise SystemExit(
+            f"{api['slug']}: specifikationen innehåller interna anrop som ska tas bort, "
+            "men PyYAML saknas. Installera det (pip install pyyaml) och kör om."
+        )
+    spec = yaml.safe_load(text)
+    removed = []
+    for path in list(spec.get("paths", {})):
+        ops = spec["paths"][path]
+        for method in list(ops):
+            if isinstance(ops[method], dict) and ops[method].get("operationId") in interna:
+                removed.append(ops[method]["operationId"])
+                del ops[method]
+        if not any(m in ops for m in ("get", "put", "post", "delete", "patch", "head", "options", "trace")):
+            del spec["paths"][path]
+    if removed:
+        with open(spec_path(api), "w", encoding="utf-8") as f:
+            yaml.safe_dump(spec, f, allow_unicode=True, sort_keys=False)
+    return removed
 
 
 def sbom_path(api):
@@ -180,6 +225,9 @@ def main():
     missing = []
     missing_sbom = []
     for api in apis:
+        removed = strip_internal(api)
+        if removed:
+            print(f"{api['slug']}: removed internal operations from the spec:", ", ".join(removed))
         with open(os.path.join(OUT, f"{api['slug']}.html"), "w", encoding="utf-8") as f:
             f.write(api_shell(api))
         if has_spec(api):

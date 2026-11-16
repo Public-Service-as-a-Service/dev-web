@@ -30,6 +30,11 @@ export interface ApiData {
    * standarden (OAuth2-klientuppgifter), t.ex. för öppna API:er.
    */
   atkomst?: string | null;
+  /**
+   * operationId för anrop som bara är till för kommunens interna bruk. De tas
+   * bort ur den publicerade specifikationen av scripts/generate-pages.py.
+   */
+  interna?: string[] | null;
   ingress?: string;
   beskrivning?: string[];
   malgrupp?: string;
