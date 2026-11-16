@@ -20,3 +20,7 @@ export {
 export type { Crumb } from './blocks';
 export { SITE_NAME, footerLinks, sectionLinks } from './navigation';
 export type { NavLink, Section } from './navigation';
+export { SearchPanel, SearchResults, useCatalogSearch } from './search/CatalogSearch';
+export type { CardContent, CatalogSearch, CatalogSearchConfig, Facet } from './search/CatalogSearch';
+export { splitCamel } from './search/engine';
+export type { SearchField, Synonyms } from './search/engine';

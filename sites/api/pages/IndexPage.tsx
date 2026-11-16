@@ -4,17 +4,16 @@ import {
   Hero,
   NoteBox,
   PageSection,
+  SearchPanel,
+  SearchResults,
   SiteFooter,
   SiteHeader,
   TwoColumns,
   footerLinks,
   sectionLinks,
+  useCatalogSearch,
 } from '@sundsvall/chrome';
-import apisData from '../scripts/apis-data.json';
-import { SearchPanel, SearchResults, useCatalogSearch } from '../components/CatalogSearch';
-import type { ApiData } from '../types';
-
-const apis = apisData as ApiData[];
+import { searchConfig } from '../search-config';
 
 const menu = [
   ...sectionLinks('../', 'api'),
@@ -25,7 +24,7 @@ const menu = [
 
 
 export function IndexPage() {
-  const sok = useCatalogSearch(apis);
+  const sok = useCatalogSearch(searchConfig);
 
   return (
     <>
