@@ -5,7 +5,7 @@ info:
   license:
     name: MIT License
     url: https://opensource.org/licenses/MIT
-  version: "2.1"
+  version: '2.1'
 servers:
 - url: http://localhost:64017
   description: Generated server url
@@ -41,7 +41,7 @@ paths:
           type: string
           description: Address
           examples:
-          - "12"
+          - '12'
       - name: postalCode
         in: query
         description: Zipcode
@@ -50,7 +50,7 @@ paths:
           type: string
           description: Zipcode
           examples:
-          - "85731"
+          - '85731'
       - name: city
         in: query
         description: City
@@ -82,80 +82,44 @@ paths:
           minimum: 1
       - name: limit
         in: query
-        description: "Result size per page. If omitted, all results are returned."
+        description: Result size per page. If omitted, all results are returned.
         required: false
         schema:
           type: integer
           format: int32
-          description: "Result size per page. If omitted, all results are returned."
+          description: Result size per page. If omitted, all results are returned.
           examples:
           - 100
           minimum: 1
       responses:
-        "200":
+        '200':
           description: Successful Operation
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/GarbageScheduleResponse"
-        "400":
+                  $ref: '#/components/schemas/GarbageScheduleResponse'
+        '400':
           description: Bad Request
           content:
             application/problem+json:
               schema:
                 oneOf:
-                - $ref: "#/components/schemas/Problem"
-                - $ref: "#/components/schemas/ConstraintViolationProblem"
-        "404":
+                - $ref: '#/components/schemas/Problem'
+                - $ref: '#/components/schemas/ConstraintViolationProblem'
+        '404':
           description: Not Found
           content:
             application/problem+json:
               schema:
-                $ref: "#/components/schemas/Problem"
-        "500":
+                $ref: '#/components/schemas/Problem'
+        '500':
           description: Internal Server Error
           content:
             application/problem+json:
               schema:
-                $ref: "#/components/schemas/Problem"
-    put:
-      tags:
-      - GarbageSchedule
-      summary: Trigger a garbage schedule update
-      operationId: updateGarbageSchedules
-      parameters:
-      - name: municipalityId
-        in: path
-        description: Municipality id
-        required: true
-        schema:
-          type: string
-        example: 2281
-      responses:
-        "202":
-          description: Successful Operation
-        "400":
-          description: Bad Request
-          content:
-            application/problem+json:
-              schema:
-                oneOf:
-                - $ref: "#/components/schemas/Problem"
-                - $ref: "#/components/schemas/ConstraintViolationProblem"
-        "404":
-          description: Not Found
-          content:
-            application/problem+json:
-              schema:
-                $ref: "#/components/schemas/Problem"
-        "500":
-          description: Internal Server Error
-          content:
-            application/problem+json:
-              schema:
-                $ref: "#/components/schemas/Problem"
+                $ref: '#/components/schemas/Problem'
   /api-docs:
     get:
       tags:
@@ -163,7 +127,7 @@ paths:
       summary: OpenAPI
       operationId: getApiDocs
       responses:
-        "200":
+        '200':
           description: OK
           content:
             application/yaml:
@@ -202,11 +166,11 @@ components:
         violations:
           type: array
           items:
-            $ref: "#/components/schemas/Violation"
+            $ref: '#/components/schemas/Violation'
         title:
           type: string
         causeAsProblem:
-          $ref: "#/components/schemas/ThrowableProblem"
+          $ref: '#/components/schemas/ThrowableProblem'
         detail:
           type: string
         instance:
@@ -249,13 +213,13 @@ components:
           type: string
           description: Address
           examples:
-          - "12"
+          - '12'
           minLength: 1
         postalCode:
           type: string
           description: Zipcode
           examples:
-          - "85731"
+          - '85731'
           minLength: 1
         city:
           type: string
@@ -270,7 +234,7 @@ components:
       type: object
       properties:
         address:
-          $ref: "#/components/schemas/Address"
+          $ref: '#/components/schemas/Address'
           description: Address
         additionalInformation:
           type: string
@@ -308,7 +272,7 @@ components:
           type: array
           description: Waste schedules with type and next pickup date
           items:
-            $ref: "#/components/schemas/WasteSchedule"
+            $ref: '#/components/schemas/WasteSchedule'
     WasteSchedule:
       type: object
       description: Waste schedule entry

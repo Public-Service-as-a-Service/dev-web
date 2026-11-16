@@ -128,6 +128,18 @@ SBOM-sidan ingår inte i det här steget: den skapas först när
 API får alltså sin programvaruförteckning vid nästa schemalagda körning, eller
 direkt om du kör workflowet manuellt.
 
+### Interna anrop
+
+Vissa API:er har anrop som bara är till för kommunens interna bruk, till
+exempel Garbages PUT som startar en uppdatering av hämtschemat. Sådana anrop
+ska inte finnas i katalogen. Lista deras `operationId` i fältet `interna` i
+datafilen (`"interna": ["updateGarbageSchedules"]`), och nämn dem inte i
+beskrivningen eller funktionslistan. `generate-pages.py` tar då bort anropen ur
+`public/api/assets/openapi/<slug>.yml` varje gång den körs. Specifikationen kan
+alltså kopieras oförändrad från källkodsrepot vid en synk, så länge generatorn
+körs efteråt. Borttagningen kräver PyYAML, men bara när en specifikation
+faktiskt innehåller ett internt anrop.
+
 ### API:er utan publicerad källkod
 
 Fältet `repo` utelämnas när lösningen inte publiceras som öppen källkod, som

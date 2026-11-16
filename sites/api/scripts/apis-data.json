@@ -2640,10 +2640,13 @@
     "status": null,
     "apiVersion": "2.1",
     "atkomst": "öppet, ingen inloggning krävs för läsning",
+    "interna": [
+      "updateGarbageSchedules"
+    ],
     "ingress": "Tillhandahåller uppgifter om när avfallshämtning sker på en viss adress eller inom ett område – för e-tjänster och applikationer som vill visa hämtschema för invånare.",
     "beskrivning": [
       "Garbage svarar på frågan \"när töms soporna hos mig?\". API:et lagrar kommunens hämtscheman för avfall och låter applikationer söka fram schemat för en adress – gata, husnummer, postnummer och ort – eller för ett större urval med paginering. Svaret anger bland annat hämtdag, vecka (jämn/udda), avfallstyp och fastighetskategori.",
-      "Schemauppgifterna hämtas automatiskt från avfallsverksamhetens system: ett schemalagt jobb laddar varje vardagsmorgon ner en CSV-fil från en SFTP-server, tolkar den och ersätter hela databasinnehållet med de nya raderna. Uppdateringen kan även triggas manuellt via API:et.",
+      "Schemauppgifterna hämtas automatiskt från avfallsverksamhetens system: ett schemalagt jobb laddar varje vardagsmorgon ner en CSV-fil från en SFTP-server, tolkar den och ersätter hela databasinnehållet med de nya raderna.",
       "API:et hanterar fyra avfallstyper – restavfall, matavfall, plastförpackningar och pappersförpackningar – och skiljer på småhus och fritidshus. Det gör att e-tjänster kan visa ett komplett sorteringsschema per hushåll."
     ],
     "malgrupp": "Allmänheten – utvecklare och företag – samt kommunens egna e-tjänster och applikationer",
@@ -2663,10 +2666,6 @@
       {
         "titel": "Automatisk uppdatering",
         "text": "Ett schemalagt jobb hämtar varje vardagsmorgon en CSV-fil från avfallssystemets SFTP-server och ersätter databasens innehåll."
-      },
-      {
-        "titel": "Manuell uppdatering",
-        "text": "Schemauppdateringen kan även startas på begäran via ett API-anrop."
       },
       {
         "titel": "Paginering",
