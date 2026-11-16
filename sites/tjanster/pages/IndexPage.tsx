@@ -1,80 +1,30 @@
-import { Card, Label } from '@sk-web-gui/react';
-import appsData from '../scripts/apps-data.json';
 import {
   ButtonLink,
   FactBox,
   Hero,
   NoteBox,
   PageSection,
+  SearchPanel,
+  SearchResults,
   SiteFooter,
   SiteHeader,
   TwoColumns,
   footerLinks,
   sectionLinks,
+  useCatalogSearch,
 } from '@sundsvall/chrome';
-import { type AppData, STATUS_LABEL } from '../types';
-
-const apps = appsData as AppData[];
-
-const CATEGORY_ORDER = [
-  'Ärendehantering',
-  'Myndighetsutövning',
-  'Invånartjänster',
-  'Mina sidor',
-  'Medarbetartjänster',
-  'Utbildning',
-  'AI-tjänster',
-  'Administration',
-  'Utvecklingsverktyg',
-];
-
-interface CardData {
-  namn: string;
-  href: string;
-  text: string;
-  kategori: string;
-  status?: string;
-}
+import { searchConfig } from '../search-config';
 
 const menu = [
   ...sectionLinks('../', 'tjanster'),
   { label: 'Om katalogen', href: '#om-katalogen' },
+  { label: 'Sök', href: '#sok' },
   { label: 'Webbapplikationer', href: '#tjanster' },
 ];
 
 
-function AppCard({ card }: { card: CardData }) {
-  return (
-    <Card color="mono" useHoverEffect href={card.href}>
-      <Card.Body>
-        <div className="flex flex-wrap gap-8 pt-8">
-          <Label inverted color="vattjom">
-            {card.kategori}
-          </Label>
-          {card.status && <Label inverted>{card.status}</Label>}
-        </div>
-        <h3 className="font-header text-h4-sm md:text-h4-md xl:text-h4-lg text-dark-primary mt-12 mb-0">
-          {card.namn}
-        </h3>
-        <p className="mt-8 mb-0">{card.text}</p>
-        <p className="mt-12 mb-0 font-bold text-vattjom-text-primary">Läs mer om {card.namn} →</p>
-      </Card.Body>
-    </Card>
-  );
-}
-
 export function IndexPage() {
-  const byCategory = new Map<string, CardData[]>();
-  for (const app of apps) {
-    const card: CardData = {
-      kategori: app.kategori,
-      namn: app.namn,
-      href: `${app.slug}.html`,
-      text: app.ingress ?? '',
-      status: app.status ? STATUS_LABEL[app.status] : undefined,
-    };
-    byCategory.set(app.kategori, [...(byCategory.get(app.kategori) ?? []), card]);
-  }
+  const sok = useCatalogSearch(searchConfig);
 
   return (
     <>
@@ -86,8 +36,8 @@ export function IndexPage() {
           lead="Sundsvalls kommun utvecklar digitala tjänster för invånare, företag och medarbetare – och delar dem öppet med omvärlden. Här hittar du en samlad översikt över de webbapplikationer som kommunen publicerar som öppen källkod."
           actions={
             <>
-              <ButtonLink as="a" href="#tjanster" variant="primary" color="vattjom">
-                Utforska applikationerna
+              <ButtonLink as="a" href="#sok" variant="primary" color="vattjom">
+                Sök bland applikationerna
               </ButtonLink>
               <ButtonLink
                 as="a"
@@ -139,6 +89,16 @@ export function IndexPage() {
           </TwoColumns>
         </PageSection>
 
+        <PageSection id="sok">
+          <h2 className="font-header">Hitta rätt webbapplikation</h2>
+          <p className="text-lead">
+            Sök på det du vill göra – chatta med en AI-assistent, handlägga ekonomiskt bistånd,
+            felanmäla något i stadsmiljön – eller avgränsa med filtren. Listan nedan uppdateras
+            medan du skriver.
+          </p>
+          <SearchPanel search={sok} />
+        </PageSection>
+
         <PageSection id="tjanster" alt>
           <h2 className="font-header">Webbapplikationer i katalogen</h2>
           <p className="text-lead">
@@ -147,19 +107,7 @@ export function IndexPage() {
             de på en gemensam sida som visar vilka processer varje webb implementerar. Välj en
             applikation för att läsa mer.
           </p>
-          {CATEGORY_ORDER.filter((cat) => byCategory.has(cat)).map((cat) => (
-            <section key={cat} aria-label={cat}>
-              <h3 className="font-header mt-40">{cat}</h3>
-              <div className="mt-16 grid gap-24 md:grid-cols-2 xl:grid-cols-3">
-                {(byCategory.get(cat) ?? [])
-                  .slice()
-                  .sort((a, b) => a.namn.toLowerCase().localeCompare(b.namn.toLowerCase(), 'sv'))
-                  .map((card) => (
-                    <AppCard key={card.href} card={card} />
-                  ))}
-              </div>
-            </section>
-          ))}
+          <SearchResults search={sok} />
           <NoteBox>
             Katalogen omfattar samtliga repon som börjar med <code>web-app</code> hos Sundsvalls
             kommun på GitHub. Nya applikationer läggs till efter hand som de publiceras.

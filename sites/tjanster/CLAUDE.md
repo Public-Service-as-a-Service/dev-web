@@ -128,10 +128,34 @@ under `tjanster/` – head-metadata plus sidans data inbäddad som JSON i
 `<script id="page-data">` – och innehållet renderas av
 `sites/tjanster/pages/AppPage.tsx` respektive `sites/tjanster/pages/SbomPage.tsx` med
 designsystemet. Startsidans kort behöver inte genereras:
-`sites/tjanster/pages/IndexPage.tsx` importerar `apps-data.json` direkt. Fyll fälten
+`sites/tjanster/search-config.tsx` importerar `apps-data.json` direkt. Fyll fälten
 enligt tabellen ovan – uppgifterna ska vara härledda ur källkodsrepot.
 Ändras sidornas struktur eller utseende görs det i React-komponenterna;
 ändras datat körs generatorn om. Det finns inga handskrivna sidor.
+
+## Sökningen på startsidan
+
+Katalogens startsida har en sökfunktion ("Hitta rätt webbapplikation") före
+listan med applikationer. Den körs helt i webbläsaren mot `apps-data.json`, så
+nya applikationer blir sökbara utan något extra steg. Sökmotorn och
+gränssnittet delas med API-katalogen och ligger i `@sundsvall/chrome`
+(`packages/chrome/src/search/`); katalogen anger bara sina egna inställningar i
+`sites/tjanster/search-config.tsx`:
+
+- **Sökfälten** med vikt: namn, reponamn, område, sammanfattning, funktioner,
+  webbar och processer, API:er, integrationer, målgrupp, inloggning,
+  beskrivning och teknik.
+- **`SYNONYMER`** översätter vardagliga och engelska ord ("chatbot",
+  "försörjningsstöd", "onboarding") till ord som finns i katalogen. Lägg till
+  en synonym när en rimlig sökning inte hittar rätt applikation, men undvik
+  korta stammar som också är början på vanliga ord.
+- **Filtren**: område, inloggning (härledd ur `auth`), typ (`status`
+  `verktyg` eller inte), frontend (härledd ur `teknik.frontend`) och vilket API
+  applikationen använder. Samma API kan vara stavat olika i olika repon; filtret
+  slår ihop stavningarna och visar den vanligaste.
+
+Se `sites/api/CLAUDE.md` för hur sökmotorn fungerar och varför filtren byggs
+med `Checkbox` i stället för designsystemets `Filter`.
 
 ## Tjänstesidans struktur
 
