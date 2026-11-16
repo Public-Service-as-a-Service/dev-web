@@ -1,4 +1,3 @@
-import { Card, Label } from '@sk-web-gui/react';
 import {
   ButtonLink,
   FactBox,
@@ -12,59 +11,21 @@ import {
   sectionLinks,
 } from '@sundsvall/chrome';
 import apisData from '../scripts/apis-data.json';
-import { type ApiData, STATUS_LABEL } from '../types';
+import { SearchPanel, SearchResults, useCatalogSearch } from '../components/CatalogSearch';
+import type { ApiData } from '../types';
 
 const apis = apisData as ApiData[];
-
-const CATEGORY_ORDER = [
-  'Kommunikation',
-  'Ärendehantering',
-  'Ekonomi och fakturering',
-  'Dokument och arkiv',
-  'Parts- och kunddata',
-  'AI-tjänster',
-  'Integration',
-  'Samhällsservice',
-  'Öppna data',
-  'Utbildning',
-  'Utvecklingsverktyg',
-];
 
 const menu = [
   ...sectionLinks('../', 'api'),
   { label: 'Om katalogen', href: '#om-katalogen' },
+  { label: 'Sök', href: '#sok' },
   { label: 'API:er', href: '#apier' },
 ];
 
 
-function ApiCard({ api }: { api: ApiData }) {
-  const status = api.status ? STATUS_LABEL[api.status] : undefined;
-  return (
-    <Card color="mono" useHoverEffect href={`${api.slug}.html`}>
-      <Card.Body>
-        <div className="flex flex-wrap gap-8 pt-8">
-          <Label inverted color="vattjom">
-            {api.kategori}
-          </Label>
-          {status && <Label inverted>{status}</Label>}
-        </div>
-        <h3 className="font-header text-h4-sm md:text-h4-md xl:text-h4-lg text-dark-primary mt-12 mb-0">
-          {api.namn}
-        </h3>
-        <p className="mt-8 mb-0">{api.ingress}</p>
-        <p className="mt-12 mb-0 font-bold text-vattjom-text-primary">Läs mer om {api.namn} →</p>
-      </Card.Body>
-    </Card>
-  );
-}
-
 export function IndexPage() {
-  const byCategory = new Map<string, ApiData[]>();
-  for (const api of apis) {
-    const list = byCategory.get(api.kategori) ?? [];
-    list.push(api);
-    byCategory.set(api.kategori, list);
-  }
+  const sok = useCatalogSearch(apis);
 
   return (
     <>
@@ -76,8 +37,8 @@ export function IndexPage() {
           lead="Sundsvalls kommun bygger sina digitala tjänster på en gemensam plattform av mikrotjänster. Här hittar du en samlad översikt över de API:er som körs i produktion på kommunens API-plattform, med interaktiv API-dokumentation via Swagger UI."
           actions={
             <>
-              <ButtonLink as="a" href="#apier" variant="primary" color="vattjom">
-                Utforska API:erna
+              <ButtonLink as="a" href="#sok" variant="primary" color="vattjom">
+                Sök bland API:erna
               </ButtonLink>
               <ButtonLink
                 as="a"
@@ -138,6 +99,15 @@ export function IndexPage() {
           </TwoColumns>
         </PageSection>
 
+        <PageSection id="sok">
+          <h2 className="font-header">Hitta rätt API</h2>
+          <p className="text-lead">
+            Sök på det du vill göra – skicka sms, hämta uppgifter om en person, skapa ett
+            ärende – eller avgränsa med filtren. Listan nedan uppdateras medan du skriver.
+          </p>
+          <SearchPanel search={sok} />
+        </PageSection>
+
         <PageSection id="apier" alt>
           <h2 className="font-header">API:er i katalogen</h2>
           <p className="text-lead">
@@ -145,19 +115,7 @@ export function IndexPage() {
             API-plattform, grupperade per område. Välj ett API för att läsa mer och utforska dess
             dokumentation.
           </p>
-          {CATEGORY_ORDER.filter((cat) => byCategory.has(cat)).map((cat) => (
-            <section key={cat} aria-label={cat}>
-              <h3 className="font-header mt-40">{cat}</h3>
-              <div className="mt-16 grid gap-24 md:grid-cols-2 xl:grid-cols-3">
-                {(byCategory.get(cat) ?? [])
-                  .slice()
-                  .sort((a, b) => a.namn.toLowerCase().localeCompare(b.namn.toLowerCase(), 'sv'))
-                  .map((api) => (
-                    <ApiCard key={api.slug} api={api} />
-                  ))}
-              </div>
-            </section>
-          ))}
+          <SearchResults search={sok} />
           <NoteBox>
             Katalogen visar de API:er, och de versioner, som körs skarpt i produktion vid
             ögonblicket. Avvecklade API:er och prototyper ingår inte. Nya API:er läggs till efter

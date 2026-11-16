@@ -153,6 +153,31 @@ anropen") ska varje påstående vara verifierat med anrop. För aldrig över
 kontaktuppgifter till personer från specifikationen: ta bort `info.contact`
 när specen kopieras till `public/api/assets/openapi/<slug>.yml`.
 
+## Sökningen på startsidan
+
+Katalogens startsida har en sökfunktion ("Hitta rätt API") före listan med
+API:er. Den körs helt i webbläsaren mot `apis-data.json`, så nya API:er blir
+sökbara utan något extra steg.
+
+- `sites/api/search.ts` bygger ett index över namn, reponamn, område,
+  sammanfattning, funktioner, beroenden, integrationer, målgrupp, beskrivning
+  och teknik, med fallande vikt i den ordningen. Sökningen bryr sig inte om
+  å/ä/ö eller versaler, delar upp namn som `SmsSender`, rättar stavfel mot
+  katalogens ordförråd och kräver att varje sökord träffar något.
+- `SYNONYMER` i samma fil översätter vardagliga och engelska ord ("sopor",
+  "mejl", "faktura") till ord som finns i katalogen. Synonymer söks bara i
+  namn, reponamn, område, sammanfattning och funktionsrubriker, så att de inte
+  drar med varje API som anropar en viss tjänst. Lägg till en synonym när en
+  rimlig sökning inte hittar rätt API.
+- `sites/api/components/CatalogSearch.tsx` har sökfältet, filtren (område,
+  åtkomst, källkod och vilket API som anropas), sorteringen och
+  resultatlistan. Antalet vid varje filterval räknas med sökningen och övriga
+  filter tillämpade. Sökningen och filtren sparas i adressen (`?q=…&omrade=…`),
+  så att en sökning går att dela som länk.
+- Filtren byggs med designsystemets `Checkbox` i en `fieldset`, inte med
+  `Filter`: `Filter` känner igen sina barn på funktionsnamnet, och det går
+  sönder när bygget minifieras.
+
 ## API-sidans struktur
 
 Strukturen, som generatorn producerar:
