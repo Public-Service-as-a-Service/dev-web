@@ -150,7 +150,7 @@ def sbom_shell(api):
                 "slug": api["slug"],
                 "namn": api["namn"],
                 "kategori": api["kategori"],
-                "repo": api["repo"],
+                "repo": api.get("repo"),
                 # Bara när repot inte ligger under Sundsvallskommun, så att de
                 # befintliga sidskalen inte skrivs om i onödan.
                 **({"agare": api["agare"]} if api.get("agare") else {}),

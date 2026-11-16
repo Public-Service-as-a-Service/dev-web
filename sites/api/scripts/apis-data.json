@@ -324,6 +324,63 @@
     ]
   },
   {
+    "namn": "Anläggningsregister",
+    "slug": "anlaggningsregister",
+    "kategori": "Öppna data",
+    "status": null,
+    "apiVersion": "2.2",
+    "atkomst": "öppet, ingen inloggning krävs",
+    "ingress": "Publicerar kommunens register över anläggningar – leder, motionsspår, vindskydd, grillplatser, badplatser, skyltar, idrottshallar, naturreservat och mycket mer – med läge, egenskaper och bilder, som öppna data.",
+    "beskrivning": [
+      "Anläggningsregistret är kommunens samlade förteckning över anläggningar i Sundsvall: allt från friluftsleder, motionsspår, skidspår och cykelleder till vindskydd, grillplatser, raststugor, bryggor, strandbad, utegym, sporthallar och samlingslokaler, men även administrativa områden som naturreservat, kulturreservat och fågelskyddsområden. Registret rymmer drygt 4 000 objekt, och de flesta förvaltas av kommunens friluftsenhet. Andra kommunala verksamheter, föreningar och länsstyrelsen står också som ägare eller förvaltare.",
+      "API:et gör registret tillgängligt för den som vill återanvända uppgifterna, till exempel i kartor och appar för friluftsliv eller i kommunens egna webbtjänster. Varje anläggning har en typ, ett läge och en rad egenskaper som status, byggnadsår, tillhörande bilder och vart du vänder dig för att felanmäla. Bilderna har alt-text och licens, och kan vara markerade för sommar eller vinter.",
+      "Anläggningarna levereras som GeoJSON med punkter, linjer och ytor, och kan filtreras på typ, tagg, ägare, förvaltare, publiceringsstatus, datum och geografiskt område. Typerna är ordnade i en hierarki under åtta huvudgrupper, som fritids-, kultur- och idrottsområden, hamnar och administrativa områden, och kan hämtas separat."
+    ],
+    "malgrupp": "Allmänheten – utvecklare, företag, föreningar och kommunens egna webbtjänster",
+    "funktioner": [
+      {
+        "titel": "Lista anläggningar",
+        "text": "Hämtar anläggningar som en GeoJSON-samling, med filter för typ, tagg, ägare, förvaltare, publiceringsstatus, datumintervall och geografisk avgränsning samt valbart koordinatsystem."
+      },
+      {
+        "titel": "Enskild anläggning",
+        "text": "Hämtar en anläggning med alla egenskaper: typ, ägare och förvaltare, taggar, kopplingar till över- och underordnade anläggningar, geometri och fält."
+      },
+      {
+        "titel": "Anläggningstyper",
+        "text": "Listar samtliga typer med deras plats i hierarkin och hämtar en enskild typ med namn, beskrivning och överordnad typ."
+      },
+      {
+        "titel": "Egenskaper i fält",
+        "text": "Varje anläggning beskrivs med fält av olika slag – bland annat datum, tal, fritext, val ur lista, av/på, byggnad, taggar, led, sammansatt led, område och felanmälan."
+      },
+      {
+        "titel": "Bilder och filer",
+        "text": "Fält med filer anger filnamn, beskrivning, alt-text, källa, licens och om bilden gäller sommar eller vinter, med en länk för att hämta filen."
+      },
+      {
+        "titel": "Leder som GPX",
+        "text": "En anläggnings sammansatta leder kan hämtas som GPX-fil för GPS-klockor och kartappar."
+      }
+    ],
+    "beroenden": [],
+    "integrationer": null,
+    "databas": null,
+    "teknik": null,
+    "konfiguration": [
+      "Publiceras på kommunens API-plattform som facilities 2.2 (api.sundsvall.se/facilities/2.2); läsanropen kräver ingen inloggning",
+      "Koordinatsystemet väljs per anrop med parametern crs, både för listan och för en enskild anläggning",
+      "Tjänsten publicerar själv sin OpenAPI-specifikation på anlaggning.sundsvall.se/api/docs"
+    ],
+    "anteckningar": [
+      "Specifikationen anger Basic-autentisering för samtliga anrop, men läsanropen svarar utan inloggning både via API-plattformen och på tjänstens egen adress – verifierat med anrop.",
+      "Specifikationen har versionen 1.0, medan API-plattformen exponerar API:et som version 2.2.",
+      "GPX-anropet (getgpx) och specifikationen (docs) svarar på tjänstens egen adress men nås inte via API-plattformens version 2.2 – verifierat med anrop.",
+      "Listan returnerar även opublicerade anläggningar om parametern published utelämnas.",
+      "Filerna hämtas via field/filesfield/{id}, medan specifikationen beskriver fältets anrop som field/FILES. Anropet för typschemat (gettypeschema) är markerat som utfasat."
+    ]
+  },
+  {
     "repo": "api-service-archive",
     "namn": "Archive",
     "slug": "archive",
