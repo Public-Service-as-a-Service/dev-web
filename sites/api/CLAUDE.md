@@ -108,7 +108,9 @@ med de fält som redan finns där (repo, namn, slug, kategori, status,
 apiVersion, ingress, beskrivning, malgrupp, funktioner, beroenden,
 integrationer, databas, teknik, konfiguration, anteckningar; `agare` bara när
 repot inte ligger under Sundsvallskommun – sidorna, SBOM-workflowet och
-normaliseringen läser alla ägaren därifrån), kopiera
+normaliseringen läser alla ägaren därifrån; `atkomst` bara när konsumenter
+inte autentiserar sig med OAuth2-klientuppgifter, t.ex. "öppet, ingen
+inloggning krävs" – texten visas på pilen i diagrammet och i arkitekturtexten), kopiera
 OpenAPI-specifikationen till `public/api/assets/openapi/<slug>.yml` och kör
 `python3 sites/api/scripts/generate-pages.py` följt av
 `python3 sites/api/scripts/generate-diagrams.py`. Generatorn skriver **sidskal** under
@@ -125,6 +127,19 @@ SBOM-sidan ingår inte i det här steget: den skapas först när
 `refresh-sbom.yml` har lagt en `public/api/assets/sbom/<slug>.spdx.json` på plats. Ett nytt
 API får alltså sin programvaruförteckning vid nästa schemalagda körning, eller
 direkt om du kör workflowet manuellt.
+
+### API:er utan publicerad källkod
+
+Fältet `repo` utelämnas när lösningen inte publiceras som öppen källkod, som
+för Anläggningsregister. Sidan visar då ingen källkodslänk, texterna i den
+tekniska dokumentationen anger att källkoden inte är publicerad, och
+SBOM-workflowet hoppar över API:et. Fyll de fält som går att belägga ur
+OpenAPI-specifikationen och ur anrop mot API:et i produktion, och lämna
+`teknik`, `databas` och `integrationer` tomma (`null`) i stället för att gissa.
+Under `anteckningar` (som då får rubriken "Noterbart ur specifikationen och
+anropen") ska varje påstående vara verifierat med anrop. För aldrig över
+kontaktuppgifter till personer från specifikationen: ta bort `info.contact`
+när specen kopieras till `public/api/assets/openapi/<slug>.yml`.
 
 ## API-sidans struktur
 

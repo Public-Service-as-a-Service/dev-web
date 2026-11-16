@@ -23,11 +23,15 @@ function archProse(api: ApiData): string {
   const stack = [t.sprak, t.ramverk].filter(Boolean).join(', ');
   if (stack) {
     bits.push(`API:et är en mikrotjänst (${stack}).`);
-  } else {
+  } else if (api.repo) {
     bits.push('API:et är en mikrotjänst; se källkoden för detaljer om uppbyggnaden.');
+  } else {
+    bits.push('Källkoden är inte publicerad, så uppbyggnaden bakom API:et beskrivs inte här.');
   }
   bits.push(
-    'Konsumenter når tjänsten via kommunens gemensamma API-plattform (WSO2) på api.sundsvall.se – tjänsten anropas aldrig direkt.',
+    api.atkomst
+      ? `Konsumenter når tjänsten via kommunens gemensamma API-plattform (WSO2) på api.sundsvall.se – ${api.atkomst}.`
+      : 'Konsumenter når tjänsten via kommunens gemensamma API-plattform (WSO2) på api.sundsvall.se – tjänsten anropas aldrig direkt.',
   );
   if (api.beroenden?.length) {
     bits.push('Tjänsten anropar i sin tur andra mikrotjänster i kommunens tjänstelandskap.');
@@ -97,7 +101,7 @@ export function ApiPage({ data }: { data: ApiPageData }) {
                 ...(hasSbom
                   ? [{ label: 'Programvaruförteckning (SBOM)', href: `${api.slug}-sbom.html` }]
                   : []),
-                { label: 'Källkod på GitHub', href: kallkod },
+                ...(kallkod ? [{ label: 'Källkod på GitHub', href: kallkod }] : []),
               ]}
             />
           }
@@ -120,8 +124,10 @@ export function ApiPage({ data }: { data: ApiPageData }) {
         <h2 className="font-header">API-dokumentation</h2>
         <p className="text-lead">
           {hasSpec
-            ? 'API:ets samtliga resurser, parametrar och datamodeller finns beskrivna i en OpenAPI-specifikation som är hämtad ur källkodsförrådet. Den kan utforskas interaktivt i Swagger UI eller laddas ner som YAML.'
-            : 'Ingen incheckad OpenAPI-specifikation hittades i källkodsförrådet; se källkoden för aktuell API-dokumentation.'}
+            ? `API:ets samtliga resurser, parametrar och datamodeller finns beskrivna i en OpenAPI-specifikation som är hämtad ${kallkod ? 'ur källkodsförrådet' : 'från tjänstens egen dokumentation'}. Den kan utforskas interaktivt i Swagger UI eller laddas ner som YAML.`
+            : kallkod
+              ? 'Ingen incheckad OpenAPI-specifikation hittades i källkodsförrådet; se källkoden för aktuell API-dokumentation.'
+              : 'Ingen OpenAPI-specifikation finns publicerad för API:et.'}
           {hasSbom &&
             ' Programvaruförteckningen (SBOM) listar tjänstens samtliga tredjepartskomponenter med version och licens.'}
         </p>
@@ -166,8 +172,10 @@ export function ApiPage({ data }: { data: ApiPageData }) {
         <h2 className="font-header">Teknisk dokumentation</h2>
         <p className="text-lead">
           Nedan beskrivs hur tjänsten är uppbyggd, vilka andra tjänster den anropar och vad som
-          krävs för att driftsätta den. Informationen är härledd ur källkoden och dess
-          konfiguration på GitHub.
+          krävs för att driftsätta den.{' '}
+          {kallkod
+            ? 'Informationen är härledd ur källkoden och dess konfiguration på GitHub.'
+            : 'Källkoden är inte publicerad, så informationen bygger på OpenAPI-specifikationen och på anrop mot API:et i produktion.'}
         </p>
 
         <h3 className="font-header">Arkitektur</h3>
@@ -175,7 +183,9 @@ export function ApiPage({ data }: { data: ApiPageData }) {
           src={`assets/diagrams/${api.slug}.svg`}
           alt={`Arkitekturskiss för ${api.namn}: tjänstens delar och dess integrationer.`}
         >
-          Lösningsarkitektur, härledd ur källkodens konfiguration.
+          {kallkod
+            ? 'Lösningsarkitektur, härledd ur källkodens konfiguration.'
+            : 'Lösningsarkitektur, härledd ur OpenAPI-specifikationen och anrop mot API:et.'}
         </DiagramFigure>
         <p>{archProse(api)}</p>
 
@@ -202,7 +212,11 @@ export function ApiPage({ data }: { data: ApiPageData }) {
             </li>
           )}
           {!teknik.sprak && !teknik.ramverk && !api.databas && !teknik.ovrigt && (
-            <li>Se källkodens byggfiler för detaljer.</li>
+            <li>
+              {kallkod
+                ? 'Se källkodens byggfiler för detaljer.'
+                : 'Uppgifter saknas eftersom källkoden inte är publicerad.'}
+            </li>
           )}
         </ul>
 
@@ -233,7 +247,11 @@ export function ApiPage({ data }: { data: ApiPageData }) {
             </div>
           </>
         ) : (
-          <p>Inga anrop till andra mikrotjänster hittades i källkodens konfiguration.</p>
+          <p>
+            {kallkod
+              ? 'Inga anrop till andra mikrotjänster hittades i källkodens konfiguration.'
+              : 'Uppgifter om beroenden saknas eftersom källkoden inte är publicerad.'}
+          </p>
         )}
 
         {hasSbom && sbom && (
@@ -254,13 +272,19 @@ export function ApiPage({ data }: { data: ApiPageData }) {
           {konfiguration.length > 0 ? (
             konfiguration.map((k, i) => <li key={i}>{k}</li>)
           ) : (
-            <li>Se källkodens miljöfilsexempel.</li>
+            <li>
+              {kallkod
+                ? 'Se källkodens miljöfilsexempel.'
+                : 'Uppgifter saknas eftersom källkoden inte är publicerad.'}
+            </li>
           )}
         </ul>
 
         {anteckningar.length > 0 && (
           <>
-            <h3 className="font-header">Noterbart ur källkoden</h3>
+            <h3 className="font-header">
+              {kallkod ? 'Noterbart ur källkoden' : 'Noterbart ur specifikationen och anropen'}
+            </h3>
             <ul className="flex flex-col gap-8 pl-20 list-disc">
               {anteckningar.map((n, i) => (
                 <li key={i}>{n}</li>
@@ -270,14 +294,21 @@ export function ApiPage({ data }: { data: ApiPageData }) {
         )}
 
         <h3 className="font-header">Källkod</h3>
-        <p>
-          Källkoden är öppen och finns hos{' '}
-          <Link href={kallkod} external>
-            {agareNamn(api.agare)} på GitHub
-          </Link>
-          . I källkodsförrådet finns även instruktioner för att klona, konfigurera och starta
-          tjänsten i egen miljö.
-        </p>
+        {kallkod ? (
+          <p>
+            Källkoden är öppen och finns hos{' '}
+            <Link href={kallkod} external>
+              {agareNamn(api.agare)} på GitHub
+            </Link>
+            . I källkodsförrådet finns även instruktioner för att klona, konfigurera och starta
+            tjänsten i egen miljö.
+          </p>
+        ) : (
+          <p>
+            Lösningen bakom API:et publiceras inte som öppen källkod. Därför finns ingen
+            programvaruförteckning och inga uppgifter som bara går att hämta ur källkoden.
+          </p>
+        )}
       </PageSection>
     </SubpageChrome>
   );

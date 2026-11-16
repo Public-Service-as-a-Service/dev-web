@@ -67,8 +67,10 @@ jobs:
           if [ "$sektion" != "tjanster" ]; then
             # agare: GitHub-organisationen som äger repot. De flesta API:er ligger
             # under Sundsvallskommun, men t.ex. Öppna data utvecklas hos diwise.
+            # API:er utan publicerat källkodsrepo (repo saknas) har ingen
+            # förteckning att ta fram och hoppas över.
             apis=$(jq -c --arg only "$ONLY" \
-              '[.[] | {slug, repo, agare: (.agare // "Sundsvallskommun")}]
+              '[.[] | select(.repo) | {slug, repo, agare: (.agare // "Sundsvallskommun")}]
                | if $only == "" then . else map(select(.slug == $only)) end' \
               sites/api/scripts/apis-data.json)
           fi

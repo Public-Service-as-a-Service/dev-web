@@ -1,0 +1,678 @@
+openapi: 3.0.0
+servers:
+- url: https://api.sundsvall.se/facilities/2.2
+  description: production environment
+info:
+  title: Anläggningsregister
+  description: En tjänst för att registrera och administrera anläggningar i Sundsvall
+    kommun
+  version: '1.0'
+tags:
+- name: Documentation
+- name: Objects
+- name: Types
+- name: Fields
+paths:
+  /docs:
+    get:
+      description: Retrieve the OpenAPI documentation for all available endpoints
+        and schemas
+      operationId: getApiDocs
+      tags:
+      - Documentation
+      security:
+      - basicAuth: []
+      responses:
+        '200':
+          description: OK
+  /get/{objectID}:
+    get:
+      description: Retrieve a single management object by its unique identifier. Optionally,
+        specify a coordinate reference system (CRS)
+      operationId: getObjectById
+      tags:
+      - Objects
+      security:
+      - basicAuth: []
+      parameters:
+      - name: objectID
+        in: path
+        required: true
+        schema:
+          type: integer
+      - name: crs
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: An object or an error
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    error:
+                      type: string
+                - $ref: '#/components/schemas/ManagementObject'
+  /list:
+    get:
+      description: Retrieve a filtered list of management objects. Supports filtering
+        by date range, geographic boundary, publication status, tags, ownership, management,
+        type, and coordinate system
+      operationId: listObjects
+      tags:
+      - Objects
+      security:
+      - basicAuth: []
+      parameters:
+      - name: from
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date
+      - name: to
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date
+      - name: boundary
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: published
+        in: query
+        required: false
+        schema:
+          type: boolean
+      - name: tag
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: owner
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: manager
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: crs
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: typeName
+        in: query
+        required: false
+        explode: true
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: List of objects or an error
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    error:
+                      type: string
+                - $ref: '#/components/schemas/ManagementObject'
+  /gettypeschema:
+    get:
+      description: 'Retrieve JSON-type schema. Deprecated: Use OpenAPI documentation
+        endpoint instead'
+      operationId: getTypeSchema
+      deprecated: true
+      tags:
+      - Types
+      security:
+      - basicAuth: []
+      responses:
+        '200':
+          description: Deprecated - replaced by OpenAPI documentation
+  /gettype/{typeID}:
+    get:
+      description: Retrieve the complete definition of a management type by its unique
+        identifier, including name, description, and parent type information
+      operationId: getTypeById
+      tags:
+      - Types
+      security:
+      - basicAuth: []
+      parameters:
+      - name: typeID
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Type object
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ID:
+                    type: integer
+                  name:
+                    type: string
+                  description:
+                    type: string
+                  parentID:
+                    type: integer
+                required:
+                - ID
+                - name
+  /listtypes:
+    get:
+      description: Retrieve a list of all available management types with their definitions
+        and hierarchical information
+      operationId: listTypes
+      tags:
+      - Types
+      security:
+      - basicAuth: []
+      responses:
+        '200':
+          description: Types list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  types:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        ID:
+                          type: integer
+                        name:
+                          type: string
+                        description:
+                          type: string
+                        parentID:
+                          type: integer
+                      required:
+                      - ID
+                      - name
+  /getgpx/{objectID}:
+    get:
+      description: Retrieve a management object's combined trails in GPX format. Returns
+        nothing if the object has no combined trails
+      operationId: getGpxById
+      tags:
+      - Objects
+      security:
+      - basicAuth: []
+      parameters:
+      - name: objectID
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: GPX document
+          content:
+            application/xml:
+              schema:
+                type: string
+  /field/FILES:
+    get:
+      description: Access the field handler API for the FILES field type
+      operationId: fieldApi_FILES
+      tags:
+      - Fields
+      security:
+      - basicAuth: []
+      responses:
+        '200':
+          description: OK
+components:
+  schemas:
+    BUILDING:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        type:
+          type: string
+        buildingName:
+          type: string
+        buildingGuid:
+          type: string
+        buildingStatus:
+          type: string
+      required:
+      - id
+      - name
+      - type
+    DATE:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        type:
+          type: string
+        value:
+          type: string
+      required:
+      - id
+      - name
+      - type
+    INTEGER:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        type:
+          type: string
+        value:
+          type: integer
+      required:
+      - id
+      - name
+      - type
+    GEOPOINT:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        type:
+          type: string
+        coordinates:
+          type: array
+          items:
+            type: object
+      required:
+      - id
+      - name
+      - type
+    FREETEXT:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        type:
+          type: string
+        value:
+          type: string
+      required:
+      - id
+      - name
+      - type
+    DROPDOWN:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        type:
+          type: string
+        value:
+          type: string
+      required:
+      - id
+      - name
+      - type
+    FILES:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        type:
+          type: string
+        value:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              name:
+                type: string
+              type:
+                type: string
+              sortIndex:
+                type: integer
+              sourcetext:
+                type: string
+              description:
+                type: string
+              validForSummer:
+                type: boolean
+              validForWinter:
+                type: boolean
+              url:
+                type: string
+              license:
+                type: string
+              filename:
+                type: string
+              size:
+                type: number
+              licenseDescription:
+                type: string
+              alttext:
+                type: string
+            required:
+            - id
+            - name
+            - type
+      required:
+      - id
+      - name
+      - type
+    TOGGLE:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        type:
+          type: string
+        value:
+          type: string
+      required:
+      - id
+      - name
+      - type
+    ERRORREPORT:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        type:
+          type: string
+        reportName:
+          type: string
+        reportLink:
+          type: string
+        reportEmail:
+          type: string
+        reportDescription:
+          type: string
+        reportPhone:
+          type: string
+      required:
+      - id
+      - name
+      - type
+    COMBINEDTRAIL:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        type:
+          type: string
+        referencedObjects:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              name:
+                type: string
+              type:
+                type: string
+              objectID:
+                type: integer
+              fieldID:
+                type: integer
+              direction:
+                type: string
+                enum:
+                - NORMAL
+                - REVERSED
+            required:
+            - id
+            - name
+            - type
+      required:
+      - id
+      - name
+      - type
+    TAGS:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        type:
+          type: string
+        value:
+          type: array
+          items:
+            type: string
+      required:
+      - id
+      - name
+      - type
+    TRAIL:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        type:
+          type: string
+        affectedObjects:
+          type: array
+          items:
+            type: integer
+      required:
+      - id
+      - name
+      - type
+    GEOAREA:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        type:
+          type: string
+        coordinates:
+          type: array
+          items:
+            type: object
+      required:
+      - id
+      - name
+      - type
+    ORGANIZATION:
+      type: object
+      properties:
+        organizationID:
+          type: integer
+        name:
+          type: string
+      required:
+      - organizationID
+      - name
+    ManagementObject:
+      type: object
+      properties:
+        id:
+          type: integer
+        type:
+          type: string
+          enum:
+          - Feature
+        properties:
+          type: object
+          properties:
+            name:
+              type: string
+            type:
+              type: string
+            created:
+              type: string
+            updated:
+              type: string
+            published:
+              type: boolean
+            typeID:
+              type: integer
+            childObjects:
+              type: array
+              items:
+                type: integer
+            parentObjects:
+              type: array
+              items:
+                type: integer
+            owner:
+              $ref: '#/components/schemas/ORGANIZATION'
+            manager:
+              $ref: '#/components/schemas/ORGANIZATION'
+            tags:
+              type: array
+              items:
+                type: string
+            fields:
+              type: array
+              items:
+                oneOf:
+                - $ref: '#/components/schemas/BUILDING'
+                - $ref: '#/components/schemas/DATE'
+                - $ref: '#/components/schemas/INTEGER'
+                - $ref: '#/components/schemas/GEOPOINT'
+                - $ref: '#/components/schemas/FREETEXT'
+                - $ref: '#/components/schemas/DROPDOWN'
+                - $ref: '#/components/schemas/FILES'
+                - $ref: '#/components/schemas/TOGGLE'
+                - $ref: '#/components/schemas/ERRORREPORT'
+                - $ref: '#/components/schemas/COMBINEDTRAIL'
+                - $ref: '#/components/schemas/TAGS'
+                - $ref: '#/components/schemas/TRAIL'
+                - $ref: '#/components/schemas/GEOAREA'
+            centerPoint:
+              type: array
+              minItems: 2
+              maxItems: 2
+              items:
+                type: number
+          required:
+          - name
+          - type
+          - created
+          - published
+        geometry:
+          oneOf:
+          - type: string
+            nullable: true
+          - type: object
+            properties:
+              type:
+                type: string
+                enum:
+                - Point
+              coordinates:
+                type: array
+                items:
+                  type: number
+                minItems: 2
+                maxItems: 3
+            required:
+            - type
+            - coordinates
+          - type: object
+            properties:
+              type:
+                type: string
+                enum:
+                - LineString
+              coordinates:
+                type: array
+                items:
+                  type: array
+                  items:
+                    type: number
+                  minItems: 2
+            required:
+            - type
+            - coordinates
+          - type: object
+            properties:
+              type:
+                type: string
+                enum:
+                - Polygon
+              coordinates:
+                type: array
+                items:
+                  type: array
+                  items:
+                    type: array
+                    items:
+                      type: number
+                    minItems: 2
+            required:
+            - type
+            - coordinates
+          - type: object
+            properties:
+              type:
+                type: string
+                enum:
+                - MultiPolygon
+              coordinates:
+                type: array
+                items:
+                  type: array
+                  items:
+                    type: array
+                    items:
+                      type: array
+                      items:
+                        type: number
+                      minItems: 2
+            required:
+            - type
+            - coordinates
+      required:
+      - id
+      - type
+      - properties
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic

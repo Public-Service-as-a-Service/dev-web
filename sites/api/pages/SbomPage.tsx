@@ -9,7 +9,7 @@ import { SubpageChrome } from '../components/SubpageChrome';
 import { type SbomKomponent, type SbomProvenans, repoUrl } from '../types';
 
 export interface SbomPageData {
-  api: { slug: string; namn: string; kategori: string; repo: string; agare?: string | null };
+  api: { slug: string; namn: string; kategori: string; repo?: string | null; agare?: string | null };
   komponenter: SbomKomponent[];
   licenser: [string, number][];
   provenans: SbomProvenans;
@@ -81,11 +81,17 @@ export function SbomPage({ data }: { data: SbomPageData }) {
             Antal unika licenser: <strong>{licenser.length}</strong>
           </li>
           <li>
-            Källa: <strong>{provenans.namn}</strong> (
-            <Link href={kallkod} external>
-              källkod på GitHub
-            </Link>
-            )
+            Källa: <strong>{provenans.namn}</strong>
+            {kallkod && (
+              <>
+                {' '}
+                (
+                <Link href={kallkod} external>
+                  källkod på GitHub
+                </Link>
+                )
+              </>
+            )}
           </li>
           <li>
             Avser källkod från: <strong>{datum}</strong>

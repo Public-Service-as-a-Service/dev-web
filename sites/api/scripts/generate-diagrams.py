@@ -180,7 +180,7 @@ def rows_layout(items, x0, x1, y, bw, bh, gap_y=16, min_gap=14):
     return pos, y - gap_y
 
 
-def diagram(filename, title, service_sub, dependencies, database, externals, notes):
+def diagram(filename, title, service_sub, dependencies, database, externals, notes, access=None):
     """dependencies: list of (name, version, usage); database/externals: strings."""
     parts = []
     y = 16
@@ -190,6 +190,8 @@ def diagram(filename, title, service_sub, dependencies, database, externals, not
     parts.append(f'<text x="{W/2}" y="{y+18}" text-anchor="middle" font-size="22" font-weight="bold" fill="{PRIMARY_DARK}">{esc(heading_text)}{tooltip(heading, heading_text)}</text>')
     y += 44
     intro = "Pilar visar anrop. Konsumenter når API:et via kommunens API-plattform (WSO2); tjänsten anropar i sin tur andra mikrotjänster."
+    # Standard är OAuth2-klientuppgifter; öppna API:er anger sin åtkomst i datafilen.
+    access_label = access or "OAuth2 (CLIENT_KEY/CLIENT_SECRET)"
     parts.append(f'<text x="{W/2}" y="{y}" text-anchor="middle" font-size="13" fill="{INK_SOFT}">{esc(fit(intro, W - 2 * margin, 13))}</text>')
     y += 24
 
@@ -204,7 +206,7 @@ def diagram(filename, title, service_sub, dependencies, database, externals, not
     gw, gh = 640, 58
     gx = (W - gw) / 2
     parts.append(arrow(consumer_bottom[0], consumer_bottom[1], W / 2, y, color=GREY_EDGE, curve=False))
-    parts.append(f'<text x="{W/2 + 12}" y="{consumer_bottom[1] + 28}" font-size="11" fill="{INK_SOFT}">OAuth2 (CLIENT_KEY/CLIENT_SECRET)</text>')
+    parts.append(f'<text x="{W/2 + 12}" y="{consumer_bottom[1] + 28}" font-size="11" fill="{INK_SOFT}">{esc(fit(access_label, W / 2 - 12 - margin, 11))}</text>')
     parts.append(box(gx, y, gw, gh, "API-plattform (WSO2)", "api.sundsvall.se — gemensam ingång till alla verksamhets-API:er", GREY_FILL, PRIMARY, title_size=16))
     gate_bottom = (W / 2, y + gh)
     y += gh + 46
@@ -292,9 +294,11 @@ for api in apis:
             for d in (api.get("beroenden") or [])]
     teknik = api.get("teknik") or {}
     stack_bits = [p for p in [teknik.get("sprak"), teknik.get("ramverk")] if p]
-    service_sub = (" + ".join(stack_bits) + " — " + api["repo"]) if stack_bits else api["repo"]
+    # Utan publicerat repo ersätts reponamnet med en upplysning om det.
+    repo = api.get("repo") or "källkoden är inte publicerad"
+    service_sub = (" + ".join(stack_bits) + " — " + repo) if stack_bits else repo
     if text_width(service_sub, 11.5) > SERVICE_W - 2 * BOX_PAD:
-        service_sub = api["repo"]
+        service_sub = repo
     database = None
     if api.get("databas"):
         database = api["databas"].split(";")[0].split(" med ")[0]
@@ -306,4 +310,5 @@ for api in apis:
         database,
         (api.get("integrationer") or [])[:10],
         (api.get("anteckningar") or [])[:3],
+        api.get("atkomst"),
     )
