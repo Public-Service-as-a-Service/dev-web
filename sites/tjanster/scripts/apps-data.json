@@ -623,8 +623,8 @@
     "apis": [
       {
         "name": "SupportManagement",
-        "version": "17.2",
-        "usage": "Metadata för ärendehantering: kategorier, statusar, etiketter, roller och namnrymder. Anropas via API-namnet support-management-alkt-sprint (version 17.2)."
+        "version": "18.4",
+        "usage": "Metadata för ärendehantering: kategorier, statusar, etiketter, roller och namnrymder. Med USE_SERVICE_ALIASES=true går anropen i stället till sprint-API:et support-management-alkt-sprint (version 17.2); standard är false."
       },
       {
         "name": "Templating",
@@ -659,7 +659,7 @@
       "API_BASE_URL mot kommunens API-gateway (test: api-test.sundsvall.se)"
     ],
     "anteckningar": [
-      "README anger äldre API-versioner (SupportManagement 12.4, Templating 2.0) än koden i api-config.ts (15.4 respektive 2.1) – koden är sanningskällan.",
+      "README anger äldre API-versioner (SupportManagement 12.4, Templating 2.0) än koden i api-config.ts (18.4 respektive 2.1) – koden är sanningskällan.",
       "Gränssnittet är resursdrivet: nya administrationsresurser definieras i en central konfigurationsfil.",
       "Svenska språkfiler finns för samtliga resurser (mallar, roller, statusar, funktionsflaggor m.m.)."
     ],
@@ -982,6 +982,11 @@
         "usage": "Länkar en tillgång (t.ex. tillstånd) till det ärende den utfärdats i, för dokument- och beslutsvyn."
       },
       {
+        "name": "ByggrIntegrator",
+        "version": "2.5",
+        "usage": "Bygglovsärenden från ByggR där användaren är sökande, med beslut och beslutshandlingar i dokument- och beslutsvyn."
+      },
+      {
         "name": "SimulatorServer",
         "version": "2.0",
         "usage": "Simulerings-API för test och utveckling."
@@ -989,7 +994,8 @@
     ],
     "integrationer": [
       "CGI GRP (BankID-signering via Funktionstjänster)",
-      "SAML IdP"
+      "SAML IdP",
+      "ByggR (bygglovssystem) via ByggrIntegrator"
     ],
     "auth": "SAML (SSO); inloggningsflödet är anpassat för BankID-baserad identifiering",
     "teknik": {
@@ -1332,7 +1338,7 @@
     ],
     "auth": "Ingen inloggning",
     "teknik": {
-      "frontend": "Next.js 15 (App Router), React, sk-web-gui, Tailwind CSS, i18next",
+      "frontend": "Next.js 16 (App Router), React 19, sk-web-gui, Tailwind CSS, i18next",
       "backend": "Node.js, Express, TypeScript (proxy mot Memories-API:t)",
       "tester": "Jest och Cypress med sammanslagen kodtäckning"
     },
@@ -1936,15 +1942,16 @@
     ],
     "auth": "SAML (SSO) med behörig administratörsgrupp (ADMIN_GROUP)",
     "teknik": {
-      "frontend": "Next.js 14, React 18, sk-web-gui",
+      "frontend": "Next.js 16, React 19, sk-web-gui",
       "backend": "Node.js/Express med TypeScript (routing-controllers)",
-      "tester": "Jest, Cypress"
+      "tester": "Jest (frontend och backend)"
     },
     "konfiguration": [
       "Miljöfiler: frontend/.env, backend/.env.development.local och .env.test.local",
       "CLIENT_KEY/CLIENT_SECRET för WSO2-prenumerationer",
       "SAML-certifikat och nycklar samt callback-URL:er",
-      "TypeScript-datakontrakt genereras från API:ernas OpenAPI-specar (yarn generate:contracts)"
+      "TypeScript-datakontrakt genereras från API:ernas OpenAPI-specar (yarn generate:contracts)",
+      "SESSION_STORE väljer sessionslagring (memory, file eller redis); i drift med flera poddar används Redis (REDIS_HOST m.fl.), som även delar API-gatewayns OAuth-token mellan poddarna"
     ],
     "anteckningar": [
       "PupilAccountManager-API:et ligger på kommunens interna gateway, inte den publika.",
@@ -2007,7 +2014,7 @@
     ],
     "auth": "SAML (SSO) mot kommunens centrala inloggning",
     "teknik": {
-      "frontend": "Next.js 15, React 19, sk-web-gui (separat frontend- och adminapplikation)",
+      "frontend": "Next.js 16, React 19, sk-web-gui (separat frontend- och adminapplikation)",
       "backend": "Node.js med Express och Prisma mot SQLite (TypeScript)",
       "tester": "Cypress med kodtäckning"
     },
@@ -2094,7 +2101,8 @@
     "konfiguration": [
       ".env-filer för frontend och backend utifrån .env-exempel",
       "CLIENT_KEY/CLIENT_SECRET mot kommunens API-gateway",
-      "SAML-certifikat, nycklar och callback-URL:er"
+      "SAML-certifikat, nycklar och callback-URL:er",
+      "SESSION_STORE väljer sessionslagring (memory, file eller redis); i drift med flera poddar används Redis (REDIS_HOST m.fl.), som även delar API-gatewayns OAuth-token mellan poddarna"
     ],
     "anteckningar": [
       "Roller i koden: ForecastUser (rektor), GradeAuthor (lärare) och Mentor, med skoltyperna GR/GRS och GY/GYS.",
@@ -2159,7 +2167,7 @@
       },
       {
         "name": "Messaging",
-        "version": "7.3",
+        "version": "7.9",
         "usage": "Utskick av meddelanden till elever och vårdnadshavare."
       }
     ],
@@ -2765,8 +2773,8 @@
     "apis": [
       {
         "name": "SupportManagement",
-        "version": "16.1",
-        "usage": "Kärnan i den generiska ärendehanteringen – ärenden, kategorier, status, kommunikation och handläggning"
+        "version": "18.4",
+        "usage": "Kärnan i den generiska ärendehanteringen – ärenden, kategorier, status, kommunikation och handläggning. Backend kan via SUPPORTMANAGEMENT_API_TARGET styras mot utvecklingssprintens API supportmanagement-sprint (16.0); standard är den stabila versionen."
       },
       {
         "name": "CaseData",
@@ -2785,12 +2793,12 @@
       },
       {
         "name": "Messaging",
-        "version": "7.10",
+        "version": "7.11",
         "usage": "Meddelanden till sökande och andra parter i myndighetsärenden (parkeringstillstånd och färdtjänst: sms och digital brevlåda, inte e-post)"
       },
       {
         "name": "PartyAssets",
-        "version": "6.5",
+        "version": "6.10",
         "usage": "Register över utfärdade parkeringstillstånd kopplade till person"
       },
       {
@@ -2820,7 +2828,7 @@
       },
       {
         "name": "Templating",
-        "version": "2.1",
+        "version": "2.2",
         "usage": "Mallar för brev, beslut och andra dokument"
       },
       {
@@ -2845,7 +2853,7 @@
       },
       {
         "name": "Party",
-        "version": "2.1",
+        "version": "2.2",
         "usage": "Id-översättning av parter i ärenden"
       },
       {
