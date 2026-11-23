@@ -731,7 +731,9 @@
     "konfiguration": [
       ".env-filer för frontend och backend enligt exempel (.env-example, .env.example.local)",
       "CLIENT_KEY och CLIENT_SECRET från WSO2-portalen för API-åtkomst",
-      "SAML-konfiguration med certifikat och nycklar (SAML_ENTRY_SSO, SAML_IDP_PUBLIC_CERT m.fl.)"
+      "SAML-konfiguration med certifikat och nycklar (SAML_ENTRY_SSO, SAML_IDP_PUBLIC_CERT m.fl.)",
+      "Redis (REDIS_HOST m.fl.) i drift med flera instanser, så att sessioner och API-plattformens OAuth-token delas mellan poddarna; utan Redis lagras sessioner i filer lokalt",
+      "Frontend byggs mot platshållare (.env-cicd) som entrypoint.sh byter mot containerns miljövariabler vid start, så att en image per commit fungerar i alla miljöer"
     ],
     "anteckningar": [
       "Sidtitlarna anger tjänstens namn som Kontohantering.sundsvall.se med beskrivningen Hantering av LOV-användare till Lifecare.",
@@ -1008,7 +1010,8 @@
       "CLIENT_KEY och CLIENT_SECRET mot kommunens API-plattform (WSO2)",
       "SAML-inställningar med IdP-adress och certifikat",
       "GRP-inställningar (GRP_URL, GRP_SERVICE_ID, GRP_ACCESS_TOKEN) för BankID-signering av fullmakter",
-      "API-listan i backend/src/config/api-config.ts är enda sanningskälla för API-prenumerationer"
+      "API-listan i backend/src/config/api-config.ts är enda sanningskälla för API-prenumerationer",
+      "Redis (REDIS_HOST m.fl.) i drift med flera instanser, så att sessioner och API-plattformens OAuth-token delas mellan poddarna; utan Redis lagras sessioner i filer (eller i minnet med SESSION_MEMORY) lokalt"
     ],
     "anteckningar": [
       "Välkomsttexten beskriver tjänsten som 'nya Mina sidor' som lanserar mer funktionalitet löpande.",
@@ -1149,7 +1152,8 @@
       "CLIENT_KEY och CLIENT_SECRET mot kommunens API-plattform (WSO2)",
       "SAML-inställningar med IdP-adress och certifikat",
       "GRP-inställningar (adress, tjänste-ID och åtkomstnyckel) för BankID-signering",
-      "Kommun-ID (MUNICIPALITY_ID=2281)"
+      "Kommun-ID (MUNICIPALITY_ID=2281)",
+      "Redis (REDIS_HOST m.fl.) i drift med flera instanser, så att sessioner och API-plattformens OAuth-token delas mellan poddarna; utan Redis lagras sessioner i filer (eller i minnet med SESSION_MEMORY) lokalt"
     ],
     "anteckningar": [
       "Portalen har ett privatläge och ett företagsläge med samma sektioner (representing-lägena PRIVATE/BUSINESS i koden); inloggningen landar i privatläget och företrädare växlar via organisationsvalet.",
@@ -1507,7 +1511,8 @@
     "konfiguration": [
       "Miljöfiler: frontend/.env-example och backend/.env.example.local",
       "CLIENT_KEY och CLIENT_SECRET mot kommunens API-plattform (WSO2)",
-      "SAML-inställningar med IdP-adress och certifikat"
+      "SAML-inställningar med IdP-adress och certifikat",
+      "OIDC_ENABLED slår på OIDC-inloggning (OIDC_ISSUER_URL, OIDC_CLIENT_ID m.fl.) och WSO2_USER_TOKEN_EXCHANGE_ENABLED en användarbunden WSO2-token; båda är avslagna som standard och SAML är ordinarie inloggning"
     ],
     "anteckningar": [
       "Repot är byggt på kommunens startmall; tre fullt utbyggda verksamhetssidor finns nu (min personakt, mina medarbetare, sök personakt) – enda kvarvarande spår av mallen är en oanvänd i18n-namespace ('example').",
@@ -1609,6 +1614,10 @@
         "text": "Skicka sms till en eller flera mottagare med organisationen som avsändare."
       },
       {
+        "titel": "E-signering",
+        "text": "Skicka dokument för e-signering, följ signeringen och vidarebefordra det signerade dokumentet som digitalt brev."
+      },
+      {
         "titel": "Guidat utskicksflöde",
         "text": "Stegvis flöde med mottagare, filer, rubrik/förvaltning och granskning."
       },
@@ -1620,9 +1629,10 @@
     "webbar": [
       {
         "namn": "Postportalen",
-        "beskrivning": "utskicksflödet: brev, rekommenderat brev och sms till invånare och företag",
+        "beskrivning": "utskicksflödet: brev, rekommenderat brev, sms och e-signering till invånare och företag",
         "processer": [
           "Utskick av brev, rekommenderat brev och sms",
+          "E-signering av dokument och vidarebefordran av det signerade dokumentet som digitalt brev",
           "Uppföljning av egna utskick och statistik"
         ]
       },
@@ -1637,8 +1647,8 @@
     "apis": [
       {
         "name": "PostPortalService",
-        "version": "1.9",
-        "usage": "Själva utskickstjänsten: brev, rekommenderade brev, sms och status."
+        "version": "1.10",
+        "usage": "Själva utskickstjänsten: brev, rekommenderade brev, sms, e-signering och status, samt vidarebefordran av signerade dokument."
       },
       {
         "name": "Citizen",
